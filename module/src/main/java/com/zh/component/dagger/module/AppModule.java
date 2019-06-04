@@ -49,6 +49,11 @@ public class AppModule {
                 .baseUrl(BASE_URL).client(httpClient).build();
     }
 
+    @Provides
+    public String name(){
+        return "aaa";
+    }
+
 //    @Provides
 //    public MyService myService(Retrofit retrofit) {
 //        MyService myService = retrofit.create(MyService.class);
