@@ -9,8 +9,7 @@ buildscript {
     ext.versionName = "v1.0"
     ext.testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     ext {
-        moduleShopMall = true
-
+        moduleShopMall = false
         ext.arouterApiVersion = '1.4.0'
         ext.arouterCompilerVersion = '1.2.1'
         ext.arouterAnnotationVersion = '1.0.6'
