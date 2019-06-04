@@ -8,7 +8,9 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 
 import core.app.zh.com.core.listener.AddOptionInApplicationListener;
+import core.app.zh.com.core.listener.DaggerOptionListener;
 import core.app.zh.com.core.listener.impl.ActivityLifecycleCallbackListener;
+import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
 
 public abstract class BaseApplication extends DaggerApplication {
@@ -31,5 +33,15 @@ public abstract class BaseApplication extends DaggerApplication {
 
     }
 
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        if (daggerOptionListener() != null) {
+            return daggerOptionListener().optionComponent();
+        }
+        return null;
+    }
+
     public abstract AddOptionInApplicationListener option();
+
+    public abstract DaggerOptionListener daggerOptionListener();
 }
