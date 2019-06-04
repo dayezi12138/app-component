@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">coreLib</string>
+    <string name="loading_msg">加载中...</string>
+    <string name="exit_toast_str">再按一次退出程序</string>
+</resources>

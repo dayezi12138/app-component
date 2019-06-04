@@ -1,0 +1,80 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.compileSdkVersion = 28
+    ext.buildToolsVersion = '28.0.2'
+    ext.minSdkVersion = 19
+    ext.targetSdkVersion = 28
+    ext.versionCode = 1
+    ext.versionName = "v1.0"
+    ext.testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+    ext {
+        moduleShopMall = true
+
+        ext.arouterApiVersion = '1.4.0'
+        ext.arouterCompilerVersion = '1.2.1'
+        ext.arouterAnnotationVersion = '1.0.6'
+        ext.butterknifeVersion = '8.4.0'
+        ext.jdkVersion = 1.8
+        ext.androidSupportSdkVersion = '28.0.0'
+        ext.daggerVersion = '2.16'
+        ext.utilcode = '1.11.1'
+        ext.okhttpVersion = '3.14.0'
+        ext.retrofitVersion = '2.1.0'
+        ext.gsonVersion = '2.6.2'
+        ext.rxjavaVersion = '2.0.1'
+        ext.retrofitRxjavaVersion = '2.5.0'
+        ext.okhttp3LogInterceptorVersion = '3.14.0'
+        ext.recyclerViewHelperVersion = '2.9.22'
+        ext.aopVersion = '1.8.9'
+        ext.rxPermissionVersion = '0.10.2'
+        ext.loadingDialogVersion = '1.0.2'
+        ext.materialDialogs = '0.9.1.0'
+        ext.tickseekbarVersion ='0.1.4'
+        ext.eventbusVersion ='3.1.1'
+        ext.glideVersion ='4.9.0'
+        ext.switchButtonVersion ='0.0.3@aar'
+    }
+
+
+    repositories {
+        maven { url "https://jitpack.io" }
+        google()
+        jcenter()
+    }
+
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0'
+
+        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'
+        classpath 'com.alibaba:arouter-register:1.0.2'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+subprojects {
+    project.configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.android.support'
+                    && !details.requested.name.contains('multidex')) {
+                details.useVersion '28.0.0'
+            }
+        }
+    }
+}
+
