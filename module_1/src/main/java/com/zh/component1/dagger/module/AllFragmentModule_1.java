@@ -1,4 +1,4 @@
-package com.zh.component.dagger.module;
+package com.zh.component1.dagger.module;
 
 import core.app.zh.com.core.dagger.component.FragmentComponent;
 import dagger.Module;

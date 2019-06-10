@@ -1,1 +1,1 @@
-include ':module', ':core',':module_1'
+include ':module', ':core',':module_1',':toolbar-api',':toolbar-annatations',':toolbar-process'

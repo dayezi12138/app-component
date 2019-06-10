@@ -1,7 +1,7 @@
-package com.zh.component.dagger.module;
+package com.zh.component1.dagger.module;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.zh.component.application.Module_1Application;
+import com.zh.component1.application.Module_1Application;
 
 import java.util.concurrent.TimeUnit;
 

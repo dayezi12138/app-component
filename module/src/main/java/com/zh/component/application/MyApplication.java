@@ -7,8 +7,6 @@ import com.zh.component.dagger.module.AppModule;
 import core.app.zh.com.core.application.BaseApplication;
 import core.app.zh.com.core.listener.AddOptionInApplicationListener;
 import core.app.zh.com.core.listener.DaggerOptionListener;
-import dagger.android.AndroidInjector;
-import dagger.android.support.DaggerApplication;
 
 /**
  * author : dayezi

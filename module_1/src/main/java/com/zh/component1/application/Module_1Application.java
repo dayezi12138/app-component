@@ -1,7 +1,9 @@
-package com.zh.component.application;
+package com.zh.component1.application;
 
-import com.zh.component.dagger.component.DaggerMyAppComponent_1;
-import com.zh.component.dagger.component.MyAppComponent_1;
+import com.zh.api.DefaultBean;
+import com.zh.api.MyInject;
+import com.zh.component1.dagger.component.DaggerMyAppComponent_1;
+import com.zh.component1.dagger.component.MyAppComponent_1;
 
 import core.app.zh.com.core.application.BaseApplication;
 import core.app.zh.com.core.listener.AddOptionInApplicationListener;
@@ -15,7 +17,10 @@ import core.app.zh.com.core.listener.DaggerOptionListener;
 public class Module_1Application extends BaseApplication {
     @Override
     public AddOptionInApplicationListener option() {
-        return null;
+        return application -> MyInject.init(Module_1Application.this, () -> {
+            DefaultBean bean = new DefaultBean();
+            return bean;
+        });
     }
 
 

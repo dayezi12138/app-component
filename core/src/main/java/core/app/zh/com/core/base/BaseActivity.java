@@ -4,13 +4,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ToastUtils;
 
 import butterknife.ButterKnife;
+import core.app.zh.com.core.R;
 import core.app.zh.com.core.bean.ToolbarBean;
 import core.app.zh.com.core.bean.ToolbarMenu;
 import core.app.zh.com.core.bean.ToolbarNavigation;
@@ -21,7 +25,6 @@ import core.app.zh.com.core.listener.GetActivityListener;
 import core.app.zh.com.core.listener.GetPresenter;
 import core.app.zh.com.core.listener.LayoutInitListener;
 import core.app.zh.com.core.listener.OnChangeToolbarListener;
-import core.app.zh.com.core.listener.SteepOptionListener;
 import dagger.android.support.DaggerAppCompatActivity;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -30,15 +33,29 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
     private OnChangeToolbarListener onChangeToolbarListener;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private AppExitListener appExitListener;
-    private SteepOptionListener steepOptionListener;
+
+    LinearLayout rootLy;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (layoutId() != 0) setContentView(layoutId());
+        beforeInit();
         ButterKnife.bind(this);
         ARouter.getInstance().inject(this);
         init();
+    }
+
+    private void beforeInit() {
+        setContentView(R.layout.base_view);
+        rootLy = findViewById(R.id.root_ly);
+        if (addToolbar()) {
+            ViewGroup toolbarLayout = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.common_toolbar_,null);
+            rootLy.addView(toolbarLayout);
+        }
+        if (layoutId() != 0) {
+            View view = LayoutInflater.from(this).inflate(layoutId(),  rootLy,false);
+            rootLy.addView(view);
+        }
     }
 
     @Override
@@ -65,12 +82,14 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
      * @param toolbar
      * @param bean
      */
+    @Deprecated
     public void initToolBar(Toolbar toolbar, ToolbarBean bean) {
         if (onChangeToolbarListener == null) initToolBar(toolbar, bean, true);
         else onChangeToolbarListener.onchange(this, toolbar, bean);
 
     }
 
+    @Deprecated
     public void initToolBar(Toolbar toolbar, ToolbarBean bean, boolean isDark) {
         setSystemUiVisibility(isDark);
         ToolbarStrategyFactory.put(ToolbarNavigation.class.getSimpleName(), bean.getNavigation());
@@ -84,14 +103,29 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
         BarUtils.setStatusBarColor(this, bean.getBackgroundColor(), 1);
     }
 
-    public void setSteepOptionListener(SteepOptionListener steepOptionListener) {
-        this.steepOptionListener = steepOptionListener;
+    /**
+     * 添加标题栏
+     *
+     * @return
+     */
+    public boolean addToolbar() {
+        return true;
     }
 
+    /**
+     * 添加退出
+     *
+     * @param appExitListener
+     */
     public void setAppExitListener(AppExitListener appExitListener) {
         this.appExitListener = appExitListener;
     }
 
+    /**
+     * 不想用默认的标题栏，可实现该接口
+     *
+     * @param onChangeToolbarListener
+     */
     public void setOnChangeToolbarListener(OnChangeToolbarListener onChangeToolbarListener) {
         this.onChangeToolbarListener = onChangeToolbarListener;
     }

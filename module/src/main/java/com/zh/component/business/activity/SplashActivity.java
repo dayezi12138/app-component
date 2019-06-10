@@ -1,23 +1,20 @@
 package com.zh.component.business.activity;
 
-import android.os.Bundle;
+import android.Manifest;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.blankj.utilcode.util.LogUtils;
 import com.zh.component.R;
+import com.zh.component1.business.activity.MainActivity;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
+import core.app.zh.com.core.annotation.NeedPermission;
 import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.base.BasePresenter;
 
@@ -33,6 +30,7 @@ public class SplashActivity extends BaseActivity {
 
     @Inject
     String aaa;
+
 
     @OnClick(R.id.above_1)
     public void onclick() {
@@ -50,6 +48,7 @@ public class SplashActivity extends BaseActivity {
         return R.layout.act_splash;
     }
 
+    @NeedPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     @Override
     public void init() {
         new Handler().postDelayed(() -> ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation(), 2000);

@@ -1,9 +1,10 @@
-package com.zh.component.dagger.component;
+package com.zh.component1.dagger.component;
 
-import com.zh.component.application.Module_1Application;
-import com.zh.component.dagger.module.AllActivityModule_1;
-import com.zh.component.dagger.module.AllFragmentModule_1;
-import com.zh.component.dagger.module.AppModule_1;
+
+import com.zh.component1.application.Module_1Application;
+import com.zh.component1.dagger.module.AllActivityModule_1;
+import com.zh.component1.dagger.module.AllFragmentModule_1;
+import com.zh.component1.dagger.module.AppModule_1;
 
 import javax.inject.Singleton;
 
