@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/menu_cancel"
+        android:title="待生产"
+        app:showAsAction="withText"
+        tools:ignore="AppCompatResource,MenuTitle" />
+    <item
+        android:id="@+id/menu_complete"
+        android:title="生产中"
+        app:showAsAction="withText"
+        tools:ignore="AppCompatResource,MenuTitle" />
+    <item
+        android:id="@+id/menu_rollback"
+        android:title="生产完成"
+        app:showAsAction="withText"
+        tools:ignore="AppCompatResource,MenuTitle" />
+    <item
+        android:id="@+id/menu_detail"
+        android:title="已完成"
+        app:showAsAction="withText"
+        tools:ignore="AppCompatResource,MenuTitle" />
+        <!--android:id="@+id/menu_detail_un"-->
+        <!--android:title="入库未审核"-->
+        <!--app:showAsAction="withText"-->
+        <!--tools:ignore="AppCompatResource,MenuTitle" />-->
+</menu>

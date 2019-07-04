@@ -20,6 +20,7 @@ public class ActivityLifecycleCallbackListener implements Application.ActivityLi
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         sActivityList.add(activity);
+
     }
 
     @Override

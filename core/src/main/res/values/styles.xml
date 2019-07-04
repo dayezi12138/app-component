@@ -30,4 +30,8 @@
         <item name="android:minWidth">10dp</item>
         <item name="android:scaleType">centerInside</item>
     </style>
+
+    <style name="order_line_layout_default_right_text_style">
+        <item name="android:textSize">@dimen/font_min_xx_sp</item>
+    </style>
 </resources>

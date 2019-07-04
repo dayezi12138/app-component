@@ -10,6 +10,7 @@ import core.app.zh.com.core.bean.i.IPunish;
  * @auther create by Administrator
  * DATE:2019/3/26 0026 11
  */
+@Deprecated
 public class ToolbarMenu implements IPunish<ToolbarMenu> {
     private int menuId;
     private Toolbar.OnMenuItemClickListener listener;

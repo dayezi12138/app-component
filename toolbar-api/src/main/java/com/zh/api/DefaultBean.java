@@ -1,5 +1,7 @@
 package com.zh.api;
 
+import android.support.annotation.ColorRes;
+
 /**
  * author : dayezi
  * data :2019/6/5
@@ -7,18 +9,18 @@ package com.zh.api;
  */
 public class DefaultBean {
 
-    private int titleAppearanceId = MyInject.DEFAULT_INT_;
-    private int titleColorId = MyInject.DEFAULT_INT_;
+    private int titleAppearanceId = ToolBarInject.DEFAULT_INT_;
+    private int titleColorId = ToolBarInject.DEFAULT_INT_;
 
-    private int subTitleAppearanceId = MyInject.DEFAULT_INT_;
-    private int subTitleColorId = MyInject.DEFAULT_INT_;
+    private int subTitleAppearanceId = ToolBarInject.DEFAULT_INT_;
+    private int subTitleColorId = ToolBarInject.DEFAULT_INT_;
 
     private int iconId = R.drawable.ic_back;
 
     private int textSize = 18;
     private int textColorId = android.R.color.white;
 
-
+    @ColorRes
     private int toolbarBackgroundColorId = R.color.design_default_color_primary;
 
     public DefaultBean() {

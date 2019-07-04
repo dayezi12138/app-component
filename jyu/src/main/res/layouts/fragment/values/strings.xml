@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="fragment_leader_search_hint_str" tools:ignore="MissingTranslation">请输入生产货品单、工艺名称、货品名称</string>
+    <string name="fragment_bulletin_board_search_hint_str" tools:ignore="MissingTranslation">请输入订单编号或货品名称搜索</string>
+    <string name="fragment_bulletin_board_un_report_str" tools:ignore="MissingTranslation">未汇报</string>
+    <string name="fragment_bulletin_board_reported_str" tools:ignore="MissingTranslation">汇报</string>
+    <string name="fragment_bulletin_board_un_promptly_reported_str" tools:ignore="MissingTranslation">未及时汇报</string>
+
+    <string name="fragment_plan_search_hint_str" tools:ignore="MissingTranslation">请输入生产计划编号搜索</string>
+    <string name="fragment_produce_search_hint_str" tools:ignore="MissingTranslation">请输入生产单编号、货品名称</string>
+</resources>

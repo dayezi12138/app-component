@@ -8,12 +8,11 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 
 import core.app.zh.com.core.listener.AddOptionInApplicationListener;
-import core.app.zh.com.core.listener.DaggerOptionListener;
 import core.app.zh.com.core.listener.impl.ActivityLifecycleCallbackListener;
 import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
 
-public abstract class BaseApplication extends DaggerApplication {
+public abstract class BaseApplication extends DaggerApplication implements AddOptionInApplicationListener {
 
 
     @Override
@@ -25,12 +24,7 @@ public abstract class BaseApplication extends DaggerApplication {
         ARouter.init(this);
         ToastUtils.setBgColor(Color.parseColor("#de000000"));
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbackListener());
-        if (option() != null) {
-            AddOptionInApplicationListener applicationListener = option();
-            applicationListener.init(this);
-        }
-
-
+        init(this);
     }
 
     @Override
@@ -40,8 +34,11 @@ public abstract class BaseApplication extends DaggerApplication {
         }
         return null;
     }
+//
+//    public abstract AddOptionInApplicationListener option();
+//
+//    public abstract DaggerOptionListener daggerOptionListener();
+//
+//    public abstract List<AddOptionInPageListener> optionActivityList();
 
-    public abstract AddOptionInApplicationListener option();
-
-    public abstract DaggerOptionListener daggerOptionListener();
 }

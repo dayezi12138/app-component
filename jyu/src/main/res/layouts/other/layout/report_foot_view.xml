@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/widget_text_height_tiny">
+
+    <ImageView
+        android:layout_width="@dimen/statusbar_height"
+        android:layout_height="@dimen/statusbar_height"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_tip" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:text="每人每天只能汇报一次，上面人员表格中，人员不能重复" />
+</LinearLayout>

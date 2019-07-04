@@ -32,7 +32,7 @@ public class MyPopupWindow extends PopupWindow {
         setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         ColorDrawable dw = new ColorDrawable(0xb0000000);
         setBackgroundDrawable(dw);
-        this.setBackgroundAlpha();//设置屏幕透明度
+//        this.setBackgroundAlpha();//设置屏幕透明度
         if (builder.animationStyle != -1)
             this.setAnimationStyle(builder.animationStyle);
         // 在dismiss中恢复透明度

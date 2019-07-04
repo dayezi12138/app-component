@@ -1,6 +1,5 @@
 package com.zh.component.business.activity;
 
-import android.Manifest;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.widget.TextView;
@@ -8,13 +7,13 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.zh.component.R;
+import com.zh.component.api.MyService;
 import com.zh.component1.business.activity.MainActivity;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import core.app.zh.com.core.annotation.NeedPermission;
 import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.base.BasePresenter;
 
@@ -24,12 +23,14 @@ import core.app.zh.com.core.base.BasePresenter;
  * description:
  */
 public class SplashActivity extends BaseActivity {
-
     @BindView(R.id.above_1)
     TextView textView;
 
+    //    @Inject
+//    String aaa;
+//
     @Inject
-    String aaa;
+    MyService myService;
 
 
     @OnClick(R.id.above_1)
@@ -48,10 +49,9 @@ public class SplashActivity extends BaseActivity {
         return R.layout.act_splash;
     }
 
-    @NeedPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    //    @NeedPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     @Override
     public void init() {
         new Handler().postDelayed(() -> ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation(), 2000);
-
     }
 }

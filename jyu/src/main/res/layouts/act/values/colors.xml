@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="deep_blue">#00C5CD</color>
+    <color name="translate_white">#99ffffff</color>
+    <color name="shadow">#25808080</color>
+    <color name="holo_gray">#8a8a8b</color>
+
+    <color name="text_select_color">#5F6473</color>
+    <color name="text_color">#66ccfd</color>
+
+    <color name="txtbg">#dedcdc</color>
+</resources>

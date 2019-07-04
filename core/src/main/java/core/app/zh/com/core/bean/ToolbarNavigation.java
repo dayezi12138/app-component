@@ -14,7 +14,7 @@ import core.app.zh.com.core.bean.i.IPunish;
  *
  * @auther create by Administrator
  * DATE:2019/3/26 0026 11
- */
+ */@Deprecated
 public class ToolbarNavigation implements IPunish<ToolbarNavigation> {
     private int NavigationIconId = R.drawable.ic_back;
     private String text;

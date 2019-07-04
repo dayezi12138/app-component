@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/widget_margin_normal">
+
+    <LinearLayout
+        style="@style/item_padding_l_and_r_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <core.app.zh.com.core.view.FormLineLayout
+            style="@style/common_form_line_style"
+            android:layout_height="wrap_content"
+            app:leftTextStr="@string/item_leader_name_str">
+
+            <include
+                android:id="@+id/name_tv"
+                layout="@layout/form_text" />
+        </core.app.zh.com.core.view.FormLineLayout>
+
+        <core.app.zh.com.core.view.FormLineLayout
+            style="@style/common_form_line_style"
+            android:layout_height="wrap_content"
+            app:leftTextStr="@string/item_leader_status_str">
+
+            <include
+                android:id="@+id/status_tv"
+                layout="@layout/form_text" />
+        </core.app.zh.com.core.view.FormLineLayout>
+
+        <core.app.zh.com.core.view.FormLineLayout
+            style="@style/common_form_line_style"
+            android:layout_height="wrap_content"
+            app:leftTextStr="@string/item_leader_target_count_str">
+
+            <include
+                android:id="@+id/pack_count_tv"
+                layout="@layout/form_text" />
+        </core.app.zh.com.core.view.FormLineLayout>
+
+        <core.app.zh.com.core.view.FormLineLayout
+            style="@style/common_form_line_style"
+            android:layout_height="wrap_content"
+            app:leftTextStr="@string/item_leader_report_count_str">
+
+            <include
+                android:id="@+id/real_num_tv"
+                layout="@layout/form_text" />
+        </core.app.zh.com.core.view.FormLineLayout>
+
+        <core.app.zh.com.core.view.FormLineLayout
+            style="@style/common_form_line_style"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/widget_margin_tiny"
+            app:leftTextStr="@string/item_leader_create_date_str">
+
+            <include
+                android:id="@+id/create_time_tv"
+                layout="@layout/form_text" />
+        </core.app.zh.com.core.view.FormLineLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/background" />
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/search_ly"
+        layout="@layout/search_view" />
+
+    <LinearLayout
+        style="@style/item_padding_l_and_r_style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_text_height_tiny"
+        android:layout_marginTop="@dimen/widget_margin_tiny"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/act_search_history_str"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_min_xx_sp" />
+
+        <TextView
+            android:id="@+id/delete_tv"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_delete"
+            android:gravity="center_vertical|right" />
+    </LinearLayout>
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/id_flowlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/widget_padding_tiny"
+        android:paddingBottom="@dimen/widget_padding_tiny"
+        app:max_select="1"
+        app:tag_gravity="left" />
+</LinearLayout>

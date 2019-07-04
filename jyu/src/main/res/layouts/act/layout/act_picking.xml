@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <core.app.zh.com.core.view.FormLineLayout
+        style="@style/common_form_line_style"
+        android:layout_marginTop="@dimen/widget_margin_large"
+        app:leftTextStr="@string/act_picking_plan_no_str">
+
+        <TextView
+            android:id="@+id/num_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|right"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </core.app.zh.com.core.view.FormLineLayout>
+
+    <include layout="@layout/common_line" />
+
+    <core.app.zh.com.core.view.FormLineLayout
+        style="@style/common_form_line_style"
+        app:leftTextStr="@string/act_picking_time_str">
+
+        <TextView
+            android:id="@+id/time_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|right"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </core.app.zh.com.core.view.FormLineLayout>
+
+    <include layout="@layout/common_line" />
+
+    <core.app.zh.com.core.view.FormLineLayout
+        style="@style/common_form_line_style"
+        app:leftTextStr="@string/act_picking_status_str">
+
+        <TextView
+            android:id="@+id/status_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|right"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </core.app.zh.com.core.view.FormLineLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_text_height_tiny"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="名称"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_min_xx_sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="规格"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_min_xx_sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="数量"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </LinearLayout>
+
+    <include layout="@layout/common_line" />
+
+    <include
+        android:id="@+id/recycler"
+        layout="@layout/recycler_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

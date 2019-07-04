@@ -1,6 +1,7 @@
 package core.app.zh.com.core.base;
 
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -9,21 +10,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.zh.api.ToolBarInject;
 
-import butterknife.ButterKnife;
+import java.util.List;
+
 import core.app.zh.com.core.R;
 import core.app.zh.com.core.bean.ToolbarBean;
 import core.app.zh.com.core.bean.ToolbarMenu;
 import core.app.zh.com.core.bean.ToolbarNavigation;
 import core.app.zh.com.core.bean.ToolbarTitle;
 import core.app.zh.com.core.factory.ToolbarStrategyFactory;
+import core.app.zh.com.core.listener.AddOptionInApplicationListener;
+import core.app.zh.com.core.listener.AddOptionInPageListener;
 import core.app.zh.com.core.listener.AppExitListener;
 import core.app.zh.com.core.listener.GetActivityListener;
 import core.app.zh.com.core.listener.GetPresenter;
 import core.app.zh.com.core.listener.LayoutInitListener;
+import core.app.zh.com.core.listener.LoadingListener;
 import core.app.zh.com.core.listener.OnChangeToolbarListener;
 import dagger.android.support.DaggerAppCompatActivity;
 import io.reactivex.disposables.CompositeDisposable;
@@ -33,29 +38,61 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
     private OnChangeToolbarListener onChangeToolbarListener;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private AppExitListener appExitListener;
+    private LoadingListener loadingListener;
+    private LinearLayout rootLy;
+    private View ContentView;
 
-    LinearLayout rootLy;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        beforeInit();
-        ButterKnife.bind(this);
-        ARouter.getInstance().inject(this);
+        View view1 = LayoutInflater.from(this).inflate(R.layout.base_view, null, false);
+        setContentView(view1);
+        rootLy = findViewById(R.id.root_ly);
+        View view = beforeInit(LayoutInflater.from(this), rootLy);
+        if (this.getApplication() instanceof AddOptionInApplicationListener) {
+            AddOptionInApplicationListener listener = (AddOptionInApplicationListener) this.getApplication();
+            List<AddOptionInPageListener> list = listener.optionActivityList();
+            for (AddOptionInPageListener activityListener : list) {
+                activityListener.init(this, view);
+            }
+        }
         init();
     }
 
-    private void beforeInit() {
-        setContentView(R.layout.base_view);
-        rootLy = findViewById(R.id.root_ly);
-        if (addToolbar()) {
-            ViewGroup toolbarLayout = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.common_toolbar_,null);
+    @Override
+    public View beforeInit(LayoutInflater inflater, ViewGroup container) {
+        boolean old = oldAddToolbar();
+        if (!old) newAddToolbar();
+
+        if (layoutId() != 0) {
+            ContentView = LayoutInflater.from(this).inflate(layoutId(), rootLy, false);
+            rootLy.addView(ContentView);
+        }
+        if (loadingListener != null && loadingListener.loadingView() != null) {
+            rootLy.addView(loadingListener.loadingView());
+        }
+        return rootLy;
+    }
+
+    protected void newAddToolbar() {
+        boolean addToolbar = ToolBarInject.needAddToolbar(this);
+        if (!addToolbar) return;
+        Toolbar toolbarLayout = (Toolbar) LayoutInflater.from(this).inflate(R.layout.common_toolbar_, null);
+        rootLy.addView(toolbarLayout);
+        ToolBarInject.inject(this, toolbarLayout);
+    }
+
+
+    @Deprecated
+    private boolean oldAddToolbar() {
+        rootLy.removeAllViews();
+        boolean oldAddToolbar = addToolbar();
+        if (oldAddToolbar) {
+            Toolbar toolbarLayout = (Toolbar) LayoutInflater.from(this).inflate(R.layout.common_toolbar_, null);
             rootLy.addView(toolbarLayout);
         }
-        if (layoutId() != 0) {
-            View view = LayoutInflater.from(this).inflate(layoutId(),  rootLy,false);
-            rootLy.addView(view);
-        }
+        return oldAddToolbar;
     }
 
     @Override
@@ -103,13 +140,10 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
         BarUtils.setStatusBarColor(this, bean.getBackgroundColor(), 1);
     }
 
-    /**
-     * 添加标题栏
-     *
-     * @return
-     */
-    public boolean addToolbar() {
-        return true;
+    @Deprecated
+    public void setStatusBarColor(View view, @ColorInt int color) {
+        BarUtils.addMarginTopEqualStatusBarHeight(view);
+        BarUtils.setStatusBarColor(this, color, 1);
     }
 
     /**
@@ -126,6 +160,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
      *
      * @param onChangeToolbarListener
      */
+    @Deprecated
     public void setOnChangeToolbarListener(OnChangeToolbarListener onChangeToolbarListener) {
         this.onChangeToolbarListener = onChangeToolbarListener;
     }
@@ -154,4 +189,15 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
         return super.onKeyDown(keyCode, event);
     }
 
+    public void setLoadingListener(LoadingListener loadingListener) {
+        this.loadingListener = loadingListener;
+    }
+
+    public LoadingListener getLoadingListener() {
+        return loadingListener;
+    }
+
+    public View getContentView() {
+        return ContentView;
+    }
 }

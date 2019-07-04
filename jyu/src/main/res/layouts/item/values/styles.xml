@@ -1,0 +1,25 @@
+<resources>
+
+    <style name="item_padding_l_and_r_style">
+        <item name="android:paddingRight">@dimen/widget_padding_tiny</item>
+        <item name="android:paddingLeft">@dimen/widget_padding_tiny</item>
+    </style>
+
+    <style name="item_height_form_line_style" parent="match_view_style">
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingRight">@dimen/widget_padding_tiny</item>
+        <item name="android:paddingLeft">@dimen/widget_padding_tiny</item>
+    </style>
+
+    <style name="item_report_list_text_style" parent="wrap_view_style">
+        <item name="android:textSize">@dimen/font_min_xx_sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="item_report_list_text_style_1" parent="item_report_list_text_style">
+        <item name="android:textSize">@dimen/font_large_sp</item>
+    </style>
+</resources>

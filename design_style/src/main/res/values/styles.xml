@@ -1,0 +1,74 @@
+<resources>
+    <!-- 白色按钮 -->
+    <style name="common__submit_btn_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/toolbar_height</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/font_min_xx_sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Common_Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/divider</item>
+        <item name="android:background">@color/divider</item>
+    </style>
+
+    <!-- activity切换动画-->
+    <style name="ActivityAnimation" parent="android:Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_right</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+    </style>
+
+    <!-- 新版 设置页面的item布局样式 -->
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_bottom_out</item>
+    </style>
+
+    <!--表单行布局-->
+    <style name="common_form_line_style" parent="PaddingStyle.Left.Right.CommonPadding.Style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_marginTop">@dimen/divider</item>
+        <item name="android:layout_height">@dimen/widget_text_height_tiny</item>
+    </style>
+
+
+    <style name="PaddingStyle" />
+
+    <style name="PaddingStyle.Left.Right.CommonPadding.Style" parent="PaddingStyle">
+        <item name="android:paddingRight">@dimen/widget_padding_tiny</item>
+        <item name="android:paddingLeft">@dimen/widget_padding_tiny</item>
+    </style>
+
+    <style name="TextStyle" />
+
+    <style name="TextStyle.Form.LeftText.Style" parent="TextStyle">
+        <item name="android:textSize">@dimen/font_min_xx_sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/text1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="TextStyle.Form.RightText.Style" parent="TextStyle">
+        <item name="android:textSize">@dimen/font_min_xx_sp</item>
+        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:textColor">@color/text2</item>
+        <item name="android:layout_marginRight">@dimen/widget_margin_tiny</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="LayoutStyle" parent="PaddingStyle.Left.Right.CommonPadding.Style" />
+
+    <style name="LayoutStyle.Form.line.Style" parent="LayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/widget_text_height_tiny</item>
+    </style>
+
+</resources>

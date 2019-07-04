@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <com.rairmmd.boundscrollview.BoundScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/widget_margin_tiny"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <core.app.zh.com.core.view.FormLineLayout
+                    android:id="@+id/plan_btn"
+                    style="@style/LayoutStyle.Form.line.Style"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:leftTextColor="@color/text1"
+                    app:leftTextStr="计划">
+
+                    <TextView
+                        style="@style/TextStyle.Form.RightText.Style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1" />
+
+                    <include layout="@layout/forward_iv" />
+                </core.app.zh.com.core.view.FormLineLayout>
+
+                <include layout="@layout/common_line" />
+
+                <core.app.zh.com.core.view.FormLineLayout
+                    android:id="@+id/select_group_btn"
+                    style="@style/LayoutStyle.Form.line.Style"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:leftTextColor="@color/text1"
+                    app:leftTextStr="班组">
+
+                    <TextView
+                        style="@style/TextStyle.Form.RightText.Style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1" />
+
+                    <include layout="@layout/forward_iv" />
+                </core.app.zh.com.core.view.FormLineLayout>
+            </LinearLayout>
+
+
+            <core.app.zh.com.core.view.FormLineLayout
+                android:id="@+id/clear"
+                style="@style/LayoutStyle.Form.line.Style"
+                android:layout_marginTop="@dimen/widget_margin_tiny"
+                android:background="@color/white"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:leftTextStr="缓存">
+
+                <TextView
+                    android:id="@+id/clear_tv"
+                    style="@style/TextStyle.Form.RightText.Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <include layout="@layout/forward_iv" />
+            </core.app.zh.com.core.view.FormLineLayout>
+
+            <include layout="@layout/common_line" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/submit_btn"
+                style="@style/login_btn_style"
+                android:layout_margin="@dimen/widget_margin_large"
+                android:text="退出登录"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </com.rairmmd.boundscrollview.BoundScrollView>
+</LinearLayout>

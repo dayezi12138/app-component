@@ -1,0 +1,58 @@
+<resources>
+
+    <style name="wrap_view_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="match_view_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="login_image_style" parent="wrap_view_style">
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+
+    <style name="login_editText_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/widget_edittext_height_tiny</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@null</item>
+        <item name="android:paddingLeft">@dimen/widget_padding_tiny</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@color/translate_white</item>
+        <item name="android:textCursorDrawable">@drawable/color_cursor</item>
+        <item name="android:textSize">@dimen/font_min_xx_sp</item>
+    </style>
+
+    <style name="login_btn_style" parent="common__submit_btn_style">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/ripple_gray</item>
+        <item name="android:textSize">@dimen/font_large_sp</item>
+        <item name="android:textColor">@color/deep_blue</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="act_good_detail_form_line_text_style" parent="match_view_style">
+        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:textSize">@dimen/font_large_sp</item>
+    </style>
+
+
+    <!-- 自定义控件风格-->
+    <style name="Custom" />
+
+    <style name="Custom.TabRadioButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text3</item>
+    </style>
+
+</resources>

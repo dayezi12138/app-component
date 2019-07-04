@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_item"
+    style="@style/PaddingStyle.Left.Right.CommonPadding.Style"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/widget_padding_tiny"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/widget_padding_tiny"
+        app:cardElevation="0dp"
+        app:contentPadding="@dimen/widget_padding_tiny">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="wrap_content"
+                app:leftTextStr="@string/item_relation_order_num_str">
+
+                <include
+                    android:id="@+id/order_num_tv"
+                    layout="@layout/form_text" />
+            </core.app.zh.com.core.view.FormLineLayout>
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="wrap_content"
+                app:leftTextStr="@string/item_relation_name_str">
+
+                <include
+                    android:id="@+id/user_name_tv"
+                    layout="@layout/form_text" />
+            </core.app.zh.com.core.view.FormLineLayout>
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="wrap_content"
+                app:leftTextStr="@string/item_relation_buy_count_str">
+
+                <include
+                    android:id="@+id/buy_count_tv"
+                    layout="@layout/form_text" />
+            </core.app.zh.com.core.view.FormLineLayout>
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="wrap_content"
+                app:leftTextStr="@string/item_relation_account_str">
+
+                <include
+                    android:id="@+id/account_tv"
+                    layout="@layout/form_text" />
+            </core.app.zh.com.core.view.FormLineLayout>
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="wrap_content"
+                app:leftTextStr="@string/item_relation_phone_str">
+
+                <include
+                    android:id="@+id/phone_tv"
+                    layout="@layout/form_text" />
+            </core.app.zh.com.core.view.FormLineLayout>
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="wrap_content"
+                app:leftTextStr="@string/item_relation_send_str">
+
+                <include
+                    android:id="@+id/send_tv"
+                    layout="@layout/form_text" />
+            </core.app.zh.com.core.view.FormLineLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

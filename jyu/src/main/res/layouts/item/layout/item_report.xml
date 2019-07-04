@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/item_padding_l_and_r_style"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginTop="@dimen/widget_margin_tiny"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_text_height_tiny">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="班组: "
+                android:textColor="@color/text1"
+                android:textSize="@dimen/font_large_sp" />
+
+            <TextView
+                android:id="@+id/name_tv"
+                style="@style/item_report_list_text_style"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/widget_padding_tiny"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/font_large_sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_text_height_tiny">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="汇报量: "
+                android:textColor="@color/text1"
+                android:textSize="@dimen/font_large_sp" />
+
+            <TextView
+                android:id="@+id/report_num_tv"
+                style="@style/item_report_list_text_style"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/widget_padding_tiny"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/font_large_sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_text_height_tiny">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="生产时间: "
+                android:textColor="@color/text1"
+                android:textSize="@dimen/font_large_sp" />
+
+            <TextView
+                android:id="@+id/create_time_tv"
+                style="@style/item_report_list_text_style"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/widget_padding_tiny"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/font_large_sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_text_height_tiny">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="汇报时间: "
+                android:textColor="@color/text1"
+                android:textSize="@dimen/font_large_sp" />
+
+            <TextView
+                android:id="@+id/produce_tv"
+                style="@style/item_report_list_text_style"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/widget_padding_tiny"
+                android:textColor="@color/text1"
+                android:textSize="@dimen/font_large_sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

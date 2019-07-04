@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">骏宇</string>
+    <string name="version_str" tools:ignore="MissingTranslation">版本号:</string>
+    <string name="search_hint_str" tools:ignore="MissingTranslation">请输入关键字</string>
+    <string name="search_btn_str" tools:ignore="MissingTranslation">搜索</string>
+
+
+    <string name="dialog_tip_str" tools:ignore="MissingTranslation">提示</string>
+    <string name="dialog_sure_str" tools:ignore="MissingTranslation">确定</string>
+    <string name="dialog_cancel_str" tools:ignore="MissingTranslation">取消</string>
+
+    <string name="submit_str" tools:ignore="MissingTranslation">提交</string>
+</resources>

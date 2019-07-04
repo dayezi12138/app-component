@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text_tv"
+    style="@style/PaddingStyle.Left.Right.CommonPadding.Style"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/widget_text_height_tiny"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:textSize="@dimen/font_min_xx_sp" />

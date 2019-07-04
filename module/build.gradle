@@ -27,7 +27,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    implementation "com.android.support:appcompat-v7:$rootProject.ext.androidSupportSdkVersion"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintVersion"
+//    implementation "com.android.support.constraint:constraint-layouts:$rootProject.ext.constraintVersion"
     implementation project(':core')
     if (!Boolean.valueOf(rootProject.ext.moduleShopMall)) {
         implementation project(':module_1')

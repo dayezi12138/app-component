@@ -13,9 +13,10 @@ import core.app.zh.com.core.bean.i.IPunish;
  * @auther create by Administrator
  * DATE:2019/3/26 0026 11
  */
-public class ToolbarTitle implements IPunish<ToolbarTitle>{
+@Deprecated
+public class ToolbarTitle implements IPunish<ToolbarTitle> {
     private String text = "";
-    private int textSize =18;
+    private int textSize = 18;
     private int textColor = Color.BLACK;
 
     public String getText() {
@@ -46,7 +47,7 @@ public class ToolbarTitle implements IPunish<ToolbarTitle>{
     public void punish(BaseActivity activity, Toolbar toolbar, ToolbarTitle bean) {
         AppCompatTextView textView = toolbar.findViewById(R.id.title);
         textView.setText(bean.getText());
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,bean.getTextSize());
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, bean.getTextSize());
         textView.setTextColor(bean.getTextColor());
     }
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/count_tv"
+        style="@style/common_form_line_style"
+        android:gravity="center"
+        android:textColor="@color/text1"
+        android:textSize="@dimen/font_large_sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="80dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="@dimen/toolbar_height"
+                app:leftTextColor="@color/text1"
+                app:leftTextStr="@string/act_add_report_date_str">
+
+                <EditText
+                    android:id="@+id/select_date_et"
+                    style="@style/item_report_list_text_style"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_margin_large"
+                    android:layout_marginTop="@dimen/widget_margin_tiny"
+                    android:layout_marginBottom="@dimen/widget_margin_tiny"
+                    android:background="@drawable/shape_edit"
+                    android:focusable="false"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="5dp" />
+            </core.app.zh.com.core.view.FormLineLayout>
+
+            <Button
+                android:id="@+id/select_group_btn"
+                style="@style/common_form_line_style"
+                android:layout_margin="@dimen/widget_margin_tiny"
+                android:layout_marginTop="@dimen/widget_margin_normal"
+                android:background="@drawable/shape_stroker_blue"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/act_add_report_group_str"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/font_large_sp" />
+
+            <include
+                android:id="@+id/recycler"
+                layout="@layout/recycler_"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit_btn"
+            style="@style/common_form_line_style"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/widget_margin_large"
+            android:background="@drawable/ripper_blue_btn"
+            android:gravity="center"
+            android:text="@string/submit_str"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large_sp" />
+    </RelativeLayout>
+</LinearLayout>

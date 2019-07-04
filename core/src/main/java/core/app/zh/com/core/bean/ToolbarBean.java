@@ -8,6 +8,7 @@ import android.graphics.Color;
  * @auther create by Administrator
  * DATE:2019/3/26 0026 11
  */
+@Deprecated
 public class ToolbarBean {
     private ToolbarNavigation navigation;
     private ToolbarTitle toolbarTitle;

@@ -1,0 +1,47 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--login-->
+    <string name="act_login_hint_user_str" tools:ignore="MissingTranslation">输入用户名</string>
+    <string name="act_login_hint_password_str" tools:ignore="MissingTranslation">输入密码</string>
+    <string name="act_login_error_tip_str" tools:ignore="MissingTranslation">账号密码不能为空</string>
+    <string name="act_login_submit_btn_str" tools:ignore="MissingTranslation">登录</string>
+    <string name="act_login_loading_str" tools:ignore="MissingTranslation">登录中...</string>
+
+    <!--main-->
+    <string name="menu_home" tools:ignore="MissingTranslation">看板</string>
+    <string name="menu_order" tools:ignore="MissingTranslation">计划</string>
+    <string name="menu_produce" tools:ignore="MissingTranslation">生产单</string>
+    <string name="menu_mine" tools:ignore="MissingTranslation">我</string>
+
+    <!--picking-->
+    <string name="act_picking_plan_no_str" tools:ignore="MissingTranslation">计划编号</string>
+    <string name="act_picking_time_str" tools:ignore="MissingTranslation">制单时间</string>
+    <string name="act_picking_status_str" tools:ignore="MissingTranslation">状态</string>
+
+    <string name="act_add_report_count_str" tools:ignore="MissingTranslation">目标产量: {0} 已汇报量: {1}</string>
+    <string name="act_search_history_str" tools:ignore="MissingTranslation">历史</string>
+
+    <string name="act_craft_detail_order_num_str" tools:ignore="MissingTranslation">生产单号</string>
+    <string name="act_craft_detail_goods_name_str" tools:ignore="MissingTranslation">货品名称</string>
+    <string name="act_craft_detail_specs_str" tools:ignore="MissingTranslation">规格</string>
+    <string name="act_craft_detail_name_str" tools:ignore="MissingTranslation">工艺名称</string>
+    <string name="act_craft_detail_target_count_str" tools:ignore="MissingTranslation">目标产量</string>
+    <string name="act_craft_detail_reported_count_str" tools:ignore="MissingTranslation">已汇报量</string>
+    <string name="act_craft_detail_status_str" tools:ignore="MissingTranslation">状态</string>
+    <string name="act_craft_detail_group_str" tools:ignore="MissingTranslation">班组</string>
+    <string name="act_craft_detail_first_report_str" tools:ignore="MissingTranslation">首次汇报</string>
+    <string name="act_craft_detail_last_report_str" tools:ignore="MissingTranslation">最后汇报</string>
+    <string name="act_craft_detail_pre_time_str" tools:ignore="MissingTranslation">准备时间</string>
+    <string name="act_craft_detail_create_time_str" tools:ignore="MissingTranslation">制单时间</string>
+    <string name="act_craft_detail_pic_str" tools:ignore="MissingTranslation">图纸</string>
+    <string name="act_craft_detail_command_str" tools:ignore="MissingTranslation">指令</string>
+    <string name="act_craft_detail_force_complete_str" tools:ignore="MissingTranslation">确定强制完成吗?</string>
+    <string name="act_craft_detail_complete_str" tools:ignore="MissingTranslation">确定完成吗?</string>
+    <string name="act_craft_detail_report_history_str" tools:ignore="MissingTranslation">汇报历史</string>
+    <string name="act_craft_detail_add_report_str" tools:ignore="MissingTranslation">添加汇报</string>
+    <string name="act_craft_detail_no_date_str" tools:ignore="MissingTranslation">无</string>
+
+    <string name="act_add_report_date_str" tools:ignore="MissingTranslation">操作日期</string>
+    <string name="act_add_report_group_str" tools:ignore="MissingTranslation">选择班组</string>
+
+    <string name="fragment_leader_order_num_str" tools:ignore="MissingTranslation">生产单号: {0}</string>
+</resources>

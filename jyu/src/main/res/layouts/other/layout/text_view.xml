@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text_tv"
+    style="@style/item_padding_l_and_r_style"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/divider_large"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:padding="@dimen/widget_padding_tiny"
+    android:textSize="@dimen/font_min_xx_sp" />

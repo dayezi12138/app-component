@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/item_padding_l_and_r_style"
+    android:layout_width="match_parent"
+    android:id="@+id/ly"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_height="@dimen/widget_text_height_normal"
+    android:background="@color/white">
+
+    <include
+        layout="@layout/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_yes" />
+</LinearLayout>

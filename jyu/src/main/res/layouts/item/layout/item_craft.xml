@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/widget_padding_tiny"
+    android:paddingTop="@dimen/widget_margin_normal"
+    android:paddingRight="@dimen/widget_padding_tiny">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_edit"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="0dp"
+        app:contentPadding="@dimen/widget_padding_tiny">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="wrap_content"
+                app:leftTextStr="名称">
+
+                <include
+                    android:id="@+id/name_tv"
+                    layout="@layout/form_text" />
+            </core.app.zh.com.core.view.FormLineLayout>
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="wrap_content"
+                app:leftTextStr="状态">
+
+                <include
+                    android:id="@+id/status_tv"
+                    layout="@layout/form_text" />
+            </core.app.zh.com.core.view.FormLineLayout>
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="wrap_content"
+                app:leftTextStr="目标产量">
+
+                <include
+                    android:id="@+id/pack_count_tv"
+                    layout="@layout/form_text" />
+            </core.app.zh.com.core.view.FormLineLayout>
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="wrap_content"
+                app:leftTextStr="已汇报量">
+
+                <include
+                    android:id="@+id/real_num_tv"
+                    layout="@layout/form_text" />
+            </core.app.zh.com.core.view.FormLineLayout>
+
+            <core.app.zh.com.core.view.FormLineLayout
+                style="@style/common_form_line_style"
+                android:layout_height="wrap_content"
+                app:leftTextStr="制单时间">
+
+                <include
+                    android:id="@+id/create_time_tv"
+                    layout="@layout/form_text" />
+            </core.app.zh.com.core.view.FormLineLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

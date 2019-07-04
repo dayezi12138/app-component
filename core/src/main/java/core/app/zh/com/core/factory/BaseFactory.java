@@ -5,5 +5,5 @@ package core.app.zh.com.core.factory;
  * DATE:2019/3/26 0026 13
  */
 public interface BaseFactory<T> {
-     T getObject();
+    T getObject(Class<T> clz) throws InstantiationException, IllegalAccessException;
 }

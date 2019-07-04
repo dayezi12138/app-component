@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/PaddingStyle.Left.Right.CommonPadding.Style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_order" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/widget_padding_tiny"
+            android:text="订单"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_large_sp" />
+
+        <TextView
+            android:id="@+id/trade_status_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/text2"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="3dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:visibility="invisible" />
+
+        <TextView
+            style="@style/PaddingStyle.Left.Right.CommonPadding.Style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单号: "
+            android:textColor="@color/text2"
+            android:textSize="@dimen/font_min_x_sp" />
+
+        <TextView
+            android:id="@+id/trade_no_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/text2"
+            android:textSize="@dimen/font_min_x_sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="3dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:visibility="invisible" />
+
+        <TextView
+            style="@style/PaddingStyle.Left.Right.CommonPadding.Style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下单时间"
+            android:textColor="@color/text2"
+            android:textSize="@dimen/font_min_x_sp" />
+
+        <TextView
+            android:id="@+id/trade_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/text2"
+            android:textSize="@dimen/font_min_x_sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutStyle.Form.line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_users" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/widget_padding_tiny"
+            android:text="客户"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_large_sp" />
+
+        <TextView
+            android:id="@+id/account_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/text2"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/goods_list_ly"
+        style="@style/LayoutStyle.Form.line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@color/white"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_good_list" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/widget_padding_tiny"
+            android:text="商品清单"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_large_sp" />
+
+        <TextView
+            android:id="@+id/priceDis_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/text2"
+            android:textSize="@dimen/font_min_xx_sp" />
+
+        <include layout="@layout/forward_iv" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutStyle.Form.line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_nock" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/widget_padding_tiny"
+            android:text="交货时间"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_large_sp" />
+
+        <TextView
+            android:id="@+id/send_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/text2"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutStyle.Form.line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_pan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/widget_padding_tiny"
+            android:text="订单备注"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_large_sp" />
+
+        <TextView
+            android:id="@+id/remark_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:singleLine="true"
+            android:textColor="@color/text2"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </LinearLayout>
+</LinearLayout>

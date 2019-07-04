@@ -5,7 +5,6 @@ import com.zh.component.dagger.component.MyAppComponent;
 import com.zh.component.dagger.module.AppModule;
 
 import core.app.zh.com.core.application.BaseApplication;
-import core.app.zh.com.core.listener.AddOptionInApplicationListener;
 import core.app.zh.com.core.listener.DaggerOptionListener;
 
 /**
@@ -14,9 +13,9 @@ import core.app.zh.com.core.listener.DaggerOptionListener;
  * description:main module
  */
 public class MyApplication extends BaseApplication {
+
     @Override
-    public AddOptionInApplicationListener option() {
-        return null;
+    public void init(BaseApplication application) {
     }
 
     @Override

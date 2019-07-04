@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="OrderLineLayout">
+        <attr name="leftText" format="string" />
+        <attr name="leftTextAppearance" format="reference" />
+        <attr name="addRightView" format="reference" />
+        <attr name="visibleRightTextView" format="boolean" />
+        <attr name="rightView_match_parent" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="FormLineLayout">
+        <attr name="leftTextStr" format="string" />
+        <attr name="leftTextSize" format="dimension" />
+        <attr name="leftTextColor" format="color" />
+    </declare-styleable>
+</resources>

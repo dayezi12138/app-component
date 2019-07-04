@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <FrameLayout
+        android:id="@+id/fragment_"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tabs_rg" />
+
+    <LinearLayout
+        android:id="@+id/tabs_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/common_line" />
+
+        <RadioGroup
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/account_tab"
+                style="@style/Custom.TabRadioButton"
+                android:checked="true"
+                android:drawableTop="@drawable/tab_home_selector"
+                android:text="主任" />
+
+            <RadioButton
+                style="@style/Custom.TabRadioButton"
+                android:checked="false"
+                android:drawableTop="@drawable/tab_bulletin_selector"
+                android:text="看板" />
+
+            <RadioButton
+                style="@style/Custom.TabRadioButton"
+                android:checked="false"
+                android:drawableTop="@drawable/tab_order_selector"
+                android:text="计划" />
+
+            <RadioButton
+                style="@style/Custom.TabRadioButton"
+                android:checked="false"
+                android:drawableTop="@drawable/tab_mine_selector"
+                android:text="我" />
+        </RadioGroup>
+    </LinearLayout>
+</RelativeLayout>

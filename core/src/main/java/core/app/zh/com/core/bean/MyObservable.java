@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.text.TextUtils;
 
 import com.android.tu.loadingdialog.LoadingDailog;
+import com.zh.api.loading.LoadingInJect;
 
 import core.app.zh.com.core.R;
 import core.app.zh.com.core.base.BaseActivity;
@@ -16,7 +17,7 @@ import io.reactivex.disposables.Disposable;
  */
 public class MyObservable<T> implements Observer<T> {
     private final BaseActivity context;
-    private final Dialog dialog;
+    private Dialog dialog;
     private final boolean showDialog;
     private final String title;
     private final OnSuccessListener<T> listener;
@@ -26,9 +27,8 @@ public class MyObservable<T> implements Observer<T> {
         this.listener = builder.listener;
         this.showDialog = builder.showDialog;
         this.title = builder.title;
-        dialog = defaultDialog();
-        if (showDialog)
-            dialog.show();
+        boolean valid = LoadingInJect.valided(context);
+        if (!valid) dialog = defaultDialog();
     }
 
     private Dialog defaultDialog() {
@@ -41,6 +41,7 @@ public class MyObservable<T> implements Observer<T> {
 
     @Override
     public void onSubscribe(Disposable d) {
+        if (dialog != null && showDialog) dialog.show();
         context.getCompositeDisposable().add(d);
     }
 

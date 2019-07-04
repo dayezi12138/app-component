@@ -12,20 +12,31 @@ public abstract class BasePresenter<T extends BaseView> implements IPresenter, G
     protected WeakReference<T> view;
     private BaseActivity activity;
 
-    public BasePresenter(GetActivityListener listener) {
-        view = new WeakReference<>((T) listener.getMyActivity());
-        this.activity = listener.getMyActivity();
+    public BasePresenter(BaseModel model) {
+        if (model.getBean() instanceof BaseView) {
+            view = new WeakReference<>((T) model.getBean());
+        }
+        if (model.getBean() instanceof BaseActivity) {
+            activity = (BaseActivity) model.getBean();
+        } else if (model.getBean() instanceof BaseFragment) {
+            activity = ((BaseFragment) model.getBean()).getMyActivity();
+        }
     }
+//    public BasePresenter(GetActivityListener listener) {
+//        view = new WeakReference<>((T) listener.getMyActivity());
+//        this.activity = listener.getMyActivity();
+//    }
+//
+//    public BasePresenter(BaseActivity activity) {
+//        view = new WeakReference<>((T) activity);
+//        this.activity = activity;
+//    }
+//
+//    public BasePresenter(BaseFragment fragment) {
+//        view = new WeakReference<>((T) fragment);
+//        this.activity = fragment.getMyActivity();
+//    }
 
-    public BasePresenter(BaseActivity activity) {
-        view = new WeakReference<>((T) activity);
-        this.activity = activity;
-    }
-
-    public BasePresenter(BaseFragment fragment) {
-        view = new WeakReference<>((T) fragment);
-        this.activity = fragment.getMyActivity();
-    }
 
     @Override
     public BaseActivity getMyActivity() {

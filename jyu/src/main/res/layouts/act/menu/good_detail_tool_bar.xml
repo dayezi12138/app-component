@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/menu_craft"
+        android:title="获取工艺单"
+        app:showAsAction="withText"
+        tools:ignore="AppCompatResource,MenuTitle" />
+    <!--<item-->
+        <!--android:id="@+id/menu_order"-->
+        <!--android:title="查询相关订单"-->
+        <!--app:showAsAction="withText"-->
+        <!--tools:ignore="AppCompatResource,MenuTitle" />-->
+    <item
+    android:id="@+id/menu_picking"
+    android:title="获取领料信息"
+    app:showAsAction="withText"
+    tools:ignore="AppCompatResource,MenuTitle" />
+</menu>

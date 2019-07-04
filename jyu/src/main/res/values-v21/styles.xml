@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="baseTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/deep_blue</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@android:color/white</item> <!--  menu中字体颜色-->
+        <item name="toolbarNavigationButtonStyle">@style/myToolbarNavigationButtonStyle</item>
+        <item name="android:windowActivityTransitions">@style/ActivityAnimation</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="splashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 通过windowBackground可以设置背景色、背景图片、能解析出图片的XML文件等-->
+        <item name="android:windowBackground">@drawable/layer_launcher</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

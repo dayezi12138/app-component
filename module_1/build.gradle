@@ -59,7 +59,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    implementation "com.android.support:appcompat-v7:$rootProject.ext.androidSupportSdkVersion"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintVersion"
+//    implementation "com.android.support.constraint:constraint-layouts:$rootProject.ext.constraintVersion"
     implementation project(':core')
     implementation project(':toolbar-api')
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
@@ -67,4 +67,5 @@ dependencies {
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.ext.arouterCompilerVersion"
     annotationProcessor project(':toolbar-process')
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+    implementation 'com.victor:lib:1.0.4'
 }

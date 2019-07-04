@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+apply from: "${rootProject.rootDir}/config.gradle"
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'com.hujiang.android-aspectjx'
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "zh.com.jyu"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.jdkVersion
+        targetCompatibility rootProject.ext.jdkVersion
+    }
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res/layouts/other',
+                    'src/main/res/layouts/item',
+                    'src/main/res/layouts/act',
+                    'src/main/res/layouts/fragment',
+                    'src/main/res'
+            ]
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    greendao {
+        schemaVersion 1//数据库版本号
+        daoPackage 'zh.com.jyu.db'//设置DaoMaster、DaoSession、Dao包名
+        targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
+        //targetGenDirTest：设置生成单元测试目录
+        //generateTests：设置自动生成单元测试用例
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':core')
+    implementation project(':toolbar-api')
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.ext.arouterCompilerVersion"
+    annotationProcessor project(':toolbar-process')
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+    implementation 'com.classic.common:multiple-status-view:1.6'
+    implementation "com.nineoldandroids:library:$rootProject.ext.nineoldandroidsVersion"
+    implementation "com.github.baserecycleradapter:library:1.0.9"
+    implementation 'com.rairmmd.boundscrollview:library:1.0.0'
+    implementation 'com.contrarywind:Android-PickerView:4.1.8'
+    implementation "com.github.Jlanglang:TreeRecyclerView:1.2.8.4"
+    implementation  'com.hgDendi:expandable-recyclerview-adapter:1.0.1'
+    implementation "com.gavin.com.library:stickyDecoration:1.5.0"
+    implementation  'com.hyman:flowlayout-lib:1.1.2'
+    implementation 'org.greenrobot:greendao:3.2.0'
+    implementation 'com.github.SheHuan:NiceImageView:1.0.5'
+    implementation files('libs/Msc.jar')
+}

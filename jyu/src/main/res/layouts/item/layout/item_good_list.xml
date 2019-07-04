@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/item_padding_l_and_r_style"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:padding="@dimen/widget_padding_tiny">
+
+    <core.app.zh.com.core.view.FormLineLayout
+        style="@style/item_height_form_line_style"
+        app:leftTextColor="@color/text1"
+        app:leftTextStr="生产单编号:">
+
+        <TextView
+            android:id="@+id/plan_no_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/widget_padding_tiny"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </core.app.zh.com.core.view.FormLineLayout>
+
+    <core.app.zh.com.core.view.FormLineLayout
+        style="@style/item_height_form_line_style"
+        app:leftTextStr="货品名称:">
+
+        <TextView
+            android:id="@+id/good_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/widget_padding_tiny"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </core.app.zh.com.core.view.FormLineLayout>
+
+    <core.app.zh.com.core.view.FormLineLayout
+        style="@style/item_height_form_line_style"
+        app:leftTextStr="规格名称:">
+
+        <TextView
+            android:id="@+id/specs_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/widget_padding_tiny"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </core.app.zh.com.core.view.FormLineLayout>
+
+
+    <core.app.zh.com.core.view.FormLineLayout
+        style="@style/item_height_form_line_style"
+        app:leftTextStr="目标产量">
+
+        <TextView
+            android:id="@+id/count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/widget_padding_tiny"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_min_xx_sp" />
+
+        <TextView
+            android:id="@+id/create_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/text2"
+            android:textSize="@dimen/font_min_x_sp" />
+    </core.app.zh.com.core.view.FormLineLayout>
+
+    <!--<android.support.v7.widget.CardView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:cardBackgroundColor="@color/white"-->
+    <!--android:foreground="?android:attr/selectableItemBackground"-->
+    <!--app:cardCornerRadius="5dp"-->
+    <!--app:cardElevation="0dp"-->
+    <!--app:contentPadding="@dimen/widget_padding_tiny">-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/status_tv"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="111"-->
+    <!--android:textSize="@dimen/font_large_sp" />-->
+
+    <!--<core.app.zh.com.core.view.FormLineLayout-->
+    <!--style="@style/item_height_form_line_style"-->
+    <!--app:leftTextStr="生产单编号">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/plan_no_tv"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingLeft="@dimen/widget_padding_tiny"-->
+    <!--android:text="111"-->
+    <!--android:textSize="@dimen/font_min_xx_sp" />-->
+    <!--</core.app.zh.com.core.view.FormLineLayout>-->
+
+    <!--<core.app.zh.com.core.view.FormLineLayout-->
+    <!--style="@style/item_height_form_line_style"-->
+    <!--app:leftTextStr="货品名称">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/good_name_tv"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingLeft="@dimen/widget_padding_tiny"-->
+    <!--android:text="111"-->
+    <!--android:textSize="@dimen/font_min_xx_sp" />-->
+    <!--</core.app.zh.com.core.view.FormLineLayout>-->
+
+    <!--<core.app.zh.com.core.view.FormLineLayout-->
+    <!--style="@style/item_height_form_line_style"-->
+    <!--app:leftTextStr="规格名称">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/specs_tv"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingLeft="@dimen/widget_padding_tiny"-->
+    <!--android:text="111"-->
+    <!--android:textSize="@dimen/font_min_xx_sp" />-->
+    <!--</core.app.zh.com.core.view.FormLineLayout>-->
+
+    <!--<core.app.zh.com.core.view.FormLineLayout-->
+    <!--style="@style/item_height_form_line_style"-->
+    <!--app:leftTextStr="目标产量">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/count_tv"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingLeft="@dimen/widget_padding_tiny"-->
+    <!--android:text="111"-->
+    <!--android:textSize="@dimen/font_min_xx_sp" />-->
+    <!--</core.app.zh.com.core.view.FormLineLayout>-->
+
+    <!--<core.app.zh.com.core.view.FormLineLayout-->
+    <!--style="@style/item_height_form_line_style"-->
+    <!--app:leftTextStr="创建时间">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/create_time_tv"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingLeft="@dimen/widget_padding_tiny"-->
+    <!--android:text="111"-->
+    <!--android:textSize="@dimen/font_min_xx_sp" />-->
+    <!--</core.app.zh.com.core.view.FormLineLayout>-->
+    <!--</LinearLayout>-->
+    <!--</android.support.v7.widget.CardView>-->
+</LinearLayout>

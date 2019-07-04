@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="item_leader_name_str" tools:ignore="MissingTranslation">名称</string>
+    <string name="item_leader_status_str" tools:ignore="MissingTranslation">状态</string>
+    <string name="item_leader_target_count_str" tools:ignore="MissingTranslation">目标产量</string>
+    <string name="item_leader_report_count_str" tools:ignore="MissingTranslation">已汇报量</string>
+    <string name="item_leader_create_date_str" tools:ignore="MissingTranslation">制单时间</string>
+
+    <string name="item_bulletin_board_order_num_str" tools:ignore="MissingTranslation">订单编号</string>
+    <string name="item_bulletin_board_goods_name_str" tools:ignore="MissingTranslation">货品名</string>
+    <string name="item_bulletin_board_real_yield_str" tools:ignore="MissingTranslation">实际产量</string>
+    <string name="item_bulletin_board_report_yield_str" tools:ignore="MissingTranslation">报告产量</string>
+    <string name="item_bulletin_board_first_report_time_str" tools:ignore="MissingTranslation">首次汇报时间</string>
+    <string name="item_bulletin_board_time_out_str" tools:ignore="MissingTranslation">时差</string>
+
+    <string name="item_plan_num_str" tools:ignore="MissingTranslation">计划编号</string>
+    <string name="item_plan_create_time_str" tools:ignore="MissingTranslation">创建时间</string>
+    <string name="item_plan_submit_btn_str" tools:ignore="MissingTranslation">领料信息</string>
+
+    <string name="item_relation_order_num_str" tools:ignore="MissingTranslation">订单号</string>
+    <string name="item_relation_name_str" tools:ignore="MissingTranslation">客户名称</string>
+    <string name="item_relation_buy_count_str" tools:ignore="MissingTranslation">订购量</string>
+    <string name="item_relation_account_str" tools:ignore="MissingTranslation">收货人</string>
+    <string name="item_relation_phone_str" tools:ignore="MissingTranslation">电话</string>
+    <string name="item_relation_send_str" tools:ignore="MissingTranslation">预计发货</string>
+
+    <string name="item_report_group_str" tools:ignore="MissingTranslation">班组: </string>
+    <string name="item_report_count_str" tools:ignore="MissingTranslation">汇报量: </string>
+    <string name="item_report_memo_str" tools:ignore="MissingTranslation">备注: </string>
+    <string name="item_report_hint_str" tools:ignore="MissingTranslation">请输入内容</string>
+    
+    
+    <string name="item_goods_list_h_unit_str" tools:ignore="MissingTranslation">单位:  {0}</string>
+    <string name="item_goods_list_h_im_str" tools:ignore="MissingTranslation">￥:  {0}</string>
+    <string name="item_goods_list_h_count_str" tools:ignore="MissingTranslation">{0}件</string>
+</resources>

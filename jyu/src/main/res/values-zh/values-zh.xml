@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="load_end" tools:ignore="ExtraTranslation">没有更多数据...</string>
+    <string name="load_failed" tools:ignore="ExtraTranslation">加载更多失败</string>
+    <string name="loading" tools:ignore="ExtraTranslation">加载中...</string>
+</resources>

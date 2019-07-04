@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/menu_cancel"
+        android:title="工艺单强制完成"
+        app:showAsAction="withText"
+        tools:ignore="AppCompatResource,MenuTitle" />
+    <item
+        android:id="@+id/menu_complete"
+        android:title="工艺单完成"
+        app:showAsAction="withText"
+        tools:ignore="AppCompatResource,MenuTitle" />
+    <!--<item-->
+        <!--android:id="@+id/menu_rollback"-->
+        <!--android:title="退回"-->
+        <!--app:showAsAction="withText"-->
+        <!--tools:ignore="AppCompatResource,MenuTitle" />-->
+    <!--<item-->
+        <!--android:id="@+id/menu_detail"-->
+        <!--android:title="查询相关订单"-->
+        <!--app:showAsAction="withText"-->
+        <!--tools:ignore="AppCompatResource,MenuTitle" />-->
+</menu>
