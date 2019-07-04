@@ -1,11 +1,13 @@
 package com.zh.component1.dagger.module;
 
 
+import com.zh.component1.business.activity.FragActivity;
 import com.zh.component1.business.activity.MainActivity;
 import com.zh.component1.dagger.module.activity.MainModule;
 
 import core.app.zh.com.core.annotation.ActivityScope;
 import core.app.zh.com.core.dagger.component.ActivityComponent;
+import core.app.zh.com.core.dagger.module.EmptyModule;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -18,4 +20,8 @@ public abstract class AllActivityModule_1 {
     @ActivityScope
     @ContributesAndroidInjector(modules = MainModule.class)
     abstract MainActivity contributeMainActivityInjector();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = EmptyModule.class)
+    abstract FragActivity contributeMainFragActivityInjector();
 }

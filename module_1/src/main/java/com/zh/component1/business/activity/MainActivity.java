@@ -97,14 +97,14 @@ public class MainActivity extends BaseActivity implements MainContract.MainUI, L
 
     @Override
     public void showLoading() {
-        getContentView().setVisibility(View.GONE);
+        myContentView().setVisibility(View.GONE);
         rotateLoading.start();
     }
 
     @Override
     public void hideLoading() {
         new Handler().postDelayed(() -> {
-            getContentView().setVisibility(View.VISIBLE);
+            myContentView().setVisibility(View.VISIBLE);
             rotateLoading.stop();
         }, 3000);
     }
