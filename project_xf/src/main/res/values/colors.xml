@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <!--<color name="colorAccent">#D81B60</color>-->
+
+    <color name="background_splash_color">#1D6DB6</color>
+    <color name="act_background_color_w">#EFEEEE</color>
+    <color name="act_background_color_g">#FCFCF1</color>
+    <color name="translucent">#50000000</color>
+    <color name="background_color">#E7E7E7</color>
+    <color name="un_select_create_busi_color">#DADAD9</color>
+
+</resources>

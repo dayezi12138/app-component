@@ -1,0 +1,54 @@
+<resources>
+
+    Base application theme.
+
+    <style name="AppTheme" parent="baseTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/background_splash_color</item>
+        <item name="colorAccent">@color/background_splash_color</item>
+        <item name="actionMenuTextColor">@android:color/white</item> <!--  menu中字体颜色-->
+        <item name="toolbarNavigationButtonStyle">@style/NavigationButtonStyle</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        <!--<item name="android:foreground">?android:attr/selectableItemBackground</item>-->
+    </style>
+
+    <style name="splashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 通过windowBackground可以设置背景色、背景图片、能解析出图片的XML文件等-->
+        <!--<item name="android:windowBackground">@mipmap/splash</item>-->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
+    <style name="NavigationButtonStyle" parent="@style/android:Widget.Material.Toolbar.Button.Navigation">
+        <item name="android:minWidth">@dimen/text_item_title_height</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:layout_marginLeft">@dimen/widget_margin_tiny</item>
+    </style>
+
+    <!--<style name="MenuTextStyle">-->
+    <!--<item name="android:textColor">@android:color/white</item>-->
+    <!--<item name="android:textSize">20sp</item>-->
+    <!--<item name="android:textStyle">bold</item>-->
+    <!--</style>-->
+
+    <!--Activity进场。出场动画-->
+    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
+        <!--用于设置打开新的Activity并进入新的Activity展示的动画-->
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <!--用于设置打开新的Activity并销毁之前的Activity展示的动画-->
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <!--用于设置关闭当前Activity进入上一个Activity展示的动画-->
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <!--用于设置关闭当前Activity时展示的动画-->
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+
+    <style name="pop_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_out</item>
+    </style>
+</resources>
