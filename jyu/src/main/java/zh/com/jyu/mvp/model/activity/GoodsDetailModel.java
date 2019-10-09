@@ -1,5 +1,8 @@
 package zh.com.jyu.mvp.model.activity;
 
+import com.rxjava.rxlife.RxLife;
+import com.rxjava.rxlife.ScopeViewModel;
+
 import javax.inject.Inject;
 
 import core.app.zh.com.core.base.BaseModel;

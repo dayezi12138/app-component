@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="act_login_btn_normal_str">账号登录/注册</string>
+    <string name="act_login_btn_phone_str">本机号码一键登录/注册</string>
+
+    <string name="act_normal_login_account_text_str">账号密码</string>
+    <string name="act_normal_login_input_account_hint_str">请输入账号</string>
+    <string name="act_normal_login_input_password_hint_str">请输入密码</string>
+    <string name="act_normal_login_btn_str">登 录</string>
+    <string name="act_normal_login_forget_str">忘记密码?</string>
+    <string name="act_normal_login_error_str">账号或者密码不能为空</string>
+
+    <string name="act_valid_note_title_text_str">验证码已发送至</string>
+    <string name="act_valid_note_refresh_note_str">重新获取验证码</string>
+
+    <string name="act_phone_title_text_str">请填写您的手机号\n或用户名</string>
+    <string name="act_phone_input_account_str">手机号/用户名</string>
+    <string name="act_phone_submit_str">注册/登录</string>
+
+    <string name="act_create_busi_hint_str">请输入商户名称</string>
+    <string name="act_create_busi_sure_str">确定</string>
+
+    <string name="act_main_bottom_msg_str">消息</string>
+    <string name="act_main_bottom_count_str">通讯录</string>
+    <string name="act_main_bottom_level_str">提升</string>
+    <string name="act_main_bottom_controller_str">工作台</string>
+    <string name="act_main_bottom_my_str">我</string>
+    <string name="act_setting_version_str">版本号 {0}</string>
+    <string name="act_group_detail_count_str">{0}人</string>
+</resources>

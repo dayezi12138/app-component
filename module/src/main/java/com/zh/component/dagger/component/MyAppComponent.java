@@ -5,6 +5,7 @@ import com.zh.component.dagger.module.AllActivityModule;
 import com.zh.component.dagger.module.AllFragmentModule;
 import com.zh.component.dagger.module.AppModule;
 import com.zh.component1.dagger.module.AllActivityModule_1;
+import com.zh.component1.dagger.module.AllFragmentModule_1;
 
 import javax.inject.Singleton;
 
@@ -19,6 +20,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         AppModule.class,
         AllActivityModule.class,
         AllActivityModule_1.class,
+        AllFragmentModule_1.class,
         AllFragmentModule.class
         })
 public interface MyAppComponent extends AndroidInjector<MyApplication> {

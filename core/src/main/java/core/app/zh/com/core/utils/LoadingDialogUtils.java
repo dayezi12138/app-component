@@ -24,7 +24,6 @@ public class LoadingDialogUtils {
         LogUtils.e(context.getClass().getName());
         Dialog dialog;
         if (dialogMap.containsKey(context.getClass().getName())) {
-            LogUtils.e("獲取到");
             dialog = dialogMap.get(context.getClass().getName());
         } else {
             dialog = defaultDialog(context);
@@ -34,7 +33,6 @@ public class LoadingDialogUtils {
     }
 
     private static Dialog defaultDialog(Context context) {
-        LogUtils.e("看看");
         LoadingDailog.Builder loadBuilder = new LoadingDailog.Builder(context)
                 .setMessage(context.getResources().getString(R.string.loading_msg))
                 .setCancelable(false)

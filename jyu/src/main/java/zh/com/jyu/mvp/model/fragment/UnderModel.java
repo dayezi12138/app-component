@@ -5,33 +5,34 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import core.app.zh.com.core.base.BaseModel;
+import core.app.zh.com.core.base.BaseActivity;
+import core.app.zh.com.core.base.BaseFragment;
+import core.app.zh.com.core.base.BaseView;
+import core.app.zh.com.core.base.MyBaseModel;
 import core.app.zh.com.core.bean.MyObservable;
+import core.app.zh.com.core.listener.GetMyBaseModelListener;
 import zh.com.jyu.api.MyService;
+import zh.com.jyu.application.MyApplication;
 import zh.com.jyu.bean.activity.CraftBean;
 import zh.com.jyu.bean.other.Data;
-import zh.com.jyu.business.fragment.leader.UnderFragment;
 
 /**
  * author : dayezi
  * data :2019/6/27
  * description:
  */
-public class UnderModel implements BaseModel<UnderFragment> {
+public class UnderModel implements GetMyBaseModelListener {
 
-    private UnderFragment fragment;
+    private BaseFragment fragment;
     private MyService myService;
     private int pageIndex = 1;
+    private MyApplication myApplication;
 
     @Inject
-    public UnderModel(UnderFragment fragment, MyService myService) {
-        this.fragment = fragment;
+    public UnderModel(BaseFragment fragment, MyApplication myApplication, MyService myService) {
         this.myService = myService;
-    }
-
-    @Override
-    public UnderFragment getBean() {
-        return fragment;
+        this.myApplication = myApplication;
+        this.fragment = fragment;
     }
 
     public int getPageIndex() {
@@ -45,5 +46,20 @@ public class UnderModel implements BaseModel<UnderFragment> {
     public void getProduceCraftsReceiptListPager(Map<String, Object> map, MyObservable.OnSuccessListener<Data<List<CraftBean>>> listener) {
         MyObservable observable = new MyObservable.Builder<>(listener, fragment.getMyActivity()).showDialog(false).build();
         myService.getProduceCraftsReceiptListPager(map).subscribe(observable);
+    }
+
+    @Override
+    public MyBaseModel getMyBaseModel() {
+        return new MyBaseModel(myApplication) {
+            @Override
+            public BaseView getBaseView() {
+                return (fragment != null && fragment instanceof BaseView) ? fragment : null;
+            }
+
+            @Override
+            public BaseActivity getMyActivity() {
+                return fragment.getMyActivity();
+            }
+        };
     }
 }

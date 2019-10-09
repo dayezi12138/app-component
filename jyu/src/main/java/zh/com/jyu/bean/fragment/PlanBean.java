@@ -15,8 +15,9 @@ public class PlanBean {
 
     private int ID;
     private String PlanNO;
-    private int PlanStatus;
+    private String PlanStatus;
     private String CreateTime;
+    private String Remark;
 
     public int getID() {
         return ID;
@@ -34,12 +35,12 @@ public class PlanBean {
         this.PlanNO = PlanNO;
     }
 
-    public int getPlanStatus() {
+    public String getPlanStatus() {
         return PlanStatus;
     }
 
-    public void setPlanStatus(int PlanStatus) {
-        this.PlanStatus = PlanStatus;
+    public void setPlanStatus(String planStatus) {
+        PlanStatus = planStatus;
     }
 
     public String getCreateTime() {
@@ -48,5 +49,13 @@ public class PlanBean {
 
     public void setCreateTime(String CreateTime) {
         this.CreateTime = CreateTime;
+    }
+
+    public String getRemark() {
+        return Remark;
+    }
+
+    public void setRemark(String remark) {
+        Remark = remark;
     }
 }

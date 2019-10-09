@@ -138,6 +138,10 @@ public class NPlanFragment extends BaseFragment implements NPlanContract.NPlanUI
             SearchListener listener = (SearchListener) getActivity();
             val = listener.inputValue();
         }
+        if (getParentFragment() instanceof SearchListener) {
+            SearchListener listener = (SearchListener) getParentFragment();
+            val = listener.inputValue();
+        }
         map.put("keywords", val);
         return map;
     }

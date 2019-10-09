@@ -2,7 +2,6 @@ package com.zh.component1.business.fragment;
 
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import com.victor.loading.rotate.RotateLoading;
@@ -15,7 +14,7 @@ import core.app.zh.com.core.annotation.LoadingHide;
 import core.app.zh.com.core.annotation.LoadingShow;
 import core.app.zh.com.core.base.BaseFragment;
 import core.app.zh.com.core.base.BasePresenter;
-import core.app.zh.com.core.listener.LoadingListener;
+import core.app.zh.com.core.listener.StatusViewListener;
 
 /**
  * author : dayezi
@@ -25,7 +24,7 @@ import core.app.zh.com.core.listener.LoadingListener;
 @ToolbarNavigation
 @ToolbarTitle(title = "HELLO FRAGMENT")
 @LoadingPoint
-public class MainFragment extends BaseFragment implements LoadingListener {
+public class MainFragment extends BaseFragment implements StatusViewListener {
     private View view;
 
     @Override
@@ -39,13 +38,13 @@ public class MainFragment extends BaseFragment implements LoadingListener {
         return R.layout.fragment_main;
     }
 
-    @Override
-    public void beforeInitTemp() {
-        view = LayoutInflater.from(getContext()).inflate(R.layout.loading, getRootLy(), false);
-        rotateLoading = view.findViewById(R.id.rotateloading);
-        setLoadingListener(this);
-        super.beforeInitTemp();
-    }
+//    @Override
+//    public void beforeInitTemp() {
+//        view = LayoutInflater.from(getContext()).inflate(R.layout.loading, getRootLy(), false);
+//        rotateLoading = view.findViewById(R.id.rotateloading);
+//        setLoadingListener(this);
+//        super.beforeInitTemp();
+//    }
 
     @Override
     public void init() {

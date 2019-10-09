@@ -3,6 +3,7 @@ package core.app.zh.com.core.base;
 import java.lang.ref.WeakReference;
 
 import core.app.zh.com.core.listener.GetActivityListener;
+import core.app.zh.com.core.listener.GetMyBaseModelListener;
 
 /**
  * @auther create by Administrator
@@ -22,20 +23,15 @@ public abstract class BasePresenter<T extends BaseView> implements IPresenter, G
             activity = ((BaseFragment) model.getBean()).getMyActivity();
         }
     }
-//    public BasePresenter(GetActivityListener listener) {
-//        view = new WeakReference<>((T) listener.getMyActivity());
-//        this.activity = listener.getMyActivity();
-//    }
-//
-//    public BasePresenter(BaseActivity activity) {
-//        view = new WeakReference<>((T) activity);
-//        this.activity = activity;
-//    }
-//
-//    public BasePresenter(BaseFragment fragment) {
-//        view = new WeakReference<>((T) fragment);
-//        this.activity = fragment.getMyActivity();
-//    }
+
+    public BasePresenter(Object object) {
+        if (object instanceof GetMyBaseModelListener) {
+            GetMyBaseModelListener listener = (GetMyBaseModelListener) object;
+            view = new WeakReference<>((T) listener.getMyBaseModel().getBaseView());
+            activity = listener.getMyBaseModel().getMyActivity();
+        }
+//        else throw new Exception("GetMyBaseModelListener not found !");
+    }
 
 
     @Override

@@ -17,11 +17,31 @@ public class CraftBean {
     private String ProduceGoodsReceiptNO;
     private int CraftsReceiptID;
     private String CraftsName;
-    private int Number1;
-    private int ReportedCount;
+    private String Number1;
+    private String ReportedCount;
     private String CraftsStatusStr;
     private String RegTime;
-    private boolean expanded = true;
+    private boolean expanded = false;
+    private String PlanNO;
+    private String GoodsName;
+    private String Length;
+
+    public String getGoodsName() {
+        return GoodsName;
+    }
+
+    public void setGoodsName(String goodsName) {
+        GoodsName = goodsName;
+    }
+
+
+    public String getPlanNO() {
+        return PlanNO;
+    }
+
+    public void setPlanNO(String planNO) {
+        PlanNO = planNO;
+    }
 
     public String getProduceGoodsReceiptNO() {
         return ProduceGoodsReceiptNO;
@@ -47,20 +67,28 @@ public class CraftBean {
         this.CraftsName = CraftsName;
     }
 
-    public int getNumber1() {
+    public String getNumber1() {
         return Number1;
     }
 
-    public void setNumber1(int Number1) {
-        this.Number1 = Number1;
+    public void setNumber1(String number1) {
+        Number1 = number1;
     }
 
-    public int getReportedCount() {
+    public String getReportedCount() {
         return ReportedCount;
     }
 
-    public void setReportedCount(int ReportedCount) {
-        this.ReportedCount = ReportedCount;
+    public void setReportedCount(String reportedCount) {
+        ReportedCount = reportedCount;
+    }
+
+    public String getLength() {
+        return Length;
+    }
+
+    public void setLength(String length) {
+        Length = length;
     }
 
     public String getCraftsStatusStr() {

@@ -33,6 +33,7 @@ import core.app.zh.com.core.base.BasePresenter;
 import core.app.zh.com.core.bean.MessageEvent;
 import zh.com.jyu.R;
 import zh.com.jyu.bean.fragment.BulletinBoard;
+import zh.com.jyu.bean.fragment.NBulletinBoard;
 import zh.com.jyu.business.activity.GoodsDetailActivity;
 import zh.com.jyu.business.activity.SearchResultActivity;
 import zh.com.jyu.business.adapter.BulletinBoardAdapter;
@@ -159,6 +160,11 @@ public class BulletinBoardFragment extends BaseFragment implements BulletinBoard
     public void success(List<BulletinBoard> list) {
         swipeRefreshLayout.setRefreshing(false);
         adapter.setmList(list);
+    }
+
+    @Override
+    public void successNBulletinBoard(List<NBulletinBoard> list) {
+
     }
 
     private String val = "";

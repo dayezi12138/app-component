@@ -36,6 +36,15 @@ public class GoodsDetail {
     private String Rate2;
     private String StatusStr;
     private String picURL;
+    private String Length;
+
+    public String getLength() {
+        return Length;
+    }
+
+    public void setLength(String length) {
+        Length = length;
+    }
 
     public String getPicURL() {
         return picURL;

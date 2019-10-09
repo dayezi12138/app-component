@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ly"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/friend_info" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_text_height_normal"
+        android:layout_marginTop="@dimen/divider"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/widget_padding_normal"
+        android:paddingRight="@dimen/widget_padding_normal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="备注:"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_min_xx_sp" />
+
+        <TextView
+            android:id="@+id/memo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:paddingLeft="@dimen/widget_padding_tiny"
+            android:textColor="@color/text333"
+            android:textSize="@dimen/font_min_xx_sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_text_height_normal"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@drawable/ripper_friend_operation"
+        android:gravity="center"
+        android:text="发消息"
+        android:textColor="@color/text333"
+        android:textSize="@dimen/font_large_sp">
+
+    </TextView>
+</LinearLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/friend_info" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/widget_padding_tiny"
+            android:text="备注名"
+            android:textColor="@color/add_friend_edit_text" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/divider"
+            android:layout_marginBottom="@dimen/divider"
+            android:background="@color/white"
+            android:hint="备注名"
+            android:padding="@dimen/widget_padding_tiny"
+            android:textColor="@color/text1"
+            android:textColorHint="@color/add_friend_edit_hint_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/widget_padding_tiny"
+            android:text="验证信息"
+            android:textColor="@color/add_friend_edit_text" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/divider"
+            android:layout_marginBottom="@dimen/divider"
+            android:background="@color/white"
+            android:hint="验证信息"
+            android:padding="@dimen/widget_padding_tiny"
+            android:textColor="@color/text1"
+            android:textColorHint="@color/add_friend_edit_hint_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/widget_margin_tiny"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_text_height_normal"
+            android:gravity="center"
+            android:text="添加到通讯录"
+            android:textColor="@color/text1"
+            android:textSize="@dimen/font_large_sp" />
+    </LinearLayout>
+</LinearLayout>

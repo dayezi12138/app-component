@@ -20,18 +20,11 @@ public class GoodListBean {
     private String ProduceGoodsReceiptNO;
     private String RegTime;
     private String StatusStr;
-    private int RealNumber;
+    private String RealNumber;
     private String GoodsName;
     private String SpecName;
-    private  int Status;
+    private String Status;
 
-    public int getStatus() {
-        return Status;
-    }
-
-    public void setStatus(int status) {
-        Status = status;
-    }
 
     public int getID() {
         return ID;
@@ -65,12 +58,20 @@ public class GoodListBean {
         this.StatusStr = StatusStr;
     }
 
-    public int getRealNumber() {
+    public String getRealNumber() {
         return RealNumber;
     }
 
-    public void setRealNumber(int RealNumber) {
-        this.RealNumber = RealNumber;
+    public void setRealNumber(String realNumber) {
+        RealNumber = realNumber;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
     }
 
     public String getGoodsName() {

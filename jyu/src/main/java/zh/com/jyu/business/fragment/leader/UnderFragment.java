@@ -1,6 +1,7 @@
 package zh.com.jyu.business.fragment.leader;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -14,6 +15,7 @@ import com.blankj.utilcode.util.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gavin.com.library.StickyDecoration;
 import com.gavin.com.library.listener.GroupListener;
+import com.gavin.com.library.listener.OnGroupClickListener;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -96,7 +98,7 @@ public class UnderFragment extends BaseFragment implements UnderContract.UnderUI
         };
         decoration = StickyDecoration.Builder
                 .init(groupListener)
-                .setGroupBackground(getResources().getColor(R.color.divider))
+                .setGroupBackground(Color.parseColor("#F7F7F7"))
                 .setGroupTextColor(getResources().getColor(R.color.text2))
                 .setGroupTextColor(getResources().getColor(R.color.text1))
                 .setGroupHeight(110)

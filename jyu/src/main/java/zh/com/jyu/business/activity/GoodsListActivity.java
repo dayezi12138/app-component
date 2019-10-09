@@ -110,7 +110,7 @@ public class GoodsListActivity extends BaseActivity implements GoodListContract.
     private void setData(int status) {
         List<GoodListBean> listBeans = new ArrayList<>();
         for (GoodListBean bean : goodListBeanList) {
-            if (status == bean.getStatus()) {
+            if (String.valueOf(status).equals(bean.getStatus())) {
                 listBeans.add(bean);
             }
         }

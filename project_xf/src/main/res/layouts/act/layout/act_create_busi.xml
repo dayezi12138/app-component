@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/widget_margin_large"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/busi_name_et"
+            style="@style/ExistBackgroundEditText.Create.Busi.TextStyle"
+            android:textColorHint="@color/create_busi_hint_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/act_create_busi_hint_str" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_margin_large"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/widget_padding_tiny"
+                android:textColor="@color/create_busi_type_color"
+                android:text="请选择所属行业"
+                android:textSize="@dimen/font_large_sp" />
+
+            <include
+                layout="@layout/recycler_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit_btn"
+            style="@style/act_login_btn_style"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/widget_text_height_tiny"
+            android:background="@drawable/shape_act_login_btn_blue"
+            android:text="@string/act_create_busi_sure_str"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</ScrollView>

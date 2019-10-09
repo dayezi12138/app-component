@@ -71,7 +71,7 @@ public class MyPopupWindow extends PopupWindow {
         private View view;
         private Activity activity;
         private int width = ViewGroup.LayoutParams.MATCH_PARENT;
-        private int height = ViewGroup.LayoutParams.MATCH_PARENT;
+        private int height = ViewGroup.LayoutParams.WRAP_CONTENT;
         private boolean outsideTouchable = true;
         private int position = Gravity.TOP;
         private int offsetX;

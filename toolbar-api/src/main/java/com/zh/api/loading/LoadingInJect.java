@@ -22,7 +22,7 @@ public class LoadingInJect {
 
     public synchronized static boolean valided(Object object) {
         boolean exist = false;
-        if (ObjectUtils.isEmpty(object)) return exist;
+        if (ObjectUtils.isEmpty(object) || !hasInit) return exist;
         for (String loading : iLoadingList) {
             if (object.getClass().getName().equals(loading)) {
                 exist = true;

@@ -35,7 +35,9 @@ public class AppModule {
     private MyApplication application;
     private static final int READ_WRITE_CONNECT_TIME = 15;
     private HttpLoggingInterceptor loggingInterceptor;
-    private final String BASE_URL = "http://120.26.41.167:7081/api/";
+    public final static String HOST = "http://120.26.41.167:7081/";
+    public final static String BASE_URL = HOST + "api/";
+    //private final String BASE_URL = "http://120.26.41.167:7083/api/";
     public final static String DB_NAME = "JYu";
 
     @Inject

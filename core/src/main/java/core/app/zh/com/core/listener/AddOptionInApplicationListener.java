@@ -15,8 +15,9 @@ import core.app.zh.com.core.application.BaseApplication;
  */
 public interface AddOptionInApplicationListener {
 
-    void init(BaseApplication application);
+     void init(BaseApplication application) ;
 
+    List<ApplicationInitListener> addListener();
 
     DaggerOptionListener daggerOptionListener();
 

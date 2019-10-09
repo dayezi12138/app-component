@@ -1,0 +1,4 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="new_friend_str" tools:ignore="MissingTranslation">新朋友</string>
+    <string name="has_new_friend_str" tools:ignore="MissingTranslation">已添加</string>
+</resources>

@@ -25,44 +25,48 @@ import dagger.android.support.DaggerFragment;
 
 public abstract class BaseFragment extends DaggerFragment implements LayoutInitListener, GetActivityListener, BaseView, GetPresenter {
 
-    private View layoutView;
+    private View rootView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = beforeInit(inflater, container);
+        rootView = inflater.inflate(R.layout.base_view, container, false);
+        rootLy = rootView.findViewById(R.id.root_ly);
+        beforeInit(inflater, container);
         if (this.getActivity().getApplication() instanceof AddOptionInApplicationListener) {
             AddOptionInApplicationListener listener = (AddOptionInApplicationListener) this.getActivity().getApplication();
             List<AddOptionInPageListener> list = listener.optionActivityList();
             for (AddOptionInPageListener activityListener : list) {
-                activityListener.init(this, view);
+                activityListener.init(this, rootView);
             }
         }
-        this.layoutView = view;
+//        beforeInitTemp();
         init();
-        return view;
+        return rootView;
     }
 
-    public View getLayoutView() {
-        return layoutView;
-    }
+//    public void beforeInitTemp() {
+//        if (loadingListener != null && loadingListener.loadingView() != null) {
+//            rootLy.addView(loadingListener.loadingView());
+//        }
+//    }
 
     private LinearLayout rootLy;
+//    private StatusViewListener loadingListener;
+    private View contentView;
 
     @Override
     public View beforeInit(LayoutInflater inflater, ViewGroup container) {
-        View view = inflater.inflate(R.layout.base_view, container, false);
-        rootLy = view.findViewById(R.id.root_ly);
-        boolean old = oldAddToolbar(rootLy);
-        if (!old) newAddToolbar(rootLy);
+        boolean old = oldAddToolbar();
+        if (!old) newAddToolbar();
         if (layoutId() != 0) {
-            View contentView = LayoutInflater.from(getContext()).inflate(layoutId(), rootLy, false);
+            contentView = LayoutInflater.from(getContext()).inflate(layoutId(), rootLy, false);
             rootLy.addView(contentView);
         }
-        return view;
+        return rootView;
     }
 
-    protected void newAddToolbar(LinearLayout rootLy) {
+    protected void newAddToolbar() {
         boolean addToolbar = ToolBarInject.needAddToolbar(this);
         if (!addToolbar) return;
         Toolbar toolbarLayout = (Toolbar) LayoutInflater.from(getContext()).inflate(R.layout.common_toolbar_, null);
@@ -72,7 +76,7 @@ public abstract class BaseFragment extends DaggerFragment implements LayoutInitL
 
 
     @Deprecated
-    private boolean oldAddToolbar(LinearLayout rootLy) {
+    private boolean oldAddToolbar() {
         rootLy.removeAllViews();
         boolean oldAddToolbar = addToolbar();
         if (oldAddToolbar) {
@@ -102,5 +106,22 @@ public abstract class BaseFragment extends DaggerFragment implements LayoutInitL
     @Deprecated
     public boolean addToolbar() {
         return false;
+    }
+
+//    public StatusViewListener getLoadingListener() {
+//        return loadingListener;
+//    }
+//
+//    public void setLoadingListener(StatusViewListener loadingListener) {
+//        this.loadingListener = loadingListener;
+//    }
+
+    @Override
+    public View myContentView() {
+        return contentView;
+    }
+
+    public LinearLayout getRootLy() {
+        return rootLy;
     }
 }

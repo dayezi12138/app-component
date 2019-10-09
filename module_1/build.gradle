@@ -2,9 +2,8 @@ if (Boolean.valueOf(rootProject.ext.moduleShopMall)) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
-    apply plugin: 'com.jakewharton.butterknife'
-
 }
+apply plugin: 'com.jakewharton.butterknife'
 apply from: "${rootProject.rootDir}/config.gradle"
 android {
     project.ext.setDefaultConfig project

@@ -26,8 +26,8 @@ public class CraftDetailBean {
     private int ProduceGoodsReceiptID;
     private int CraftsReceiptID;
     private String CraftsName;
-    private int Number1;
-    private int ReportedCount;
+    private String Number1;
+    private String ReportedCount;
     private String ProduceGoodsReceiptNO;
     private String CraftsStatusStr;
     private String firstReportTime;
@@ -36,11 +36,29 @@ public class CraftDetailBean {
     private String HandoverTime;
     private String RegTime;
     private String picURL;
+    private String cmdPicURL;
     private List<CmdBean> cmd;
     private String crews;
     private String crewIDs;
     private String GoodsName;
     private String SpecName;
+    private String Length;
+
+    public String getLength() {
+        return Length;
+    }
+
+    public void setLength(String length) {
+        Length = length;
+    }
+
+    public String getCmdPicURL() {
+        return cmdPicURL;
+    }
+
+    public void setCmdPicURL(String cmdPicURL) {
+        this.cmdPicURL = cmdPicURL;
+    }
 
     public String getGoodsName() {
         return GoodsName;
@@ -98,20 +116,20 @@ public class CraftDetailBean {
         this.CraftsName = CraftsName;
     }
 
-    public int getNumber1() {
+    public String getNumber1() {
         return Number1;
     }
 
-    public void setNumber1(int Number1) {
-        this.Number1 = Number1;
+    public void setNumber1(String number1) {
+        Number1 = number1;
     }
 
-    public int getReportedCount() {
+    public String getReportedCount() {
         return ReportedCount;
     }
 
-    public void setReportedCount(int ReportedCount) {
-        this.ReportedCount = ReportedCount;
+    public void setReportedCount(String reportedCount) {
+        ReportedCount = reportedCount;
     }
 
     public String getCraftsStatusStr() {

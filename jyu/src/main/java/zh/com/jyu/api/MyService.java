@@ -27,7 +27,9 @@ import zh.com.jyu.bean.activity.ReportListBean;
 import zh.com.jyu.bean.activity.UserList;
 import zh.com.jyu.bean.activity.UserListBean;
 import zh.com.jyu.bean.fragment.BulletinBoard;
+import zh.com.jyu.bean.fragment.NBulletinBoard;
 import zh.com.jyu.bean.fragment.PlanBean;
+import zh.com.jyu.bean.fragment.UpdateInfo;
 import zh.com.jyu.bean.other.Data;
 
 /**
@@ -117,9 +119,17 @@ public interface MyService {
     Observable<Data<Object>> delReport(@Field("ReportID") int reportID, @Field("userId") int userId);
 
 
-    @ApiAnnotation("选择客户")
+    @ApiAnnotation("每日看板")
     @GET("ProduceReceipt/GetDailyBoard")
     Observable<Data<List<BulletinBoard>>> getDailyBoard(@Query("keyword") String keyword);
+
+    @ApiAnnotation("每日看板")
+    @GET("ProduceReceipt/GetDailyBoard")
+    Observable<Data<List<BulletinBoard>>> getDailyBoardA(@Query("keyword") String keyword, @Query("CraftsId") String craftsId);
+
+    @ApiAnnotation("每日看板")
+    @GET("ProduceReceipt/GetDailyBoardForBoss")
+    Observable<Data<List<NBulletinBoard>>> getDailyBoardForBoss(@Query("keyword") String keyword);
 
     @ApiAnnotation("根据班组ID获取班组下成员")
     @GET("ProduceReceipt/GetCrewsMember")
@@ -151,4 +161,8 @@ public interface MyService {
     @ApiAnnotation("订单详情")
     @GET("ProduceReceipt/GetProduceGoodsReceiptPageList")
     Observable<Data<List<GoodListBean>>> getProduceGoodsReceiptPageList(@QueryMap Map<String, Object> map);
+
+    @ApiAnnotation("获取最新安卓版本")
+    @GET("Config/GetNewVersion")
+    Observable<Data<UpdateInfo>> updateInfo();
 }

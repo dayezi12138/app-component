@@ -15,23 +15,23 @@ public class ReportListBean implements Serializable {
      * ReportedCount : 55157
      */
 
-    private int Number1;
-    private int ReportedCount;
+    private String Number1;
+    private String ReportedCount;
     private List<ReportsBean> Reports;
 
-    public int getNumber1() {
+    public String getNumber1() {
         return Number1;
     }
 
-    public void setNumber1(int Number1) {
-        this.Number1 = Number1;
+    public void setNumber1(String number1) {
+        Number1 = number1;
     }
 
-    public int getReportedCount() {
+    public String getReportedCount() {
         return ReportedCount;
     }
 
-    public void setReportedCount(int reportedCount) {
+    public void setReportedCount(String reportedCount) {
         ReportedCount = reportedCount;
     }
 
@@ -55,7 +55,7 @@ public class ReportListBean implements Serializable {
 
         private String CrewName;
         private String ProduceDate;
-        private int Count;
+        private String Count;
         private String CreateTime;
         private int ID;
         private String Remark;
@@ -76,11 +76,11 @@ public class ReportListBean implements Serializable {
             this.ProduceDate = ProduceDate;
         }
 
-        public int getCount() {
+        public String getCount() {
             return Count;
         }
 
-        public void setCount(int count) {
+        public void setCount(String count) {
             Count = count;
         }
 

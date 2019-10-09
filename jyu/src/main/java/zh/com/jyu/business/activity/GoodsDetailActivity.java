@@ -59,7 +59,7 @@ public class GoodsDetailActivity extends BaseActivity implements GoodsDetailCont
     @Inject
     GoodsDetailPresenter presenter;
 
-    @BindViews({R.id.tradeNos_tv, R.id.produce_tv, R.id.plan_no_tv, R.id.create_time_tv, R.id.pre_tv, R.id.status_tv, R.id.good_name_tv, R.id.specs_tv, R.id.count_tv, R.id.pack_count_tv, R.id.ca_tv, R.id.rate_tv})
+    @BindViews({R.id.tradeNos_tv, R.id.produce_tv, R.id.plan_no_tv, R.id.create_time_tv, R.id.pre_tv, R.id.status_tv, R.id.good_name_tv, R.id.specs_tv, R.id.count_tv, R.id.pack_count_tv, R.id.ca_tv, R.id.rate_tv, R.id.length_tv})
     List<TextView> textViewList;
 
     @BindView(R.id.imgage_iv)
@@ -103,6 +103,7 @@ public class GoodsDetailActivity extends BaseActivity implements GoodsDetailCont
         textViewList.get(9).setText(goodsDetail.getPackageCount());
         textViewList.get(10).setText(goodsDetail.getCount2());
         textViewList.get(11).setText(goodsDetail.getRate2());
+        textViewList.get(12).setText(goodsDetail.getLength());
         Glide.with(this).load(goodsDetail.getPicURL()).into(imageView);
         this.url = goodsDetail.getPicURL();
     }

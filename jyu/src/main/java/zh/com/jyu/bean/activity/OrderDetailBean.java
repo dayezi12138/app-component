@@ -15,7 +15,7 @@ public class OrderDetailBean {
      */
 
     private TradeTradeListBean Trade_TradeList;
-    private int GoodsCount;
+    private String GoodsCount;
     private List<TradeGoodsListBean> Trade_GoodsList;
 
     public TradeTradeListBean getTrade_TradeList() {
@@ -26,12 +26,12 @@ public class OrderDetailBean {
         this.Trade_TradeList = Trade_TradeList;
     }
 
-    public int getGoodsCount() {
+    public String getGoodsCount() {
         return GoodsCount;
     }
 
-    public void setGoodsCount(int GoodsCount) {
-        this.GoodsCount = GoodsCount;
+    public void setGoodsCount(String goodsCount) {
+        GoodsCount = goodsCount;
     }
 
     public List<TradeGoodsListBean> getTrade_GoodsList() {
@@ -164,14 +164,14 @@ public class OrderDetailBean {
         private String RegTime;
         private String TradeTime;
         private String Days;
-        private int TradeStatus;
+        private String TradeStatus;
         private String TradeStatusExt;
         private String TradeNO;
-        private int ShopID;
-        private int SellerId;
+        private String ShopID;
+        private String SellerId;
         private String Seller;
         private String TradeType;
-        private int CustomerID;
+        private String CustomerID;
         private String CustomerLevel;
         private String CustomerType;
         private String SndTo;
@@ -185,92 +185,92 @@ public class OrderDetailBean {
         private String RegOperator;
         private String ConfirmTime;
         private String ConfirmOperator;
-        private int PrintSndBill;
-        private Object PrintExpress;
-        private Object Picker;
-        private Object ChkOperator;
-        private Object ChkTime;
-        private Object PackageOperator;
-        private Object SndTime;
-        private Object SndOperator;
-        private Object GoodsWeight;
-        private Object PackagedWeight;
+        private String PrintSndBill;
+        private String PrintExpress;
+        private String Picker;
+        private String ChkOperator;
+        private String ChkTime;
+        private String PackageOperator;
+        private String SndTime;
+        private String SndOperator;
+        private String GoodsWeight;
+        private String PackagedWeight;
         private String CustomerRemark;
         private String Remark;
-        private Object LogisticID;
-        private Object PackageID;
-        private int Postage;
-        private Object PostID;
+        private String LogisticID;
+        private String PackageID;
+        private String Postage;
+        private String PostID;
         private String ChargeType;
-        private Object ChargeID;
-        private int AccountID;
-        private int OtherCost;
-        private int GoodsTotal;
-        private int PostageTotal;
-        private int TaxValue;
-        private int CouponValue;
-        private int FavourableTotal;
-        private int AllTotal;
-        private int RcvTotal;
+        private String ChargeID;
+        private String AccountID;
+        private String OtherCost;
+        private String GoodsTotal;
+        private String PostageTotal;
+        private String TaxValue;
+        private String CouponValue;
+        private String FavourableTotal;
+        private String AllTotal;
+        private String RcvTotal;
         private String CurrencyType;
-        private int CurrencyRate;
-        private int GoodsCost;
-        private int PackageCost;
-        private int TotalProfit;
+        private String CurrencyRate;
+        private String GoodsCost;
+        private String PackageCost;
+        private String TotalProfit;
         private String PriceSpec;
-        private int PriceDis;
-        private Object GoodsList;
-        private int TradeFlagID;
+        private String PriceDis;
+        private String GoodsList;
+        private String TradeFlagID;
         private String FlagName;
-        private Object DrawbackValue;
-        private Object OtherGoods;
-        private Object CouponID;
-        private int CommissionValue;
-        private int WarehouseID;
-        private Object PrintCollect;
-        private Object PrintPos;
-        private Object PrintChannel;
-        private Object PreDate;
-        private Object PreType;
-        private Object bStockOut;
-        private Object bManualCHK;
-        private Object AppendRemark;
-        private Object bInvoice;
-        private Object PrintInvoice;
-        private Object estimateWeight;
-        private Object InvoiceTitle;
-        private Object RMB_Value;
-        private Object ProviderID;
-        private Object ChargeOperator;
-        private Object FreezeReason;
-        private Object CancelReason;
+        private String DrawbackValue;
+        private String OtherGoods;
+        private String CouponID;
+        private String CommissionValue;
+        private String WarehouseID;
+        private String PrintCollect;
+        private String PrintPos;
+        private String PrintChannel;
+        private String PreDate;
+        private String PreType;
+        private String bStockOut;
+        private String bManualCHK;
+        private String AppendRemark;
+        private String bInvoice;
+        private String PrintInvoice;
+        private String estimateWeight;
+        private String InvoiceTitle;
+        private String RMB_Value;
+        private String ProviderID;
+        private String ChargeOperator;
+        private String FreezeReason;
+        private String CancelReason;
         private boolean bSellBack;
         private String TradeFrom;
         private String TradeNO2;
-        private Object bSndSys;
-        private int PostageFee2;
-        private Object Reserved1;
-        private Object Reserved2;
-        private Object Reserved3;
-        private Object Reserved4;
-        private Object PrintCHK;
+        private String bSndSys;
+        private String PostageFee2;
+        private String Reserved1;
+        private String Reserved2;
+        private String Reserved3;
+        private String Reserved4;
+        private String PrintCHK;
         private String FXTid;
-        private Object HH;
-        private Object HuHao;
-        private Object BXZCBM;
-        private Object LSH;
-        private Object LL;
-        private Object TQ;
-        private Object YDLB;
-        private Object GDDYDY;
-        private Object SBFL;
-        private Object YWLX;
-        private Object OrderId;
-        private Object StockOutID;
+        private String HH;
+        private String HuHao;
+        private String BXZCBM;
+        private String LSH;
+        private String LL;
+        private String TQ;
+        private String YDLB;
+        private String GDDYDY;
+        private String SBFL;
+        private String YWLX;
+        private String OrderId;
+        private String StockOutID;
         private String WuliuAdr;
         private String YSndTime;
         private String CustomerName;
-        private int RegOperatorId;
+        private String RegOperatorId;
         private String status;
         private String WarehouseName;
         private String ShopName;
@@ -279,679 +279,679 @@ public class OrderDetailBean {
             return TradeID;
         }
 
-        public void setTradeID(int TradeID) {
-            this.TradeID = TradeID;
+        public void setTradeID(int tradeID) {
+            TradeID = tradeID;
         }
 
         public String getRegTime() {
             return RegTime;
         }
 
-        public void setRegTime(String RegTime) {
-            this.RegTime = RegTime;
+        public void setRegTime(String regTime) {
+            RegTime = regTime;
         }
 
         public String getTradeTime() {
             return TradeTime;
         }
 
-        public void setTradeTime(String TradeTime) {
-            this.TradeTime = TradeTime;
+        public void setTradeTime(String tradeTime) {
+            TradeTime = tradeTime;
         }
 
         public String getDays() {
             return Days;
         }
 
-        public void setDays(String Days) {
-            this.Days = Days;
+        public void setDays(String days) {
+            Days = days;
         }
 
-        public int getTradeStatus() {
+        public String getTradeStatus() {
             return TradeStatus;
         }
 
-        public void setTradeStatus(int TradeStatus) {
-            this.TradeStatus = TradeStatus;
+        public void setTradeStatus(String tradeStatus) {
+            TradeStatus = tradeStatus;
         }
 
         public String getTradeStatusExt() {
             return TradeStatusExt;
         }
 
-        public void setTradeStatusExt(String TradeStatusExt) {
-            this.TradeStatusExt = TradeStatusExt;
+        public void setTradeStatusExt(String tradeStatusExt) {
+            TradeStatusExt = tradeStatusExt;
         }
 
         public String getTradeNO() {
             return TradeNO;
         }
 
-        public void setTradeNO(String TradeNO) {
-            this.TradeNO = TradeNO;
+        public void setTradeNO(String tradeNO) {
+            TradeNO = tradeNO;
         }
 
-        public int getShopID() {
+        public String getShopID() {
             return ShopID;
         }
 
-        public void setShopID(int ShopID) {
-            this.ShopID = ShopID;
+        public void setShopID(String shopID) {
+            ShopID = shopID;
         }
 
-        public int getSellerId() {
+        public String getSellerId() {
             return SellerId;
         }
 
-        public void setSellerId(int SellerId) {
-            this.SellerId = SellerId;
+        public void setSellerId(String sellerId) {
+            SellerId = sellerId;
         }
 
         public String getSeller() {
             return Seller;
         }
 
-        public void setSeller(String Seller) {
-            this.Seller = Seller;
+        public void setSeller(String seller) {
+            Seller = seller;
         }
 
         public String getTradeType() {
             return TradeType;
         }
 
-        public void setTradeType(String TradeType) {
-            this.TradeType = TradeType;
+        public void setTradeType(String tradeType) {
+            TradeType = tradeType;
         }
 
-        public int getCustomerID() {
+        public String getCustomerID() {
             return CustomerID;
         }
 
-        public void setCustomerID(int CustomerID) {
-            this.CustomerID = CustomerID;
+        public void setCustomerID(String customerID) {
+            CustomerID = customerID;
         }
 
         public String getCustomerLevel() {
             return CustomerLevel;
         }
 
-        public void setCustomerLevel(String CustomerLevel) {
-            this.CustomerLevel = CustomerLevel;
+        public void setCustomerLevel(String customerLevel) {
+            CustomerLevel = customerLevel;
         }
 
         public String getCustomerType() {
             return CustomerType;
         }
 
-        public void setCustomerType(String CustomerType) {
-            this.CustomerType = CustomerType;
+        public void setCustomerType(String customerType) {
+            CustomerType = customerType;
         }
 
         public String getSndTo() {
             return SndTo;
         }
 
-        public void setSndTo(String SndTo) {
-            this.SndTo = SndTo;
+        public void setSndTo(String sndTo) {
+            SndTo = sndTo;
         }
 
         public String getCountry() {
             return Country;
         }
 
-        public void setCountry(String Country) {
-            this.Country = Country;
+        public void setCountry(String country) {
+            Country = country;
         }
 
         public String getProvince() {
             return Province;
         }
 
-        public void setProvince(String Province) {
-            this.Province = Province;
+        public void setProvince(String province) {
+            Province = province;
         }
 
         public String getCity() {
             return City;
         }
 
-        public void setCity(String City) {
-            this.City = City;
+        public void setCity(String city) {
+            City = city;
         }
 
         public String getTown() {
             return Town;
         }
 
-        public void setTown(String Town) {
-            this.Town = Town;
+        public void setTown(String town) {
+            Town = town;
         }
 
         public String getAdr() {
             return Adr;
         }
 
-        public void setAdr(String Adr) {
-            this.Adr = Adr;
+        public void setAdr(String adr) {
+            Adr = adr;
         }
 
         public String getZip() {
             return Zip;
         }
 
-        public void setZip(String Zip) {
-            this.Zip = Zip;
+        public void setZip(String zip) {
+            Zip = zip;
         }
 
         public String getTel() {
             return Tel;
         }
 
-        public void setTel(String Tel) {
-            this.Tel = Tel;
+        public void setTel(String tel) {
+            Tel = tel;
         }
 
         public String getRegOperator() {
             return RegOperator;
         }
 
-        public void setRegOperator(String RegOperator) {
-            this.RegOperator = RegOperator;
+        public void setRegOperator(String regOperator) {
+            RegOperator = regOperator;
         }
 
         public String getConfirmTime() {
             return ConfirmTime;
         }
 
-        public void setConfirmTime(String ConfirmTime) {
-            this.ConfirmTime = ConfirmTime;
+        public void setConfirmTime(String confirmTime) {
+            ConfirmTime = confirmTime;
         }
 
         public String getConfirmOperator() {
             return ConfirmOperator;
         }
 
-        public void setConfirmOperator(String ConfirmOperator) {
-            this.ConfirmOperator = ConfirmOperator;
+        public void setConfirmOperator(String confirmOperator) {
+            ConfirmOperator = confirmOperator;
         }
 
-        public int getPrintSndBill() {
+        public String getPrintSndBill() {
             return PrintSndBill;
         }
 
-        public void setPrintSndBill(int PrintSndBill) {
-            this.PrintSndBill = PrintSndBill;
+        public void setPrintSndBill(String printSndBill) {
+            PrintSndBill = printSndBill;
         }
 
-        public Object getPrintExpress() {
+        public String getPrintExpress() {
             return PrintExpress;
         }
 
-        public void setPrintExpress(Object PrintExpress) {
-            this.PrintExpress = PrintExpress;
+        public void setPrintExpress(String printExpress) {
+            PrintExpress = printExpress;
         }
 
-        public Object getPicker() {
+        public String getPicker() {
             return Picker;
         }
 
-        public void setPicker(Object Picker) {
-            this.Picker = Picker;
+        public void setPicker(String picker) {
+            Picker = picker;
         }
 
-        public Object getChkOperator() {
+        public String getChkOperator() {
             return ChkOperator;
         }
 
-        public void setChkOperator(Object ChkOperator) {
-            this.ChkOperator = ChkOperator;
+        public void setChkOperator(String chkOperator) {
+            ChkOperator = chkOperator;
         }
 
-        public Object getChkTime() {
+        public String getChkTime() {
             return ChkTime;
         }
 
-        public void setChkTime(Object ChkTime) {
-            this.ChkTime = ChkTime;
+        public void setChkTime(String chkTime) {
+            ChkTime = chkTime;
         }
 
-        public Object getPackageOperator() {
+        public String getPackageOperator() {
             return PackageOperator;
         }
 
-        public void setPackageOperator(Object PackageOperator) {
-            this.PackageOperator = PackageOperator;
+        public void setPackageOperator(String packageOperator) {
+            PackageOperator = packageOperator;
         }
 
-        public Object getSndTime() {
+        public String getSndTime() {
             return SndTime;
         }
 
-        public void setSndTime(Object SndTime) {
-            this.SndTime = SndTime;
+        public void setSndTime(String sndTime) {
+            SndTime = sndTime;
         }
 
-        public Object getSndOperator() {
+        public String getSndOperator() {
             return SndOperator;
         }
 
-        public void setSndOperator(Object SndOperator) {
-            this.SndOperator = SndOperator;
+        public void setSndOperator(String sndOperator) {
+            SndOperator = sndOperator;
         }
 
-        public Object getGoodsWeight() {
+        public String getGoodsWeight() {
             return GoodsWeight;
         }
 
-        public void setGoodsWeight(Object GoodsWeight) {
-            this.GoodsWeight = GoodsWeight;
+        public void setGoodsWeight(String goodsWeight) {
+            GoodsWeight = goodsWeight;
         }
 
-        public Object getPackagedWeight() {
+        public String getPackagedWeight() {
             return PackagedWeight;
         }
 
-        public void setPackagedWeight(Object PackagedWeight) {
-            this.PackagedWeight = PackagedWeight;
+        public void setPackagedWeight(String packagedWeight) {
+            PackagedWeight = packagedWeight;
         }
 
         public String getCustomerRemark() {
             return CustomerRemark;
         }
 
-        public void setCustomerRemark(String CustomerRemark) {
-            this.CustomerRemark = CustomerRemark;
+        public void setCustomerRemark(String customerRemark) {
+            CustomerRemark = customerRemark;
         }
 
         public String getRemark() {
             return Remark;
         }
 
-        public void setRemark(String Remark) {
-            this.Remark = Remark;
+        public void setRemark(String remark) {
+            Remark = remark;
         }
 
-        public Object getLogisticID() {
+        public String getLogisticID() {
             return LogisticID;
         }
 
-        public void setLogisticID(Object LogisticID) {
-            this.LogisticID = LogisticID;
+        public void setLogisticID(String logisticID) {
+            LogisticID = logisticID;
         }
 
-        public Object getPackageID() {
+        public String getPackageID() {
             return PackageID;
         }
 
-        public void setPackageID(Object PackageID) {
-            this.PackageID = PackageID;
+        public void setPackageID(String packageID) {
+            PackageID = packageID;
         }
 
-        public int getPostage() {
+        public String getPostage() {
             return Postage;
         }
 
-        public void setPostage(int Postage) {
-            this.Postage = Postage;
+        public void setPostage(String postage) {
+            Postage = postage;
         }
 
-        public Object getPostID() {
+        public String getPostID() {
             return PostID;
         }
 
-        public void setPostID(Object PostID) {
-            this.PostID = PostID;
+        public void setPostID(String postID) {
+            PostID = postID;
         }
 
         public String getChargeType() {
             return ChargeType;
         }
 
-        public void setChargeType(String ChargeType) {
-            this.ChargeType = ChargeType;
+        public void setChargeType(String chargeType) {
+            ChargeType = chargeType;
         }
 
-        public Object getChargeID() {
+        public String getChargeID() {
             return ChargeID;
         }
 
-        public void setChargeID(Object ChargeID) {
-            this.ChargeID = ChargeID;
+        public void setChargeID(String chargeID) {
+            ChargeID = chargeID;
         }
 
-        public int getAccountID() {
+        public String getAccountID() {
             return AccountID;
         }
 
-        public void setAccountID(int AccountID) {
-            this.AccountID = AccountID;
+        public void setAccountID(String accountID) {
+            AccountID = accountID;
         }
 
-        public int getOtherCost() {
+        public String getOtherCost() {
             return OtherCost;
         }
 
-        public void setOtherCost(int OtherCost) {
-            this.OtherCost = OtherCost;
+        public void setOtherCost(String otherCost) {
+            OtherCost = otherCost;
         }
 
-        public int getGoodsTotal() {
+        public String getGoodsTotal() {
             return GoodsTotal;
         }
 
-        public void setGoodsTotal(int GoodsTotal) {
-            this.GoodsTotal = GoodsTotal;
+        public void setGoodsTotal(String goodsTotal) {
+            GoodsTotal = goodsTotal;
         }
 
-        public int getPostageTotal() {
+        public String getPostageTotal() {
             return PostageTotal;
         }
 
-        public void setPostageTotal(int PostageTotal) {
-            this.PostageTotal = PostageTotal;
+        public void setPostageTotal(String postageTotal) {
+            PostageTotal = postageTotal;
         }
 
-        public int getTaxValue() {
+        public String getTaxValue() {
             return TaxValue;
         }
 
-        public void setTaxValue(int TaxValue) {
-            this.TaxValue = TaxValue;
+        public void setTaxValue(String taxValue) {
+            TaxValue = taxValue;
         }
 
-        public int getCouponValue() {
+        public String getCouponValue() {
             return CouponValue;
         }
 
-        public void setCouponValue(int CouponValue) {
-            this.CouponValue = CouponValue;
+        public void setCouponValue(String couponValue) {
+            CouponValue = couponValue;
         }
 
-        public int getFavourableTotal() {
+        public String getFavourableTotal() {
             return FavourableTotal;
         }
 
-        public void setFavourableTotal(int FavourableTotal) {
-            this.FavourableTotal = FavourableTotal;
+        public void setFavourableTotal(String favourableTotal) {
+            FavourableTotal = favourableTotal;
         }
 
-        public int getAllTotal() {
+        public String getAllTotal() {
             return AllTotal;
         }
 
-        public void setAllTotal(int AllTotal) {
-            this.AllTotal = AllTotal;
+        public void setAllTotal(String allTotal) {
+            AllTotal = allTotal;
         }
 
-        public int getRcvTotal() {
+        public String getRcvTotal() {
             return RcvTotal;
         }
 
-        public void setRcvTotal(int RcvTotal) {
-            this.RcvTotal = RcvTotal;
+        public void setRcvTotal(String rcvTotal) {
+            RcvTotal = rcvTotal;
         }
 
         public String getCurrencyType() {
             return CurrencyType;
         }
 
-        public void setCurrencyType(String CurrencyType) {
-            this.CurrencyType = CurrencyType;
+        public void setCurrencyType(String currencyType) {
+            CurrencyType = currencyType;
         }
 
-        public int getCurrencyRate() {
+        public String getCurrencyRate() {
             return CurrencyRate;
         }
 
-        public void setCurrencyRate(int CurrencyRate) {
-            this.CurrencyRate = CurrencyRate;
+        public void setCurrencyRate(String currencyRate) {
+            CurrencyRate = currencyRate;
         }
 
-        public int getGoodsCost() {
+        public String getGoodsCost() {
             return GoodsCost;
         }
 
-        public void setGoodsCost(int GoodsCost) {
-            this.GoodsCost = GoodsCost;
+        public void setGoodsCost(String goodsCost) {
+            GoodsCost = goodsCost;
         }
 
-        public int getPackageCost() {
+        public String getPackageCost() {
             return PackageCost;
         }
 
-        public void setPackageCost(int PackageCost) {
-            this.PackageCost = PackageCost;
+        public void setPackageCost(String packageCost) {
+            PackageCost = packageCost;
         }
 
-        public int getTotalProfit() {
+        public String getTotalProfit() {
             return TotalProfit;
         }
 
-        public void setTotalProfit(int TotalProfit) {
-            this.TotalProfit = TotalProfit;
+        public void setTotalProfit(String totalProfit) {
+            TotalProfit = totalProfit;
         }
 
         public String getPriceSpec() {
             return PriceSpec;
         }
 
-        public void setPriceSpec(String PriceSpec) {
-            this.PriceSpec = PriceSpec;
+        public void setPriceSpec(String priceSpec) {
+            PriceSpec = priceSpec;
         }
 
-        public int getPriceDis() {
+        public String getPriceDis() {
             return PriceDis;
         }
 
-        public void setPriceDis(int PriceDis) {
-            this.PriceDis = PriceDis;
+        public void setPriceDis(String priceDis) {
+            PriceDis = priceDis;
         }
 
-        public Object getGoodsList() {
+        public String getGoodsList() {
             return GoodsList;
         }
 
-        public void setGoodsList(Object GoodsList) {
-            this.GoodsList = GoodsList;
+        public void setGoodsList(String goodsList) {
+            GoodsList = goodsList;
         }
 
-        public int getTradeFlagID() {
+        public String getTradeFlagID() {
             return TradeFlagID;
         }
 
-        public void setTradeFlagID(int TradeFlagID) {
-            this.TradeFlagID = TradeFlagID;
+        public void setTradeFlagID(String tradeFlagID) {
+            TradeFlagID = tradeFlagID;
         }
 
         public String getFlagName() {
             return FlagName;
         }
 
-        public void setFlagName(String FlagName) {
-            this.FlagName = FlagName;
+        public void setFlagName(String flagName) {
+            FlagName = flagName;
         }
 
-        public Object getDrawbackValue() {
+        public String getDrawbackValue() {
             return DrawbackValue;
         }
 
-        public void setDrawbackValue(Object DrawbackValue) {
-            this.DrawbackValue = DrawbackValue;
+        public void setDrawbackValue(String drawbackValue) {
+            DrawbackValue = drawbackValue;
         }
 
-        public Object getOtherGoods() {
+        public String getOtherGoods() {
             return OtherGoods;
         }
 
-        public void setOtherGoods(Object OtherGoods) {
-            this.OtherGoods = OtherGoods;
+        public void setOtherGoods(String otherGoods) {
+            OtherGoods = otherGoods;
         }
 
-        public Object getCouponID() {
+        public String getCouponID() {
             return CouponID;
         }
 
-        public void setCouponID(Object CouponID) {
-            this.CouponID = CouponID;
+        public void setCouponID(String couponID) {
+            CouponID = couponID;
         }
 
-        public int getCommissionValue() {
+        public String getCommissionValue() {
             return CommissionValue;
         }
 
-        public void setCommissionValue(int CommissionValue) {
-            this.CommissionValue = CommissionValue;
+        public void setCommissionValue(String commissionValue) {
+            CommissionValue = commissionValue;
         }
 
-        public int getWarehouseID() {
+        public String getWarehouseID() {
             return WarehouseID;
         }
 
-        public void setWarehouseID(int WarehouseID) {
-            this.WarehouseID = WarehouseID;
+        public void setWarehouseID(String warehouseID) {
+            WarehouseID = warehouseID;
         }
 
-        public Object getPrintCollect() {
+        public String getPrintCollect() {
             return PrintCollect;
         }
 
-        public void setPrintCollect(Object PrintCollect) {
-            this.PrintCollect = PrintCollect;
+        public void setPrintCollect(String printCollect) {
+            PrintCollect = printCollect;
         }
 
-        public Object getPrintPos() {
+        public String getPrintPos() {
             return PrintPos;
         }
 
-        public void setPrintPos(Object PrintPos) {
-            this.PrintPos = PrintPos;
+        public void setPrintPos(String printPos) {
+            PrintPos = printPos;
         }
 
-        public Object getPrintChannel() {
+        public String getPrintChannel() {
             return PrintChannel;
         }
 
-        public void setPrintChannel(Object PrintChannel) {
-            this.PrintChannel = PrintChannel;
+        public void setPrintChannel(String printChannel) {
+            PrintChannel = printChannel;
         }
 
-        public Object getPreDate() {
+        public String getPreDate() {
             return PreDate;
         }
 
-        public void setPreDate(Object PreDate) {
-            this.PreDate = PreDate;
+        public void setPreDate(String preDate) {
+            PreDate = preDate;
         }
 
-        public Object getPreType() {
+        public String getPreType() {
             return PreType;
         }
 
-        public void setPreType(Object PreType) {
-            this.PreType = PreType;
+        public void setPreType(String preType) {
+            PreType = preType;
         }
 
-        public Object getBStockOut() {
+        public String getbStockOut() {
             return bStockOut;
         }
 
-        public void setBStockOut(Object bStockOut) {
+        public void setbStockOut(String bStockOut) {
             this.bStockOut = bStockOut;
         }
 
-        public Object getBManualCHK() {
+        public String getbManualCHK() {
             return bManualCHK;
         }
 
-        public void setBManualCHK(Object bManualCHK) {
+        public void setbManualCHK(String bManualCHK) {
             this.bManualCHK = bManualCHK;
         }
 
-        public Object getAppendRemark() {
+        public String getAppendRemark() {
             return AppendRemark;
         }
 
-        public void setAppendRemark(Object AppendRemark) {
-            this.AppendRemark = AppendRemark;
+        public void setAppendRemark(String appendRemark) {
+            AppendRemark = appendRemark;
         }
 
-        public Object getBInvoice() {
+        public String getbInvoice() {
             return bInvoice;
         }
 
-        public void setBInvoice(Object bInvoice) {
+        public void setbInvoice(String bInvoice) {
             this.bInvoice = bInvoice;
         }
 
-        public Object getPrintInvoice() {
+        public String getPrintInvoice() {
             return PrintInvoice;
         }
 
-        public void setPrintInvoice(Object PrintInvoice) {
-            this.PrintInvoice = PrintInvoice;
+        public void setPrintInvoice(String printInvoice) {
+            PrintInvoice = printInvoice;
         }
 
-        public Object getEstimateWeight() {
+        public String getEstimateWeight() {
             return estimateWeight;
         }
 
-        public void setEstimateWeight(Object estimateWeight) {
+        public void setEstimateWeight(String estimateWeight) {
             this.estimateWeight = estimateWeight;
         }
 
-        public Object getInvoiceTitle() {
+        public String getInvoiceTitle() {
             return InvoiceTitle;
         }
 
-        public void setInvoiceTitle(Object InvoiceTitle) {
-            this.InvoiceTitle = InvoiceTitle;
+        public void setInvoiceTitle(String invoiceTitle) {
+            InvoiceTitle = invoiceTitle;
         }
 
-        public Object getRMB_Value() {
+        public String getRMB_Value() {
             return RMB_Value;
         }
 
-        public void setRMB_Value(Object RMB_Value) {
+        public void setRMB_Value(String RMB_Value) {
             this.RMB_Value = RMB_Value;
         }
 
-        public Object getProviderID() {
+        public String getProviderID() {
             return ProviderID;
         }
 
-        public void setProviderID(Object ProviderID) {
-            this.ProviderID = ProviderID;
+        public void setProviderID(String providerID) {
+            ProviderID = providerID;
         }
 
-        public Object getChargeOperator() {
+        public String getChargeOperator() {
             return ChargeOperator;
         }
 
-        public void setChargeOperator(Object ChargeOperator) {
-            this.ChargeOperator = ChargeOperator;
+        public void setChargeOperator(String chargeOperator) {
+            ChargeOperator = chargeOperator;
         }
 
-        public Object getFreezeReason() {
+        public String getFreezeReason() {
             return FreezeReason;
         }
 
-        public void setFreezeReason(Object FreezeReason) {
-            this.FreezeReason = FreezeReason;
+        public void setFreezeReason(String freezeReason) {
+            FreezeReason = freezeReason;
         }
 
-        public Object getCancelReason() {
+        public String getCancelReason() {
             return CancelReason;
         }
 
-        public void setCancelReason(Object CancelReason) {
-            this.CancelReason = CancelReason;
+        public void setCancelReason(String cancelReason) {
+            CancelReason = cancelReason;
         }
 
-        public boolean isBSellBack() {
+        public boolean isbSellBack() {
             return bSellBack;
         }
 
-        public void setBSellBack(boolean bSellBack) {
+        public void setbSellBack(boolean bSellBack) {
             this.bSellBack = bSellBack;
         }
 
@@ -959,72 +959,72 @@ public class OrderDetailBean {
             return TradeFrom;
         }
 
-        public void setTradeFrom(String TradeFrom) {
-            this.TradeFrom = TradeFrom;
+        public void setTradeFrom(String tradeFrom) {
+            TradeFrom = tradeFrom;
         }
 
         public String getTradeNO2() {
             return TradeNO2;
         }
 
-        public void setTradeNO2(String TradeNO2) {
-            this.TradeNO2 = TradeNO2;
+        public void setTradeNO2(String tradeNO2) {
+            TradeNO2 = tradeNO2;
         }
 
-        public Object getBSndSys() {
+        public String getbSndSys() {
             return bSndSys;
         }
 
-        public void setBSndSys(Object bSndSys) {
+        public void setbSndSys(String bSndSys) {
             this.bSndSys = bSndSys;
         }
 
-        public int getPostageFee2() {
+        public String getPostageFee2() {
             return PostageFee2;
         }
 
-        public void setPostageFee2(int PostageFee2) {
-            this.PostageFee2 = PostageFee2;
+        public void setPostageFee2(String postageFee2) {
+            PostageFee2 = postageFee2;
         }
 
-        public Object getReserved1() {
+        public String getReserved1() {
             return Reserved1;
         }
 
-        public void setReserved1(Object Reserved1) {
-            this.Reserved1 = Reserved1;
+        public void setReserved1(String reserved1) {
+            Reserved1 = reserved1;
         }
 
-        public Object getReserved2() {
+        public String getReserved2() {
             return Reserved2;
         }
 
-        public void setReserved2(Object Reserved2) {
-            this.Reserved2 = Reserved2;
+        public void setReserved2(String reserved2) {
+            Reserved2 = reserved2;
         }
 
-        public Object getReserved3() {
+        public String getReserved3() {
             return Reserved3;
         }
 
-        public void setReserved3(Object Reserved3) {
-            this.Reserved3 = Reserved3;
+        public void setReserved3(String reserved3) {
+            Reserved3 = reserved3;
         }
 
-        public Object getReserved4() {
+        public String getReserved4() {
             return Reserved4;
         }
 
-        public void setReserved4(Object Reserved4) {
-            this.Reserved4 = Reserved4;
+        public void setReserved4(String reserved4) {
+            Reserved4 = reserved4;
         }
 
-        public Object getPrintCHK() {
+        public String getPrintCHK() {
             return PrintCHK;
         }
 
-        public void setPrintCHK(Object PrintCHK) {
-            this.PrintCHK = PrintCHK;
+        public void setPrintCHK(String printCHK) {
+            PrintCHK = printCHK;
         }
 
         public String getFXTid() {
@@ -1035,108 +1035,108 @@ public class OrderDetailBean {
             this.FXTid = FXTid;
         }
 
-        public Object getHH() {
+        public String getHH() {
             return HH;
         }
 
-        public void setHH(Object HH) {
+        public void setHH(String HH) {
             this.HH = HH;
         }
 
-        public Object getHuHao() {
+        public String getHuHao() {
             return HuHao;
         }
 
-        public void setHuHao(Object HuHao) {
-            this.HuHao = HuHao;
+        public void setHuHao(String huHao) {
+            HuHao = huHao;
         }
 
-        public Object getBXZCBM() {
+        public String getBXZCBM() {
             return BXZCBM;
         }
 
-        public void setBXZCBM(Object BXZCBM) {
+        public void setBXZCBM(String BXZCBM) {
             this.BXZCBM = BXZCBM;
         }
 
-        public Object getLSH() {
+        public String getLSH() {
             return LSH;
         }
 
-        public void setLSH(Object LSH) {
+        public void setLSH(String LSH) {
             this.LSH = LSH;
         }
 
-        public Object getLL() {
+        public String getLL() {
             return LL;
         }
 
-        public void setLL(Object LL) {
+        public void setLL(String LL) {
             this.LL = LL;
         }
 
-        public Object getTQ() {
+        public String getTQ() {
             return TQ;
         }
 
-        public void setTQ(Object TQ) {
+        public void setTQ(String TQ) {
             this.TQ = TQ;
         }
 
-        public Object getYDLB() {
+        public String getYDLB() {
             return YDLB;
         }
 
-        public void setYDLB(Object YDLB) {
+        public void setYDLB(String YDLB) {
             this.YDLB = YDLB;
         }
 
-        public Object getGDDYDY() {
+        public String getGDDYDY() {
             return GDDYDY;
         }
 
-        public void setGDDYDY(Object GDDYDY) {
+        public void setGDDYDY(String GDDYDY) {
             this.GDDYDY = GDDYDY;
         }
 
-        public Object getSBFL() {
+        public String getSBFL() {
             return SBFL;
         }
 
-        public void setSBFL(Object SBFL) {
+        public void setSBFL(String SBFL) {
             this.SBFL = SBFL;
         }
 
-        public Object getYWLX() {
+        public String getYWLX() {
             return YWLX;
         }
 
-        public void setYWLX(Object YWLX) {
+        public void setYWLX(String YWLX) {
             this.YWLX = YWLX;
         }
 
-        public Object getOrderId() {
+        public String getOrderId() {
             return OrderId;
         }
 
-        public void setOrderId(Object OrderId) {
-            this.OrderId = OrderId;
+        public void setOrderId(String orderId) {
+            OrderId = orderId;
         }
 
-        public Object getStockOutID() {
+        public String getStockOutID() {
             return StockOutID;
         }
 
-        public void setStockOutID(Object StockOutID) {
-            this.StockOutID = StockOutID;
+        public void setStockOutID(String stockOutID) {
+            StockOutID = stockOutID;
         }
 
         public String getWuliuAdr() {
             return WuliuAdr;
         }
 
-        public void setWuliuAdr(String WuliuAdr) {
-            this.WuliuAdr = WuliuAdr;
+        public void setWuliuAdr(String wuliuAdr) {
+            WuliuAdr = wuliuAdr;
         }
 
         public String getYSndTime() {
@@ -1151,16 +1151,16 @@ public class OrderDetailBean {
             return CustomerName;
         }
 
-        public void setCustomerName(String CustomerName) {
-            this.CustomerName = CustomerName;
+        public void setCustomerName(String customerName) {
+            CustomerName = customerName;
         }
 
-        public int getRegOperatorId() {
+        public String getRegOperatorId() {
             return RegOperatorId;
         }
 
-        public void setRegOperatorId(int RegOperatorId) {
-            this.RegOperatorId = RegOperatorId;
+        public void setRegOperatorId(String regOperatorId) {
+            RegOperatorId = regOperatorId;
         }
 
         public String getStatus() {
@@ -1175,16 +1175,16 @@ public class OrderDetailBean {
             return WarehouseName;
         }
 
-        public void setWarehouseName(String WarehouseName) {
-            this.WarehouseName = WarehouseName;
+        public void setWarehouseName(String warehouseName) {
+            WarehouseName = warehouseName;
         }
 
         public String getShopName() {
             return ShopName;
         }
 
-        public void setShopName(String ShopName) {
-            this.ShopName = ShopName;
+        public void setShopName(String shopName) {
+            ShopName = shopName;
         }
     }
 
@@ -1202,95 +1202,95 @@ public class OrderDetailBean {
          * SpecID : 1901
          */
 
-        private int SellCount;
-        private int SellPrice;
+        private String SellCount;
+        private String SellPrice;
         private String Unit;
-        private int GoodsID;
+        private String GoodsID;
         private String GoodsName;
         private String IndexURL;
-        private int Price_Detail;
+        private String Price_Detail;
         private String GoodsNo;
         private String SpecName;
-        private int SpecID;
+        private String SpecID;
 
-        public int getSellCount() {
+        public String getSellCount() {
             return SellCount;
         }
 
-        public void setSellCount(int SellCount) {
-            this.SellCount = SellCount;
+        public void setSellCount(String sellCount) {
+            SellCount = sellCount;
         }
 
-        public int getSellPrice() {
+        public String getSellPrice() {
             return SellPrice;
         }
 
-        public void setSellPrice(int SellPrice) {
-            this.SellPrice = SellPrice;
+        public void setSellPrice(String sellPrice) {
+            SellPrice = sellPrice;
         }
 
         public String getUnit() {
             return Unit;
         }
 
-        public void setUnit(String Unit) {
-            this.Unit = Unit;
+        public void setUnit(String unit) {
+            Unit = unit;
         }
 
-        public int getGoodsID() {
+        public String getGoodsID() {
             return GoodsID;
         }
 
-        public void setGoodsID(int GoodsID) {
-            this.GoodsID = GoodsID;
+        public void setGoodsID(String goodsID) {
+            GoodsID = goodsID;
         }
 
         public String getGoodsName() {
             return GoodsName;
         }
 
-        public void setGoodsName(String GoodsName) {
-            this.GoodsName = GoodsName;
+        public void setGoodsName(String goodsName) {
+            GoodsName = goodsName;
         }
 
         public String getIndexURL() {
             return IndexURL;
         }
 
-        public void setIndexURL(String IndexURL) {
-            this.IndexURL = IndexURL;
+        public void setIndexURL(String indexURL) {
+            IndexURL = indexURL;
         }
 
-        public int getPrice_Detail() {
+        public String getPrice_Detail() {
             return Price_Detail;
         }
 
-        public void setPrice_Detail(int Price_Detail) {
-            this.Price_Detail = Price_Detail;
+        public void setPrice_Detail(String price_Detail) {
+            Price_Detail = price_Detail;
         }
 
         public String getGoodsNo() {
             return GoodsNo;
         }
 
-        public void setGoodsNo(String GoodsNo) {
-            this.GoodsNo = GoodsNo;
+        public void setGoodsNo(String goodsNo) {
+            GoodsNo = goodsNo;
         }
 
         public String getSpecName() {
             return SpecName;
         }
 
-        public void setSpecName(String SpecName) {
-            this.SpecName = SpecName;
+        public void setSpecName(String specName) {
+            SpecName = specName;
         }
 
-        public int getSpecID() {
+        public String getSpecID() {
             return SpecID;
         }
 
-        public void setSpecID(int SpecID) {
-            this.SpecID = SpecID;
+        public void setSpecID(String specID) {
+            SpecID = specID;
         }
     }
 }

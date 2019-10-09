@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_splash_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_item_height"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/widget_padding_large_xx"
+        android:paddingRight="@dimen/widget_padding_large_xx">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/act_normal_login_account_text_str"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large_xx_sp"
+            android:textStyle="italic"
+            android:typeface="serif" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_edittext_height_normal"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/widget_margin_normal">
+
+            <EditText
+                android:id="@+id/account_et"
+                style="@style/EditText.Login.TextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="@string/act_normal_login_input_account_hint_str"
+                android:paddingLeft="@dimen/widget_padding_tiny" />
+        </LinearLayout>
+
+        <!--<include layout="@layout/common_line" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_edittext_height_normal">
+
+            <EditText
+                android:id="@+id/password_et"
+                style="@style/EditText.Login.TextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="@string/act_normal_login_input_password_hint_str"
+                android:inputType="textPassword"
+                android:paddingLeft="@dimen/widget_padding_tiny" />
+
+            <ImageView
+                android:id="@+id/password_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/widget_margin_tiny"
+                android:background="@drawable/ic_hide_password" />
+        </LinearLayout>
+
+        <include layout="@layout/common_line" />
+
+        <TextView
+            android:id="@+id/forget_tv"
+            style="@style/EditText.Login.TextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/widget_padding_tiny"
+            android:layout_marginTop="@dimen/widget_margin_large"
+            android:background="@drawable/underline_layer_list"
+            android:text="@string/act_normal_login_forget_str" />
+
+        <Button
+            android:id="@+id/submit_btn"
+            style="@style/EditText.Login.TextStyle"
+            android:layout_width="match_parent"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_height="@dimen/widget_text_height_normal"
+            android:layout_marginTop="@dimen/widget_margin_large_xx"
+            android:background="@drawable/shape_btn_login_translucent"
+            android:text="@string/act_normal_login_btn_str" />
+    </LinearLayout>
+</LinearLayout>

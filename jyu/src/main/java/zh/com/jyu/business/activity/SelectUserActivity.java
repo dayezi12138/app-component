@@ -85,7 +85,7 @@ public class SelectUserActivity extends BaseActivity {
         recyclerView.setAdapter(userAdapter);
         ToolBarInject.inject(this, toolbar);
         userAdapter.setOnItemClickListener((adapter, view, position) -> {
-            int id = userAdapter.getData().get(position).getID();
+            int id = Integer.valueOf(userAdapter.getData().get(position).getID());
             ImageView imageView = view.findViewById(R.id.image);
             if (userAdapter.getUserListBeanMap().containsKey(id)) {
                 userAdapter.getUserListBeanMap().remove(id);

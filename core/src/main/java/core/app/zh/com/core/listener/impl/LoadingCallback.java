@@ -10,6 +10,6 @@
 //public class LoadingCallback extends com.kingja.loadsir.callback.Callback {
 //    @Override
 //    protected int onCreateView() {
-//        return R.layout.layout_loading;
+//        return R.layouts.layout_loading;
 //    }
 //}

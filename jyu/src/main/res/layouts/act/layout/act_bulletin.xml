@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_" />
+
+    <LinearLayout
+        android:id="@+id/ly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/widget_padding_tiny">
+
+        <LinearLayout
+            android:id="@+id/one_ly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center">
+
+            <com.shehuan.niv.NiceImageView
+                android:id="@+id/color_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                app:is_circle="true"
+                app:is_cover_src="true"
+                app:mask_color="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/widget_margin_tiny"
+                android:gravity="center_vertical"
+                android:text="@string/fragment_bulletin_board_un_report_str"
+                android:textColor="@color/text1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/two_ly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center">
+
+            <com.shehuan.niv.NiceImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                app:is_circle="true"
+                app:is_cover_src="true"
+                app:mask_color="#1CBB9A" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/widget_margin_tiny"
+                android:gravity="center_vertical"
+                android:text="@string/fragment_bulletin_board_reported_str"
+                android:textColor="@color/text1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/three_ly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center">
+
+            <com.shehuan.niv.NiceImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                app:is_circle="true"
+                app:is_cover_src="true"
+                app:mask_color="#FDF4CA" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/fragment_bulletin_board_un_promptly_reported_str"
+                android:textColor="@color/text1" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/swipeRefreshLayout"
+        layout="@layout/swiper_recycler" />
+
+    <!--<include-->
+    <!--android:id="@+id/recycler"-->
+    <!--layouts="@layouts/recycler_" />-->
+</LinearLayout>

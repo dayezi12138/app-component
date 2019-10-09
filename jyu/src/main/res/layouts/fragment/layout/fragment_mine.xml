@@ -26,6 +26,7 @@
                     android:id="@+id/plan_btn"
                     style="@style/LayoutStyle.Form.line.Style"
                     android:foreground="?android:attr/selectableItemBackground"
+                    android:visibility="gone"
                     app:leftTextColor="@color/text1"
                     app:leftTextStr="计划">
 
@@ -57,6 +58,45 @@
 
                     <include layout="@layout/forward_iv" />
                 </core.app.zh.com.core.view.FormLineLayout>
+
+                <include layout="@layout/common_line" />
+
+                <core.app.zh.com.core.view.FormLineLayout
+                    android:id="@+id/update_btn"
+                    style="@style/LayoutStyle.Form.line.Style"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:leftTextColor="@color/text1"
+                    app:leftTextStr="版本更新">
+
+                    <TextView
+                        android:id="@+id/update_state_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/shape_update_"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/widget_padding_tiny"
+                        android:paddingRight="@dimen/widget_padding_tiny"
+                        android:text="NEW"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_min_sp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/version_name_tv"
+                        style="@style/TextStyle.Form.RightText.Style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/text1" />
+
+                    <include layout="@layout/forward_iv" />
+                </core.app.zh.com.core.view.FormLineLayout>
+
+                <include layout="@layout/common_line" />
             </LinearLayout>
 
 

@@ -11,6 +11,7 @@
         <item name="colorControlNormal">@color/white</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
+
     <style name="splashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 通过windowBackground可以设置背景色、背景图片、能解析出图片的XML文件等-->
         <item name="android:windowBackground">@drawable/layer_launcher</item>
@@ -22,4 +23,5 @@
         <item name="android:textSize">@dimen/font_min_xx_sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
 </resources>

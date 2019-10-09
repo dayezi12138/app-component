@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="btn_color_gray">#DCDDDD</color>
+    <color name="btn_stroker_gray">#B7B8B8</color>
+    <color name="text_hint_color">#A5BEDE</color>
+    <color name="text_register_color">#8EB6DB</color>
+    <color name="btn_login_un_click_color">#14497C</color>
+    <color name="sms_valid_code_under_line_color">#3F81C0</color>
+    <color name="create_busi_hint_color">#595656</color>
+    <color name="create_busi_type_color">#838080</color>
+    <color name="create_grid_no_background_color">#EFEFEE</color>
+    <color name="login_btn_color">#6C90B7</color>
+    <color name="input_account_color">#6598CB</color>
+</resources>

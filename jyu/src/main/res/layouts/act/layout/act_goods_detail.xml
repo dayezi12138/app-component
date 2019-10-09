@@ -120,6 +120,15 @@
 
                 <core.app.zh.com.core.view.FormLineLayout
                     style="@style/common_form_line_style"
+                    app:leftTextStr="长度">
+
+                    <include
+                        android:id="@+id/length_tv"
+                        layout="@layout/form_text" />
+                </core.app.zh.com.core.view.FormLineLayout>
+
+                <core.app.zh.com.core.view.FormLineLayout
+                    style="@style/common_form_line_style"
                     app:leftTextStr="件数">
 
                     <include

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <com.rairmmd.boundscrollview.BoundScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/group_members_ly"
+                style="@style/LinearLayout.MineFragment.Line.Style"
+                android:layout_marginTop="@dimen/divider"
+                android:background="@drawable/ripper_friend_operation">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:minWidth="@dimen/widget_text_height_normal"
+                    android:text="群成员"
+                    android:textColor="@color/fragment_mine_line_text_color"
+                    android:textSize="@dimen/font_min_xx_sp" />
+
+                <TextView
+                    android:id="@+id/count_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:paddingLeft="@dimen/widget_padding_tiny"
+                    android:textColor="@color/text2"
+                    android:textSize="@dimen/font_min_xx_sp" />
+
+                <include layout="@layout/view_forward"></include>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/group_name_ly"
+                style="@style/LinearLayout.MineFragment.Line.Style"
+                android:layout_marginTop="@dimen/widget_margin_tiny"
+                android:background="@drawable/ripper_friend_operation">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:minWidth="@dimen/widget_text_height_normal"
+                    android:text="群聊名称"
+                    android:textColor="@color/fragment_mine_line_text_color"
+                    android:textSize="@dimen/font_min_xx_sp" />
+
+                <TextView
+                    android:id="@+id/group_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:paddingLeft="@dimen/widget_padding_tiny"
+                    android:singleLine="true"
+                    android:textColor="@color/text2"
+                    android:textSize="@dimen/font_min_xx_sp" />
+
+                <include layout="@layout/view_forward"></include>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/nick_name_ly"
+                style="@style/LinearLayout.MineFragment.Line.Style"
+                android:layout_marginTop="@dimen/divider"
+                android:background="@drawable/ripper_friend_operation">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:minWidth="@dimen/widget_text_height_normal"
+                    android:text="我在本群的昵称"
+                    android:textColor="@color/fragment_mine_line_text_color"
+                    android:textSize="@dimen/font_min_xx_sp" />
+
+                <TextView
+                    android:id="@+id/nick_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:paddingLeft="@dimen/widget_padding_tiny"
+                    android:singleLine="true"
+                    android:textColor="@color/text2"
+                    android:textSize="@dimen/font_min_xx_sp" />
+
+                <include
+                    layout="@layout/view_forward"
+                    android:visibility="invisible"></include>
+            </LinearLayout>
+
+            <LinearLayout
+
+                style="@style/LinearLayout.MineFragment.Line.Style"
+                android:layout_marginTop="@dimen/widget_margin_tiny"
+                android:background="@drawable/ripper_friend_operation">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:minWidth="@dimen/widget_text_height_normal"
+                    android:text="消息免打扰"
+                    android:textColor="@color/fragment_mine_line_text_color"
+                    android:textSize="@dimen/font_min_xx_sp" />
+
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/notify_status"
+                    android:layout_width="60dp"
+                    android:layout_height="@dimen/widget_text_height_tiny"
+                    android:layout_gravity="center_vertical"
+                    app:sb_background="@color/white"
+                    app:sb_checked_color="#34C75A"
+                    app:sb_show_indicator="false" />
+
+                <include layout="@layout/view_forward"></include>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LinearLayout.MineFragment.Line.Style"
+                android:layout_marginTop="@dimen/divider"
+                android:background="@drawable/ripper_friend_operation">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:minWidth="@dimen/widget_text_height_normal"
+                    android:text="置顶消息"
+                    android:textColor="@color/fragment_mine_line_text_color"
+                    android:textSize="@dimen/font_min_xx_sp" />
+
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/top_status"
+                    android:layout_width="60dp"
+                    android:layout_height="@dimen/widget_text_height_tiny"
+                    android:layout_gravity="center_vertical"
+                    app:sb_background="@color/white"
+                    app:sb_checked_color="#34C75A"
+                    app:sb_show_indicator="false" />
+
+                <include layout="@layout/view_forward"></include>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/transfer_ly"
+                style="@style/LinearLayout.MineFragment.Line.Style"
+                android:layout_marginTop="@dimen/widget_margin_tiny"
+                android:background="@drawable/ripper_friend_operation">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:minWidth="@dimen/widget_text_height_normal"
+                    android:text="转让群"
+                    android:textColor="@color/fragment_mine_line_text_color"
+                    android:textSize="@dimen/font_min_xx_sp" />
+
+
+                <include layout="@layout/view_forward"></include>
+            </LinearLayout>
+
+            <!--<LinearLayout-->
+            <!--style="@style/LinearLayout.MineFragment.Line.Style"-->
+            <!--android:layout_marginTop="@dimen/widget_margin_tiny"-->
+            <!--android:background="@drawable/ripper_friend_operation">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:minWidth="@dimen/widget_text_height_normal"-->
+            <!--android:text="转让群"-->
+            <!--android:textColor="@color/fragment_mine_line_text_color"-->
+            <!--android:textSize="@dimen/font_min_xx_sp" />-->
+
+
+            <!--<include layout="@layout/view_forward"></include>-->
+            <!--</LinearLayout>-->
+
+            <LinearLayout
+                android:id="@+id/clear"
+                style="@style/LinearLayout.MineFragment.Line.Style"
+                android:layout_marginTop="@dimen/widget_margin_tiny"
+                android:background="@drawable/ripper_friend_operation">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:minWidth="@dimen/widget_text_height_normal"
+                    android:text="清空聊天记录"
+                    android:textColor="@color/d"
+                    android:textSize="@dimen/font_large_sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dissolution_ly"
+                style="@style/LinearLayout.MineFragment.Line.Style"
+                android:layout_marginTop="@dimen/divider"
+                android:background="@drawable/ripper_friend_operation">
+
+                <TextView
+                    android:id="@+id/dissolution_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:minWidth="@dimen/widget_text_height_normal"
+                    android:tag="false"
+                    android:text="删除并退出"
+                    android:textColor="@color/d"
+                    android:textSize="@dimen/font_large_sp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.rairmmd.boundscrollview.BoundScrollView>
+</LinearLayout>

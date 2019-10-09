@@ -100,7 +100,7 @@ public class NLeaderFragment extends BaseFragment implements SearchListener {
     }
 
     private void fragmentRefresh() {
-        UnderFragment fragment = (UnderFragment) fragmentList.get(myTabLayout.getSelectedTabPosition());
+        NUnderFragment fragment = (NUnderFragment) fragmentList.get(myTabLayout.getSelectedTabPosition());
         fragment.onRefresh();
     }
 

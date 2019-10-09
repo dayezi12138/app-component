@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ly"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="#216CB6"
+        android:paddingLeft="@dimen/widget_padding_tiny"
+        android:paddingTop="-10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="杭州销帮信息科技有限公司"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large_sp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/widget_margin_tiny"
+            android:src="@drawable/ic_down" />
+    </LinearLayout>
+
+    <com.rairmmd.boundscrollview.BoundScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@drawable/mine_head_lay_list"
+                android:orientation="vertical"
+                android:padding="@dimen/widget_padding_normal">
+
+                <TextView
+                    style="@style/TextView.MineFragment.Head.Title.Style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="本月销售" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextView.MineFragment.Head.Title.Style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="32sp" />
+
+                    <TextView
+                        style="@style/TextView.MineFragment.Head.Content.Style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="元" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/widget_padding_tiny">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextView.MineFragment.Head.Title.Style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="本月收款"
+                            android:textColor="#8EACD3" />
+
+                        <TextView
+                            style="@style/TextView.MineFragment.Head.Content.Style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="32sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextView.MineFragment.Head.Title.Style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="本月收款"
+                            android:textColor="#8EACD3" />
+
+                        <TextView
+                            style="@style/TextView.MineFragment.Head.Content.Style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="32sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <!--<LinearLayout-->
+            <!--android:background="@color/background"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<TextView-->
+            <!--android:layout_width=""-->
+            <!--android:layout_height="" />-->
+            <!---->
+            <!--</LinearLayout>-->
+        </LinearLayout>
+    </com.rairmmd.boundscrollview.BoundScrollView>
+
+
+</LinearLayout>

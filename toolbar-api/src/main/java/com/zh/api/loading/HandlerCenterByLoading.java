@@ -3,7 +3,6 @@ package com.zh.api.loading;
 import android.content.Context;
 import android.util.Log;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.zh.api.ClassUtils;
 import com.zh.bean.Constant;
 import com.zh.fade.ILoading;
@@ -28,7 +27,7 @@ public class HandlerCenterByLoading {
             mContext = context;
             executor = tpe;
             Set<String> routerMap = ClassUtils.getFileNameByPackageName(mContext, Constant.PACK_NAME_1);
-            LogUtils.e(routerMap);
+//            LogUtils.e(routerMap);
             if (!routerMap.isEmpty()) {
                 for (String className : routerMap) {
                     Object bean = (Class.forName(className).getConstructor().newInstance());

@@ -17,82 +17,163 @@
         android:layout_margin="@dimen/widget_margin_tiny"
         android:orientation="vertical">
 
-        <core.app.zh.com.core.view.FormLineLayout
-            style="@style/common_form_line_style"
+        <TextView
+            android:id="@+id/order_num_tv"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            app:leftTextColor="@color/white"
-            app:leftTextStr="@string/item_bulletin_board_order_num_str">
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/goods_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/order_num_tv"
-                style="@style/act_good_detail_form_line_text_style"
-                android:textColor="@color/white" />
-        </core.app.zh.com.core.view.FormLineLayout>
-
-        <core.app.zh.com.core.view.FormLineLayout
-            style="@style/common_form_line_style"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            app:leftTextColor="@color/white"
-            app:leftTextStr="@string/item_bulletin_board_goods_name_str">
-
-            <TextView
-                android:id="@+id/goods_name_tv"
-                style="@style/act_good_detail_form_line_text_style"
-                android:textColor="@color/white" />
-        </core.app.zh.com.core.view.FormLineLayout>
-
-        <core.app.zh.com.core.view.FormLineLayout
-            style="@style/common_form_line_style"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            app:leftTextColor="@color/white"
-            app:leftTextStr="@string/item_bulletin_board_real_yield_str">
+                android:id="@+id/real_num_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/widget_padding_tiny"
+                android:paddingRight="@dimen/widget_padding_tiny"
+                android:text="目标产量:" />
 
             <TextView
                 android:id="@+id/real_num_tv"
-                style="@style/act_good_detail_form_line_text_style"
-                android:textColor="@color/white" />
-        </core.app.zh.com.core.view.FormLineLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <core.app.zh.com.core.view.FormLineLayout
-            style="@style/common_form_line_style"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            app:leftTextColor="@color/white"
-            app:leftTextStr="@string/item_bulletin_board_report_yield_str">
+            <TextView
+                android:id="@+id/report_num_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/widget_padding_tiny"
+                android:paddingRight="@dimen/widget_padding_tiny"
+                android:text="汇报产量:" />
 
             <TextView
                 android:id="@+id/report_num_tv"
-                style="@style/act_good_detail_form_line_text_style"
-                android:textColor="@color/white" />
-        </core.app.zh.com.core.view.FormLineLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-        <core.app.zh.com.core.view.FormLineLayout
-            style="@style/common_form_line_style"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            app:leftTextColor="@color/white"
-            app:leftTextStr="@string/item_bulletin_board_first_report_time_str">
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/first_time_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/widget_padding_tiny"
+                android:paddingRight="@dimen/widget_padding_tiny"
+                android:text="汇报时间:" />
 
             <TextView
                 android:id="@+id/first_time_tv"
-                style="@style/act_good_detail_form_line_text_style"
-                android:textColor="@color/white" />
-        </core.app.zh.com.core.view.FormLineLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-        <core.app.zh.com.core.view.FormLineLayout
-            style="@style/common_form_line_style"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            app:leftTextColor="@color/white"
-            app:leftTextStr="@string/item_bulletin_board_time_out_str">
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/time_on_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/widget_padding_tiny"
+                android:paddingRight="@dimen/widget_padding_tiny"
+                android:text="交接时差:" />
 
             <TextView
                 android:id="@+id/time_on_tv"
-                style="@style/act_good_detail_form_line_text_style"
-                android:textColor="@color/white" />
-        </core.app.zh.com.core.view.FormLineLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <!--<core.app.zh.com.core.view.FormLineLayout-->
+        <!--android:id="@+id/order_num_ly"-->
+        <!--style="@style/common_form_line_style"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/transparent"-->
+        <!--app:leftTextStr="@string/item_bulletin_board_order_num_str">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/order_num_tv"-->
+        <!--style="@style/act_good_detail_form_line_text_style"-->
+        <!--android:textColor="@color/text2" />-->
+        <!--</core.app.zh.com.core.view.FormLineLayout>-->
+
+        <!--<core.app.zh.com.core.view.FormLineLayout-->
+        <!--android:id="@+id/goods_name_ly"-->
+        <!--style="@style/common_form_line_style"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/transparent"-->
+        <!--app:leftTextStr="@string/item_bulletin_board_goods_name_str">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/goods_name_tv"-->
+        <!--style="@style/act_good_detail_form_line_text_style"-->
+        <!--android:textColor="@color/text2" />-->
+        <!--</core.app.zh.com.core.view.FormLineLayout>-->
+
+        <!--<core.app.zh.com.core.view.FormLineLayout-->
+        <!--android:id="@+id/real_num_ly"-->
+        <!--style="@style/common_form_line_style"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/transparent"-->
+        <!--app:leftTextStr="@string/item_bulletin_board_real_yield_str">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/real_num_tv"-->
+        <!--style="@style/act_good_detail_form_line_text_style"-->
+        <!--android:textColor="@color/text2" />-->
+        <!--</core.app.zh.com.core.view.FormLineLayout>-->
+
+        <!--<core.app.zh.com.core.view.FormLineLayout-->
+        <!--android:id="@+id/report_num_ly"-->
+        <!--style="@style/common_form_line_style"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/transparent"-->
+        <!--app:leftTextStr="@string/item_bulletin_board_report_yield_str">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/report_num_tv"-->
+        <!--style="@style/act_good_detail_form_line_text_style"-->
+        <!--android:textColor="@color/text2" />-->
+        <!--</core.app.zh.com.core.view.FormLineLayout>-->
+
+        <!--<core.app.zh.com.core.view.FormLineLayout-->
+        <!--android:id="@+id/first_time_ly"-->
+        <!--style="@style/common_form_line_style"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/transparent"-->
+        <!--app:leftTextStr="@string/item_bulletin_board_first_report_time_str">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/first_time_tv"-->
+        <!--style="@style/act_good_detail_form_line_text_style"-->
+        <!--android:textColor="@color/text2" />-->
+        <!--</core.app.zh.com.core.view.FormLineLayout>-->
+
+        <!--<core.app.zh.com.core.view.FormLineLayout-->
+        <!--android:id="@+id/time_on_ly"-->
+        <!--style="@style/common_form_line_style"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/transparent"-->
+        <!--app:leftTextStr="@string/item_bulletin_board_time_out_str">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/time_on_tv"-->
+        <!--style="@style/act_good_detail_form_line_text_style"-->
+        <!--android:textColor="@color/text2" />-->
+        <!--</core.app.zh.com.core.view.FormLineLayout>-->
     </LinearLayout>
 </LinearLayout>

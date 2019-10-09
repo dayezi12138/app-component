@@ -63,7 +63,7 @@ public class PickingBean {
         private String TradeNos;
         private String SpecName;
         private String GoodsName;
-        private int GoodsCount;
+        private String GoodsCount;
 
         public String getTradeNos() {
             return TradeNos;
@@ -89,12 +89,12 @@ public class PickingBean {
             this.GoodsName = GoodsName;
         }
 
-        public int getGoodsCount() {
+        public String getGoodsCount() {
             return GoodsCount;
         }
 
-        public void setGoodsCount(int GoodsCount) {
-            this.GoodsCount = GoodsCount;
+        public void setGoodsCount(String goodsCount) {
+            GoodsCount = goodsCount;
         }
     }
 }

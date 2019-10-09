@@ -13,6 +13,12 @@
         android:title="@string/menu_home"
         tools:ignore="AppCompatResource" />
     <item
+        android:id="@+id/plan_menu_id"
+        android:icon="@drawable/ic_plan"
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_order"
+        tools:ignore="AppCompatResource" />
+    <item
         android:id="@+id/order_menu_id"
         android:icon="@drawable/ic_order"
         android:showAsAction="ifRoom"
@@ -24,23 +30,4 @@
         android:showAsAction="ifRoom"
         android:title="@string/menu_mine"
         tools:ignore="AppCompatResource" />
-    <!--<item-->
-    <!--android:id="@+id/custom_menu_id"-->
-    <!--android:icon="@drawable/ic_account"-->
-    <!--android:showAsAction="ifRoom"-->
-    <!--android:title="@string/menu_custom"-->
-    <!--tools:ignore="AppCompatResource" />-->
-
-    <!--<item-->
-    <!--android:id="@+id/goods_menu_id"-->
-    <!--android:icon="@drawable/ic_gift"-->
-    <!--android:showAsAction="ifRoom"-->
-    <!--android:title="@string/menu_goods"-->
-    <!--tools:ignore="AppCompatResource" />-->
-    <!--<item-->
-    <!--android:id="@+id/my_menu_id"-->
-    <!--android:icon="@drawable/ic_my"-->
-    <!--android:showAsAction="ifRoom"-->
-    <!--android:title="@string/menu_mine"-->
-    <!--tools:ignore="AppCompatResource" />-->
 </menu>

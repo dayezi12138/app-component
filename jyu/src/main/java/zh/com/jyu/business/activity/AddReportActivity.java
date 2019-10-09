@@ -235,7 +235,7 @@ public class AddReportActivity extends BaseActivity implements AddReportContract
                 AddReportParam.ChildParam childParam = new AddReportParam.ChildParam(bean.getCount_(), bean.getMemo_(), bean.getID(), bean.getName());
                 childDataList.add(childParam);
             }
-            AddReportParam addReportParam = new AddReportParam(dateEt.getText().toString(), SPUtils.getInstance().getInt(SpKeyConstant.LOGIN_UID_KEY), craftsReceiptID, childDataList);
+            AddReportParam addReportParam = new AddReportParam(dateEt.getText().toString(), String.valueOf(SPUtils.getInstance().getInt(SpKeyConstant.LOGIN_UID_KEY)), String.valueOf(craftsReceiptID), childDataList);
             presenter.submit(addReportParam);
         } else showMsg("必填项不能为空");
     }

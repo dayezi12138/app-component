@@ -7,13 +7,10 @@ import android.view.MenuItem;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
-import core.app.zh.com.core.base.BaseFragment;
 import core.app.zh.com.core.base.BasePresenter;
 import core.app.zh.com.core.listener.AppExitListener;
 import zh.com.jyu.R;
@@ -39,8 +36,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Inject
     MainPresenter presenter;
 
-    @Inject
-    List<BaseFragment> fragmentList;
 
     @Override
     public BasePresenter getPresenter() {
@@ -70,11 +65,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             case R.id.home_menu_id:
                 presenter.setTabPosition(1);
                 break;
-            case R.id.order_menu_id:
+            case R.id.plan_menu_id:
                 presenter.setTabPosition(2);
                 break;
-            case R.id.my_menu_id:
+            case R.id.order_menu_id:
                 presenter.setTabPosition(3);
+                break;
+            case R.id.my_menu_id:
+                presenter.setTabPosition(4);
                 break;
         }
         return true;

@@ -15,11 +15,17 @@ public interface LayoutInitListener {
 
     void init();
 
-    View beforeInit(LayoutInflater inflater, ViewGroup container);
+    View myContentView();
 
+    View beforeInit(LayoutInflater inflater, ViewGroup container);
 
     @Deprecated
     default boolean addToolbar() {
         return false;
     }
+
+    default boolean useDefaultOption() {
+        return true;
+    }
+
 }

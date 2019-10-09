@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="zh.com.jyu">
 
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <application
         android:name=".application.MyApplication"
         android:allowBackup="true"
@@ -51,6 +52,26 @@
         <activity android:name=".business.activity.OrderDetailActivity" />
         <activity android:name=".business.activity.GoodsListHActivity" />
         <activity android:name=".business.activity.PlanActivity" />
+        <activity android:name=".business.activity.HtmlActivity" />
+        <activity android:name=".business.activity.BulletinBoardActivity" />
+
+        <provider
+
+            android:name="android.support.v4.content.FileProvider"
+
+            android:authorities="zh.com.jyu.fileProvider"
+
+            android:exported="false"
+
+            android:grantUriPermissions="true">
+
+            <meta-data
+
+                android:name="android.support.FILE_PROVIDER_PATHS"
+
+                android:resource="@xml/file_paths" />
+
+        </provider>
     </application>
     <!--&lt;!&ndash;连接网络权限，用于执行云端语音能力 &ndash;&gt;-->
     <!--<uses-permission android:name="android.permission.INTERNET" />-->
@@ -72,8 +93,8 @@
     <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
     <!--&lt;!&ndash;配置权限，用来记录应用配置信息 &ndash;&gt;-->
     <!--<uses-permission-->
-        <!--android:name="android.permission.WRITE_SETTINGS"-->
-        <!--tools:ignore="ProtectedPermissions" />-->
+    <!--android:name="android.permission.WRITE_SETTINGS"-->
+    <!--tools:ignore="ProtectedPermissions" />-->
     <!--&lt;!&ndash;手机定位信息，用来为语义等功能提供定位，提供更精准的服务&ndash;&gt;-->
     <!--&lt;!&ndash;定位信息是敏感信息，可通过Setting.setLocationEnable(false)关闭定位请求 &ndash;&gt;-->
     <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->

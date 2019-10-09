@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="baseTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@android:color/white</item> <!--  menu中字体颜色-->
+        <item name="toolbarNavigationButtonStyle">@style/NavigationButtonStyle</item>
+        <item name="android:windowActivityTransitions">@style/ActivityAnimation</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+</resources>

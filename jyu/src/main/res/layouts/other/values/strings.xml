@@ -1,3 +1,13 @@
 <resources>
     <string name="empty_list_data_str">暂无数据</string>
+
+
+    <string name="recycler_expand">RecyclerView收缩分组悬浮</string>
+
+    <string name="waiting_reception">待受理</string>
+    <string name="distributed">已派发</string>
+    <string name="progressing">进行中</string>
+    <string name="auditing">审核中</string>
+    <string name="finished">已完成</string>
+    <string name="not_started">未开始</string>
 </resources>

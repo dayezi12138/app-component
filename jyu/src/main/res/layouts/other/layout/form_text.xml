@@ -1,4 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/act_good_detail_form_line_text_style"
-    />
+    style="@style/act_good_detail_form_line_text_style" />

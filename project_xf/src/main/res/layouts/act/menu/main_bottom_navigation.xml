@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/menu_msg_id"
+        android:icon="@drawable/ic_message"
+        android:showAsAction="ifRoom"
+        android:title="@string/act_main_bottom_msg_str"
+        tools:ignore="AppCompatResource" />
+    <item
+        android:id="@+id/menu_level_id"
+        android:icon="@drawable/ic_contact"
+        android:title="@string/act_main_bottom_count_str" />
+    <item
+        android:id="@+id/menu_count_id"
+        android:icon="@drawable/ic_add_bold"
+        android:title="@string/act_main_bottom_level_str" />
+    <!--<item-->
+    <!--android:id="@+id/menu_controller_id"-->
+    <!--android:icon="@drawable/ic_workbench"-->
+    <!--android:title="@string/act_main_bottom_controller_str"-->
+    <!--/>-->
+    <item
+        android:id="@+id/menu_my_id"
+        android:icon="@drawable/ic_user"
+        android:title="@string/act_main_bottom_my_str" />
+</menu>

@@ -8,7 +8,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ToastUtils;
@@ -28,7 +27,6 @@ import core.app.zh.com.core.listener.AppExitListener;
 import core.app.zh.com.core.listener.GetActivityListener;
 import core.app.zh.com.core.listener.GetPresenter;
 import core.app.zh.com.core.listener.LayoutInitListener;
-import core.app.zh.com.core.listener.LoadingListener;
 import core.app.zh.com.core.listener.OnChangeToolbarListener;
 import dagger.android.support.DaggerAppCompatActivity;
 import io.reactivex.disposables.CompositeDisposable;
@@ -38,9 +36,8 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
     private OnChangeToolbarListener onChangeToolbarListener;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private AppExitListener appExitListener;
-    private LoadingListener loadingListener;
-    private LinearLayout rootLy;
-    private View ContentView;
+    //    private LinearLayout rootLy;
+    private View contentView;
 
 
     @Override
@@ -48,8 +45,8 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
         super.onCreate(savedInstanceState);
         View view1 = LayoutInflater.from(this).inflate(R.layout.base_view, null, false);
         setContentView(view1);
-        rootLy = findViewById(R.id.root_ly);
-        View view = beforeInit(LayoutInflater.from(this), rootLy);
+//        rootLy = findViewById(R.id.root_ly);
+        View view = beforeInit(LayoutInflater.from(this), findViewById(R.id.root_ly));
         if (this.getApplication() instanceof AddOptionInApplicationListener) {
             AddOptionInApplicationListener listener = (AddOptionInApplicationListener) this.getApplication();
             List<AddOptionInPageListener> list = listener.optionActivityList();
@@ -62,35 +59,31 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
 
     @Override
     public View beforeInit(LayoutInflater inflater, ViewGroup container) {
-        boolean old = oldAddToolbar();
-        if (!old) newAddToolbar();
-
+        boolean old = oldAddToolbar(container);
+        if (!old) newAddToolbar(container);
         if (layoutId() != 0) {
-            ContentView = LayoutInflater.from(this).inflate(layoutId(), rootLy, false);
-            rootLy.addView(ContentView);
+            contentView = inflater.inflate(layoutId(), container, false);
+            container.addView(contentView);
         }
-        if (loadingListener != null && loadingListener.loadingView() != null) {
-            rootLy.addView(loadingListener.loadingView());
-        }
-        return rootLy;
+        return container;
     }
 
-    protected void newAddToolbar() {
+    protected void newAddToolbar(ViewGroup container) {
         boolean addToolbar = ToolBarInject.needAddToolbar(this);
         if (!addToolbar) return;
         Toolbar toolbarLayout = (Toolbar) LayoutInflater.from(this).inflate(R.layout.common_toolbar_, null);
-        rootLy.addView(toolbarLayout);
+        container.addView(toolbarLayout);
         ToolBarInject.inject(this, toolbarLayout);
     }
 
 
     @Deprecated
-    private boolean oldAddToolbar() {
-        rootLy.removeAllViews();
+    private boolean oldAddToolbar(ViewGroup container) {
+        container.removeAllViews();
         boolean oldAddToolbar = addToolbar();
         if (oldAddToolbar) {
             Toolbar toolbarLayout = (Toolbar) LayoutInflater.from(this).inflate(R.layout.common_toolbar_, null);
-            rootLy.addView(toolbarLayout);
+            container.addView(toolbarLayout);
         }
         return oldAddToolbar;
     }
@@ -189,15 +182,15 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
         return super.onKeyDown(keyCode, event);
     }
 
-    public void setLoadingListener(LoadingListener loadingListener) {
-        this.loadingListener = loadingListener;
+    @Override
+    public View myContentView() {
+        return contentView;
     }
 
-    public LoadingListener getLoadingListener() {
-        return loadingListener;
-    }
 
-    public View getContentView() {
-        return ContentView;
-    }
+//    private LoadingOptionListener loadingOptionListener;
+//
+//    public void setLoadingOptionListener(LoadingOptionListener loadingOptionListener) {
+//        this.loadingOptionListener = loadingOptionListener;
+//    }
 }

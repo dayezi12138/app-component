@@ -5,8 +5,8 @@ buildscript {
     ext.buildToolsVersion = '28.0.2'
     ext.minSdkVersion = 19
     ext.targetSdkVersion = 28
-    ext.versionCode = 1
-    ext.versionName = "v1.0"
+    ext.versionCode = 8
+    ext.versionName = "v1.9"
     ext.testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     ext {
         moduleShopMall = false

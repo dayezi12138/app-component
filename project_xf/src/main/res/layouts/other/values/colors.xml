@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="add_friend_edit_hint_text">#C3C3C6</color>
+    <color name="add_friend_edit_text">#808085</color>
+</resources>

@@ -54,7 +54,7 @@ public class LoadingProcessor extends AbstractProcessor {
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
         logger = new Logger(processingEnv.getMessager());
-        logger.info("======init======");
+        logger.info("======" + this.getClass().getName() + " init======");
         typeUtils = processingEnvironment.getTypeUtils();
         elementUtils = processingEnvironment.getElementUtils();
         filer = processingEnvironment.getFiler();

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/widget_text_height_tiny"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/name"
+        style="@style/act_login_btn_style"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_un_select_create_busi"
+        android:gravity="center"
+        android:text="111"
+        android:textColor="@color/item_text_un_select_create_busi_color" />
+</LinearLayout>    <!--android:background="@drawable/shape_select_create_busi"-->

@@ -6,12 +6,12 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="Hello World!"
-        android:textSize="18sp" />
-
+    android:id="@+id/text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:text="Hello World!"
+    android:textSize="18sp" />
+    <!--<include layout="@layout/swiper_recycler" />-->
 </LinearLayout>

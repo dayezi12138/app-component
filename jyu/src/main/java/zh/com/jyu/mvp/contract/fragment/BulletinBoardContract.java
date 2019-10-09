@@ -5,6 +5,7 @@ import java.util.List;
 import core.app.zh.com.core.base.BaseView;
 import core.app.zh.com.core.base.IPresenter;
 import zh.com.jyu.bean.fragment.BulletinBoard;
+import zh.com.jyu.bean.fragment.NBulletinBoard;
 
 /**
  * author : dayezi
@@ -15,9 +16,12 @@ public interface BulletinBoardContract {
     interface BulletinBoardUI extends BaseView {
         void success(List<BulletinBoard> list);
 
+        void successNBulletinBoard(List<NBulletinBoard> list);
     }
 
     interface Presenter extends IPresenter {
         void request(String key);
+
+        void getDailyBoardForBoss(String key);
     }
 }

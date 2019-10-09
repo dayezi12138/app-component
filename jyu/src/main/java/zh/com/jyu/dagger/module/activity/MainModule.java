@@ -12,9 +12,10 @@ import core.app.zh.com.core.listener.impl.BaseAppExitListener;
 import dagger.Module;
 import dagger.Provides;
 import zh.com.jyu.business.activity.MainActivity;
-import zh.com.jyu.business.fragment.board.BulletinBoardFragment;
+import zh.com.jyu.business.fragment.board.NBulletinBoardFragment;
 import zh.com.jyu.business.fragment.leader.NLeaderFragment;
 import zh.com.jyu.business.fragment.mine.MineFragment;
+import zh.com.jyu.business.fragment.plan.MPlanFragment;
 import zh.com.jyu.business.fragment.produce.ProduceFragment;
 
 /**
@@ -30,7 +31,8 @@ public class MainModule {
     public List<BaseFragment> fragmentList() {
         List<BaseFragment> list = new ArrayList<>();
         list.add(new NLeaderFragment());
-        list.add(new BulletinBoardFragment());
+        list.add(new NBulletinBoardFragment());
+        list.add(new MPlanFragment());
         list.add(new ProduceFragment());
         list.add(new MineFragment());
         return list;

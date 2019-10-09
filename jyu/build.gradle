@@ -72,4 +72,6 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.0'
     implementation 'com.github.SheHuan:NiceImageView:1.0.5'
     implementation files('libs/Msc.jar')
+    implementation 'cn.bingoogolapple:bga-refreshlayout:1.1.8@aar'
+//    implementation  'in.srain.cube:ultra-ptr:1.0.11'
 }

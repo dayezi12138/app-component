@@ -51,7 +51,7 @@ public class StartingFragment extends StatusFragment<CraftBean> {
 //    @NonNull
 //    @Override
 //    public int layoutId() {
-//        return R.layout.fragment_start_state;
+//        return R.layouts.fragment_start_state;
 //    }
 //
 //    @Override

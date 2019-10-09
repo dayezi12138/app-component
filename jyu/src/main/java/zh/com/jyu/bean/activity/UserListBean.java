@@ -13,28 +13,28 @@ public class UserListBean implements Serializable {
      * JobNo : 001
      * Name : 张三
      */
-    private int ID;
-    private int RecID;
+    private String ID;
+    private String RecID;
     private String JobNo;
     private String Name;
 
     private String count_;
     private String memo_;
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
-    public int getRecID() {
+    public String getRecID() {
         return RecID;
     }
 
-    public void setRecID(int RecID) {
-        this.RecID = RecID;
+    public void setRecID(String recID) {
+        RecID = recID;
     }
 
     public String getJobNo() {

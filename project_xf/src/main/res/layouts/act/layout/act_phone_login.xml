@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_splash_color"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/widget_padding_large"
+        android:paddingRight="@dimen/widget_padding_large">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:minHeight="130dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Activity.Valid.Title.TextView.Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/act_phone_title_text_str" />
+        </LinearLayout>
+
+        <core.app.zh.com.core.view.ClearEditTextView
+            android:id="@+id/account_et"
+            style="@style/EditText.Login.TextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_text_height_normal"
+            android:paddingLeft="@dimen/widget_padding_tiny"
+            android:textColor="@color/input_account_color"
+            android:textColorHint="@color/input_account_color"
+            android:layout_marginTop="@dimen/widget_margin_large_xx"
+            android:text=""
+            android:hint="@string/act_phone_input_account_str" />
+
+        <include layout="@layout/common_line" />
+
+        <Button
+            android:id="@+id/submit_btn"
+            style="@style/EditText.Login.TextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_text_height_tiny"
+            android:layout_marginTop="@dimen/widget_margin_large"
+            android:textColor="@color/login_btn_color"
+            android:background="@drawable/shape_btn_login_translucent"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="@string/act_phone_submit_str" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/widget_margin_large"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_wechat"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/widget_padding_tiny"
+                android:text="微信登录"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_min_x_sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="不想现在注册?免费体验"
+            android:textColor="@color/text_register_color"
+            android:textSize="@dimen/font_min_x_sp" />
+    </LinearLayout>
+</LinearLayout>

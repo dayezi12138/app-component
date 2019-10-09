@@ -13,7 +13,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <core.app.zh.com.core.view.FormLineLayout
+            style="@style/common_form_line_style"
+            android:layout_height="wrap_content"
+            app:leftTextSize="@dimen/font_min_sp"
+            app:leftTextStr="@string/item_goods_name_str">
 
+            <include
+                android:id="@+id/goods_name_tv"
+                layout="@layout/form_text" />
+        </core.app.zh.com.core.view.FormLineLayout>
+        <core.app.zh.com.core.view.FormLineLayout
+            style="@style/common_form_line_style"
+            android:layout_height="wrap_content"
+            app:leftTextStr="@string/item_length_str">
+
+            <include
+                android:id="@+id/length_tv"
+                layout="@layout/form_text" />
+        </core.app.zh.com.core.view.FormLineLayout>
         <core.app.zh.com.core.view.FormLineLayout
             style="@style/common_form_line_style"
             android:layout_height="wrap_content"

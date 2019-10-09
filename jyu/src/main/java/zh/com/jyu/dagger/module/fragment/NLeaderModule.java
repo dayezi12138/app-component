@@ -11,7 +11,7 @@ import dagger.Module;
 import dagger.Provides;
 import zh.com.jyu.R;
 import zh.com.jyu.business.fragment.leader.NLeaderFragment;
-import zh.com.jyu.business.fragment.leader.UnderFragment;
+import zh.com.jyu.business.fragment.leader.NUnderFragment;
 
 /**
  * author : dayezi
@@ -38,9 +38,9 @@ public class NLeaderModule {
     @Provides
     public List<Fragment> fragmentList() {
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(UnderFragment.newInstance(0));
-        fragmentList.add(UnderFragment.newInstance(1));
-        fragmentList.add(UnderFragment.newInstance(2));
+        fragmentList.add(NUnderFragment.newInstance(0));
+        fragmentList.add(NUnderFragment.newInstance(1));
+        fragmentList.add(NUnderFragment.newInstance(2));
         return fragmentList;
     }
 }

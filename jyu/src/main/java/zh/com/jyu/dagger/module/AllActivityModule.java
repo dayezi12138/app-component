@@ -8,6 +8,7 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import zh.com.jyu.business.activity.AddGroupActivity;
 import zh.com.jyu.business.activity.AddReportActivity;
+import zh.com.jyu.business.activity.BulletinBoardActivity;
 import zh.com.jyu.business.activity.CraftDetailActivity;
 import zh.com.jyu.business.activity.CraftListActivity;
 import zh.com.jyu.business.activity.EditGroupActivity;
@@ -17,6 +18,7 @@ import zh.com.jyu.business.activity.GoodsDetailActivity;
 import zh.com.jyu.business.activity.GoodsListActivity;
 import zh.com.jyu.business.activity.GoodsListHActivity;
 import zh.com.jyu.business.activity.GroupListActivity;
+import zh.com.jyu.business.activity.HtmlActivity;
 import zh.com.jyu.business.activity.LoginActivity;
 import zh.com.jyu.business.activity.MainActivity;
 import zh.com.jyu.business.activity.NMainActivity;
@@ -30,6 +32,7 @@ import zh.com.jyu.business.activity.SearchResultActivity;
 import zh.com.jyu.business.activity.SelectUserActivity;
 import zh.com.jyu.business.activity.SplashActivity;
 import zh.com.jyu.business.activity.UserListActivity;
+import zh.com.jyu.dagger.module.activity.ABulletinBoardModule;
 import zh.com.jyu.dagger.module.activity.AddReportModule;
 import zh.com.jyu.dagger.module.activity.CraftDetailModule;
 import zh.com.jyu.dagger.module.activity.GoodListModule;
@@ -143,4 +146,12 @@ public abstract class AllActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = {PlanModule.class})
     abstract PlanActivity contributePlanActivityInjector();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    abstract HtmlActivity contributeHtmlActivityInjector();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = {ABulletinBoardModule.class})
+    abstract BulletinBoardActivity contributeBulletinBoardActivityInjector();
 }

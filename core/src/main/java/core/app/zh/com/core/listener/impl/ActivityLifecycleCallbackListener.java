@@ -56,4 +56,12 @@ public class ActivityLifecycleCallbackListener implements Application.ActivityLi
     public List<Activity> getsActivityList() {
         return sActivityList;
     }
+
+//    public void exceptCurrentActivityClearAll(Activity activity) {
+//        for (Activity r : sActivityList) {
+//            if (r.getClass() == activity.getClass()) {
+//
+//            }
+//        }
+//    }
 }

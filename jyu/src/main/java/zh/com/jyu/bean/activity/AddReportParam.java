@@ -10,11 +10,11 @@ import java.util.List;
 public class AddReportParam {
 
     private String ProduceDate;
-    private int UserId;
-    private int CraftsReceiptID;
+    private String UserId;
+    private String CraftsReceiptID;
     private List<ChildParam> SubReportParam;
 
-    public AddReportParam(String produceDate, int userId, int craftsReceiptID, List<ChildParam> subReportParam) {
+    public AddReportParam(String produceDate, String userId, String craftsReceiptID, List<ChildParam> subReportParam) {
         ProduceDate = produceDate;
         UserId = userId;
         CraftsReceiptID = craftsReceiptID;
@@ -29,19 +29,19 @@ public class AddReportParam {
         ProduceDate = produceDate;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return UserId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         UserId = userId;
     }
 
-    public int getCraftsReceiptID() {
+    public String getCraftsReceiptID() {
         return CraftsReceiptID;
     }
 
-    public void setCraftsReceiptID(int craftsReceiptID) {
+    public void setCraftsReceiptID(String craftsReceiptID) {
         CraftsReceiptID = craftsReceiptID;
     }
 
@@ -56,10 +56,10 @@ public class AddReportParam {
     public static class ChildParam {
         private String Count;
         private String Remark;
-        private int CrewID;
+        private String CrewID;
         private String CrewName;
 
-        public ChildParam(String count, String remark, int CrewID, String CrewName) {
+        public ChildParam(String count, String remark, String CrewID, String CrewName) {
             Count = count;
             Remark = remark;
             this.CrewID = CrewID;
@@ -82,11 +82,11 @@ public class AddReportParam {
             Remark = remark;
         }
 
-        public int getCrewID() {
+        public String getCrewID() {
             return CrewID;
         }
 
-        public void setCrewID(int crewID) {
+        public void setCrewID(String crewID) {
             CrewID = crewID;
         }
 

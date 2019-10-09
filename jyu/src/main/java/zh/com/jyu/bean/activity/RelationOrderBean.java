@@ -21,7 +21,7 @@ public class RelationOrderBean {
     private int TradeID;
     private String tradeNO;
     private String companyName;
-    private int SellCount;
+    private String SellCount;
     private String YSndTime;
     private String Tel;
     private String SndTo;
@@ -58,12 +58,12 @@ public class RelationOrderBean {
         this.companyName = companyName;
     }
 
-    public int getSellCount() {
+    public String getSellCount() {
         return SellCount;
     }
 
-    public void setSellCount(int SellCount) {
-        this.SellCount = SellCount;
+    public void setSellCount(String sellCount) {
+        SellCount = sellCount;
     }
 
     public String getYSndTime() {

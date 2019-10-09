@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -94,8 +95,14 @@ public class CraftDetailActivity extends BaseActivity implements CraftDetailCont
     @BindView(R.id.imgage_iv)
     ImageView imageView;
 
+    @BindView(R.id.command_imgage_iv)
+    ImageView commandIv;
+
     @BindView(R.id.goods_name_tv)
     TextView goodsNameTv;
+
+    @BindView(R.id.length_tv)
+    TextView lengthTv;
 
     @BindView(R.id.space_name_tv)
     TextView specNameTv;
@@ -184,7 +191,11 @@ public class CraftDetailActivity extends BaseActivity implements CraftDetailCont
         orderNumTv.setText(craftDetailBean.getProduceGoodsReceiptNO());
         goodsNameTv.setText(craftDetailBean.getGoodsName());
         specNameTv.setText(craftDetailBean.getSpecName());
-        Glide.with(this).load(craftDetailBean.getPicURL()).into(imageView);
+        lengthTv.setText(craftDetailBean.getLength());
+        if (!TextUtils.isEmpty(craftDetailBean.getPicURL()))
+            Glide.with(this).load(craftDetailBean.getPicURL()).into(imageView);
+        if (!TextUtils.isEmpty(craftDetailBean.getCmdPicURL()))
+            Glide.with(this).load(craftDetailBean.getCmdPicURL()).into(commandIv);
         if (craftDetailBean.getCmd() == null || craftDetailBean.getCmd().isEmpty()) {
             CraftDetailBean.CmdBean cmdBean = new CraftDetailBean.CmdBean();
             cmdBean.setContent(nodataStr);

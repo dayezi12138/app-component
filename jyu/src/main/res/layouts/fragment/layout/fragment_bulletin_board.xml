@@ -23,7 +23,8 @@
             android:layout_gravity="center"
             app:is_circle="true"
             app:is_cover_src="true"
-            app:mask_color="#555555" />
+            app:border_width="@dimen/divider"
+            app:mask_color="@color/white" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,6 +73,6 @@
         layout="@layout/swiper_recycler" />
 
     <!--<include-->
-        <!--android:id="@+id/recycler"-->
-        <!--layout="@layout/recycler_" />-->
+    <!--android:id="@+id/recycler"-->
+    <!--layouts="@layouts/recycler_" />-->
 </LinearLayout>

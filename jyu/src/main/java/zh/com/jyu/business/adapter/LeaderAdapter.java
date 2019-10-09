@@ -24,6 +24,8 @@ public class LeaderAdapter extends MyBaseAdapter<CraftBean> {
 
     @Override
     protected void convert(BaseViewHolder helper, CraftBean item) {
+        helper.setText(R.id.goods_name_tv, item.getGoodsName());
+        helper.setText(R.id.length_tv, String.valueOf(item.getLength()) +"米");
         helper.setText(R.id.name_tv, item.getCraftsName());
         helper.setText(R.id.status_tv, item.getCraftsStatusStr());
         helper.setText(R.id.pack_count_tv, String.valueOf(item.getNumber1()));

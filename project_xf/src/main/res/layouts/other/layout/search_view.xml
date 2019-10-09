@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="46dp"
+    android:background="@color/white"
+    android:paddingLeft="@dimen/widget_padding_tiny"
+    android:paddingRight="@dimen/widget_padding_tiny">
+
+    <LinearLayout
+        android:id="@+id/ly"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="4dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_search_grey"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/widget_margin_tiny"
+            android:src="@drawable/ic_search" />
+
+        <core.app.zh.com.core.view.ClearEditTextView
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="搜索"
+            android:imeOptions="actionSearch"
+            android:paddingRight="@dimen/widget_padding_tiny"
+            android:singleLine="true"
+            android:textColorHint="@color/fragment_contact_hint_text_color"
+            android:textSize="@dimen/font_min_xx_sp" />
+
+    </LinearLayout>
+</LinearLayout>

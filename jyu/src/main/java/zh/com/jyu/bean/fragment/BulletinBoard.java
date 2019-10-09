@@ -77,8 +77,8 @@ public class BulletinBoard implements BaseExpandableRecyclerViewAdapter.BaseGrou
         private int CraftsReceiptID;
         private String GoodsName;
         private int ProduceGoodsReceiptId;
-        private int RealNumber;
-        private int ReportedCount;
+        private String RealNumber;
+        private String ReportedCount;
         private String ReportTime;
         private String ShortStr;
         private int Sort;
@@ -87,6 +87,15 @@ public class BulletinBoard implements BaseExpandableRecyclerViewAdapter.BaseGrou
         private String TradeNOs;
         private String RegTime;
         private String HandoverTime;
+        private String PlanNO;
+
+        public String getPlanNO() {
+            return PlanNO;
+        }
+
+        public void setPlanNO(String planNO) {
+            PlanNO = planNO;
+        }
 
         public String getColor() {
             return Color;
@@ -136,20 +145,20 @@ public class BulletinBoard implements BaseExpandableRecyclerViewAdapter.BaseGrou
             this.ProduceGoodsReceiptId = ProduceGoodsReceiptId;
         }
 
-        public int getRealNumber() {
+        public String getRealNumber() {
             return RealNumber;
         }
 
-        public void setRealNumber(int RealNumber) {
-            this.RealNumber = RealNumber;
+        public void setRealNumber(String realNumber) {
+            RealNumber = realNumber;
         }
 
-        public int getReportedCount() {
+        public String getReportedCount() {
             return ReportedCount;
         }
 
-        public void setReportedCount(int ReportedCount) {
-            this.ReportedCount = ReportedCount;
+        public void setReportedCount(String reportedCount) {
+            ReportedCount = reportedCount;
         }
 
         public String getReportTime() {
@@ -215,5 +224,20 @@ public class BulletinBoard implements BaseExpandableRecyclerViewAdapter.BaseGrou
         public void setHandoverTime(String HandoverTime) {
             this.HandoverTime = HandoverTime;
         }
+
+//        @Override
+//        public int compareTo(BulletinBoardChild child) {
+//            String t1 = this.PlanNO.substring(4, this.PlanNO.indexOf("-"));
+//            String t1p = this.PlanNO.substring(this.PlanNO.indexOf("-"), this.PlanNO.length());
+//            String t2 = child.getPlanNO().substring(4, this.PlanNO.indexOf("-"));
+//            String t2p = child.getPlanNO().substring(this.PlanNO.indexOf("-"), this.PlanNO.length());
+//            if (Integer.valueOf(t1) - Integer.valueOf(t2) < 0) {
+//                return -1;
+//            }
+//            if (Integer.valueOf(t1) - Integer.valueOf(t2) == 0) {
+//                return Integer.valueOf(t2p) - Integer.valueOf(t1p);
+//            }
+//            return 1;
+//        }
     }
 }

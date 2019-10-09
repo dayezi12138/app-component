@@ -52,6 +52,11 @@ public class SplashActivity extends BaseActivity {
     //    @NeedPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     @Override
     public void init() {
-        new Handler().postDelayed(() -> ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation(), 2000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
+            }
+        }, 2000);
     }
 }

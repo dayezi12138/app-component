@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/memo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_text_height_normal"
+        android:hint="请输入好友备注"
+        android:paddingLeft="@dimen/widget_padding_tiny"
+        android:paddingRight="@dimen/widget_padding_tiny"
+        android:textColor="@color/text1"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/font_min_xx_sp" />
+</LinearLayout>

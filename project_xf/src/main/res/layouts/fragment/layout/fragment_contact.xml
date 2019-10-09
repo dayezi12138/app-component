@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/widget_text_height_tiny"-->
+        <!--android:background="@color/white"-->
+        <!--android:paddingLeft="@dimen/widget_padding_tiny"-->
+        <!--android:paddingRight="@dimen/widget_padding_tiny">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="通讯录"-->
+            <!--android:textColor="@color/fragment_contact_title_text_color"-->
+            <!--android:textSize="@dimen/font_large_sp"-->
+            <!--android:textStyle="bold" />-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="@dimen/widget_margin_large"-->
+            <!--android:layout_height="@dimen/widget_margin_large"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:src="@drawable/ic_add_user" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/white"-->
+        <!--android:orientation="vertical"-->
+        <!--android:paddingBottom="@dimen/widget_padding_normal">-->
+
+        <!--<include layout="@layout/search_view" />-->
+    <!--</LinearLayout>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <com.zh.xfz.views.sideBar.WaveSideBar
+            android:id="@+id/sideBar"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            app:backgroundColor="@color/c"
+            app:chooseTextColor="@android:color/white"
+            app:circleRadius="24dp"
+            app:hintTextSize="32sp"
+            app:textColor="#BCBCBC"
+            app:textSize="@dimen/font_min_sp" />
+    </RelativeLayout>
+</LinearLayout>

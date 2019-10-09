@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import core.app.zh.com.core.base.BasePresenter;
 import core.app.zh.com.core.bean.MyObservable;
 import zh.com.jyu.bean.fragment.BulletinBoard;
+import zh.com.jyu.bean.fragment.NBulletinBoard;
 import zh.com.jyu.bean.other.Data;
 import zh.com.jyu.mvp.contract.fragment.BulletinBoardContract;
 import zh.com.jyu.mvp.model.fragment.BulletinBoardModel;
@@ -37,6 +38,22 @@ public class BulletinBoardPresenter extends BasePresenter<BulletinBoardContract.
             @Override
             public void onFail(String msg) {
                 view.get().showMsg(msg);
+            }
+        });
+    }
+
+    @Override
+    public void getDailyBoardForBoss(String key) {
+        model.getDailyBoardForBoss(key, new MyObservable.OnSuccessListener<Data<List<NBulletinBoard>>>() {
+            @Override
+            public void onFail(String msg) {
+                view.get().showMsg(msg);
+            }
+
+            @Override
+            public void onSuccess(Data<List<NBulletinBoard>> listData) {
+                if (listData.isState()) view.get().successNBulletinBoard(listData.getRes());
+                else view.get().showMsg(listData.getMsg());
             }
         });
     }

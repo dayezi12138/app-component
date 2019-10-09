@@ -18,7 +18,7 @@ import core.app.zh.com.core.base.BasePresenter;
  */
 @Route(path = FragActivity.AROUTER_PATH)
 public class FragActivity extends BaseActivity {
-    public static final String AROUTER_PATH = "/main/mainLogin/";
+    public static final String AROUTER_PATH = "/main/FragActivity/";
 
     @Override
     public BasePresenter getPresenter() {
