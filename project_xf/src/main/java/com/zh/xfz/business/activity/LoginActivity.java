@@ -22,7 +22,6 @@ import butterknife.BindViews;
 import butterknife.OnClick;
 import core.app.zh.com.core.annotation.NeedPermission;
 import core.app.zh.com.core.base.BaseActivity;
-import core.app.zh.com.core.base.BasePresenter;
 
 /**
  * author : dayezi
@@ -38,10 +37,6 @@ public class LoginActivity extends BaseActivity {
 
     Animation animation;
 
-    @Override
-    public BasePresenter getPresenter() {
-        return null;
-    }
 
     @NonNull
     @Override

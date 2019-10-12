@@ -36,7 +36,7 @@ import static com.zh.xfz.business.fragment.ContactFragment.CONTACT_EVENT_KEY;
 @Route(path = NewFriendActivity.AROUTER_PATH)
 //@ToolbarLeft(menuId = R.menu.new_friend)
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
-@ToolbarTitle(backGroundColorId = R.color.background_splash_color,title = "新朋友")
+@ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "新朋友")
 public class NewFriendActivity extends BaseActivity implements NewFriendContract.NewFriendUI, BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
     public final static String AROUTER_PATH = "/main/NewFriendActivity/";
 
