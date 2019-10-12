@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    configurations {
+        all*.exclude group: 'androidx.versionedparcelable'
+        all*.exclude group: 'android.support.v4', module: 'os'
+        all*.exclude group: 'android.support.v4', module: 'graphics'
+        all*.exclude group: 'android.support.v4', module: 'app'
+    }
+}
+
+dependencies {
+    annotationProcessor project(':toolbar-process')
+    api project(':toolbar-annatations')
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.androidSupportSdkVersion"
+    implementation "com.android.support:design:$rootProject.ext.androidSupportSdkVersion"
+    implementation "com.android.support:support-v4:$rootProject.ext.androidSupportSdkVersion"
+    implementation "com.blankj:utilcode:$rootProject.ext.utilcode"
+}
