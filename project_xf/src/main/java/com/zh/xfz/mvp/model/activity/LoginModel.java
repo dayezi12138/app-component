@@ -65,7 +65,7 @@ public class LoginModel implements GetMyBaseModelListener {
 
     public void validAccount(String account, ObservableListener.SuccessListener<ValidAccount> successListener) {
         try {
-            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
+            BaseObservable observable = new ObservableProvider(activity, successListener).showDialog(false).build(BaseObservable.class);
             myService.validAccount(account).subscribe(observable);
         } catch (Exception e) {
             LogUtils.e(e.getMessage());

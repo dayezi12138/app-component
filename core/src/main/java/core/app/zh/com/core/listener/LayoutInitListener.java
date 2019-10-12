@@ -17,6 +17,8 @@ public interface LayoutInitListener {
 
     View myContentView();
 
+    core.app.zh.com.core.view.MultipleStatusView multipleStatusView();
+
     View beforeInit(LayoutInflater inflater, ViewGroup container);
 
     @Deprecated

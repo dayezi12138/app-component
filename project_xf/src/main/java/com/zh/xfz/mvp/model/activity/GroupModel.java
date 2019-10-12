@@ -41,7 +41,7 @@ public class GroupModel implements GetMyBaseModelListener {
             Map<String, String> params = new HashMap<>();
             params.put("userid", LoginUtils.getUserId());
             params.put("timeStamp", AndroidUtils.getUUID());
-            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
+            BaseObservable observable = new ObservableProvider(activity, successListener).showDialog(false).build(BaseObservable.class);
             myService.getGroupList(params).subscribe(observable);
         } catch (Exception e) {
             e.printStackTrace();

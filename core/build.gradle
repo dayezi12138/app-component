@@ -79,6 +79,7 @@ dependencies {
     api 'com.android.support:multidex:1.0.2'
     api 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
     api 'org.apache.commons:commons-lang3:3.9'
+    api 'com.classic.common:multiple-status-view:1.6'
 //
 //    annotationProcessor 'com.google.dagger:dagger-compiler:2.16' annotationProcessor 'com.google.dagger:dagger-android-processor:2.16'
 }

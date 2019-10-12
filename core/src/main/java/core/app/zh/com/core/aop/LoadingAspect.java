@@ -1,6 +1,11 @@
 package core.app.zh.com.core.aop;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+
+import core.app.zh.com.core.listener.LayoutInitListener;
 
 /**
  * author : dayezi
@@ -9,17 +14,26 @@ import org.aspectj.lang.annotation.Aspect;
  */
 @Aspect
 public class LoadingAspect {
-//
-//    @Pointcut("execution(@core.app.zh.com.core.annotation.LoadingShow  * *(..))")
-//    public void pointcutLoadingShow() {
-//    }
-//
-//    @Pointcut("execution(@core.app.zh.com.core.annotation.LoadingHide  * *(..))")
-//    public void pointcutLoadingHide() {
-//    }
-//
-//    @Before("pointcutLoadingShow()")
-//    public void BeforePoint(JoinPoint joinPoint) {
+
+    @Pointcut("execution(@core.app.zh.com.core.annotation.LoadingShow  * *(..))")
+    public void pointcutLoadingShow() {
+    }
+
+    @Pointcut("execution(@core.app.zh.com.core.annotation.LoadingHide  * *(..))")
+    public void pointcutLoadingHide() {
+    }
+
+    @Before("pointcutLoadingShow()")
+    public void BeforeShowPoint(JoinPoint joinPoint) {
+        if (joinPoint.getThis() instanceof LayoutInitListener) {
+            LayoutInitListener layoutInitListener = (LayoutInitListener) joinPoint.getThis();
+            layoutInitListener.multipleStatusView().showLoading();
+        }
+//        if (joinPoint.getThis() instanceof BaseActivity) {
+//            BaseActivity activity = (BaseActivity) joinPoint.getThis();
+//            LoadingProvider provider = activity.getProvider();
+//            provider.showLoading();
+//        }
 //        boolean valid = LoadingInJect.valided(joinPoint.getThis());
 //        if (!valid) return;
 //        if (joinPoint.getThis() instanceof StatusViewListener && joinPoint.getThis() instanceof LayoutInitListener) {
@@ -32,7 +46,20 @@ public class LoadingAspect {
 //            Dialog dialog = LoadingDialogUtils.getDialog((Context) activity);
 //            dialog.show();
 //        }
-//    }
+    }
+
+    @Before("pointcutLoadingHide()")
+    public void BeforeHidePoint(JoinPoint joinPoint) {
+        if (joinPoint.getThis() instanceof LayoutInitListener) {
+            LayoutInitListener layoutInitListener = (LayoutInitListener) joinPoint.getThis();
+            layoutInitListener.multipleStatusView().showContent();
+        }
+//        if (joinPoint.getThis() instanceof BaseActivity) {
+//            BaseActivity activity = (BaseActivity) joinPoint.getThis();
+//            LoadingProvider provider = activity.getProvider();
+//            provider.hideLoading();
+//        }
+    }
 //
 //    @After("pointcutLoadingHide()")
 //    public void afterPoint(JoinPoint joinPoint) {

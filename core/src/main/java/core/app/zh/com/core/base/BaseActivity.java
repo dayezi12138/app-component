@@ -28,6 +28,7 @@ import core.app.zh.com.core.listener.GetActivityListener;
 import core.app.zh.com.core.listener.GetPresenter;
 import core.app.zh.com.core.listener.LayoutInitListener;
 import core.app.zh.com.core.listener.OnChangeToolbarListener;
+import core.app.zh.com.core.view.MultipleStatusView;
 import dagger.android.support.DaggerAppCompatActivity;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -36,8 +37,8 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
     private OnChangeToolbarListener onChangeToolbarListener;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private AppExitListener appExitListener;
-    //    private LinearLayout rootLy;
     private View contentView;
+    private MultipleStatusView statusView;
 
 
     @Override
@@ -45,8 +46,8 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
         super.onCreate(savedInstanceState);
         View view1 = LayoutInflater.from(this).inflate(R.layout.base_view, null, false);
         setContentView(view1);
-//        rootLy = findViewById(R.id.root_ly);
-        View view = beforeInit(LayoutInflater.from(this), findViewById(R.id.root_ly));
+        ViewGroup viewGroup = findViewById(R.id.root_ly);
+        View view = beforeInit(LayoutInflater.from(this), viewGroup);
         if (this.getApplication() instanceof AddOptionInApplicationListener) {
             AddOptionInApplicationListener listener = (AddOptionInApplicationListener) this.getApplication();
             List<AddOptionInPageListener> list = listener.optionActivityList();
@@ -57,12 +58,20 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
         init();
     }
 
+
+    @Override
+    public MultipleStatusView multipleStatusView() {
+        return statusView;
+    }
+
     @Override
     public View beforeInit(LayoutInflater inflater, ViewGroup container) {
         boolean old = oldAddToolbar(container);
         if (!old) newAddToolbar(container);
         if (layoutId() != 0) {
+//            statusView = (MultipleStatusView) LayoutInflater.from(this).inflate(R.layout.mustate_view, container, false);
             contentView = inflater.inflate(layoutId(), container, false);
+//            statusView.contentView(contentView);
             container.addView(contentView);
         }
         return container;
@@ -187,10 +196,4 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
         return contentView;
     }
 
-
-//    private LoadingOptionListener loadingOptionListener;
-//
-//    public void setLoadingOptionListener(LoadingOptionListener loadingOptionListener) {
-//        this.loadingOptionListener = loadingOptionListener;
-//    }
 }

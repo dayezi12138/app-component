@@ -1,7 +1,5 @@
 package core.app.zh.com.core.listener;
 
-import android.view.ViewGroup;
-
 /**
  * author : dayezi
  * data :2019/7/4
@@ -9,6 +7,6 @@ import android.view.ViewGroup;
  */
 public interface StatusViewListener {
 
-    ViewGroup getStatusViewGroup();
+//    ViewGroup getStatusViewGroup();
 
 }

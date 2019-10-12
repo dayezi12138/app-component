@@ -56,16 +56,17 @@ public class GroupActivity extends BaseActivity implements GroupContract.GroupUI
 
     @Override
     public void init() {
+        presenter.groupList();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(groupAdapter);
         groupAdapter.setOnItemClickListener((adapter, view, position) -> RongIM.getInstance().startGroupChat(GroupActivity.this, String.valueOf(groupAdapter.getData().get(position).getID()), groupAdapter.getData().get(position).getGroupName()));
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        presenter.groupList();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        presenter.groupList();
+//    }
 
     @Override
     public void successGroupList(List<GroupListInfo> data) {

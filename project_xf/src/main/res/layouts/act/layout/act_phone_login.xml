@@ -32,12 +32,12 @@
             style="@style/EditText.Login.TextStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_text_height_normal"
-            android:paddingLeft="@dimen/widget_padding_tiny"
-            android:textColor="@color/input_account_color"
-            android:textColorHint="@color/input_account_color"
             android:layout_marginTop="@dimen/widget_margin_large_xx"
+            android:hint="@string/act_phone_input_account_str"
+            android:paddingLeft="@dimen/widget_padding_tiny"
             android:text=""
-            android:hint="@string/act_phone_input_account_str" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/input_account_color" />
 
         <include layout="@layout/common_line" />
 
@@ -47,10 +47,10 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_text_height_tiny"
             android:layout_marginTop="@dimen/widget_margin_large"
-            android:textColor="@color/login_btn_color"
             android:background="@drawable/shape_btn_login_translucent"
             android:foreground="?android:attr/selectableItemBackground"
-            android:text="@string/act_phone_submit_str" />
+            android:text="@string/act_phone_submit_str"
+            android:textColor="@color/login_btn_color" />
 
         <LinearLayout
             android:layout_width="wrap_content"

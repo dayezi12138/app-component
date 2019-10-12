@@ -11,7 +11,9 @@ import java.lang.annotation.Target;
  * description:
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface RecyclerInit {
+@Target(ElementType.FIELD)
+public @interface RecyclerField {
 //    Class<? extends LayoutManagerListener> layoutManagerProvider();
+
+//    boolean isView();
 }
