@@ -14,7 +14,6 @@ import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.Account;
 import com.zh.xfz.mvp.contract.activity.ValidNoteContract;
-import com.zh.xfz.mvp.presenter.UserOperationPresenter;
 import com.zh.xfz.mvp.presenter.activity.ValidNotePresenter;
 import com.zh.xfz.utils.LoginUtils;
 
@@ -24,8 +23,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.view.VerifyCodeView;
-
-import static com.zh.xfz.business.activity.AddPasswordActivity.CODE_KEY;
 
 /**
  * author : dayezi
@@ -62,8 +59,8 @@ public class ValidNoteActivity extends BaseActivity implements ValidNoteContract
     @Inject
     ValidNotePresenter presenter;
 
-    @Inject
-    UserOperationPresenter userOperationPresenter;
+//    @Inject
+//    UserOperationPresenter userOperationPresenter;
 
     private CountDownTimer countDownTimer = new CountDownTimer(60 * 1000, 1000) {
         @Override
@@ -92,12 +89,13 @@ public class ValidNoteActivity extends BaseActivity implements ValidNoteContract
     @Override
     public void init() {
         phoneTv.setText(account);
-        userOperationPresenter.getCode(account, isRegister);
-//        presenter.getCode(account, existAccount);
+//        userOperationPresenter.getCode(account, isRegister);
+        presenter.getCode(account, existAccount);
         verifyCodeView.setOnAllFilledListener(text -> {
-                    if (!isRegister) userOperationPresenter.register(account, text);
-                    else
-                        ARouter.getInstance().build(AddPasswordActivity.AROUTER_PATH).withString(ACCOUNT_KEY, account).withString(CODE_KEY, text).navigation();
+                    presenter.loginOrRegister(account, text, existAccount);
+//                    if (!isRegister) userOperationPresenter.register(account, text);
+//                    else
+//                        ARouter.getInstance().build(AddPasswordActivity.AROUTER_PATH).withString(ACCOUNT_KEY, account).withString(CODE_KEY, text).navigation();
                 }
 //                presenter.loginOrRegister(account, text, existAccount)
         );
@@ -136,8 +134,8 @@ public class ValidNoteActivity extends BaseActivity implements ValidNoteContract
 
     @OnClick(R.id.refresh_tv)
     public void refreshSms() {
-        userOperationPresenter.getCode(account, isRegister);
-//        presenter.getCode(account, existAccount);
+//        userOperationPresenter.getCode(account, isRegister);
+        presenter.getCode(account, existAccount);
         countDownTimer.start();
     }
 

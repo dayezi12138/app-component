@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/add_friend_ly"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_text_height_normal"
+        android:background="@drawable/ripper_friend_operation"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/widget_padding_normal"
+        android:paddingRight="@dimen/widget_padding_normal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_add_friend_1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/widget_padding_tiny"
+            android:text="新朋友"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large_sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/group_ly"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@drawable/ripper_friend_operation"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/widget_padding_normal"
+        android:paddingRight="@dimen/widget_padding_normal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_group_" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/widget_padding_tiny"
+            android:text="群组"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large_sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -17,6 +17,7 @@ import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.GroupInfo;
+import com.zh.xfz.bean.fragment.FriendInfo;
 import com.zh.xfz.business.adapter.GroupMemberAdapter;
 import com.zh.xfz.mvp.contract.activity.GroupContract;
 import com.zh.xfz.mvp.presenter.activity.GroupPresenter;
@@ -85,8 +86,12 @@ public class GroupMemberListActivity extends BaseActivity implements GroupContra
             if (isTranser) {
                 if (dialog != null && !dialog.isShowing()) dialog.show();
                 this.groupInfo = groupMemberAdapter.getData().get(position);
+            } else {
+                FriendInfo friendInfo = new FriendInfo();
+                friendInfo.setSourceId(Long.valueOf(groupMemberAdapter.getData().get(position).getGroupId()));
+                friendInfo.setTargetId(Long.valueOf(groupMemberAdapter.getData().get(position).getTargetId()));
+                ARouter.getInstance().build(FriendDetailActivity.AROUTER_PATH).withSerializable(FriendDetailActivity.FRIEND_DETAIL_KEY, friendInfo).navigation();
             }
-
         });
         builder.onPositive((dialog, which) -> {
             if (groupInfo != null)

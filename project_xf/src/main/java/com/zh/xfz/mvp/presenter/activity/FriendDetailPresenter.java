@@ -38,4 +38,23 @@ public class FriendDetailPresenter extends BasePresenter<FriendDetailContract.Fr
             } else view.get().showMsg(data.getMsg());
         });
     }
+
+    @Override
+    public void getTargetUserInfo(String userId, String targetId) {
+        model.getTargetUserInfo(userId, targetId, data -> {
+            if (data.getCode() == 0) {
+                view.get().successUserInfo(data.getRes());
+            } else view.get().showMsg(data.getMsg());
+        });
+    }
+
+    @Override
+    public void applyFriend(String targetid, String remark, String name) {
+        model.applyFriend(targetid, remark, name, data -> {
+            if (data.getCode() == 0) {
+                view.get().showMsg("添加成功");
+                model.getMyBaseModel().getMyActivity().finish();
+            } else view.get().showMsg(data.getMsg());
+        });
+    }
 }

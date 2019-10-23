@@ -43,6 +43,15 @@ public class FriendPresenter extends BasePresenter<FriendContract.FriendUI> impl
         request();
     }
 
+    @Override
+    public void getTargetUserInfo( String targetId) {
+        model.getTargetUserInfo(targetId, data -> {
+//            if (data.getCode() == 0) {
+//                view.get().successUserInfo(data.getRes());
+//            } else view.get().showMsg(data.getMsg());
+        });
+    }
+
 //    @Override
 //    public void addGroup(Set<Integer> select, List<FriendInfo> mDateList) {
 //        List<String> idList = new ArrayList<>();

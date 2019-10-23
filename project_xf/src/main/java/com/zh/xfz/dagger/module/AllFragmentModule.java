@@ -1,6 +1,7 @@
 package com.zh.xfz.dagger.module;
 
 import com.zh.xfz.business.fragment.ContactFragment;
+import com.zh.xfz.business.fragment.MainFragment;
 import com.zh.xfz.business.fragment.MineFragment;
 import com.zh.xfz.business.fragment.WorkControlCenterFragment;
 import com.zh.xfz.dagger.module.fragment.ContactModule;
@@ -30,4 +31,8 @@ public abstract class AllFragmentModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = {ContactModule.class})
     abstract ContactFragment contributeContactFragmentInjector();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    abstract MainFragment contributeMainFragmentInjector();
 }

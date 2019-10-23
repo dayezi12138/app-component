@@ -29,11 +29,19 @@ public class FriendInfo implements Serializable {
     private String Mobile;
     private String Token;
     private int Status;
-    private String Remark;
+    private String RemarkName;
     private String Name;
     private String letters;
     private String path;
     private String UserIcon;
+
+    public String getRemarkName() {
+        return RemarkName;
+    }
+
+    public void setRemarkName(String remarkName) {
+        RemarkName = remarkName;
+    }
 
     public Long getID() {
         return ID;
@@ -83,13 +91,13 @@ public class FriendInfo implements Serializable {
         Status = status;
     }
 
-    public String getRemark() {
-        return Remark;
-    }
-
-    public void setRemark(String remark) {
-        Remark = remark;
-    }
+//    public String getRemark() {
+//        return Remark;
+//    }
+//
+//    public void setRemark(String remark) {
+//        Remark = remark;
+//    }
 
     public String getName() {
         return Name;

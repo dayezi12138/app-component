@@ -62,7 +62,7 @@ public abstract class BaseFragment extends DaggerFragment implements LayoutInitL
     public View beforeInit(LayoutInflater inflater, ViewGroup container) {
         boolean old = oldAddToolbar();
         if (!old) newAddToolbar();
-        if (layoutId() != 0) {
+        if (layoutId() > 0) {
             contentView = LayoutInflater.from(getContext()).inflate(layoutId(), rootLy, false);
             rootLy.addView(contentView);
         }

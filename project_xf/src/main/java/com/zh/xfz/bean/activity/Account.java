@@ -10,6 +10,7 @@ import java.util.List;
 public class Account {
     /**
      * ID : 15
+     * {ID=10008.0, ChineseName=15325986157, Mobile=15325986157, UserIcon=null, VIPLevel=0.0, KeepLoginDays=0.0, LastLoginTenantID=null, Points=0.0, TimeStamp=00000000-0e76-9dd0-0e76-9dd000000000, WXOpenID=null, Token=dhs7V1ET1pbQL+DtkcrjJskjJO2+6fQrj2t1S0vNTiqdqLsYwW43hMOiQtgQ+Bf0WPbw1/41lyyFiqL7ZH2ttA==, Tenant=[]}
      * ChineseName : null
      * Mobile : 15958450429
      * UserIcon : null

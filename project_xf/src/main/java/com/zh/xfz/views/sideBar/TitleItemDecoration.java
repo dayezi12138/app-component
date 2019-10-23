@@ -21,8 +21,8 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
     private Rect mBounds;
 
     private int mTitleHeight;
-    private static int TITLE_BG_COLOR = Color.parseColor("#E7E7E7");
-    private static int TITLE_TEXT_COLOR = Color.parseColor("#9D9D9D");
+    private static int TITLE_BG_COLOR = Color.parseColor("#F6F6F6");
+    private static int TITLE_TEXT_COLOR = Color.parseColor("#626262");
     private static int mTitleTextSize;
 
 
@@ -103,7 +103,7 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDrawOver(Canvas c, final RecyclerView parent, RecyclerView.State state) {
         int position = ((LinearLayoutManager) (parent.getLayoutManager())).findFirstVisibleItemPosition();
-        if (position == -1) return;//在搜索到没有的索引的时候position可能等于-1，所以在这里判断一下
+        if (position == -1 || position == 0) return;//在搜索到没有的索引的时候position可能等于-1，所以在这里判断一下
         String tag = mData.get(position).getLetters();
         View child = parent.findViewHolderForLayoutPosition(position).itemView;
         //Canvas是否位移过的标志
@@ -152,7 +152,7 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
         if (position > -1) {
             //等于0的时候绘制title
             if (position == 0) {
-                outRect.set(0, mTitleHeight, 0, 0);
+//                outRect.set(0, mTitleHeight, 0, 0);
             } else {
 //                if (mData.size() >= position) return;
 //                if (null != mData.get(position).getLetters() &&

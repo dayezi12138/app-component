@@ -17,6 +17,33 @@ public class TargetUserInfo {
     private boolean Status;
     private String Mobile;
     private String UserIcon;
+    private String ChineseName;
+    private String RemarkName;
+    private int TargetId;
+
+    public String getChineseName() {
+        return ChineseName;
+    }
+
+    public void setChineseName(String chineseName) {
+        ChineseName = chineseName;
+    }
+
+    public String getRemarkName() {
+        return RemarkName;
+    }
+
+    public void setRemarkName(String remarkName) {
+        RemarkName = remarkName;
+    }
+
+    public int getTargetId() {
+        return TargetId;
+    }
+
+    public void setTargetId(int targetId) {
+        TargetId = targetId;
+    }
 
     public int getID() {
         return ID;

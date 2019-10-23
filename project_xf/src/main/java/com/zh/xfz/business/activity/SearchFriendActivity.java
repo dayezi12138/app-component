@@ -15,6 +15,7 @@ import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.SearchFriend;
 import com.zh.xfz.business.adapter.SearchFriendAdapter;
 import com.zh.xfz.mvp.contract.activity.SearchFriendContract;
+import com.zh.xfz.mvp.presenter.activity.FriendPresenter;
 import com.zh.xfz.mvp.presenter.activity.SearchFriendPresenter;
 
 import java.util.List;
@@ -52,6 +53,9 @@ public class SearchFriendActivity extends BaseActivity implements SearchFriendCo
 
     @Inject
     SearchFriendAdapter searchFriendAdapter;
+
+    @Inject
+    FriendPresenter friendPresenter;
 
     @NonNull
     @Override

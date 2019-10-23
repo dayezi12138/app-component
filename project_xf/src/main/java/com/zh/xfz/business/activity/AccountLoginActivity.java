@@ -18,7 +18,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 import core.app.zh.com.core.base.BaseActivity;
-import core.app.zh.com.core.base.BasePresenter;
 import core.app.zh.com.core.view.ClearEditTextView;
 
 /**
@@ -40,11 +39,6 @@ public class AccountLoginActivity extends BaseActivity implements AccountLoginCo
 
     @Inject
     AccountLoginPresenter presenter;
-
-    @Override
-    public BasePresenter getPresenter() {
-        return null;
-    }
 
     @NonNull
     @Override

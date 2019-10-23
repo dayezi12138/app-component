@@ -1,6 +1,8 @@
 package com.zh.xfz.business.activity;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
@@ -44,6 +46,12 @@ public class AddFriendActivity extends BaseActivity implements AddFriendContract
     @BindView(R.id.alias_tv)
     TextView aliasTv;
 
+    @BindView(R.id.remark_et)
+    EditText remarkEt;
+
+    @BindView(R.id.memo_tv)
+    EditText memoTv;
+
     @Inject
     AddFriendPresenter presenter;
 
@@ -57,11 +65,13 @@ public class AddFriendActivity extends BaseActivity implements AddFriendContract
     public void init() {
         nameTv.setText(searchFriend.getName());
         aliasTv.setText(searchFriend.getMobile());
+
     }
 
     @OnClick(R.id.submit)
     public void submit() {
-        presenter.applyFriend(String.valueOf(searchFriend.getID()), nameTv.getText().toString(), aliasTv.getText().toString());
+        presenter.applyFriend(String.valueOf(searchFriend.getID()), TextUtils.isEmpty(memoTv.getText().toString()) ? "" : memoTv.getText().toString(), TextUtils.isEmpty(remarkEt.getText().toString()) ? nameTv.getText().toString() : remarkEt.getText().toString());
+
     }
 
     @Override

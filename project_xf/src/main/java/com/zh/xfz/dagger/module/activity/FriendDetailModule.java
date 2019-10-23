@@ -9,6 +9,7 @@ import com.zh.xfz.R;
 import com.zh.xfz.business.activity.FriendDetailActivity;
 
 import core.app.zh.com.core.annotation.ActivityScope;
+import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.view.MyPopupWindow;
 import dagger.Module;
 import dagger.Provides;
@@ -20,7 +21,7 @@ import dagger.Provides;
  */
 @Module
 public class FriendDetailModule {
-//
+    //
 //    @ActivityScope
 //    @Provides
 //    public View view(FriendDetailActivity activity) {
@@ -30,6 +31,11 @@ public class FriendDetailModule {
 //        }
 //        return view;
 //    }
+    @ActivityScope
+    @Provides
+    public BaseActivity activity(FriendDetailActivity activity) {
+        return activity;
+    }
 
     @ActivityScope
     @Provides

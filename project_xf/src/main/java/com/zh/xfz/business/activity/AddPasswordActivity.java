@@ -72,7 +72,7 @@ public class AddPasswordActivity extends BaseActivity implements UserOperationCo
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(code))
             presenter.forgetPassWord(account, passwordEt.getText().toString(), againPasswordEt.getText().toString(), code);
         else
-            presenter.updatePassWord(oldPassword, passwordEt.getText().toString(), againPasswordEt.getText().toString());
+            presenter.updatePassWord(account, passwordEt.getText().toString(), againPasswordEt.getText().toString());
     }
 
     @Override

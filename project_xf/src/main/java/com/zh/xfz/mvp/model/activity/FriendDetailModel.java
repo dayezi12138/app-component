@@ -1,6 +1,7 @@
 package com.zh.xfz.mvp.model.activity;
 
 import com.zh.xfz.api.MyService;
+import com.zh.xfz.bean.activity.TargetUserInfo;
 import com.zh.xfz.bean.other.Data;
 import com.zh.xfz.business.activity.FriendDetailActivity;
 import com.zh.xfz.utils.AndroidUtils;
@@ -62,6 +63,33 @@ public class FriendDetailModel implements GetMyBaseModelListener {
         }
     }
 
+    public void getTargetUserInfo(String userId, String targetId, ObservableListener.SuccessListener<Data<TargetUserInfo>> successListener) {
+        Map<String, String> params = new HashMap<>();
+        params.put("userid", LoginUtils.getUserId());
+        params.put("timeStamp", AndroidUtils.getUUID());
+        params.put("targetid", targetId);
+        try {
+            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
+            myService.getTargetUserInfo(params).subscribe(observable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void applyFriend(String targetid, String remark, String name, ObservableListener.SuccessListener<Data<Object>> successListener) {
+        Map<String, String> params = new HashMap<>();
+        params.put("userid", LoginUtils.getUserId());
+        params.put("timeStamp", AndroidUtils.getUUID());
+        params.put("targetid", targetid);
+        params.put("remark", remark);
+        params.put("name", name);
+        try {
+            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
+            myService.applyFriend(params).subscribe(observable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public MyBaseModel getMyBaseModel() {
         return new MyBaseModel(activity.getApplication()) {

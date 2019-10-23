@@ -4,6 +4,14 @@ apply from: "${rootProject.rootDir}/config.gradle"
 android {
     project.ext.setDefaultConfig project
     defaultConfig {
+        compileSdkVersion 28
+        buildToolsVersion '28.0.2'
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 12
+        versionName "v1.0.1"
+        multiDexEnabled true
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
         applicationId "com.zh.xfz"
         //Arouter路由配置
         javaCompileOptions {
@@ -61,4 +69,6 @@ dependencies {
     implementation 'com.hgDendi:expandable-recyclerview-adapter:1.0.1'
     implementation 'com.github.zcweng:switch-button:0.0.3@aar'
     implementation 'com.mylhyl:zxingscanner:2.1.6'
+    implementation  'com.pgyersdk:sdk:2.8.1'
+//    implementation ('com.github.yoyoyaobin:PreventKeyboardBlockUtil:1.0.7' ){ exclude group: 'com.blankj.utilcode' }
 }

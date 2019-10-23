@@ -1,5 +1,7 @@
 package com.zh.xfz.mvp.model.activity;
 
+import android.text.TextUtils;
+
 import com.zh.xfz.api.MyService;
 import com.zh.xfz.bean.fragment.FriendInfo;
 import com.zh.xfz.bean.other.Data;
@@ -73,7 +75,7 @@ public class NewFriendModel implements GetMyBaseModelListener {
         paramMap.put("userid", LoginUtils.getUserId());
         paramMap.put("timeStamp", AndroidUtils.getUUID());
         paramMap.put("type", "1");
-        paramMap.put("remarkName", friendInfo.getRemark());
+        paramMap.put("remarkName", TextUtils.isEmpty(friendInfo.getRemarkName()) ? "" : friendInfo.getRemarkName());
         paramMap.put("id", String.valueOf(friendInfo.getID()));
 
         try {

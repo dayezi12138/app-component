@@ -58,8 +58,9 @@ public class BusinessModel implements GetMyBaseModelListener {
 
     public void existTenantName(String tenantName, ObservableListener.SuccessListener successListener) {
         try {
+
             BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
-            myService.existTenantName(tenantName).subscribe(observable);
+            myService.existTenantName(tenantName, LoginUtils.getUserId(), AndroidUtils.getUUID()).subscribe(observable);
         } catch (Exception e) {
             e.printStackTrace();
         }

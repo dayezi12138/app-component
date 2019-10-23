@@ -33,9 +33,12 @@ import com.zh.xfz.dagger.module.activity.GroupMemberInfoModule;
 import com.zh.xfz.dagger.module.activity.GroupMemberListModule;
 import com.zh.xfz.dagger.module.activity.GroupModule;
 import com.zh.xfz.dagger.module.activity.InputPasswordModule;
+import com.zh.xfz.dagger.module.activity.LoginModule;
 import com.zh.xfz.dagger.module.activity.MainModule;
 import com.zh.xfz.dagger.module.activity.NewFriendModule;
+import com.zh.xfz.dagger.module.activity.SearchFriendModule;
 import com.zh.xfz.dagger.module.activity.SettingModule;
+import com.zh.xfz.dagger.module.activity.UpdatePasswordModule;
 import com.zh.xfz.dagger.module.activity.ValidNoteModule;
 
 import core.app.zh.com.core.annotation.ActivityScope;
@@ -52,7 +55,7 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class AllActivityModule {
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    @ContributesAndroidInjector(modules = {LoginModule.class})
     abstract LoginActivity contributeLoginActivityInjector();
 
     @ActivityScope
@@ -100,7 +103,7 @@ public abstract class AllActivityModule {
     abstract FriendDetailActivity contributeFriendDetailActivityInjector();
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    @ContributesAndroidInjector(modules = {SearchFriendModule.class})
     abstract SearchFriendActivity contributeSearchFriendActivityInjector();
 
     @ActivityScope
@@ -124,7 +127,7 @@ public abstract class AllActivityModule {
     abstract SettingActivity contributeSettingActivityInjector();
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    @ContributesAndroidInjector(modules = {UpdatePasswordModule.class})
     abstract UpdatePasswordActivity contributeUpdatePasswordActivityInjector();
 
     @ActivityScope

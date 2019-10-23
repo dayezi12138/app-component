@@ -33,10 +33,15 @@
 
         <Button
             android:id="@+id/status_btn"
-            android:layout_width="@dimen/toolbar_height"
-            android:layout_height="@dimen/widget_padding_large_x"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_margin="@dimen/widget_margin_normal"
+            android:layout_marginTop="@dimen/widget_margin_tiny"
+            android:layout_marginRight="@dimen/widget_margin_normal"
+            android:layout_marginBottom="@dimen/widget_margin_tiny"
+            android:minWidth="@dimen/toolbar_height"
+            android:paddingLeft="@dimen/widget_padding_tiny"
+            android:paddingRight="@dimen/widget_padding_tiny"
             android:textSize="@dimen/font_min_sp" />
     </LinearLayout>
 

@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.AppUtils;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
+import com.zh.xfz.utils.LoginUtils;
 
 import java.text.MessageFormat;
 
@@ -53,13 +54,18 @@ public class SettingActivity extends BaseActivity {
     @SuppressLint("WrongConstant")
     @OnClick(R.id.switch_account_tv)
     public void switchAccount() {
-        ARouter.getInstance().build(AccountLoginActivity.AROUTER_PATH).withFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP).navigation();
+        LoginUtils.clearLoginInfo();
+//        Intent intent = new Intent(this, AccountLoginActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+//                Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        startActivity(intent);
+        ARouter.getInstance().build(AccountLoginActivity.AROUTER_PATH).withFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK).navigation();
     }
 
     @OnClick(R.id.setting_ly)
     public void setting() {
-//        ARouter.getInstance().build(UpdatePasswordActivity.AROUTER_PATH).navigation();
-//        RongIM.getInstance().logout();
+        ARouter.getInstance().build(UpdatePasswordActivity.AROUTER_PATH).navigation();
     }
 
     @OnClick(R.id.logout)

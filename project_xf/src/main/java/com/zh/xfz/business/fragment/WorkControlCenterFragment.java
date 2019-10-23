@@ -1,12 +1,7 @@
 package com.zh.xfz.business.fragment;
 
 import android.support.annotation.NonNull;
-import android.widget.LinearLayout;
 
-import com.blankj.utilcode.util.BarUtils;
-import com.zh.xfz.R;
-
-import butterknife.BindView;
 import core.app.zh.com.core.base.BaseFragment;
 
 /**
@@ -15,18 +10,18 @@ import core.app.zh.com.core.base.BaseFragment;
  * description:
  */
 public class WorkControlCenterFragment extends BaseFragment {
-    @BindView(R.id.ly)
-    LinearLayout ly;
+//    @BindView(R.id.ly)
+//    LinearLayout ly;
 
     @NonNull
     @Override
     public int layoutId() {
-        return R.layout.fragment_work_control_center;
+        return -1;
     }
 
     @Override
     public void init() {
-        BarUtils.addMarginTopEqualStatusBarHeight(ly);
-        BarUtils.setStatusBarColor(getActivity(), getActivity().getResources().getColor(R.color.background_splash_color), 1);
+//        BarUtils.addMarginTopEqualStatusBarHeight(ly);
+//        BarUtils.setStatusBarColor(getActivity(), getActivity().getResources().getColor(R.color.background_splash_color), 1);
     }
 }

@@ -1,4 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="fragment_friend_new_str" tools:ignore="MissingTranslation">新朋友</string>
+    <string name="fragment_friend_new_str" tools:ignore="MissingTranslation">新的朋友</string>
     <string name="fragment_friend_group_str" tools:ignore="MissingTranslation">群组</string>
 </resources>

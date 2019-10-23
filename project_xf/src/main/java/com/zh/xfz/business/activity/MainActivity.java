@@ -6,13 +6,18 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.pgyersdk.javabean.AppBean;
+import com.pgyersdk.update.PgyUpdateManager;
+import com.pgyersdk.update.UpdateManagerListener;
 import com.zh.xfz.R;
 import com.zh.xfz.mvp.presenter.UserOperationPresenter;
 import com.zh.xfz.mvp.presenter.activity.GroupPresenter;
+import com.zh.xfz.utils.BottomNavigationViewHelper;
 
 import java.util.List;
 
@@ -57,6 +62,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Inject
     GroupPresenter groupPresenter;
 
+    @Inject
+    RongIMClient.ConnectionStatusListener connectionStatusListener;
+
 
     @NonNull
     @Override
@@ -81,10 +89,36 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             RongIM.getInstance().addUnReadMessageCountChangedObserver(i -> badge.setBadgeNumber(i), Conversation.ConversationType.values());
             RongIM.setOnReceiveMessageListener(onReceiveMessageListener);
         }).start();
+        /**
+         * 设置连接状态的监听。
+         */
+        RongIMClient.setConnectionStatusListener(connectionStatusListener);
         setAppExitListener(appExitListener);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         presenter.refreshUserInfo();
         groupPresenter.refreshGroupInfo();
+        BottomNavigationViewHelper.setImageSize(bottomNavigationView, this);
+        PgyUpdateManager.setIsForced(false);
+        PgyUpdateManager.register(this, new UpdateManagerListener() {
+            @Override
+            public void onNoUpdateAvailable() {
+
+            }
+
+            @Override
+            public void onUpdateAvailable(String result) {
+                // 将新版本信息封装到AppBean中
+                final AppBean appBean = getAppBeanFromString(result);
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("提示")
+                        .setMessage("发现新版本,是否更新?")
+                        .setNegativeButton("取消", null)
+                        .setPositiveButton("确定",
+                                (dialog, which) -> startDownloadTask(
+                                        MainActivity.this,
+                                        appBean.getDownloadURL())).show();
+            }
+        });
     }
 
 
@@ -97,11 +131,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             case R.id.menu_level_id:
                 setTabPosition(1);
                 break;
-            case R.id.menu_count_id:
+            case R.id.menu_controller_id:
                 setTabPosition(2);
                 break;
-            case R.id.menu_my_id:
+            case R.id.menu_count_id:
                 setTabPosition(3);
+                break;
+            case R.id.menu_my_id:
+                setTabPosition(4);
                 break;
         }
         return true;
@@ -119,6 +156,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        PgyUpdateManager.unregister();
 //        RongIM.getInstance().removeUnReadMessageCountChangedObserver(unReadMessageObserver);
     }
 }

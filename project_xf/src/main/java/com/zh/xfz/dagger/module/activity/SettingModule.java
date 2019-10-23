@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.zh.xfz.R;
 import com.zh.xfz.business.activity.SettingActivity;
+import com.zh.xfz.utils.LoginUtils;
 
 import core.app.zh.com.core.annotation.ActivityScope;
 import core.app.zh.com.core.listener.impl.ActivityLifecycleCallbackListener;
@@ -30,6 +31,7 @@ public class SettingModule {
                 .positiveText(activity.getResources().getString(R.string.act_create_busi_sure_str))
                 .negativeText(activity.getResources().getString(R.string.rc_cancel))
                 .onPositive((dialog, which) -> {
+                    LoginUtils.clearLoginInfo();
                     RongIM.getInstance().logout();
                     for (Activity activity1 : ActivityLifecycleCallbackListener.sActivityList) {
                         activity1.finish();

@@ -24,6 +24,6 @@ public interface FriendContract {
 
         void loadMore();
 
-//        void addGroup(Set<Integer> select, List<FriendInfo> mDateList);
+        void getTargetUserInfo(String targetId);
     }
 }

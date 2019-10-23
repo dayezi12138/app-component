@@ -73,7 +73,7 @@ public interface MyService {
     @ApiAnnotation("存在公司")
     @POST("Tenant/ExistTenantName")
     @FormUrlEncoded
-    Observable<Data<Object>> existTenantName(@Field("tenantName") String tenantName);
+    Observable<Data<Object>> existTenantName(@Field("tenantName") String tenantName, @Field("userid") String userId, @Field("timeStamp") String timeStamp);
 
     @ApiAnnotation("好友列表")
     @GET("AddressBook/GetUserFriendPageList")

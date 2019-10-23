@@ -5,8 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -18,6 +22,7 @@ import com.zh.xfz.bean.fragment.FriendInfo;
 import com.zh.xfz.business.activity.FriendDetailActivity;
 import com.zh.xfz.business.activity.SearchFriendActivity;
 import com.zh.xfz.business.adapter.ContactAdapter;
+import com.zh.xfz.business.adapter.ContactSearchAdapter;
 import com.zh.xfz.mvp.contract.fragment.ContactContract;
 import com.zh.xfz.mvp.presenter.fragment.ContactPresenter;
 import com.zh.xfz.views.sideBar.PinyinComparator;
@@ -38,6 +43,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseFragment;
 import core.app.zh.com.core.bean.MessageEvent;
+import core.app.zh.com.core.view.ClearEditTextView;
 
 /**
  * author : dayezi
@@ -58,6 +64,18 @@ public class ContactFragment extends BaseFragment implements ContactContract.Con
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
 
+    @BindView(R.id.et_search)
+    ClearEditTextView clearEditTextView;
+
+    @BindView(R.id.search_recycler)
+    RecyclerView searchRecyclerView;
+
+    @BindView(R.id.rl)
+    RelativeLayout relativeLayout;
+
+    @Inject
+    ContactSearchAdapter searchFriendAdapter;
+
     private List<FriendInfo> mDateList = new ArrayList<>();
     private TitleItemDecoration mDecoration;
 
@@ -71,6 +89,7 @@ public class ContactFragment extends BaseFragment implements ContactContract.Con
     Comparator mComparator;
     @Inject
     List<FriendInfo> friendInfoList;
+
 
     @SuppressLint("ValidFragment")
     private ContactFragment() {
@@ -112,9 +131,47 @@ public class ContactFragment extends BaseFragment implements ContactContract.Con
             else
                 ARouter.getInstance().build(FriendDetailActivity.AROUTER_PATH).withSerializable(FriendDetailActivity.FRIEND_DETAIL_KEY, mDateList.get(position)).navigation();
         });
+        searchRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        searchRecyclerView.setAdapter(searchFriendAdapter);
+        searchFriendAdapter.setOnItemClickListener((adapter, view, position) -> ARouter.getInstance().build(FriendDetailActivity.AROUTER_PATH).withSerializable(FriendDetailActivity.FRIEND_DETAIL_KEY, searchFriendAdapter.getData().get(position)).navigation());
         swipeRefreshLayout.setOnRefreshListener(this);
         EventBus.getDefault().register(this);
+        clearEditTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!TextUtils.isEmpty(s.toString())) {
+                    relativeLayout.setVisibility(View.GONE);
+                    searchRecyclerView.setVisibility(View.VISIBLE);
+                    searchFriendAdapter.setNewData(searchValue(s.toString()));
+                } else {
+                    searchRecyclerView.setVisibility(View.GONE);
+                    relativeLayout.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         onRefresh();
+    }
+
+    private List<FriendInfo> searchValue(String value) {
+        List<FriendInfo> list = new ArrayList<>();
+        for (int i = 2, j = mDateList.size(); i < j; i++) {
+            FriendInfo friendInfo = mDateList.get(i);
+            boolean isTrue = friendInfo.getMobile().contains(value) || friendInfo.getName().contains(value);
+            if (!TextUtils.isEmpty(friendInfo.getRemarkName()))
+                isTrue = isTrue || friendInfo.getRemarkName().contains(value);
+            if (isTrue) list.add(friendInfo);
+        }
+        return list;
     }
 
     @Override
@@ -182,4 +239,6 @@ public class ContactFragment extends BaseFragment implements ContactContract.Con
                 break;
         }
     }
+
+
 }

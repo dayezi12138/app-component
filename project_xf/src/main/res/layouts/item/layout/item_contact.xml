@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/toolbar_height"
+    android:layout_height="@dimen/widget_text_height_normal"
     android:background="@drawable/ripper_friend_operation"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/widget_padding_normal">
+    android:paddingLeft="@dimen/widget_padding_normal"
+    android:paddingRight="@dimen/widget_padding_normal">
     <!--android:background="@drawable/select_contact_item"-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,23 +19,22 @@
             android:id="@+id/img"
             android:layout_width="@dimen/widget_text_height_tiny"
             android:layout_height="@dimen/widget_text_height_tiny"
-            android:layout_gravity="center_vertical"
-            android:background="@color/b"
-            app:is_circle="true" />
+            android:layout_gravity="center_vertical" />
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/widget_padding_normal"
-            tools:text="" />
+            android:paddingLeft="@dimen/widget_padding_tiny"
+            android:textColor="#262626"
+            android:textSize="@dimen/font_min_x_sp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider"
+        android:layout_marginLeft="@dimen/text_item_title_height"
         android:background="@color/shadow"
-        android:paddingLeft="@dimen/widget_padding_normal"
         android:paddingRight="@dimen/widget_padding_normal" />
 </LinearLayout>

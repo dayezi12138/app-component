@@ -14,11 +14,10 @@
         android:id="@+id/menu_count_id"
         android:icon="@drawable/ic_add_bold"
         android:title="@string/act_main_bottom_level_str" />
-    <!--<item-->
-    <!--android:id="@+id/menu_controller_id"-->
-    <!--android:icon="@drawable/ic_workbench"-->
-    <!--android:title="@string/act_main_bottom_controller_str"-->
-    <!--/>-->
+    <item
+        android:id="@+id/menu_controller_id"
+        android:icon="@drawable/ic_workbench"
+        android:title="@string/act_main_bottom_controller_str" />
     <item
         android:id="@+id/menu_my_id"
         android:icon="@drawable/ic_user"

@@ -1,12 +1,16 @@
 package com.zh.xfz.business.activity;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
+import com.zh.xfz.mvp.presenter.UserOperationPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,8 +35,8 @@ public class UpdatePasswordActivity extends BaseActivity {
     @BindView(R.id.new_password2_et)
     EditText newPassword2;
 
-//    @Inject
-//    UserOperationPresenter presenter;
+    @Inject
+    UserOperationPresenter presenter;
 
     @NonNull
     @Override
@@ -47,9 +51,14 @@ public class UpdatePasswordActivity extends BaseActivity {
 
     @OnClick(R.id.submit)
     public void submit() {
-//        if (TextUtils.isEmpty(newPassword1.getText().toString()) || TextUtils.isEmpty(newPassword2.getText().toString()))
-//            showMsg("新密码不能为空");
-//        else
-//            presenter.updatePassWord(oldPassowrd.getText().toString(), newPassword1.getText().toString(), newPassword2.getText().toString());
+        if(TextUtils.isEmpty(oldPassowrd.getText().toString())){
+            showMsg("旧密码不能为空");
+            return;
+        }
+        if (TextUtils.isEmpty(newPassword1.getText().toString()) || TextUtils.isEmpty(newPassword2.getText().toString())){
+            showMsg("新密码不能为空");
+            return;
+        }
+            presenter.updatePassWord(oldPassowrd.getText().toString(), newPassword1.getText().toString(), newPassword2.getText().toString());
     }
 }

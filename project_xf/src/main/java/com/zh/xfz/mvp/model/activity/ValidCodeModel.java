@@ -40,7 +40,7 @@ public class ValidCodeModel implements GetMyBaseModelListener {
 
     public void loginOrRegister(String account, String code, boolean register, ObservableListener.SuccessListener successListener) {
         try {
-            BaseObservable observable = new ObservableProvider(activity, successListener).showDialog(false).build(BaseObservable.class);
+            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
             if (!register)
                 myService.register(account, code, "", "", AndroidUtils.getUUID()).subscribe(observable);
             else

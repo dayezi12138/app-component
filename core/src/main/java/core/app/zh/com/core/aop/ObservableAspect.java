@@ -12,9 +12,13 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
+import java.util.List;
+
 import core.app.zh.com.core.annotation.ObservableState;
+import core.app.zh.com.core.bean.BaseObservable;
 import core.app.zh.com.core.enu.ObservableEnum;
 import core.app.zh.com.core.listener.OptionObservableInterceptorListener;
+import core.app.zh.com.core.listener.observable.OptionObservableListener;
 
 /**
  * author : dayezi
@@ -51,6 +55,14 @@ public class ObservableAspect {
         if (observableState != null && observableState.state() == ObservableEnum.FAIL) {
             Throwable ex = (Throwable) joinPoint.getArgs()[0];
             ToastUtils.showShort(TextUtils.isEmpty(ex.getMessage()) ? "未知错误" : ex.getMessage());
+            if (joinPoint.getThis() instanceof BaseObservable) {
+                BaseObservable baseObservable = (BaseObservable) joinPoint.getThis();
+                List<OptionObservableListener> optionObservableListeners = baseObservable.getObservableListeners();
+                for (OptionObservableListener observableListener : optionObservableListeners) {
+                    observableListener.onError(baseObservable.getContext());
+
+                }
+            }
         }
     }
 }

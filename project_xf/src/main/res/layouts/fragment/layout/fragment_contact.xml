@@ -2,44 +2,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/widget_text_height_tiny"-->
-        <!--android:background="@color/white"-->
-        <!--android:paddingLeft="@dimen/widget_padding_tiny"-->
-        <!--android:paddingRight="@dimen/widget_padding_tiny">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_splash_color"
+        android:paddingLeft="@dimen/widget_padding_tiny"
+        android:paddingRight="@dimen/widget_padding_tiny"
+        android:paddingBottom="@dimen/widget_padding_normal">
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:text="通讯录"-->
-            <!--android:textColor="@color/fragment_contact_title_text_color"-->
-            <!--android:textSize="@dimen/font_large_sp"-->
-            <!--android:textStyle="bold" />-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/widget_text_height_tiny"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/widget_margin_tiny"
+            android:layout_marginRight="@dimen/widget_margin_tiny"
+            android:layout_weight="1"
+            android:background="@drawable/shape_search_white_1"
+            android:gravity="center_vertical">
 
-        <!--<ImageView-->
-            <!--android:layout_width="@dimen/widget_margin_large"-->
-            <!--android:layout_height="@dimen/widget_margin_large"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:src="@drawable/ic_add_user" />-->
-    <!--</LinearLayout>-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/widget_margin_tiny"
+                android:src="@drawable/ic_search" />
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@color/white"-->
-        <!--android:orientation="vertical"-->
-        <!--android:paddingBottom="@dimen/widget_padding_normal">-->
+            <core.app.zh.com.core.view.ClearEditTextView
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="搜索"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:textColorHint="@color/fragment_contact_hint_text_color"
+                android:textSize="@dimen/font_min_xx_sp" />
 
-        <!--<include layout="@layout/search_view" />-->
-    <!--</LinearLayout>-->
+        </LinearLayout>
+    </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -64,9 +71,14 @@
             android:layout_alignParentRight="true"
             app:backgroundColor="@color/c"
             app:chooseTextColor="@android:color/white"
-            app:circleRadius="24dp"
             app:hintTextSize="32sp"
-            app:textColor="#BCBCBC"
+            app:textColor="#444444"
             app:textSize="@dimen/font_min_sp" />
     </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/search_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

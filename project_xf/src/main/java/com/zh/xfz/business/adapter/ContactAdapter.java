@@ -1,8 +1,12 @@
 package com.zh.xfz.business.adapter;
 
+import android.net.Uri;
 import android.support.annotation.LayoutRes;
+import android.text.TextUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.fragment.FriendInfo;
@@ -50,6 +54,20 @@ public class ContactAdapter extends MyBaseAdapter<FriendInfo> {
                 button.setTextColor(mContext.getResources().getColor(R.color.item_new_friend_status_1_color));
             }
         }
+        ImageView imageView = helper.getView(R.id.img);
+        if (!TextUtils.isEmpty(item.getUserIcon())) {
+            Glide.with(mContext).load(Uri.parse(item.getUserIcon())).into(imageView);
+        } else {
+            imageView.setBackgroundResource(R.drawable.rc_default_portrait);
+        }
+//        else {
+//            ImageView imageView = helper.getView(R.id.img);
+//            if (!TextUtils.isEmpty(item.getUserIcon())) {
+//                Glide.with(mContext).load(Uri.parse(item.getUserIcon())).into(imageView);
+//            } else {
+//                imageView.setBackgroundResource(R.drawable.rc_default_portrait);
+//            }
+//        }
     }
 
     /**

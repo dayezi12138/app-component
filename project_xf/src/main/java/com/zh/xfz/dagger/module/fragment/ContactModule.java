@@ -1,5 +1,8 @@
 package com.zh.xfz.dagger.module.fragment;
 
+import android.content.ContentResolver;
+import android.content.res.Resources;
+import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.zh.xfz.R;
@@ -44,14 +47,25 @@ public class ContactModule {
         FriendInfo newFriendItem = new FriendInfo();
         newFriendItem.setName(fragment.getResources().getString(R.string.fragment_friend_new_str));
         newFriendItem.setPath(NewFriendActivity.AROUTER_PATH);
-        newFriendItem.setLetters("#");
+        newFriendItem.setLetters("☆");
+        newFriendItem.setUserIcon(imageTranslateUri(fragment, R.drawable.ic_add_friend_1).toString());
         FriendInfo groupItem = new FriendInfo();
         groupItem.setName(fragment.getResources().getString(R.string.fragment_friend_group_str));
         groupItem.setPath(GroupActivity.AROUTER_PATH);
-        groupItem.setLetters("#");
+        groupItem.setLetters("☆");
+        groupItem.setUserIcon(imageTranslateUri(fragment, R.drawable.ic_group_).toString());
         friendInfos.add(groupItem);
         friendInfos.add(newFriendItem);
         return friendInfos;
     }
 
+    private Uri imageTranslateUri(ContactFragment fragment, int resId) {
+        Resources r = fragment.getMyActivity().getResources();
+        Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+                + r.getResourcePackageName(resId) + "/"
+                + r.getResourceTypeName(resId) + "/"
+                + r.getResourceEntryName(resId));
+
+        return uri;
+    }
 }

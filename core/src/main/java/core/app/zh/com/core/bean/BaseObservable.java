@@ -81,5 +81,11 @@ public class BaseObservable<T> implements Observer<T>, OptionObservableIntercept
         return observableInterceptor;
     }
 
+    public List<OptionObservableListener> getObservableListeners() {
+        return observableListeners;
+    }
 
+    public BaseActivity getContext() {
+        return context;
+    }
 }

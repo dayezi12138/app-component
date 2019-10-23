@@ -1,6 +1,7 @@
 package com.zh.xfz.mvp.model.activity;
 
 import com.zh.xfz.api.MyService;
+import com.zh.xfz.bean.activity.TargetUserInfo;
 import com.zh.xfz.bean.fragment.FriendInfo;
 import com.zh.xfz.bean.other.Data;
 import com.zh.xfz.mvp.model.CommonModel;
@@ -64,6 +65,19 @@ public class FriendModel implements GetMyBaseModelListener {
             paramMap.put("ids", ids);
             BaseObservable observable = new ObservableProvider(activity, successListener).showDialog(false).build(BaseObservable.class);
             myService.createGroup(paramMap).subscribe(observable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getTargetUserInfo(String targetId, ObservableListener.SuccessListener<Data<TargetUserInfo>> successListener) {
+        Map<String, String> params = new HashMap<>();
+        params.put("userid", LoginUtils.getUserId());
+        params.put("timeStamp", AndroidUtils.getUUID());
+        params.put("targetid", targetId);
+        try {
+            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
+            myService.getTargetUserInfo(params).subscribe(observable);
         } catch (Exception e) {
             e.printStackTrace();
         }

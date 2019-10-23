@@ -5,22 +5,27 @@ import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.LogUtils;
+import com.pgyersdk.crash.PgyCrashManager;
 import com.zh.api.DefaultBean;
 import com.zh.api.ToolBarInject;
-import com.zh.xfz.business.activity.GroupMemberInfoActivity;
+import com.zh.xfz.bean.fragment.FriendInfo;
+import com.zh.xfz.business.activity.FriendDetailActivity;
 import com.zh.xfz.dagger.component.DaggerMyAppComponent;
 import com.zh.xfz.dagger.component.MyAppComponent;
 import com.zh.xfz.dagger.module.AppModule;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.ButterKnife;
 import core.app.zh.com.core.application.BaseApplication;
+import core.app.zh.com.core.base.BaseActivity;
+import core.app.zh.com.core.listener.AddOptionInPageListener;
 import core.app.zh.com.core.listener.DaggerOptionListener;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Message;
 import io.rong.imlib.model.UserInfo;
-
-import static com.zh.xfz.business.activity.GroupMemberInfoActivity.TARGET_KEY;
-import static com.zh.xfz.business.activity.GroupMemberInfoActivity.USERID_KEY;
 
 /**
  * author : dayezi
@@ -35,6 +40,8 @@ public class MyApplication extends BaseApplication {
         RongIM.init(this);
         ToolBarInject.init(MyApplication.this, () -> new DefaultBean());
         RongIM.getInstance().setConversationClickListener(new MyConversationClickListener());
+        PgyCrashManager.register(this);
+
     }
 
     @Override
@@ -43,11 +50,6 @@ public class MyApplication extends BaseApplication {
         component.inject(this);
         return () -> component;
     }
-//    @Override
-//    protected void attachBaseContext(Context base) {
-//        super.attachBaseContext(base);
-//        MultiDex.install(this);
-//    }
 
     private class MyConversationClickListener implements RongIM.ConversationClickListener {
 
@@ -62,8 +64,18 @@ public class MyApplication extends BaseApplication {
          */
         @Override
         public boolean onUserPortraitClick(Context context, Conversation.ConversationType conversationType, UserInfo user, String targetId) {
-            LogUtils.e(1111);
-            ARouter.getInstance().build(GroupMemberInfoActivity.AROUTER_PATH).withString(TARGET_KEY, targetId).withString(USERID_KEY, user.getUserId()).navigation();
+            if (conversationType == Conversation.ConversationType.GROUP || conversationType == Conversation.ConversationType.PRIVATE) {
+                FriendInfo friendInfo = new FriendInfo();
+                friendInfo.setSourceId(Long.valueOf(user.getUserId()));
+                friendInfo.setTargetId(Long.valueOf(user.getUserId()));
+                ARouter.getInstance().build(FriendDetailActivity.AROUTER_PATH).withSerializable(FriendDetailActivity.FRIEND_DETAIL_KEY, friendInfo).navigation();
+//                ARouter.getInstance().build(GroupMemberInfoActivity.AROUTER_PATH).withString(TARGET_KEY, targetId).withString(USERID_KEY, user.getUserId()).navigation();
+//            } else if (conversationType == Conversation.ConversationType.PRIVATE) {
+//                FriendInfo friendInfo = new FriendInfo();
+//                friendInfo.setSourceId(Long.valueOf(user.getUserId()));
+//                friendInfo.setTargetId(Long.valueOf(targetId));
+//                ARouter.getInstance().build(FriendDetailActivity.AROUTER_PATH).withSerializable(FriendDetailActivity.FRIEND_DETAIL_KEY, friendInfo).navigation();
+            }
             return true;
         }
 
@@ -123,5 +135,22 @@ public class MyApplication extends BaseApplication {
             LogUtils.e(555);
             return false;
         }
+    }
+
+    @Override
+    public List<AddOptionInPageListener> optionActivityList() {
+        List<AddOptionInPageListener> listeners = new ArrayList<>();
+        listeners.add((object, view) -> {
+            ButterKnife.bind(object, view);
+            ARouter.getInstance().inject(object);
+            if (object instanceof BaseActivity)
+                PgyCrashManager.register((Context) object);
+        });
+        return listeners;
+    }
+
+    @Override
+    public void unregister() {
+        PgyCrashManager.unregister();
     }
 }
