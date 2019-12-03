@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="头像" />
+
+        <com.shehuan.niv.NiceImageView
+            android:id="@+id/portrait_iv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="@dimen/widget_margin_tiny"
+            android:layout_marginBottom="@dimen/widget_margin_tiny"
+            android:background="@color/c" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/name_ly"
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/divider"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:text="姓名" />
+
+        <TextView
+            style="@style/Activity.Line.Content.TextView.Style"
+            android:text="" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/divider"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:text="别名" />
+
+        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/divider"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:text="性别" />
+
+        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/company_ly"
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:text="所属企业" />
+
+        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:text="手机" />
+
+        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/divider"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:text="邮箱" />
+
+        <TextView
+            style="@style/Activity.Line.Content.TextView.Style"
+            android:text="" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/divider"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:text="地址" />
+
+        <TextView
+            style="@style/Activity.Line.Content.TextView.Style"
+            android:text="" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:text="对外信息显示" />
+
+        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+</LinearLayout>

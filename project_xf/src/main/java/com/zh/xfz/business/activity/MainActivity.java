@@ -1,12 +1,15 @@
 package com.zh.xfz.business.activity;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.bottomnavigation.LabelVisibilityMode;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -26,7 +29,9 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.listener.AppExitListener;
+import core.app.zh.com.core.listener.LoadingOptionListener;
 import core.app.zh.com.core.utils.BottomNavigationHelper;
+import core.app.zh.com.core.view.MultipleStatusView;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
@@ -39,7 +44,7 @@ import q.rorbin.badgeview.QBadgeView;
  * description:
  */
 @Route(path = MainActivity.AROUTER_PATH)
-public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, LoadingOptionListener<MultipleStatusView> {
     public final static String AROUTER_PATH = "/main/MainActivity/";
     @BindView(R.id.navigation)
     BottomNavigationView bottomNavigationView;
@@ -65,6 +70,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Inject
     RongIMClient.ConnectionStatusListener connectionStatusListener;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+//        setLoadingOptionListener(this);
+        super.onCreate(savedInstanceState);
+    }
 
     @NonNull
     @Override
@@ -158,5 +168,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         super.onDestroy();
         PgyUpdateManager.unregister();
 //        RongIM.getInstance().removeUnReadMessageCountChangedObserver(unReadMessageObserver);
+    }
+
+    @Override
+    public MultipleStatusView getLoadingView() {
+        return (MultipleStatusView) LayoutInflater.from(this).inflate(R.layout.test_1, null);
     }
 }

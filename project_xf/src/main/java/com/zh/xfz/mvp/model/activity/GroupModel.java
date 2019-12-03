@@ -17,7 +17,7 @@ import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.base.BaseView;
 import core.app.zh.com.core.base.MyBaseModel;
 import core.app.zh.com.core.bean.BaseObservable;
-import core.app.zh.com.core.bean.ObservableProvider;
+import core.app.zh.com.core.provider.ObservableProvider;
 import core.app.zh.com.core.listener.GetMyBaseModelListener;
 import core.app.zh.com.core.listener.observable.ObservableListener;
 
@@ -31,6 +31,9 @@ public class GroupModel implements GetMyBaseModelListener {
     private MyService myService;
 
     @Inject
+    ObservableProvider provider;
+
+    @Inject
     public GroupModel(BaseActivity activity, MyService myService) {
         this.activity = activity;
         this.myService = myService;
@@ -41,7 +44,7 @@ public class GroupModel implements GetMyBaseModelListener {
             Map<String, String> params = new HashMap<>();
             params.put("userid", LoginUtils.getUserId());
             params.put("timeStamp", AndroidUtils.getUUID());
-            BaseObservable observable = new ObservableProvider(activity, successListener).showDialog(false).build(BaseObservable.class);
+            BaseObservable observable = provider.successListener(successListener).showDialog(false).build(BaseObservable.class);
             myService.getGroupList(params).subscribe(observable);
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,7 +59,7 @@ public class GroupModel implements GetMyBaseModelListener {
             paramMap.put("timeStamp", AndroidUtils.getUUID());
             paramMap.put("groupName", groupName);
             paramMap.put("ids", ids);
-            BaseObservable observable = new ObservableProvider(activity, successListener).showDialog(false).build(BaseObservable.class);
+            BaseObservable observable = provider.successListener(successListener).showDialog(false).build(BaseObservable.class);
             myService.createGroup(paramMap).subscribe(observable);
         } catch (Exception e) {
             e.printStackTrace();

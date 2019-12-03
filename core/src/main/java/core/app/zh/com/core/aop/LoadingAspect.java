@@ -5,8 +5,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
-import core.app.zh.com.core.listener.LayoutInitListener;
-
 /**
  * author : dayezi
  * data :2019/7/23
@@ -25,10 +23,10 @@ public class LoadingAspect {
 
     @Before("pointcutLoadingShow()")
     public void BeforeShowPoint(JoinPoint joinPoint) {
-        if (joinPoint.getThis() instanceof LayoutInitListener) {
-            LayoutInitListener layoutInitListener = (LayoutInitListener) joinPoint.getThis();
-            layoutInitListener.multipleStatusView().showLoading();
-        }
+//        if (joinPoint.getThis() instanceof LayoutInitListener) {
+//            LayoutInitListener layoutInitListener = (LayoutInitListener) joinPoint.getThis();
+//            layoutInitListener.multipleStatusView().showLoading();
+//        }
 //        if (joinPoint.getThis() instanceof BaseActivity) {
 //            BaseActivity activity = (BaseActivity) joinPoint.getThis();
 //            LoadingProvider provider = activity.getProvider();
@@ -50,10 +48,10 @@ public class LoadingAspect {
 
     @Before("pointcutLoadingHide()")
     public void BeforeHidePoint(JoinPoint joinPoint) {
-        if (joinPoint.getThis() instanceof LayoutInitListener) {
-            LayoutInitListener layoutInitListener = (LayoutInitListener) joinPoint.getThis();
-            layoutInitListener.multipleStatusView().showContent();
-        }
+//        if (joinPoint.getThis() instanceof LayoutInitListener) {
+//            LayoutInitListener layoutInitListener = (LayoutInitListener) joinPoint.getThis();
+//            layoutInitListener.multipleStatusView().showContent();
+//        }
 //        if (joinPoint.getThis() instanceof BaseActivity) {
 //            BaseActivity activity = (BaseActivity) joinPoint.getThis();
 //            LoadingProvider provider = activity.getProvider();

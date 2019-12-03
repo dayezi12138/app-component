@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/widget_margin_large_xx"
+        android:text="1、采用即时通讯，沟通页面\n2、与特定客服用户ID沟通\n(TODO: 需要专业的客户模块，存在1对多，多对多的客户服务场景。客户沟通历史记录;AI客服"
+        android:textSize="@dimen/font_large_x_sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/white"></LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -123,7 +123,7 @@ public class ContactFragment extends BaseFragment implements ContactContract.Con
             }
         });
         contactAdapter.setOnLoadMoreListener(this, mRecyclerView);
-        contactAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
+//        contactAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
         contactAdapter.setEmptyView(R.layout.empty_view);
         contactAdapter.setOnItemClickListener((adapter, view, position) -> {
             if (!TextUtils.isEmpty(mDateList.get(position).getPath()))

@@ -24,8 +24,25 @@
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
-
     <LinearLayout
+        android:id="@+id/my_company_ly"
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_tiny"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="我的企业"
+            android:textColor="@color/fragment_mine_line_text_color"
+            android:textSize="@dimen/font_large_sp" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/help_ly"
         style="@style/LinearLayout.MineFragment.Line.Style"
         android:layout_marginTop="@dimen/widget_margin_tiny"
         android:background="@drawable/ripper_friend_operation">
@@ -66,6 +83,30 @@
             android:textSize="@dimen/font_min_xx_sp" />
 
         <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/clear_ly"
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_tiny"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="清除缓存"
+            android:textColor="@color/fragment_mine_line_text_color"
+            android:textSize="@dimen/font_large_sp" />
+
+        <TextView
+            android:id="@+id/clear_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10.8M"
+            android:textColor="@color/fragment_mine_line_text_color"
+            android:textSize="@dimen/font_min_xx_sp" />
     </LinearLayout>
 
     <TextView

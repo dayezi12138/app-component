@@ -8,14 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.blankj.utilcode.util.LogUtils;
-
 import java.util.ArrayList;
 
 import core.app.zh.com.core.R;
+import core.app.zh.com.core.listener.LoadingOptionListener;
 
 
-public class MultipleStatusView extends FrameLayout {
+public class MultipleStatusView extends FrameLayout implements LoadingOptionListener.OptionContentViewListener {
 
     private int mEmptyViewId, mErrorViewId, mLoadingViewId, contentViewId = NULL_RESOURCE_ID;
     private View mEmptyView, mErrorView, mLoadingView, contentView;
@@ -25,6 +24,12 @@ public class MultipleStatusView extends FrameLayout {
     private final FrameLayout.LayoutParams DEFAULT_LAYOUT_PARAMS = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     private final ArrayList<Integer> mOtherIds = new ArrayList<>();
     private static final int NULL_RESOURCE_ID = -1;
+    public static final int STATUS_CONTENT = 0x00;
+    public static final int STATUS_LOADING = 0x01;
+    public static final int STATUS_EMPTY = 0x02;
+    public static final int STATUS_ERROR = 0x03;
+    public static final int STATUS_NO_NETWORK = 0x04;
+    private int mViewStatus = -1;
 
     public MultipleStatusView(Context context) {
         this(context, null);
@@ -40,99 +45,23 @@ public class MultipleStatusView extends FrameLayout {
         mEmptyViewId = a.getResourceId(R.styleable.MultipleStatusView_emptyView, R.layout.empty_view);
         mErrorViewId = a.getResourceId(R.styleable.MultipleStatusView_errorView, R.layout.error_view);
         mLoadingViewId = a.getResourceId(R.styleable.MultipleStatusView_loadingView, R.layout.loading_view);
-//        contentViewId = a.getResourceId(R.styleable.MultipleStatusView_contentView, -1);
+        contentViewId = a.getResourceId(R.styleable.MultipleStatusView_contentView, NULL_RESOURCE_ID);
         a.recycle();
         mLayoutInflater = LayoutInflater.from(getContext());
     }
 
-    /**
-     * 显示加载中视图
-     */
-    public void showLoading() {
-        showLoading(mLoadingViewId, DEFAULT_LAYOUT_PARAMS);
-    }
-
-    /**
-     * 显示加载中视图
-     *
-     * @param layoutId     自定义布局文件
-     * @param layoutParams 布局参数
-     */
-    public final void showLoading(int layoutId, ViewGroup.LayoutParams layoutParams) {
-        showLoading(null == mLoadingView ? inflateView(layoutId) : mLoadingView, layoutParams);
-    }
-
-    /**
-     * 显示加载中视图
-     *
-     * @param view         自定义视图
-     * @param layoutParams 布局参数
-     */
-    public final void showLoading(View view, ViewGroup.LayoutParams layoutParams) {
-        if (null == mLoadingView) {
-            mLoadingView = view;
-            mLoadingView.setId(R.id.loading_view_id_x);
-            mOtherIds.add(mLoadingView.getId());
-            addView(mLoadingView, 1, layoutParams);
-        }
-        showViewById(mLoadingView.getId());
-    }
-
-    private void showViewById(int viewId) {
-        final int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View view = getChildAt(i);
-            LogUtils.e(view.getId() == viewId);
-            view.setVisibility(view.getId() == viewId ? View.VISIBLE : View.GONE);
-        }
-    }
-
-    private View inflateView(int layoutId) {
-        return mLayoutInflater.inflate(layoutId, null);
-    }
-
-    /**
-     * 显示内容视图
-     */
-    public void showContent() {
-//        if (null == contentView && contentViewId != NULL_RESOURCE_ID) {
-//            contentView = mLayoutInflater.inflate(contentViewId, null);
-//            addView(contentView, 0, DEFAULT_LAYOUT_PARAMS);
-//        }
-        showContentView();
-    }
-
-//    public void contentViewId(@LayoutRes int layoutId) {
-//        contentViewId = layoutId;
-//        if (null == contentView && contentViewId != NULL_RESOURCE_ID) {
-//            contentView = mLayoutInflater.inflate(contentViewId, null);
-//            addView(contentView, 0, DEFAULT_LAYOUT_PARAMS);
-//        }
+//    @Override
+//    protected void onFinishInflate() {
+//        super.onFinishInflate();
 //    }
 
-    public void contentView(View view) {
-        this.contentView = view;
-        contentView.setId(R.id.content_view_id_x);
+    private void showContent() {
+        changeViewStatus(STATUS_CONTENT);
         addView(contentView, 0, DEFAULT_LAYOUT_PARAMS);
-//        if (null == contentView) {
-//            contentView = mLayoutInflater.inflate(contentViewId, null);
-//            addView(contentView, 0, DEFAULT_LAYOUT_PARAMS);
+//        for (int i = 0; i < ((ViewGroup) contentView).getChildCount(); i++) {
+//            LogUtils.e(((ViewGroup) contentView).getChildAt(i));
 //        }
-    }
-
-    private void clear(View... views) {
-        if (null == views) {
-            return;
-        }
-        try {
-            for (View view : views) {
-                if (null != view) {
-                    removeView(view);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        showContentView();
     }
 
     private void showContentView() {
@@ -141,5 +70,26 @@ public class MultipleStatusView extends FrameLayout {
             View view = getChildAt(i);
             view.setVisibility(mOtherIds.contains(view.getId()) ? View.GONE : View.VISIBLE);
         }
+    }
+
+    @Override
+    public void optionContentView(View contentView) {
+        this.contentView = contentView;
+        if (this.contentView != null) showContent();
+    }
+
+    /**
+     * 改变视图状态
+     *
+     * @param newViewStatus 新的视图状态
+     */
+    private void changeViewStatus(int newViewStatus) {
+        if (mViewStatus == newViewStatus) {
+            return;
+        }
+//        if (null != mViewStatusListener) {
+//            mViewStatusListener.onChange(mViewStatus, newViewStatus);
+//        }
+        mViewStatus = newViewStatus;
     }
 }

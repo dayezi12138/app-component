@@ -126,6 +126,13 @@ public class ValidNoteActivity extends BaseActivity implements ValidNoteContract
         finish();
     }
 
+    @Override
+    public void error(String msg) {
+        showMsg(msg);
+        countDownTimer.cancel();
+        refresh();
+    }
+
     private void refresh() {
         refreshTv.setText(getResources().getString(R.string.act_valid_note_refresh_note_str));
         refreshTv.setBackgroundResource(R.drawable.underline_layer_list);

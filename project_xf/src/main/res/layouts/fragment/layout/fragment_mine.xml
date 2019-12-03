@@ -31,6 +31,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -64,6 +66,7 @@
                     </LinearLayout>
 
                     <com.shehuan.niv.NiceImageView
+                        android:id="@+id/img_iv"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
@@ -73,7 +76,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/qcrode_img"
@@ -121,7 +124,7 @@
             android:gravity="center_vertical"
             android:text="设置"
             android:textColor="@color/fragment_mine_line_text_color"
-            android:textSize="@dimen/font_large_sp" />
+            android:textSize="@dimen/font_large_x_sp" />
 
         <include layout="@layout/view_forward" />
     </LinearLayout>

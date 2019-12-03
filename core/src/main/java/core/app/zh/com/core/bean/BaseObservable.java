@@ -12,6 +12,7 @@ import core.app.zh.com.core.interceptor.ObservableInterceptor;
 import core.app.zh.com.core.listener.OptionObservableInterceptorListener;
 import core.app.zh.com.core.listener.observable.ObservableListener;
 import core.app.zh.com.core.listener.observable.OptionObservableListener;
+import core.app.zh.com.core.provider.ObservableProvider;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 

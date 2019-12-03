@@ -27,10 +27,11 @@ public class MyPopupWindow extends PopupWindow {
         this.offsetY = builder.offsetY;
         this.activity = builder.activity;
         this.alpha = builder.alpha;
+        this.setFocusable(true);
         this.setOutsideTouchable(builder.outsideTouchable);
         setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
         setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        ColorDrawable dw = new ColorDrawable(0xb0000000);
+        ColorDrawable dw = new ColorDrawable();
         setBackgroundDrawable(dw);
 //        this.setBackgroundAlpha();//设置屏幕透明度
         if (builder.animationStyle != -1)

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/text_item_title_height"
+    android:layout_marginTop="@dimen/widget_margin_normal"
+    android:paddingLeft="@dimen/widget_padding_tiny"
+    android:paddingRight="@dimen/widget_padding_tiny">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="姓名"
+        android:textColor="@color/text1"
+        android:textSize="@dimen/font_large_sp" />
+
+    <EditText
+        android:id="@+id/text_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:inputType="text"
+        android:paddingLeft="@dimen/widget_padding_large"
+        android:textColor="@color/text1"
+        android:textSize="@dimen/font_min_xx_sp" />
+</LinearLayout>

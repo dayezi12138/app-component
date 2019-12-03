@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/phone_ly"
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:text="手机号" />
+
+        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/update_password_ly"
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:text="修改密码" />
+
+        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.TextView.Style"
+            android:text="绑定微信/微信解绑" />
+
+        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+</LinearLayout>

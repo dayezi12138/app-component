@@ -1,24 +1,21 @@
 package com.zh.xfz.business.fragment;
 
 import android.support.annotation.NonNull;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.blankj.utilcode.util.ConvertUtils;
-import com.blankj.utilcode.util.ScreenUtils;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.UserInfo;
+import com.zh.xfz.business.activity.PersonCardActivity;
+import com.zh.xfz.business.activity.PersonDetailInfoActivity;
 import com.zh.xfz.business.activity.SettingActivity;
 import com.zh.xfz.mvp.contract.activity.UserOperationContract;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import core.app.zh.com.core.base.BaseFragment;
-import core.app.zh.com.core.view.MyPopupWindow;
 
 /**
  * author : dayezi
@@ -32,7 +29,7 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
     @BindView(R.id.name_tv)
     TextView nameTv;
 
-    private MyPopupWindow myPopupWindow;
+//    private MyPopupWindow myPopupWindow;
 
     @NonNull
     @Override
@@ -43,8 +40,8 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
     @Override
     public void init() {
 //        presenter.getUserInfo(LoginUtils.getUserId());
-        myPopupWindow = new MyPopupWindow.Builder(LayoutInflater.from(getMyActivity()).inflate(R.layout.qcrode_view, null), getActivity())
-                .height(ConvertUtils.dp2px(300)).width(ScreenUtils.getScreenWidth() - ScreenUtils.getScreenWidth() / 5).build();
+//        myPopupWindow = new MyPopupWindow.Builder(LayoutInflater.from(getMyActivity()).inflate(R.layout.qcrode_view, null), getActivity())
+//                .height(ConvertUtils.dp2px(300)).width(ScreenUtils.getScreenWidth() - ScreenUtils.getScreenWidth() / 5).build();
     }
 
     @OnClick(R.id.setting_ly)
@@ -62,8 +59,15 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
 
     @OnClick(R.id.qcrode_img)
     public void addressImg() {
-        myPopupWindow.showAtLocation(linearLayout, Gravity.CENTER, 0, 0);
+        ARouter.getInstance().build(PersonCardActivity.AROUTER_PATH).navigation();
+//        myPopupWindow.showAtLocation(linearLayout, Gravity.CENTER, 0, 0);
     }
+
+    @OnClick(R.id.img_iv)
+    public void clickPortrait() {
+        ARouter.getInstance().build(PersonDetailInfoActivity.AROUTER_PATH).navigation();
+    }
+
 
     @Override
     public void userInfoSuccess(UserInfo userInfo) {

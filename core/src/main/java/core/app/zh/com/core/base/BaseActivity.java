@@ -28,8 +28,8 @@ import core.app.zh.com.core.listener.AppExitListener;
 import core.app.zh.com.core.listener.GetActivityListener;
 import core.app.zh.com.core.listener.GetPresenter;
 import core.app.zh.com.core.listener.LayoutInitListener;
+import core.app.zh.com.core.listener.LoadingOptionListener;
 import core.app.zh.com.core.listener.OnChangeToolbarListener;
-import core.app.zh.com.core.view.MultipleStatusView;
 import dagger.android.support.DaggerAppCompatActivity;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -38,8 +38,8 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
     private OnChangeToolbarListener onChangeToolbarListener;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private AppExitListener appExitListener;
-    private View contentView;
-    private MultipleStatusView statusView;
+    private View rootContentView;
+    private LoadingOptionListener loadingOptionListener;
 
 
     @Override
@@ -62,19 +62,20 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
 
 
     @Override
-    public MultipleStatusView multipleStatusView() {
-        return statusView;
-    }
-
-    @Override
     public View beforeInit(LayoutInflater inflater, ViewGroup container) {
         boolean old = oldAddToolbar(container);
         if (!old) newAddToolbar(container);
+        View contentView = null;
+        if (loadingOptionListener != null && loadingOptionListener.getLoadingView() != null) {
+            contentView = loadingOptionListener.getLoadingView();
+        }
         if (layoutId() != 0) {
-//            statusView = (MultipleStatusView) LayoutInflater.from(this).inflate(R.layout.mustate_view, container, false);
-            contentView = inflater.inflate(layoutId(), container, false);
-//            statusView.contentView(contentView);
-            container.addView(contentView);
+            if (contentView != null) {
+                loadingOptionListener.addContentView(inflater.inflate(layoutId(), container, false));
+                rootContentView = contentView;
+            } else
+                rootContentView = inflater.inflate(layoutId(), container, false);
+            container.addView(rootContentView);
         }
         return container;
     }
@@ -169,6 +170,10 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
         this.onChangeToolbarListener = onChangeToolbarListener;
     }
 
+    public void setLoadingOptionListener(LoadingOptionListener loadingOptionListener) {
+        this.loadingOptionListener = loadingOptionListener;
+    }
+
     public CompositeDisposable getCompositeDisposable() {
         return compositeDisposable;
     }
@@ -199,7 +204,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
 
     @Override
     public View myContentView() {
-        return contentView;
+        return rootContentView;
     }
 
 }

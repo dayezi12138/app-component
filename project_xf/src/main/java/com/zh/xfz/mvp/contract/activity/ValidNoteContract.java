@@ -19,6 +19,8 @@ public interface ValidNoteContract {
         void loginOrRegisterSuccess(Account account, String userId);
 
         void registerSuccess(Account account, String userId);
+
+        void error(String msg);
     }
 
     @Deprecated

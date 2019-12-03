@@ -1,5 +1,6 @@
 package com.zh.xfz.business.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -7,11 +8,17 @@ import android.text.TextWatcher;
 import android.widget.Button;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
+import com.zh.xfz.application.MyApplication;
 import com.zh.xfz.mvp.contract.activity.AccountLoginContract;
 import com.zh.xfz.mvp.presenter.activity.AccountLoginPresenter;
+
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -39,6 +46,7 @@ public class AccountLoginActivity extends BaseActivity implements AccountLoginCo
 
     @Inject
     AccountLoginPresenter presenter;
+    private IWXAPI api;
 
     @NonNull
     @Override
@@ -49,6 +57,7 @@ public class AccountLoginActivity extends BaseActivity implements AccountLoginCo
     @Override
     public void init() {
         switchBtn(false);
+        api = WXAPIFactory.createWXAPI(this, MyApplication.APP_ID, false);
         accountEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -78,6 +87,26 @@ public class AccountLoginActivity extends BaseActivity implements AccountLoginCo
     @OnClick(R.id.submit_btn)
     public void submit() {
         presenter.validAccount(accountEt.getText().toString());
+    }
+
+    @OnClick(R.id.wx_login)
+    public void wxLogin() {
+        SendAuth.Req req = new SendAuth.Req();
+        req.scope = "snsapi_userinfo";
+        req.state = String.valueOf(new Date().getTime());
+        api.sendReq(req);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        setIntent(intent);
+        String user_openId = intent.getStringExtra("openId");
+        String accessToken = intent.getStringExtra("accessToken");
+        String refreshToken = intent.getStringExtra("refreshToken");
+        String scope = intent.getStringExtra("scope");
+
     }
 
 }

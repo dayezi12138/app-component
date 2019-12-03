@@ -39,4 +39,19 @@ public class SettingModule {
                 });
         return builder.build();
     }
+
+
+//    @Named("clearMemoryDialog")
+//    @ActivityScope
+//    @Provides
+//    public MaterialDialog clearMomeryDialog(SettingActivity activity) {
+//        MaterialDialog.Builder builder = new MaterialDialog.Builder(activity)
+//                .title("提示")
+//                .content("是否清除缓存")
+//                .negativeColor(activity.getResources().getColor(R.color.background_splash_color))
+//                .positiveColor(activity.getResources().getColor(R.color.background_splash_color))
+//                .positiveText(activity.getResources().getString(R.string.act_create_busi_sure_str))
+//                .negativeText(activity.getResources().getString(R.string.rc_cancel));
+//        return builder.build();
+//    }
 }

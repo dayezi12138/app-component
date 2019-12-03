@@ -34,6 +34,7 @@ import io.rong.imlib.model.UserInfo;
  */
 public class MyApplication extends BaseApplication {
 
+    public static final String APP_ID = "wx4a90d6e11510d88d";
 
     @Override
     public void init(BaseApplication application) {
@@ -41,7 +42,6 @@ public class MyApplication extends BaseApplication {
         ToolBarInject.init(MyApplication.this, () -> new DefaultBean());
         RongIM.getInstance().setConversationClickListener(new MyConversationClickListener());
         PgyCrashManager.register(this);
-
     }
 
     @Override

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/text_item_height"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/select_type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="从相册读取,或者拍照"
+            android:textColor="@color/d"
+            android:textSize="@dimen/font_large_x_sp" />
+
+        <com.shehuan.niv.NiceImageView
+            android:id="@+id/img_iv"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/widget_margin_tiny"
+            android:layout_marginBottom="@dimen/widget_margin_tiny"
+            android:scaleType="fitXY"
+            app:is_circle="true" />
+
+    </LinearLayout>
+
+</LinearLayout>

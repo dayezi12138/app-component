@@ -54,7 +54,7 @@ public class ValidNotePresenter extends BasePresenter<ValidNoteContract.ValidNot
                         view.get().showMsg(msg);
                     }
                 });
-            else view.get().showMsg(accountData.getMsg());
+            else view.get().error(accountData.getMsg());
         });
     }
 }

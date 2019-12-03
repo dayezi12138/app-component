@@ -116,7 +116,7 @@ public class CreateBusinessActivity extends BaseActivity implements BusinessCont
         for (Industry industry : adapter.getSelectData()) {
             industryIds.append(String.valueOf(industry.getID())).append(FLAG_STR);
         }
-        presenter.existTenantName(busiNameEt.getText().toString(), industryIds.substring(0, industryIds.length() - 1));
+        presenter.createTenant(busiNameEt.getText().toString(), industryIds.substring(0, industryIds.length() - 1));
     }
 
     @OnMenuOnclick

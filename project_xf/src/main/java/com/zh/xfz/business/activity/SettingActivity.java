@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 import core.app.zh.com.core.base.BaseActivity;
+import core.app.zh.com.core.utils.DataCleanManager;
 
 /**
  * author : dayezi
@@ -28,7 +29,7 @@ import core.app.zh.com.core.base.BaseActivity;
  * description:
  */
 @Route(path = SettingActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "设置")
 public class SettingActivity extends BaseActivity {
 
@@ -37,8 +38,14 @@ public class SettingActivity extends BaseActivity {
     @BindView(R.id.version)
     TextView versionTv;
 
+    @BindView(R.id.clear_tv)
+    TextView clearTv;
+
     @Inject
     MaterialDialog dialog;
+
+//    @Named("clearMemoryDialog")
+//    MaterialDialog clearMemoryDialog;
 
     @NonNull
     @Override
@@ -49,27 +56,48 @@ public class SettingActivity extends BaseActivity {
     @Override
     public void init() {
         versionTv.setText(MessageFormat.format(getResources().getString(R.string.act_setting_version_str), AppUtils.getAppVersionName()));
+        try {
+            clearTv.setText(DataCleanManager.getTotalCacheSize(this));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressLint("WrongConstant")
     @OnClick(R.id.switch_account_tv)
     public void switchAccount() {
         LoginUtils.clearLoginInfo();
-//        Intent intent = new Intent(this, AccountLoginActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-//                Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        startActivity(intent);
         ARouter.getInstance().build(AccountLoginActivity.AROUTER_PATH).withFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                 Intent.FLAG_ACTIVITY_CLEAR_TASK).navigation();
     }
 
     @OnClick(R.id.setting_ly)
     public void setting() {
-        ARouter.getInstance().build(UpdatePasswordActivity.AROUTER_PATH).navigation();
+        ARouter.getInstance().build(AccountSecurityActivity.AROUTER_PATH).navigation();
     }
 
     @OnClick(R.id.logout)
     public void logout() {
         if (!dialog.isShowing()) dialog.show();
+    }
+
+    @OnClick(R.id.clear_ly)
+    public void clear() {
+        DataCleanManager.clearAllCache(this);
+        try {
+            clearTv.setText(DataCleanManager.getTotalCacheSize(this));
+            showMsg("缓存已清除");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @OnClick(R.id.my_company_ly)
+    public void myCompany() {
+        ARouter.getInstance().build(MyCompanyActivity.AROUTER_PATH).navigation();
+    }
+    @OnClick(R.id.help_ly)
+    public void helpClick(){
+        ARouter.getInstance().build(HelpActivity.AROUTER_PATH).navigation();
     }
 }

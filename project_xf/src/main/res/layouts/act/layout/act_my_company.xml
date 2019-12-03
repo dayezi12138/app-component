@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.Not.Weight.TextView.Style"
+            android:text="切换主企业" />
+
+        <TextView style="@style/Activity.Line.Content.padding.TextView.Style" />
+
+        <include layout="@layout/view_forward"></include>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/widget_padding_normal"
+        android:text="全部所在企业/组织/团队"
+        android:textColor="@color/text666"
+        android:textSize="@dimen/font_min_xx_sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/widget_padding_normal"
+        android:layout_height="match_parent">
+        <include layout="@layout/recycler_" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/search_view_1"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginLeft="@dimen/widget_margin_tiny"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:layout_marginRight="@dimen/widget_margin_tiny"
+        android:layout_marginBottom="@dimen/widget_margin_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/widget_padding_normal">
+
+        <include layout="@layout/recycler_" />
+    </LinearLayout>
+</LinearLayout>

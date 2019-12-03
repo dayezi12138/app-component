@@ -1,4 +1,4 @@
-package core.app.zh.com.core.bean;
+package core.app.zh.com.core.provider;
 
 import android.app.Dialog;
 import android.text.TextUtils;
@@ -10,8 +10,11 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import core.app.zh.com.core.R;
 import core.app.zh.com.core.base.BaseActivity;
+import core.app.zh.com.core.bean.BaseObservable;
 import core.app.zh.com.core.interceptor.ObservableInterceptor;
 import core.app.zh.com.core.listener.observable.ObservableListener;
 import core.app.zh.com.core.listener.observable.OptionObservableListener;
@@ -34,6 +37,16 @@ public class ObservableProvider {
     public ObservableProvider(BaseActivity context, ObservableListener.SuccessListener successListener) {
         this.context = context;
         this.successListener = successListener;
+    }
+
+    @Inject
+    public ObservableProvider(BaseActivity context) {
+        this.context = context;
+    }
+
+    public ObservableProvider successListener(ObservableListener.SuccessListener successListener) {
+        this.successListener = successListener;
+        return this;
     }
 
     public ObservableProvider failListener(ObservableListener.FailListener failListener) {
@@ -97,7 +110,7 @@ public class ObservableProvider {
     }
 
     public OptionObservableListener getDefaultObservableListener() {
-        return new DEFAULT_OPTION_LISTENER(showDialog,title);
+        return new DEFAULT_OPTION_LISTENER(showDialog, title);
     }
 
     private static class DEFAULT_OPTION_LISTENER implements OptionObservableListener {

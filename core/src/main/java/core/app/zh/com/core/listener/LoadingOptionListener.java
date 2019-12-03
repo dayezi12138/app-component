@@ -1,20 +1,24 @@
 package core.app.zh.com.core.listener;
 
-import android.support.annotation.LayoutRes;
+import android.view.View;
 
 /**
  * author : dayezi
- * data :2019/9/12
+ * data :2019/10/25
  * description:
  */
-public interface LoadingOptionListener {
-    default @LayoutRes
-    int loadingLayoutResId() {
-        return -1;
+public interface LoadingOptionListener<T extends View> {
+
+    T getLoadingView();
+
+    default void addContentView(View contentView) {
+        if (getLoadingView() instanceof OptionContentViewListener) {
+            OptionContentViewListener listener = (OptionContentViewListener) getLoadingView();
+            listener.optionContentView(contentView);
+        }
     }
 
-
-//    default boolean isAdd() {
-//        return false;
-//    }
+    interface OptionContentViewListener {
+        void optionContentView(View contentView);
+    }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="@dimen/widget_margin_tiny"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="销副总"
+        android:textColor="#42779F"
+        android:textSize="32sp"></TextView>
+
+    <LinearLayout
+        android:id="@+id/company_ly"
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.Not.Weight.TextView.Style"
+            android:text="企业全称" />
+
+        <TextView style="@style/Activity.Line.Content.padding.TextView.Style" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/divider"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.Not.Weight.TextView.Style"
+            android:text="企业简称" />
+
+        <TextView style="@style/Activity.Line.Content.padding.TextView.Style" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/divider"
+        android:background="@drawable/ripper_friend_operation">
+
+        <TextView
+            style="@style/Activity.Line.Title.Not.Weight.TextView.Style"
+            android:text="创建人" />
+
+        <TextView style="@style/Activity.Line.Content.padding.TextView.Style" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/widget_padding_tiny"
+        android:text="通过新的主体信息验证后，可获得更多权益"
+        android:textColor="@color/text2"
+        android:textSize="@dimen/font_min_xx_sp" />
+</LinearLayout>

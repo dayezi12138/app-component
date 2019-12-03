@@ -18,7 +18,7 @@ import javax.inject.Inject;
 import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.base.MyBaseModel;
 import core.app.zh.com.core.bean.BaseObservable;
-import core.app.zh.com.core.bean.ObservableProvider;
+import core.app.zh.com.core.provider.ObservableProvider;
 import core.app.zh.com.core.listener.GetMyBaseModelListener;
 import core.app.zh.com.core.listener.observable.ObservableListener;
 

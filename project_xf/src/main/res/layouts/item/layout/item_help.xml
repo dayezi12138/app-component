@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text_tv"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/text_item_title_height"
+    android:background="@drawable/ripper_friend_operation"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/widget_padding_tiny"
+    android:paddingRight="@dimen/widget_padding_tiny"
+    android:text="1、 新手指南"
+    android:textColor="@color/text1"
+    android:textSize="@dimen/font_min_xx_sp" />

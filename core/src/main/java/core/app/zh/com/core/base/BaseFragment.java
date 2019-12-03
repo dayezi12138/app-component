@@ -40,24 +40,14 @@ public abstract class BaseFragment extends DaggerFragment implements LayoutInitL
                 activityListener.init(this, rootView);
             }
         }
-//        beforeInitTemp();
         init();
         return rootView;
     }
 
-    @Override
-    public core.app.zh.com.core.view.MultipleStatusView multipleStatusView() {
-        return null;
-    }
-    //    public void beforeInitTemp() {
-//        if (loadingListener != null && loadingListener.loadingView() != null) {
-//            rootLy.addView(loadingListener.loadingView());
-//        }
-//    }
 
     private LinearLayout rootLy;
-//    private StatusViewListener loadingListener;
     private View contentView;
+
     @Override
     public View beforeInit(LayoutInflater inflater, ViewGroup container) {
         boolean old = oldAddToolbar();
@@ -111,13 +101,6 @@ public abstract class BaseFragment extends DaggerFragment implements LayoutInitL
         return false;
     }
 
-//    public StatusViewListener getLoadingListener() {
-//        return loadingListener;
-//    }
-//
-//    public void setLoadingListener(StatusViewListener loadingListener) {
-//        this.loadingListener = loadingListener;
-//    }
 
     @Override
     public View myContentView() {

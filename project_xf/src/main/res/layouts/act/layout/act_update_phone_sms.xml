@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/widget_padding_large_xx"
+        android:paddingRight="@dimen/widget_padding_large_xx">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:minHeight="120dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Activity.Valid.Title.TextView.Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/act_valid_note_title_text_str"
+                android:textColor="@color/text1" />
+
+            <TextView
+                android:id="@+id/phone_tv"
+                style="@style/Activity.Valid.Title.TextView.Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1387132122"
+                android:textColor="@color/text1" />
+        </LinearLayout>
+
+        <core.app.zh.com.core.view.VerifyCodeView
+            android:id="@+id/valid_note_view"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_marginTop="@dimen/widget_margin_normal"
+            app:vcDividerWidth="@dimen/widget_margin_large"
+            app:vcNextWrapperColor="@color/text1"
+            app:vcTextColor="@color/white"
+            app:vcTextCount="6"
+            app:vcTextSize="36sp"
+            app:vcWrapperStrokeWidth="2dp"
+            tools:targetApi="honeycomb" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/refresh_tv"
+                style="@style/EditText.Login.TextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/widget_margin_large"
+                android:textColor="@color/text1"
+                android:text="@string/act_valid_note_refresh_note_str" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider"
+                android:layout_marginTop="@dimen/text_line_space"
+                android:background="@color/sms_valid_code_under_line_color" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
