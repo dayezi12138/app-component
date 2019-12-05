@@ -22,14 +22,19 @@ public interface UserOperationContract {
         void targetUserInfoSuccess(TargetUserInfo userInfo);
     }
 
+    interface AccountSecurityUI extends BaseView {
+        void success();
+//        void bindWx(String code);
+        void relieve();
+    }
+
     interface UserOperationUI extends BaseView {
         default void userInfoSuccess(UserInfo userInfo) {
-
         }
-
     }
-    interface UpdatePersonNameUI extends BaseView{
-      void successData();
+
+    interface UpdatePersonNameUI extends BaseView {
+        void successData();
     }
 
     interface Presenter extends IPresenter {
@@ -52,5 +57,11 @@ public interface UserOperationContract {
         void forgetPassWord(String account, String newpass1, String newpass2, String code);
 
         void updatePersonName(String chineseName);
+
+        void bindWX(String code);
+
+        void wxCheckAndLogin(String code);
+
+        void relieveWXBind();
     }
 }

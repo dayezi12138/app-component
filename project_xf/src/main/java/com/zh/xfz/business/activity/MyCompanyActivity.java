@@ -57,9 +57,14 @@ public class MyCompanyActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
         if (LoginUtils.getTenant() != null) companyTv.setText(LoginUtils.TENANT.getTenantName());
         Account account = LoginUtils.ACCOUNT;
-        if (account != null && account.getTenant() != null && account.getTenant().size() > 0)
+        if (account != null && account.getTenant() != null && account.getTenant().size() > 0) {
             adapter.setNewData(account.getTenant());
-        else endTv.setVisibility(View.GONE);
+            adapter.setOnItemClickListener((adapter, view, position) -> {
+                Account.TenantBean tenantBean = LoginUtils.ACCOUNT.getTenant().get(position);
+                LoginUtils.setTenant(tenantBean);
+                companyTv.setText(LoginUtils.TENANT.getTenantName());
+            });
+        } else endTv.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.company_ly)

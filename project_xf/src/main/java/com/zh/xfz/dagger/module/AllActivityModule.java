@@ -39,6 +39,7 @@ import com.zh.xfz.business.activity.im.ConversationActivity;
 import com.zh.xfz.business.activity.im.ConversationListActivity;
 import com.zh.xfz.business.activity.im.SubConversationListActivity;
 import com.zh.xfz.dagger.module.activity.AccountLoginModule;
+import com.zh.xfz.dagger.module.activity.AccountSecurityModule;
 import com.zh.xfz.dagger.module.activity.AddGroupMembersModule;
 import com.zh.xfz.dagger.module.activity.AddPasswordModule;
 import com.zh.xfz.dagger.module.activity.CompanyModule;
@@ -60,6 +61,7 @@ import com.zh.xfz.dagger.module.activity.SearchFriendModule;
 import com.zh.xfz.dagger.module.activity.SettingModule;
 import com.zh.xfz.dagger.module.activity.UpLoadPortraitModule;
 import com.zh.xfz.dagger.module.activity.UpdatePasswordModule;
+import com.zh.xfz.dagger.module.activity.UpdatePersonNameModule;
 import com.zh.xfz.dagger.module.activity.ValidNoteModule;
 
 import core.app.zh.com.core.annotation.ActivityScope;
@@ -180,7 +182,7 @@ public abstract class AllActivityModule {
     abstract UpLoadPortraitActivity contributeUpLoadPortraitActivityInjector();
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    @ContributesAndroidInjector(modules = {UpdatePersonNameModule.class})
     abstract UpdatePersonNameActivity contributeUpdatePersonNameActivityInjector();
 
     @ActivityScope
@@ -188,7 +190,7 @@ public abstract class AllActivityModule {
     abstract CompanyActivity contributeCompanyActivityInjector();
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    @ContributesAndroidInjector(modules = {AccountSecurityModule.class})
     abstract AccountSecurityActivity contributeAccountSecurityActivityInjector();
 
     @ActivityScope

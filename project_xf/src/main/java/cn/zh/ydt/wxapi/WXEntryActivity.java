@@ -16,6 +16,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zh.xfz.application.MyApplication;
 import com.zh.xfz.business.activity.AccountLoginActivity;
+import com.zh.xfz.business.activity.AccountSecurityActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -116,9 +117,15 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         if (resp.getType() == ConstantsAPI.COMMAND_SENDAUTH) {
             SendAuth.Resp authResp = (SendAuth.Resp) resp;
             final String code = authResp.code;
-            NetworkUtil.sendWxAPI(handler, String.format("https://api.weixin.qq.com/sns/oauth2/access_token?" +
-                            "appid=%s&secret=%s&code=%s&grant_type=authorization_code", MyApplication.APP_ID,
-                    APP_SECRETE, code), NetworkUtil.GET_TOKEN);
+            if (!authResp.state.equals("AccountSecurityActivity"))
+                NetworkUtil.sendWxAPI(handler, String.format("https://api.weixin.qq.com/sns/oauth2/access_token?" +
+                                "appid=%s&secret=%s&code=%s&grant_type=authorization_code", MyApplication.APP_ID,
+                        APP_SECRETE, code), NetworkUtil.GET_TOKEN);
+            else {
+                Intent intent = new Intent(this, AccountSecurityActivity.class);
+                intent.putExtra(AccountSecurityActivity.AUTHOR_CODE, authResp.code);
+                startActivity(intent);
+            }
         }
         finish();
     }

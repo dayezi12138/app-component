@@ -117,8 +117,8 @@ public class UserOperationModel implements GetMyBaseModelListener {
         }
     }
 
-    public void updatePersonName(Map<String,String> parms, ObservableListener.SuccessListener<Data<Object>> successListener){
-       try {
+    public void updatePersonName(Map<String, String> parms, ObservableListener.SuccessListener<Data<Object>> successListener) {
+        try {
             BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
             myService.updatePersonName(parms).subscribe(observable);
         } catch (Exception e) {
@@ -126,6 +126,43 @@ public class UserOperationModel implements GetMyBaseModelListener {
         }
 
 
+    }
+
+    public void bindWxOpenID(String code, ObservableListener.SuccessListener<Data<Object>> successListener) {
+        try {
+            Map<String, String> paramMap = new HashMap<>();
+            paramMap.put("userid", LoginUtils.getUserId());
+            paramMap.put("timeStamp", AndroidUtils.getUUID());
+            paramMap.put("code", code);
+            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
+            myService.bindWxOpenID(paramMap).subscribe(observable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void wxCheckAndLogin(String code, ObservableListener.SuccessListener<Data<Object>> successListener) {
+        try {
+            Map<String, String> paramMap = new HashMap<>();
+            paramMap.put("timeStamp", AndroidUtils.getUUID());
+            paramMap.put("code", code);
+            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
+            myService.bindWxOpenID(paramMap).subscribe(observable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void relieveWXBind(ObservableListener.SuccessListener<Data<Object>> successListener) {
+        try {
+            Map<String, String> paramMap = new HashMap<>();
+            paramMap.put("timeStamp", AndroidUtils.getUUID());
+            paramMap.put("userid", LoginUtils.getUserId());
+            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
+            myService.relieveWXBind(paramMap).subscribe(observable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

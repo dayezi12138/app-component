@@ -13,6 +13,7 @@ public class Constans {
     public final static String IM_TOKEN = "token";
     public final static String USER_INFO_JSON_DATA_KEY = "userInfo.jsonData";
     public final static String USER_COMPANY = "user.company";
+    public final static String BIND_WX = "bind.wx";
 
     public final static String[] SECTION_STR = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z".split(",");
 

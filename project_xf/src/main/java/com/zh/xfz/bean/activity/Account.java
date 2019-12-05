@@ -33,9 +33,17 @@ public class Account {
     private Object LastLoginTenantID;
     private int Points;
     private String TimeStamp;
-    private Object WXOpenID;
+    private String WXOpenID;
     private String Token;
     private List<TenantBean> Tenant;
+
+    public String getWXOpenID() {
+        return WXOpenID;
+    }
+
+    public void setWXOpenID(String WXOpenID) {
+        this.WXOpenID = WXOpenID;
+    }
 
     public int getID() {
         return ID;
@@ -109,13 +117,6 @@ public class Account {
         this.TimeStamp = TimeStamp;
     }
 
-    public Object getWXOpenID() {
-        return WXOpenID;
-    }
-
-    public void setWXOpenID(Object WXOpenID) {
-        this.WXOpenID = WXOpenID;
-    }
 
     public String getToken() {
         return Token;

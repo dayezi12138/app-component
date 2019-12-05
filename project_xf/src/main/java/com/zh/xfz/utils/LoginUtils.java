@@ -1,9 +1,11 @@
 package com.zh.xfz.utils;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.StringUtils;
 import com.google.gson.Gson;
 import com.zh.xfz.bean.activity.Account;
 
+import static com.zh.xfz.constans.Constans.BIND_WX;
 import static com.zh.xfz.constans.Constans.FLAG_STR;
 import static com.zh.xfz.constans.Constans.IM_TOKEN;
 import static com.zh.xfz.constans.Constans.USER_COMPANY;
@@ -27,6 +29,7 @@ public class LoginUtils {
             SPUtils.getInstance().put(USER_COMPANY, new Gson().toJson(account.getTenant().get(0)));
             TENANT = account.getTenant().get(0);
         }
+        SPUtils.getInstance().put(BIND_WX, StringUtils.isEmpty(account.getWXOpenID()) ? false : true);
     }
 
     public static void clearLoginInfo() {
@@ -34,6 +37,7 @@ public class LoginUtils {
         SPUtils.getInstance().remove(IM_TOKEN);
         SPUtils.getInstance().remove(USER_INFO_JSON_DATA_KEY);
         SPUtils.getInstance().remove(USER_COMPANY);
+        SPUtils.getInstance().remove(BIND_WX);
     }
 
     public static String getUserId() {
@@ -41,8 +45,10 @@ public class LoginUtils {
     }
 
     public static Account getUserInfo() {
+        if (ACCOUNT != null) return ACCOUNT;
         if (SPUtils.getInstance().contains(USER_INFO_JSON_DATA_KEY)) {
             Account userInfo = new Gson().fromJson(SPUtils.getInstance().getString(USER_INFO_JSON_DATA_KEY), Account.class);
+            ACCOUNT = userInfo;
             return userInfo;
         }
         return null;
@@ -61,5 +67,13 @@ public class LoginUtils {
     public static void setTenant(Account.TenantBean tenantBean) {
         SPUtils.getInstance().put(USER_COMPANY, new Gson().toJson(tenantBean));
         TENANT = tenantBean;
+    }
+
+    public static boolean isIsBindWX() {
+        return SPUtils.getInstance().contains(BIND_WX) ? SPUtils.getInstance().getBoolean(BIND_WX) : false;
+    }
+
+    public static void setBindWX(boolean isBind) {
+        SPUtils.getInstance().put(BIND_WX, isBind);
     }
 }

@@ -7,11 +7,11 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.TargetUserInfo;
-import com.zh.xfz.bean.other.Data;
 import com.zh.xfz.business.activity.CreateBusinessActivity;
 import com.zh.xfz.business.activity.MainActivity;
 import com.zh.xfz.mvp.contract.activity.UserOperationContract;
@@ -29,9 +29,7 @@ import javax.inject.Inject;
 
 import core.app.zh.com.core.base.BasePresenter;
 import core.app.zh.com.core.base.BaseView;
-import core.app.zh.com.core.listener.observable.ObservableListener;
 import io.rong.imkit.RongIM;
-import io.rong.imlib.IFwLogCallback;
 import io.rong.imlib.model.UserInfo;
 import q.rorbin.badgeview.Badge;
 
@@ -202,19 +200,48 @@ public class UserOperationPresenter extends BasePresenter<BaseView> implements U
         Map<String, String> params = new HashMap<>();
         params.put("userid", LoginUtils.getUserId());
         params.put("timeStamp", AndroidUtils.getUUID());
-        params.put("chineseName",chineseName);
+        params.put("chineseName", chineseName);
         params.put("icon", "");
         model.updatePersonName(params, data -> {
-            if (data.getCode()== 0 ){
-              if(view.get() instanceof UserOperationContract.UpdatePersonNameUI)  {
-                  UserOperationContract.UpdatePersonNameUI ui = (UserOperationContract.UpdatePersonNameUI) view.get();
-                  ui.successData();
-              }else view.get().showMsg("该页面没绑定");
+            if (data.getCode() == 0) {
+                if (view.get() instanceof UserOperationContract.UpdatePersonNameUI) {
+                    UserOperationContract.UpdatePersonNameUI ui = (UserOperationContract.UpdatePersonNameUI) view.get();
+                    ui.successData();
+                } else view.get().showMsg("该页面没绑定");
 
-            }
-            else {
+            } else {
                 view.get().showMsg(data.getMsg());
             }
+        });
+    }
+
+    @Override
+    public void bindWX(String code) {
+        model.bindWxOpenID(code, data -> {
+            if (data.getCode() == 0 && view.get() instanceof UserOperationContract.AccountSecurityUI) {
+                UserOperationContract.AccountSecurityUI accountSecurityUI = (UserOperationContract.AccountSecurityUI) view.get();
+                accountSecurityUI.success();
+            } else view.get().showMsg(data.getMsg());
+        });
+    }
+
+    @Override
+    public void wxCheckAndLogin(String code) {
+        model.wxCheckAndLogin(code, data -> {
+            if (data.getCode() == 40097) {
+                bindWX(code);
+            } else view.get().showMsg(data.getMsg());
+            LogUtils.e(data);
+        });
+    }
+
+    @Override
+    public void relieveWXBind() {
+        model.relieveWXBind(data -> {
+            if (data.getCode() == 0 && view.get() instanceof UserOperationContract.AccountSecurityUI) {
+                UserOperationContract.AccountSecurityUI accountSecurityUI = (UserOperationContract.AccountSecurityUI) view.get();
+                accountSecurityUI.relieve();
+            } else view.get().showMsg(data.getMsg());
         });
     }
 

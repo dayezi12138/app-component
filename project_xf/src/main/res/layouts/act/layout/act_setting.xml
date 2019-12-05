@@ -14,47 +14,36 @@
         android:background="@drawable/ripper_friend_operation">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="账户与安全"
-            android:textColor="@color/fragment_mine_line_text_color"
-            android:textSize="@dimen/font_large_sp" />
+            style="@style/TextView.MineFragment.line.left.Style"
+            android:text="账户与安全" />
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/my_company_ly"
         style="@style/LinearLayout.MineFragment.Line.Style"
         android:layout_marginTop="@dimen/widget_margin_tiny"
-        android:background="@drawable/ripper_friend_operation">
+        android:background="@drawable/ripper_friend_operation"
+        android:visibility="gone">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="我的企业"
-            android:textColor="@color/fragment_mine_line_text_color"
-            android:textSize="@dimen/font_large_sp" />
+            style="@style/TextView.MineFragment.line.left.Style"
+            android:text="我的企业" />
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/help_ly"
         style="@style/LinearLayout.MineFragment.Line.Style"
         android:layout_marginTop="@dimen/widget_margin_tiny"
-        android:background="@drawable/ripper_friend_operation">
+        android:background="@drawable/ripper_friend_operation"
+        android:visibility="gone">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="帮助与反馈"
-            android:textColor="@color/fragment_mine_line_text_color"
-            android:textSize="@dimen/font_large_sp" />
+            style="@style/TextView.MineFragment.line.left.Style"
+            android:text="帮助与反馈" />
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
@@ -65,22 +54,13 @@
         android:background="@drawable/ripper_friend_operation">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="关于销副总"
-            android:textColor="@color/fragment_mine_line_text_color"
-            android:textSize="@dimen/font_large_sp" />
+            style="@style/TextView.MineFragment.line.left.Style"
+            android:text="关于销副总" />
 
         <TextView
             android:id="@+id/version"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="版本1.0.0"
-            android:textColor="@color/fragment_mine_line_text_color"
-            android:textSize="@dimen/font_min_xx_sp" />
+            style="@style/TextView.MineFragment.line.right.Style"
+            android:text="版本1.0.0" />
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
@@ -92,13 +72,8 @@
         android:background="@drawable/ripper_friend_operation">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="清除缓存"
-            android:textColor="@color/fragment_mine_line_text_color"
-            android:textSize="@dimen/font_large_sp" />
+            style="@style/TextView.MineFragment.line.left.Style"
+            android:text="清除缓存" />
 
         <TextView
             android:id="@+id/clear_tv"
@@ -113,7 +88,7 @@
         android:id="@+id/switch_account_tv"
         style="@style/LinearLayout.MineFragment.Line.Style"
         android:layout_marginTop="@dimen/widget_margin_tiny"
-        android:background="@drawable/ripper_friend_operation"
+        android:background="@drawable/ripper_line"
         android:gravity="center"
         android:text="切换账号"
         android:textColor="@color/fragment_mine_line_text_color"
@@ -123,9 +98,9 @@
         android:id="@+id/logout"
         style="@style/LinearLayout.MineFragment.Line.Style"
         android:layout_marginTop="@dimen/widget_margin_tiny"
-        android:background="@drawable/ripper_friend_operation"
+        android:background="@drawable/ripper_line"
         android:gravity="center"
         android:text="退出登录"
-        android:textColor="@color/fragment_mine_line_text_color"
+        android:textColor="#FF000A"
         android:textSize="@dimen/font_large_sp" />
 </LinearLayout>

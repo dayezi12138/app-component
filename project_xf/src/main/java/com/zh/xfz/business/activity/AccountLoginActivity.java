@@ -100,7 +100,6 @@ public class AccountLoginActivity extends BaseActivity implements AccountLoginCo
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-
         setIntent(intent);
         String user_openId = intent.getStringExtra("openId");
         String accessToken = intent.getStringExtra("accessToken");

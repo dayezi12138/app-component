@@ -60,7 +60,8 @@
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
         <activity android:name=".business.activity.UpdatePersonNameActivity" />
         <activity android:name=".business.activity.CompanyActivity" />
-        <activity android:name=".business.activity.AccountSecurityActivity" />
+        <activity android:name=".business.activity.AccountSecurityActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".business.activity.UpdatePhoneActivity" />
         <activity android:name=".business.activity.UpdatePhoneSmsActivity" />
         <activity android:name=".business.activity.MyCompanyActivity" />

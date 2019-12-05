@@ -176,4 +176,18 @@ public interface MyService {
     @POST("User/UpdateUserInfo")
     @FormUrlEncoded
     Observable<Data<Object>> updatePersonName(@FieldMap Map<String, String> paramMap);
+
+    @ApiAnnotation("登录后绑定微信")
+    @POST("User/BindWxOpenID")
+    @FormUrlEncoded
+    Observable<Data<Object>> bindWxOpenID(@FieldMap Map<String, String> paramMap);
+
+    @ApiAnnotation("微信检查并登录")
+    @POST("User/WxCheckAndLogin")
+    @FormUrlEncoded
+    Observable<Data<Object>> wxCheckAndLogin(@FieldMap Map<String, String> paramMap);
+    @ApiAnnotation("解除微信绑定")
+    @POST("User/RelieveWXBind")
+    @FormUrlEncoded
+    Observable<Data<Object>> relieveWXBind(@FieldMap Map<String, String> paramMap);
 }

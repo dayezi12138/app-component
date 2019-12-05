@@ -7,43 +7,54 @@
     <LinearLayout
         android:id="@+id/phone_ly"
         style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/widget_margin_normal"
         android:background="@drawable/ripper_friend_operation">
 
         <TextView
-            style="@style/Activity.Line.Title.TextView.Style"
+            style="@style/TextView.MineFragment.line.left.Style"
             android:text="手机号" />
 
-        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+        <TextView style="@style/TextView.MineFragment.line.right.Style" />
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
+
+    <include layout="@layout/common_line" />
 
     <LinearLayout
         android:id="@+id/update_password_ly"
         style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/widget_margin_normal"
         android:background="@drawable/ripper_friend_operation">
 
         <TextView
-            style="@style/Activity.Line.Title.TextView.Style"
+            style="@style/TextView.MineFragment.line.left.Style"
             android:text="修改密码" />
 
-        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+        <TextView style="@style/TextView.MineFragment.line.right.Style" />
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/bind_wx_ly"
         style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/widget_margin_normal"
-        android:background="@drawable/ripper_friend_operation">
+        android:layout_marginTop="@dimen/widget_margin_tiny"
+        android:background="@drawable/ripper_line">
+
+        <ImageView
+            android:layout_width="@dimen/widget_edittext_height_tiny"
+            android:layout_height="@dimen/widget_edittext_height_tiny"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_wx_green" />
 
         <TextView
-            style="@style/Activity.Line.Title.TextView.Style"
-            android:text="绑定微信/微信解绑" />
+            style="@style/TextView.MineFragment.line.left.Style"
+            android:text="微信" />
 
-        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+        <TextView
+            android:id="@+id/visible_tv"
+            style="@style/TextView.MineFragment.line.right.Style"
+            android:text="已绑定"
+            android:visibility="gone" />
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
