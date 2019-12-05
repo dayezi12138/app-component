@@ -5,6 +5,10 @@ import android.annotation.SuppressLint;
 import com.blankj.utilcode.util.ProcessUtils;
 import com.blankj.utilcode.util.Utils;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 
@@ -18,7 +22,7 @@ public class IMUtils {
     public static void connect(String token, IMConnectCallBack connectCallBack) {
 //        LoginUtils.clearLoginInfo();
         if (Utils.getApp().getApplicationInfo().packageName.equals(ProcessUtils.getForegroundProcessName())) {
-            RongIM.connect(token, new RongIMClient.ConnectCallback() {
+            Observable.create((ObservableOnSubscribe<String>) emitter -> RongIM.connect(token, new RongIMClient.ConnectCallback() {
 
                 /**
                  * Token 错误。可以从下面两点检查 1.  Token 是否过期，如果过期您需要向 App Server 重新请求一个新的 Token
@@ -36,7 +40,8 @@ public class IMUtils {
                 @SuppressLint("WrongConstant")
                 @Override
                 public void onSuccess(String userid) {
-                    connectCallBack.success( userid);
+                    emitter.onNext(userid);
+//                    connectCallBack.success(userid);
                 }
 
                 /**
@@ -45,9 +50,61 @@ public class IMUtils {
                  */
                 @Override
                 public void onError(RongIMClient.ErrorCode errorCode) {
-                    connectCallBack.fail(errorCode.getMessage());
+                    emitter.onError(new Throwable(errorCode.getMessage()));
+//                    connectCallBack.fail(errorCode.getMessage());
+                }
+            })).subscribe(new Observer<String>() {
+                @Override
+                public void onSubscribe(Disposable d) {
+                    if (d.isDisposed())
+                        d.dispose();
+                }
+
+                @Override
+                public void onNext(String s) {
+                    connectCallBack.success(s);
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    connectCallBack.fail(e.getMessage());
+                }
+
+                @Override
+                public void onComplete() {
+
                 }
             });
+//            RongIM.connect(token, new RongIMClient.ConnectCallback() {
+//
+//                /**
+//                 * Token 错误。可以从下面两点检查 1.  Token 是否过期，如果过期您需要向 App Server 重新请求一个新的 Token
+//                 *                  2.  token 对应的 appKey 和工程里设置的 appKey 是否一致
+//                 */
+//                @Override
+//                public void onTokenIncorrect() {
+//
+//                }
+//
+//                /**
+//                 * 连接融云成功
+//                 * @param userid 当前 token 对应的用户 id
+//                 */
+//                @SuppressLint("WrongConstant")
+//                @Override
+//                public void onSuccess(String userid) {
+//                    connectCallBack.success( userid);
+//                }
+//
+//                /**
+//                 * 连接融云失败
+//                 * @param errorCode 错误码，可到官网 查看错误码对应的注释
+//                 */
+//                @Override
+//                public void onError(RongIMClient.ErrorCode errorCode) {
+//                    connectCallBack.fail(errorCode.getMessage());
+//                }
+//            });
         }
     }
 

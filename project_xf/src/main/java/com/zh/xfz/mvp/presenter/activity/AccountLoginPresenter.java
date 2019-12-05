@@ -35,31 +35,6 @@ public class AccountLoginPresenter extends BasePresenter<AccountLoginContract.Ac
             view.get().showMsg("输入账号不能为空");
             return;
         }
-//        if (SPUtils.getInstance().contains(USER_INFO) && SPUtils.getInstance().getString(USER_INFO).equals(account)) {
-//
-////            String userId = SPUtils.getInstance().getString(USER_INFO).split(FLAG_STR)[0];
-////            model.getInfo(userId, (ObservableListener.SuccessListener<Data<UserInfo>>) data -> {
-////                if (data.getCode() == -1) {
-//            Dialog dialog = defaultDialog(model.getMyBaseModel().getMyActivity());
-//            dialog.show();
-//            IMUtils.connect(SPUtils.getInstance().getString(IM_TOKEN), new IMConnectCallBack() {
-//                @SuppressLint("WrongConstant")
-//                @Override
-//                public void success(String userId) {
-//                    dialog.dismiss();
-//                    ARouter.getInstance().build(CreateBusinessActivity.AROUTER_PATH).navigation();
-//                }
-//
-//                @Override
-//                public void fail(String msg) {
-//                    view.get().showMsg(msg);
-//                    dialog.dismiss();
-//                }
-//            });
-////                }
-////            });
-////            return;
-//        }
         model.validAccount(account, validAccount -> {
 //            if (validAccount.getCode() == 40003) {
 //                ARouter.getInstance().build(ValidNoteActivity.AROUTER_PATH).withString(ValidNoteActivity.ACCOUNT_KEY, account)

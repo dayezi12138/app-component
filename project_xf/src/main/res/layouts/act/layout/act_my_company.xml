@@ -2,18 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/company_ly"
         style="@style/LinearLayout.MineFragment.Line.Style"
         android:layout_marginTop="@dimen/widget_margin_normal"
         android:background="@drawable/ripper_friend_operation">
 
         <TextView
             style="@style/Activity.Line.Title.Not.Weight.TextView.Style"
+            android:layout_weight="1"
             android:text="切换主企业" />
 
-        <TextView style="@style/Activity.Line.Content.padding.TextView.Style" />
+        <TextView
+            android:id="@+id/company_tv"
+            style="@style/Activity.Line.Content..Not.Weight.padding.TextView.Style" />
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
@@ -21,14 +26,24 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/widget_padding_normal"
+        android:layout_marginTop="@dimen/widget_margin_tiny"
+        android:padding="@dimen/widget_padding_tiny"
         android:text="全部所在企业/组织/团队"
         android:textColor="@color/text666"
-        android:textSize="@dimen/font_min_xx_sp" />
-    <LinearLayout
+        android:textSize="@dimen/font_min_x_sp" />
+
+    <include layout="@layout/recycler_" />
+    <TextView
+        android:id="@+id/end_tv"
         android:layout_width="match_parent"
-        android:paddingTop="@dimen/widget_padding_normal"
-        android:layout_height="match_parent">
-        <include layout="@layout/recycler_" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:padding="@dimen/widget_padding_tiny"
+        android:gravity="center"
+        android:textSize="@dimen/font_min_x_sp"
+        android:text="已全部加载完毕"/>
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+    <!--<include layout="@layout/recycler_" />-->
+    <!--</LinearLayout>-->
 </LinearLayout>

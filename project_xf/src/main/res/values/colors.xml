@@ -8,7 +8,7 @@
     <color name="act_background_color_w">#EFEEEE</color>
     <color name="act_background_color_g">#FCFCF1</color>
     <color name="translucent">#50000000</color>
-    <color name="background_color">#E7E7E7</color>
+    <color name="background_color">#F6F6F6</color>
     <color name="un_select_create_busi_color">#DADAD9</color>
 
 </resources>

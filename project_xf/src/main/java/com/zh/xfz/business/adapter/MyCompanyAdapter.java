@@ -1,7 +1,10 @@
 package com.zh.xfz.business.adapter;
 
+import android.view.View;
+
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zh.xfz.R;
+import com.zh.xfz.bean.activity.Account;
 
 import java.util.ArrayList;
 
@@ -14,15 +17,24 @@ import core.app.zh.com.core.base.MyBaseAdapter;
  * data :2019/10/30
  * description:
  */
-public class MyCompanyAdapter extends MyBaseAdapter<Object> {
+public class MyCompanyAdapter extends MyBaseAdapter<Account.TenantBean> {
+    private boolean visibility = true;
 
     @Inject
     public MyCompanyAdapter() {
         super(R.layout.item_my_company, new ArrayList<>());
     }
 
-    @Override
-    protected void convert(BaseViewHolder helper, Object item) {
+    public MyCompanyAdapter(boolean visibility) {
+        super(R.layout.item_my_company, new ArrayList<>());
+        this.visibility = visibility;
+    }
 
+    @Override
+    protected void convert(BaseViewHolder helper, Account.TenantBean item) {
+        helper.setText(R.id.name_tv, item.getTenantName());
+        if (visibility)
+            helper.getView(R.id.vip_iv).setVisibility(View.VISIBLE);
+        else helper.getView(R.id.vip_iv).setVisibility(View.GONE);
     }
 }

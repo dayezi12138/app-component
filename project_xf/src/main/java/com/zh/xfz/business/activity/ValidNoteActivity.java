@@ -141,7 +141,6 @@ public class ValidNoteActivity extends BaseActivity implements ValidNoteContract
 
     @OnClick(R.id.refresh_tv)
     public void refreshSms() {
-//        userOperationPresenter.getCode(account, isRegister);
         presenter.getCode(account, existAccount);
         countDownTimer.start();
     }

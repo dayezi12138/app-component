@@ -16,6 +16,7 @@ import com.zh.xfz.R;
 import com.zh.xfz.application.MyApplication;
 import com.zh.xfz.utils.IM.IMConnectCallBack;
 import com.zh.xfz.utils.IM.IMUtils;
+import com.zh.xfz.utils.LoginUtils;
 
 import butterknife.ButterKnife;
 import cn.zh.ydt.wxapi.AppRegister;
@@ -41,8 +42,8 @@ public class SplashActivity extends AppCompatActivity {
             IMUtils.connect(SPUtils.getInstance().getString(IM_TOKEN), new IMConnectCallBack() {
                 @Override
                 public void success(String userid) {
+                    LoginUtils.ACCOUNT = LoginUtils.getUserInfo();
                     start(true);
-//                    ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
                 }
 
                 @Override

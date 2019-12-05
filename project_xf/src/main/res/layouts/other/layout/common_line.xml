@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <View xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Common_Divider"
-    android:background="@color/holo_gray" />
+    android:background="#E0E0E0" />

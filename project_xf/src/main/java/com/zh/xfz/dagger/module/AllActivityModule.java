@@ -26,6 +26,7 @@ import com.zh.xfz.business.activity.NewFriendActivity;
 import com.zh.xfz.business.activity.PersonCardActivity;
 import com.zh.xfz.business.activity.PersonDetailInfoActivity;
 import com.zh.xfz.business.activity.SearchFriendActivity;
+import com.zh.xfz.business.activity.SelectCompanyActivity;
 import com.zh.xfz.business.activity.SettingActivity;
 import com.zh.xfz.business.activity.TestActivity;
 import com.zh.xfz.business.activity.UpLoadPortraitActivity;
@@ -217,4 +218,8 @@ public abstract class AllActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = {EmptyModule.class})
     abstract CsrActivity contributeCsrActivityInjector();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    abstract SelectCompanyActivity contributeSelectCompanyActivityInjector();
 }

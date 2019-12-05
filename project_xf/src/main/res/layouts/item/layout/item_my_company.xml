@@ -3,15 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/text_item_title_height"
     android:orientation="horizontal"
+    android:background="@drawable/ripper_friend_operation"
+    android:layout_marginTop="@dimen/divider"
     android:paddingLeft="@dimen/widget_padding_tiny"
     android:paddingRight="@dimen/widget_padding_tiny">
 
     <TextView
+        android:id="@+id/name_tv"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:text="浙江XXXX信息科技有限公司"
-        android:textColor="@color/text666"
+        android:textColor="@color/text1"
         android:textSize="@dimen/font_min_xx_sp" />
 
     <LinearLayout
@@ -20,17 +23,17 @@
         android:layout_weight="1">
 
         <ImageView
+            android:id="@+id/vip_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/widget_padding_tiny"
             android:src="@drawable/ic_vip" />
     </LinearLayout>
-
-    <Button
-        android:layout_width="80dp"
-        android:layout_height="@dimen/widget_text_height_tiny"
-        android:gravity="center"
-        android:text="管理"
-        android:textColor="@color/text1" />
+    <include layout="@layout/view_forward" />
+    <!--<Button-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="@dimen/widget_text_height_tiny"-->
+        <!--android:gravity="center"-->
+        <!--android:text="管理"-->
+        <!--android:textColor="@color/text1" />-->
 </LinearLayout>

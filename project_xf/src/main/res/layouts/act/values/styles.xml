@@ -58,15 +58,19 @@
         <item name="android:paddingLeft">@dimen/widget_padding_normal</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/text2</item>
-        <item name="android:textSize">@dimen/font_large_x_sp</item>
+        <item name="android:textSize">@dimen/font_min_xx_sp</item>
     </style>
-
+    <style name="Activity.Line.Content..Not.Weight.padding.TextView.Style" parent="Activity.Line.Content.TextView.Style">
+        <item name="android:paddingLeft">@dimen/widget_padding_normal</item>
+        <item name="android:textColor">@color/text2</item>
+        <item name="android:textSize">@dimen/font_min_x_sp</item>
+    </style>
     <style name="Activity.Line.Title.Not.Weight.TextView.Style" parent="Activity">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:minWidth">80dp</item>
-        <item name="android:textSize">@dimen/font_large_sp</item>
+        <item name="android:textSize">@dimen/font_min_xx_sp</item>
         <item name="android:textColor">@color/fragment_mine_line_text_color</item>
     </style>
 </resources>

@@ -9,35 +9,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/widget_margin_tiny"
-        android:background="@color/white"
-        android:minHeight="200dp">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/widget_margin_tiny"
-            app:cardBackgroundColor="#009DD9"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp"
-            app:contentPadding="@dimen/widget_margin_normal">
+            android:layout_margin="@dimen/widget_margin_normal"
+            app:cardBackgroundColor="#4D97DC"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            app:contentPadding="@dimen/widget_margin_tiny">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -47,7 +41,8 @@
                             android:layout_height="wrap_content"
                             android:text="张三"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/font_large_sp" />
+                            android:textSize="@dimen/font_min_xx_sp"
+                            android:textStyle="bold" />
 
                         <TextView
 
@@ -55,37 +50,31 @@
                             android:layout_height="wrap_content"
                             android:text="杭州销帮信息科技有限公司"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/font_large_sp" />
+                            android:textSize="@dimen/font_min_xx_sp"
+                            android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="CEO"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/font_large_sp" />
                     </LinearLayout>
 
                     <com.shehuan.niv.NiceImageView
                         android:id="@+id/img_iv"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:layout_gravity="center"
-                        android:background="@color/white"
-                        app:is_circle="true" />
+                        android:background="@drawable/rc_default_portrait"
+                        app:border_width="@dimen/divider"
+                        app:border_color="@color/transparent"
+                        app:is_circle="true"
+                        app:corner_radius="30dp"
+                        />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/qcrode_img"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_qrcode" />
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/qcrode_img"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="@dimen/widget_margin_large"
+                    android:src="@drawable/ic_qrcode" />
             </LinearLayout>
+
         </android.support.v7.widget.CardView>
     </LinearLayout>
 
@@ -94,7 +83,7 @@
     <LinearLayout
         style="@style/LinearLayout.MineFragment.Line.Style"
         android:layout_marginTop="@dimen/divider"
-        android:background="@drawable/ripper_friend_operation"
+        android:background="@drawable/ripper_line"
         android:visibility="gone">
 
         <TextView
@@ -109,13 +98,46 @@
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
 
-    <!--<include layout="@layout/common_line" />-->
+    <LinearLayout
+        android:id="@+id/my_company_ly"
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:background="@drawable/ripper_line">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="我的公司"
+            android:textColor="@color/fragment_mine_line_text_color"
+            android:textSize="@dimen/font_min_xx_sp" />
+
+        <include layout="@layout/view_forward" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/help_ly"
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_tiny"
+        android:background="@drawable/ripper_line">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="帮助与反馈"
+            android:textColor="@color/fragment_mine_line_text_color"
+            android:textSize="@dimen/font_min_xx_sp" />
+
+        <include layout="@layout/view_forward" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/setting_ly"
         style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/divider"
-        android:background="@drawable/ripper_friend_operation">
+        android:layout_marginTop="@dimen/widget_margin_tiny"
+        android:background="@drawable/ripper_line">
 
         <TextView
             android:layout_width="wrap_content"
@@ -124,10 +146,9 @@
             android:gravity="center_vertical"
             android:text="设置"
             android:textColor="@color/fragment_mine_line_text_color"
-            android:textSize="@dimen/font_large_x_sp" />
+            android:textSize="@dimen/font_min_xx_sp" />
 
         <include layout="@layout/view_forward" />
     </LinearLayout>
 
-    <!--<include layout="@layout/common_line" />-->
 </LinearLayout>
