@@ -28,6 +28,9 @@ public interface UserOperationContract {
         }
 
     }
+    interface UpdatePersonNameUI extends BaseView{
+      void successData();
+    }
 
     interface Presenter extends IPresenter {
         void getUserInfo(String account);
@@ -47,5 +50,7 @@ public interface UserOperationContract {
         void login(String account, String password);
 
         void forgetPassWord(String account, String newpass1, String newpass2, String code);
+
+        void updatePersonName(String chineseName);
     }
 }

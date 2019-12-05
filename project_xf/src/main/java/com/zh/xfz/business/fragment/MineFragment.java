@@ -5,6 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -13,7 +14,6 @@ import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.Account;
 import com.zh.xfz.bean.activity.UserInfo;
-import com.zh.xfz.business.activity.MyCompanyActivity;
 import com.zh.xfz.business.activity.PersonCardActivity;
 import com.zh.xfz.business.activity.PersonDetailInfoActivity;
 import com.zh.xfz.business.activity.SettingActivity;
@@ -55,11 +55,12 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
     @Override
     public void init() {
         Account userInfo = LoginUtils.getUserInfo();
-        if (userInfo != null && !StringUtils.isEmpty(userInfo.getUserIcon()))
+        if (!StringUtils.isEmpty(userInfo.getUserIcon()))
             Glide.with(getMyActivity()).load(userInfo.getUserIcon())
                     .error(R.drawable.rc_default_portrait)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)//关闭Glide的硬盘缓存机制
                     .into(imageView);
+        LogUtils.e(userInfo);
 //        presenter.getUserInfo(LoginUtils.getUserId());
 //        myPopupWindow = new MyPopupWindow.Builder(LayoutInflater.from(getMyActivity()).inflate(R.layout.qcrode_view, null), getActivity())
 //                .height(ConvertUtils.dp2px(300)).width(ScreenUtils.getScreenWidth() - ScreenUtils.getScreenWidth() / 5).build();
@@ -89,11 +90,6 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
         ARouter.getInstance().build(PersonDetailInfoActivity.AROUTER_PATH).navigation();
     }
 
-
-    @OnClick(R.id.my_company_ly)
-    public void clickCompany() {
-        ARouter.getInstance().build(MyCompanyActivity.AROUTER_PATH).navigation();
-    }
 
     @Override
     public void userInfoSuccess(UserInfo userInfo) {

@@ -5,7 +5,9 @@
     android:background="@color/background_color"
     android:orientation="vertical">
 
+    <include layout="@layout/common_line" />
     <LinearLayout
+        android:layout_marginTop="@dimen/dp_10"
         style="@style/LinearLayout.MineFragment.Line.Style"
         android:layout_height="wrap_content">
 
@@ -19,14 +21,15 @@
 
         <com.shehuan.niv.NiceImageView
             android:id="@+id/portrait_iv"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="@dimen/widget_margin_tiny"
             android:layout_marginBottom="@dimen/widget_margin_tiny"
-            android:background="@color/c" />
+            android:background="@drawable/rc_default_portrait" />
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
+    <include layout="@layout/common_line" />
 
     <LinearLayout
         android:id="@+id/name_ly"
@@ -39,12 +42,13 @@
             android:text="姓名" />
 
         <TextView
+            android:id="@+id/name_tv"
             style="@style/Activity.Line.Content.TextView.Style"
             android:text="" />
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
-
+    <include layout="@layout/common_line" />
     <LinearLayout
         style="@style/LinearLayout.MineFragment.Line.Style"
         android:layout_marginTop="@dimen/divider"
@@ -52,26 +56,28 @@
 
         <TextView
             style="@style/Activity.Line.Title.TextView.Style"
-            android:text="别名" />
-
-        <TextView style="@style/Activity.Line.Content.TextView.Style" />
-
-        <include layout="@layout/view_forward"></include>
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/divider"
-        android:background="@drawable/ripper_friend_operation">
+            android:text="手机" />
 
         <TextView
-            style="@style/Activity.Line.Title.TextView.Style"
-            android:text="性别" />
+            android:id="@+id/mobile_tv"
+            style="@style/Activity.Line.Content.TextView.Style" />
 
-        <TextView style="@style/Activity.Line.Content.TextView.Style" />
 
-        <include layout="@layout/view_forward"></include>
     </LinearLayout>
+    <include layout="@layout/common_line" />
+    <!--<LinearLayout-->
+        <!--style="@style/LinearLayout.MineFragment.Line.Style"-->
+        <!--android:layout_marginTop="@dimen/divider"-->
+        <!--android:background="@drawable/ripper_friend_operation">-->
+
+        <!--<TextView-->
+            <!--style="@style/Activity.Line.Title.TextView.Style"-->
+            <!--android:text="性别" />-->
+
+        <!--<TextView style="@style/Activity.Line.Content.TextView.Style" />-->
+
+        <!--<include layout="@layout/view_forward"></include>-->
+    <!--</LinearLayout>-->
     <LinearLayout
         android:id="@+id/company_ly"
         style="@style/LinearLayout.MineFragment.Line.Style"
@@ -82,64 +88,67 @@
             style="@style/Activity.Line.Title.TextView.Style"
             android:text="所属企业" />
 
-        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+        <TextView
+            android:id="@+id/company_tv"
+            style="@style/Activity.Line.Content.TextView.Style" />
 
         <include layout="@layout/view_forward"></include>
     </LinearLayout>
-    <LinearLayout
-        style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/widget_margin_normal"
-        android:background="@drawable/ripper_friend_operation">
+    <include layout="@layout/common_line" />
+    <!--<LinearLayout-->
+        <!--style="@style/LinearLayout.MineFragment.Line.Style"-->
+        <!--android:layout_marginTop="@dimen/widget_margin_normal"-->
+        <!--android:background="@drawable/ripper_friend_operation">-->
 
-        <TextView
-            style="@style/Activity.Line.Title.TextView.Style"
-            android:text="手机" />
+        <!--<TextView-->
+            <!--style="@style/Activity.Line.Title.TextView.Style"-->
+            <!--android:text="手机" />-->
 
-        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+        <!--<TextView style="@style/Activity.Line.Content.TextView.Style" />-->
 
-        <include layout="@layout/view_forward"></include>
-    </LinearLayout>
-    <LinearLayout
-        style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/divider"
-        android:background="@drawable/ripper_friend_operation">
+        <!--<include layout="@layout/view_forward"></include>-->
+    <!--</LinearLayout>-->
+    <!--<LinearLayout-->
+        <!--style="@style/LinearLayout.MineFragment.Line.Style"-->
+        <!--android:layout_marginTop="@dimen/divider"-->
+        <!--android:background="@drawable/ripper_friend_operation">-->
 
-        <TextView
-            style="@style/Activity.Line.Title.TextView.Style"
-            android:text="邮箱" />
+        <!--<TextView-->
+            <!--style="@style/Activity.Line.Title.TextView.Style"-->
+            <!--android:text="邮箱" />-->
 
-        <TextView
-            style="@style/Activity.Line.Content.TextView.Style"
-            android:text="" />
+        <!--<TextView-->
+            <!--style="@style/Activity.Line.Content.TextView.Style"-->
+            <!--android:text="" />-->
 
-        <include layout="@layout/view_forward"></include>
-    </LinearLayout>
-    <LinearLayout
-        style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/divider"
-        android:background="@drawable/ripper_friend_operation">
+        <!--<include layout="@layout/view_forward"></include>-->
+    <!--</LinearLayout>-->
+    <!--<LinearLayout-->
+        <!--style="@style/LinearLayout.MineFragment.Line.Style"-->
+        <!--android:layout_marginTop="@dimen/divider"-->
+        <!--android:background="@drawable/ripper_friend_operation">-->
 
-        <TextView
-            style="@style/Activity.Line.Title.TextView.Style"
-            android:text="地址" />
+        <!--<TextView-->
+            <!--style="@style/Activity.Line.Title.TextView.Style"-->
+            <!--android:text="地址" />-->
 
-        <TextView
-            style="@style/Activity.Line.Content.TextView.Style"
-            android:text="" />
+        <!--<TextView-->
+            <!--style="@style/Activity.Line.Content.TextView.Style"-->
+            <!--android:text="" />-->
 
-        <include layout="@layout/view_forward"></include>
-    </LinearLayout>
-    <LinearLayout
-        style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/widget_margin_normal"
-        android:background="@drawable/ripper_friend_operation">
+        <!--<include layout="@layout/view_forward"></include>-->
+    <!--</LinearLayout>-->
+    <!--<LinearLayout-->
+        <!--style="@style/LinearLayout.MineFragment.Line.Style"-->
+        <!--android:layout_marginTop="@dimen/widget_margin_normal"-->
+        <!--android:background="@drawable/ripper_friend_operation">-->
 
-        <TextView
-            style="@style/Activity.Line.Title.TextView.Style"
-            android:text="对外信息显示" />
+        <!--<TextView-->
+            <!--style="@style/Activity.Line.Title.TextView.Style"-->
+            <!--android:text="对外信息显示" />-->
 
-        <TextView style="@style/Activity.Line.Content.TextView.Style" />
+        <!--<TextView style="@style/Activity.Line.Content.TextView.Style" />-->
 
-        <include layout="@layout/view_forward"></include>
-    </LinearLayout>
+        <!--<include layout="@layout/view_forward"></include>-->
+    <!--</LinearLayout>-->
 </LinearLayout>

@@ -117,6 +117,17 @@ public class UserOperationModel implements GetMyBaseModelListener {
         }
     }
 
+    public void updatePersonName(Map<String,String> parms, ObservableListener.SuccessListener<Data<Object>> successListener){
+       try {
+            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
+            myService.updatePersonName(parms).subscribe(observable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     @Override
     public MyBaseModel getMyBaseModel() {
         return myBaseModel;

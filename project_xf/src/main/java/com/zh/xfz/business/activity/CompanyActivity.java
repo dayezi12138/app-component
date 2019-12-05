@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.zh.annatation.toolbar.OnMenuOnclick;
@@ -11,6 +12,8 @@ import com.zh.annatation.toolbar.ToolbarLeft;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
+import com.zh.xfz.bean.activity.Account;
+import com.zh.xfz.utils.LoginUtils;
 
 import javax.inject.Inject;
 
@@ -35,6 +38,15 @@ public class CompanyActivity extends BaseActivity implements View.OnClickListene
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.companyfull_tv)
+    TextView companyfullTv;
+
+    @BindView(R.id.companyeasy_tv)
+    TextView companyeasyTv;
+
+    @BindView(R.id.founder_tv)
+    TextView founderTv;
+
     @NonNull
     @Override
     public int layoutId() {
@@ -43,7 +55,13 @@ public class CompanyActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void init() {
+        Account userInfo = LoginUtils.getUserInfo();
+        if (userInfo != null) {
 
+            if (userInfo.getTenant()!= null&& userInfo.getTenant().size()>0){
+                companyfullTv.setText(userInfo.getTenant().get(0).getTenantName());
+            }
+        }
     }
 
     @Override

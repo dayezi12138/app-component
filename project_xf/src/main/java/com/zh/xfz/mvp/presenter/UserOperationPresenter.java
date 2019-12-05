@@ -11,6 +11,7 @@ import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.TargetUserInfo;
+import com.zh.xfz.bean.other.Data;
 import com.zh.xfz.business.activity.CreateBusinessActivity;
 import com.zh.xfz.business.activity.MainActivity;
 import com.zh.xfz.mvp.contract.activity.UserOperationContract;
@@ -28,7 +29,9 @@ import javax.inject.Inject;
 
 import core.app.zh.com.core.base.BasePresenter;
 import core.app.zh.com.core.base.BaseView;
+import core.app.zh.com.core.listener.observable.ObservableListener;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.IFwLogCallback;
 import io.rong.imlib.model.UserInfo;
 import q.rorbin.badgeview.Badge;
 
@@ -41,6 +44,7 @@ import static com.zh.xfz.constans.Constans.IM_TOKEN;
  */
 public class UserOperationPresenter extends BasePresenter<BaseView> implements UserOperationContract.Presenter {
     private UserOperationModel model;
+
 
     @Inject
     public UserOperationPresenter(UserOperationModel model) {
@@ -189,6 +193,27 @@ public class UserOperationPresenter extends BasePresenter<BaseView> implements U
             if (data.getCode() == 0) {
                 login(account, newpass1);
                 view.get().showMsg("修改成功");
+            }
+        });
+    }
+
+    @Override
+    public void updatePersonName(String chineseName) {
+        Map<String, String> params = new HashMap<>();
+        params.put("userid", LoginUtils.getUserId());
+        params.put("timeStamp", AndroidUtils.getUUID());
+        params.put("chineseName",chineseName);
+        params.put("icon", "");
+        model.updatePersonName(params, data -> {
+            if (data.getCode()== 0 ){
+              if(view.get() instanceof UserOperationContract.UpdatePersonNameUI)  {
+                  UserOperationContract.UpdatePersonNameUI ui = (UserOperationContract.UpdatePersonNameUI) view.get();
+                  ui.successData();
+              }else view.get().showMsg("该页面没绑定");
+
+            }
+            else {
+                view.get().showMsg(data.getMsg());
             }
         });
     }

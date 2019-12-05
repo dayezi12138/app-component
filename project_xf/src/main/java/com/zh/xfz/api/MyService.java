@@ -171,4 +171,9 @@ public interface MyService {
     @POST("AddressBook/TransferGroupAdministrator")
     @FormUrlEncoded
     Observable<Data<Object>> transferGroupAdministrator(@FieldMap Map<String, String> paramMap);
+
+    @ApiAnnotation("修改用户信息")
+    @POST("User/UpdateUserInfo")
+    @FormUrlEncoded
+    Observable<Data<Object>> updatePersonName(@FieldMap Map<String, String> paramMap);
 }
