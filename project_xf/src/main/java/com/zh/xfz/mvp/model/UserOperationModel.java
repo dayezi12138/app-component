@@ -165,6 +165,29 @@ public class UserOperationModel implements GetMyBaseModelListener {
         }
     }
 
+    public void updateMobile(String mobile, String code, ObservableListener.SuccessListener<Data<Object>> successListener) {
+        try {
+            Map<String, String> paramMap = new HashMap<>();
+            paramMap.put("timeStamp", AndroidUtils.getUUID());
+            paramMap.put("userid", LoginUtils.getUserId());
+            paramMap.put("mobile", mobile);
+            paramMap.put("code", code);
+            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
+            myService.updateMobile(paramMap).subscribe(observable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void wxRegister(Map<String, String> params, ObservableListener.SuccessListener<Data<Account>> successListener) {
+        try {
+            BaseObservable observable = new ObservableProvider(activity, successListener).build(BaseObservable.class);
+            myService.wxRegister(params).subscribe(observable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public MyBaseModel getMyBaseModel() {
         return myBaseModel;

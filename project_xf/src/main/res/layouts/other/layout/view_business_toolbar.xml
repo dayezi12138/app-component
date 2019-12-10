@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/widget_text_height_normal"
+    android:background="@color/background_splash_color"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/navigation_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:minWidth="@dimen/widget_text_height_normal"
+        android:paddingLeft="@dimen/widget_padding_normal"
+        android:text="跳过"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_min_x_sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:minWidth="@dimen/widget_text_height_normal"
+        android:paddingLeft="@dimen/widget_padding_normal"
+        android:text="加入商户"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_min_xx_sp" />
+    <TextView
+        android:id="@+id/create_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/widget_padding_normal"
+        android:text="创建商户"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_min_x_sp" />
+</LinearLayout>

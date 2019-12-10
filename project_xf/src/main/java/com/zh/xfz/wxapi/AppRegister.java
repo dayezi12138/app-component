@@ -1,4 +1,4 @@
-package cn.zh.ydt.wxapi;
+package com.zh.xfz.wxapi;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

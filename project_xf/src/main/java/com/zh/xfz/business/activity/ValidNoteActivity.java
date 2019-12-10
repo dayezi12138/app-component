@@ -13,6 +13,7 @@ import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.Account;
+import com.zh.xfz.business.fragment.BusinessListFragment;
 import com.zh.xfz.mvp.contract.activity.ValidNoteContract;
 import com.zh.xfz.mvp.presenter.activity.ValidNotePresenter;
 import com.zh.xfz.utils.LoginUtils;
@@ -114,7 +115,7 @@ public class ValidNoteActivity extends BaseActivity implements ValidNoteContract
         if (account.getTenant() != null && !account.getTenant().isEmpty())
             ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
         else
-            ARouter.getInstance().build(CreateBusinessActivity.AROUTER_PATH).navigation();
+            ARouter.getInstance().build(BusinessListActivity.AROUTER_PATH).withString(BusinessListActivity.FRAGMENT_CLASS_KEY, BusinessListFragment.class.getName()).navigation();
         finish();
     }
 

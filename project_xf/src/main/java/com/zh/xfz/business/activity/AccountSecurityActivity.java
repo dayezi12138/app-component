@@ -1,8 +1,9 @@
 package com.zh.xfz.business.activity;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 import core.app.zh.com.core.base.BaseActivity;
+import core.app.zh.com.core.view.MyPopupWindow;
 
 /**
  * author : dayezi
@@ -35,7 +37,7 @@ import core.app.zh.com.core.base.BaseActivity;
 //@ToolbarLeft(menuId = R.menu.menu_sure)
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "账户安全")
-public class AccountSecurityActivity extends BaseActivity implements UserOperationContract.AccountSecurityUI {
+public class AccountSecurityActivity extends BaseActivity implements UserOperationContract.AccountSecurityUI, View.OnClickListener {
     public final static String AROUTER_PATH = "/main/AccountSecurityActivity/";
     public final static String AUTHOR_CODE = "AUTHOR_CODE";
     private IWXAPI api;
@@ -43,8 +45,14 @@ public class AccountSecurityActivity extends BaseActivity implements UserOperati
     @BindView(R.id.visible_tv)
     TextView tv;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @Inject
     UserOperationPresenter presenter;
+
+    @Inject
+    MyPopupWindow popupWindow;
+
 
     @NonNull
     @Override
@@ -90,11 +98,14 @@ public class AccountSecurityActivity extends BaseActivity implements UserOperati
             req.state = "AccountSecurityActivity";
             api.sendReq(req);
         } else {
-            new AlertDialog.Builder(this).setTitle("提示").setMessage("是否解除微信绑定").setPositiveButton("确定", (dialog, which) -> {
-                presenter.relieveWXBind();
-                dialog.dismiss();
-
-            }).setNegativeButton("取消", (dialog, which) -> dialog.dismiss());
+            if (popupWindow.isShowing()) return;
+            popupWindow.setBackgroundAlpha();
+            popupWindow.showAtLocation(toolbar, Gravity.BOTTOM, 0, 0);
+//            new AlertDialog.Builder(this).setTitle("提示").setMessage("是否解除微信绑定").setPositiveButton("确定", (dialog, which) -> {
+//                presenter.relieveWXBind();
+//                dialog.dismiss();
+//
+//            }).setNegativeButton("取消", (dialog, which) -> dialog.dismiss()).show();
         }
 
     }
@@ -113,4 +124,16 @@ public class AccountSecurityActivity extends BaseActivity implements UserOperati
         tv.setVisibility(View.GONE);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sure_btn:
+                if (popupWindow.isShowing()) popupWindow.dismiss();
+                presenter.relieveWXBind();
+                break;
+            case R.id.cancel_btn:
+                if (popupWindow.isShowing()) popupWindow.dismiss();
+                break;
+        }
+    }
 }

@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.tu.loadingdialog.LoadingDailog;
 import com.zh.xfz.R;
+import com.zh.xfz.business.activity.InputPasswordActivity;
 import com.zh.xfz.business.activity.ValidNoteActivity;
 import com.zh.xfz.mvp.contract.activity.AccountLoginContract;
 import com.zh.xfz.mvp.model.activity.LoginModel;
@@ -36,21 +37,18 @@ public class AccountLoginPresenter extends BasePresenter<AccountLoginContract.Ac
             return;
         }
         model.validAccount(account, validAccount -> {
-//            if (validAccount.getCode() == 40003) {
-//                ARouter.getInstance().build(ValidNoteActivity.AROUTER_PATH).withString(ValidNoteActivity.ACCOUNT_KEY, account)
-//                        .withBoolean(ValidNoteActivity.EXIST_ACCOUNT_KEY, false).navigation();
-//            } else if (validAccount.getCode() == 0) {
-//                if (!validAccount.isFlag())
-//                    ARouter.getInstance().build(AddPasswordActivity.AROUTER_PATH).withString(InputPasswordActivity.ACCOUNT_KEY, account).navigation();
-//                else
-//                    ARouter.getInstance().build(InputPasswordActivity.AROUTER_PATH).withString(ACCOUNT_KEY, account).navigation();
-//
-//            } else view.get().showMsg(validAccount.getMsg());
-            if (validAccount.getCode() == 40003 || validAccount.getCode() == 0) {
-                boolean exist = validAccount.getCode() == 40003 ? false : true;
+            if (validAccount.getCode() == 40003)
                 ARouter.getInstance().build(ValidNoteActivity.AROUTER_PATH).withString(ValidNoteActivity.ACCOUNT_KEY, account)
-                        .withBoolean(ValidNoteActivity.EXIST_ACCOUNT_KEY, exist).navigation();
-            } else view.get().showMsg(validAccount.getMsg());
+                        .withBoolean(ValidNoteActivity.EXIST_ACCOUNT_KEY, false).navigation();
+            else if (validAccount.getCode() == 0)
+                ARouter.getInstance().build(InputPasswordActivity.AROUTER_PATH).withString(InputPasswordActivity.ACCOUNT_KEY, account).navigation();
+            else view.get().showMsg(validAccount.getMsg());
+//            if (validAccount.getCode() == 40003 || validAccount.getCode() == 0) {
+//                boolean exist = validAccount.getCode() == 40003 ? false : true;
+//
+//                ARouter.getInstance().build(ValidNoteActivity.AROUTER_PATH).withString(ValidNoteActivity.ACCOUNT_KEY, account)
+//                        .withBoolean(ValidNoteActivity.EXIST_ACCOUNT_KEY, exist).navigation();
+//            } else view.get().showMsg(validAccount.getMsg());
         });
     }
 

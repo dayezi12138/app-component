@@ -34,7 +34,7 @@ import io.rong.imlib.model.UserInfo;
  */
 public class MyApplication extends BaseApplication {
 
-    public static final String APP_ID = "wx4a90d6e11510d88d";
+    public static final String APP_ID = "wx7ff65b8874d14bec";
 
     @Override
     public void init(BaseApplication application) {

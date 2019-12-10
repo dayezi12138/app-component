@@ -12,8 +12,8 @@ android {
         versionName "v1.0.3"
         multiDexEnabled true
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-//        applicationId "com.zh.xfz"
-        applicationId "cn.zh.ydt"
+        applicationId "com.zh.xfz"
+//        applicationId "cn.zh.ydt"
         //Arouter路由配置
         javaCompileOptions {
             annotationProcessorOptions {

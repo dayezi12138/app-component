@@ -1,7 +1,9 @@
 package core.app.zh.com.core.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -29,11 +31,13 @@ public class ClearEditTextView extends android.support.v7.widget.AppCompatEditTe
 
     public ClearEditTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context, attrs, defStyleAttr);
     }
 
-    private void init() {
-        mClearDrawable = getResources().getDrawable(R.drawable.ic_clear);
+    private void init(Context context, AttributeSet attrs, int defStyleAttr) {
+        TypedArray attr = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ClearEditTextView, defStyleAttr, 0);
+        Drawable drawable = attr.getDrawable(R.styleable.ClearEditTextView_clearImage);
+        mClearDrawable = drawable != null ? drawable : getResources().getDrawable(R.drawable.ic_clear);
         //设置删除按钮的边界
         mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(), mClearDrawable.getIntrinsicHeight());
         //默认隐藏删除按钮
@@ -114,6 +118,7 @@ public class ClearEditTextView extends android.support.v7.widget.AppCompatEditTe
                 //清除文本
                 if (xTouchable && yTouchable) {
                     setText("");
+                    if (onClickImageListener != null) onClickImageListener.clear();
                 }
             }
         }
@@ -134,7 +139,24 @@ public class ClearEditTextView extends android.support.v7.widget.AppCompatEditTe
         startAnimation(translateAnimation);
     }
 
+    /**
+     * @param recourseId
+     */
+    public void setmClearDrawableRecourse(@DrawableRes int recourseId) {
+        mClearDrawable = getResources().getDrawable(recourseId);
+        //设置删除按钮的边界
+        mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(), mClearDrawable.getIntrinsicHeight());
+        //默认隐藏删除按钮
+        setClearIcon(false);
+        postInvalidate();
+    }
+
     private OnChangeEditextListener onChangeEditextListener;
+    private OnClickImageListener onClickImageListener;
+
+    public void setOnClickImageListener(OnClickImageListener onClickImageListener) {
+        this.onClickImageListener = onClickImageListener;
+    }
 
     public void setOnChangeEditextListener(OnChangeEditextListener onChangeEditextListener) {
         this.onChangeEditextListener = onChangeEditextListener;
@@ -142,5 +164,9 @@ public class ClearEditTextView extends android.support.v7.widget.AppCompatEditTe
 
     public interface OnChangeEditextListener {
         void onChangeValue(String value);
+    }
+
+    public interface OnClickImageListener {
+        void clear();
     }
 }

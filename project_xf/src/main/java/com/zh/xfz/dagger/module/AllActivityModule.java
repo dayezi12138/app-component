@@ -6,6 +6,7 @@ import com.zh.xfz.business.activity.AccountSecurityActivity;
 import com.zh.xfz.business.activity.AddFriendActivity;
 import com.zh.xfz.business.activity.AddGroupMembersActivity;
 import com.zh.xfz.business.activity.AddPasswordActivity;
+import com.zh.xfz.business.activity.BusinessListActivity;
 import com.zh.xfz.business.activity.CompanyActivity;
 import com.zh.xfz.business.activity.CreateBusinessActivity;
 import com.zh.xfz.business.activity.CsrActivity;
@@ -35,6 +36,7 @@ import com.zh.xfz.business.activity.UpdatePersonNameActivity;
 import com.zh.xfz.business.activity.UpdatePhoneActivity;
 import com.zh.xfz.business.activity.UpdatePhoneSmsActivity;
 import com.zh.xfz.business.activity.ValidNoteActivity;
+import com.zh.xfz.business.activity.WXLoginActivity;
 import com.zh.xfz.business.activity.im.ConversationActivity;
 import com.zh.xfz.business.activity.im.ConversationListActivity;
 import com.zh.xfz.business.activity.im.SubConversationListActivity;
@@ -62,7 +64,9 @@ import com.zh.xfz.dagger.module.activity.SettingModule;
 import com.zh.xfz.dagger.module.activity.UpLoadPortraitModule;
 import com.zh.xfz.dagger.module.activity.UpdatePasswordModule;
 import com.zh.xfz.dagger.module.activity.UpdatePersonNameModule;
+import com.zh.xfz.dagger.module.activity.UpdatePhoneSmsModule;
 import com.zh.xfz.dagger.module.activity.ValidNoteModule;
+import com.zh.xfz.dagger.module.activity.WXLoginModule;
 
 import core.app.zh.com.core.annotation.ActivityScope;
 import core.app.zh.com.core.dagger.component.ActivityComponent;
@@ -198,7 +202,7 @@ public abstract class AllActivityModule {
     abstract UpdatePhoneActivity contributeUpdatePhoneActivityInjector();
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    @ContributesAndroidInjector(modules = {UpdatePhoneSmsModule.class})
     abstract UpdatePhoneSmsActivity contributeUpdatePhoneSmsActivityInjector();
 
     @ActivityScope
@@ -224,4 +228,12 @@ public abstract class AllActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = {EmptyModule.class})
     abstract SelectCompanyActivity contributeSelectCompanyActivityInjector();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = {WXLoginModule.class})
+    abstract WXLoginActivity contributeWXLoginActivityInjector();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    abstract BusinessListActivity contributeBusinessListActivityInjector();
 }

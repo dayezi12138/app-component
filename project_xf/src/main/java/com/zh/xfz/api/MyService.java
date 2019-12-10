@@ -9,6 +9,7 @@ import com.zh.xfz.bean.activity.TargetUserInfo;
 import com.zh.xfz.bean.activity.UserInfo;
 import com.zh.xfz.bean.activity.ValidAccount;
 import com.zh.xfz.bean.activity.ValidSmsCode;
+import com.zh.xfz.bean.fragment.BusinessBean;
 import com.zh.xfz.bean.fragment.FriendInfo;
 import com.zh.xfz.bean.other.Data;
 
@@ -186,8 +187,29 @@ public interface MyService {
     @POST("User/WxCheckAndLogin")
     @FormUrlEncoded
     Observable<Data<Object>> wxCheckAndLogin(@FieldMap Map<String, String> paramMap);
+
     @ApiAnnotation("解除微信绑定")
     @POST("User/RelieveWXBind")
     @FormUrlEncoded
     Observable<Data<Object>> relieveWXBind(@FieldMap Map<String, String> paramMap);
+
+    @ApiAnnotation("修改账号")
+    @POST("User/UpdateMobile")
+    @FormUrlEncoded
+    Observable<Data<Object>> updateMobile(@FieldMap Map<String, String> paramMap);
+
+    @ApiAnnotation("微信注册")
+    @POST("User/WXRegister")
+    @FormUrlEncoded
+    Observable<Data<Account>> wxRegister(@FieldMap Map<String, String> paramMap);
+
+    @ApiAnnotation("我的商户列表")
+    @GET("Tenant/GetMyTenantListPage")
+//    @FormUrlEncoded
+    Observable<Data<List<BusinessBean>>> getMyTenantListPage(@QueryMap Map<String, Object> paramMap);
+
+    @ApiAnnotation("商户邀请用户/用户申请加入商户")
+    @POST("Tenant/ApplyTenant")
+    @FormUrlEncoded
+    Observable<Data<Object>> applyTenant(@FieldMap Map<String, Object> paramMap);
 }

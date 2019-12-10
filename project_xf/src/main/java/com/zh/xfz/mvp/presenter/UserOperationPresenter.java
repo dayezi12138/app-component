@@ -7,13 +7,14 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.TargetUserInfo;
+import com.zh.xfz.business.activity.BusinessListActivity;
 import com.zh.xfz.business.activity.CreateBusinessActivity;
 import com.zh.xfz.business.activity.MainActivity;
+import com.zh.xfz.business.fragment.BusinessListFragment;
 import com.zh.xfz.mvp.contract.activity.UserOperationContract;
 import com.zh.xfz.mvp.contract.activity.ValidNoteContract;
 import com.zh.xfz.mvp.model.UserOperationModel;
@@ -231,7 +232,6 @@ public class UserOperationPresenter extends BasePresenter<BaseView> implements U
             if (data.getCode() == 40097) {
                 bindWX(code);
             } else view.get().showMsg(data.getMsg());
-            LogUtils.e(data);
         });
     }
 
@@ -241,6 +241,31 @@ public class UserOperationPresenter extends BasePresenter<BaseView> implements U
             if (data.getCode() == 0 && view.get() instanceof UserOperationContract.AccountSecurityUI) {
                 UserOperationContract.AccountSecurityUI accountSecurityUI = (UserOperationContract.AccountSecurityUI) view.get();
                 accountSecurityUI.relieve();
+            } else view.get().showMsg(data.getMsg());
+        });
+    }
+
+    @Override
+    public void updateMobile(String mobile, String code) {
+        model.updateMobile(mobile, code, data -> {
+            if (data.getCode() == 0 && view.get() instanceof UserOperationContract.UpdateMobileUI) {
+                UserOperationContract.UpdateMobileUI updateMobileUI = (UserOperationContract.UpdateMobileUI) view.get();
+                updateMobileUI.updateMobileSuccess();
+            } else view.get().showMsg(data.getMsg());
+        });
+    }
+
+    @Override
+    public void wxRegister(Map<String, String> params) {
+        model.wxRegister(params, data -> {
+            if (data.getCode() == 0) {
+                LoginUtils.ACCOUNT = data.getRes();
+                LoginUtils.saveLoginInfo(data.getRes());
+                if (data.getRes().getTenant() != null && !data.getRes().getTenant().isEmpty())
+                    ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
+                else
+                    ARouter.getInstance().build(BusinessListActivity.AROUTER_PATH).withString(BusinessListActivity.FRAGMENT_CLASS_KEY, BusinessListFragment.class.getName()).navigation();
+                model.getMyBaseModel().getMyActivity().finish();
             } else view.get().showMsg(data.getMsg());
         });
     }

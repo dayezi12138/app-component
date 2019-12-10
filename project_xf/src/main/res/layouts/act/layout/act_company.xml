@@ -5,7 +5,6 @@
     android:orientation="vertical">
 
 
-
     <LinearLayout
         android:id="@+id/company_ly"
         style="@style/LinearLayout.MineFragment.Line.Style"
@@ -20,8 +19,9 @@
         <TextView
             android:id="@+id/companyfull_tv"
             style="@style/Activity.Line.Content.TextView.Style"
+            android:textColor="#8E8D92"
 
-       />
+            />
 
     </LinearLayout>
 
@@ -31,13 +31,14 @@
         android:background="@drawable/ripper_friend_operation">
 
         <TextView
-            android:layout_marginLeft="@dimen/dp_10"
             style="@style/Activity.Line.Title.TextView.Style"
+            android:layout_marginLeft="@dimen/dp_10"
             android:text="企业简称" />
 
         <TextView
             android:id="@+id/companyeasy_tv"
-            style="@style/Activity.Line.Content.TextView.Style" />
+            style="@style/Activity.Line.Content.TextView.Style"
+            android:textColor="#8E8D92" />
 
     </LinearLayout>
 
@@ -47,13 +48,14 @@
         android:background="@drawable/ripper_friend_operation">
 
         <TextView
-            android:layout_marginLeft="@dimen/dp_10"
             style="@style/Activity.Line.Title.TextView.Style"
+            android:layout_marginLeft="@dimen/dp_10"
             android:text="创建人" />
 
         <TextView
             android:id="@+id/founder_tv"
-            style="@style/Activity.Line.Content.TextView.Style" />
+            style="@style/Activity.Line.Content.TextView.Style"
+            android:textColor="#8E8D92" />
     </LinearLayout>
 
 

@@ -8,6 +8,7 @@ import com.zh.xfz.bean.activity.Account;
 import static com.zh.xfz.constans.Constans.BIND_WX;
 import static com.zh.xfz.constans.Constans.FLAG_STR;
 import static com.zh.xfz.constans.Constans.IM_TOKEN;
+import static com.zh.xfz.constans.Constans.IS_UPDATE_PHONE;
 import static com.zh.xfz.constans.Constans.USER_COMPANY;
 import static com.zh.xfz.constans.Constans.USER_INFO;
 import static com.zh.xfz.constans.Constans.USER_INFO_JSON_DATA_KEY;
@@ -30,6 +31,7 @@ public class LoginUtils {
             TENANT = account.getTenant().get(0);
         }
         SPUtils.getInstance().put(BIND_WX, StringUtils.isEmpty(account.getWXOpenID()) ? false : true);
+        SPUtils.getInstance().put(IS_UPDATE_PHONE,false);
     }
 
     public static void clearLoginInfo() {
@@ -38,6 +40,7 @@ public class LoginUtils {
         SPUtils.getInstance().remove(USER_INFO_JSON_DATA_KEY);
         SPUtils.getInstance().remove(USER_COMPANY);
         SPUtils.getInstance().remove(BIND_WX);
+        SPUtils.getInstance().remove(IS_UPDATE_PHONE);
     }
 
     public static String getUserId() {
@@ -53,6 +56,8 @@ public class LoginUtils {
         }
         return null;
     }
+
+
 
     public static Account.TenantBean getTenant() {
         if (TENANT != null) {

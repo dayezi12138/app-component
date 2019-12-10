@@ -36,6 +36,33 @@ public class Account {
     private String WXOpenID;
     private String Token;
     private List<TenantBean> Tenant;
+    private String Openid;
+    private String Unionid;
+    private String Access_token;
+
+    public String getOpenid() {
+        return Openid;
+    }
+
+    public void setOpenid(String openid) {
+        Openid = openid;
+    }
+
+    public String getUnionid() {
+        return Unionid;
+    }
+
+    public void setUnionid(String unionid) {
+        Unionid = unionid;
+    }
+
+    public String getAccess_token() {
+        return Access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        Access_token = access_token;
+    }
 
     public String getWXOpenID() {
         return WXOpenID;

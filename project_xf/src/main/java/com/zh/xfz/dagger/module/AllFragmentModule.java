@@ -1,9 +1,12 @@
 package com.zh.xfz.dagger.module;
 
+import com.zh.xfz.business.fragment.BusinessListFragment;
 import com.zh.xfz.business.fragment.ContactFragment;
 import com.zh.xfz.business.fragment.MainFragment;
 import com.zh.xfz.business.fragment.MineFragment;
+import com.zh.xfz.business.fragment.TestFragment;
 import com.zh.xfz.business.fragment.WorkControlCenterFragment;
+import com.zh.xfz.dagger.module.fragment.BusinessListModule;
 import com.zh.xfz.dagger.module.fragment.ContactModule;
 import com.zh.xfz.dagger.module.fragment.MineModule;
 
@@ -35,4 +38,12 @@ public abstract class AllFragmentModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = {EmptyModule.class})
     abstract MainFragment contributeMainFragmentInjector();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    abstract TestFragment contributeTestFragmentInjector();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = {BusinessListModule.class})
+    abstract BusinessListFragment contributeBusinessListFragmentInjector();
 }

@@ -5,7 +5,6 @@ import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.blankj.utilcode.util.LogUtils;
 import com.zh.annatation.toolbar.OnMenuOnclick;
 import com.zh.annatation.toolbar.ToolbarLeft;
 import com.zh.annatation.toolbar.ToolbarNavigation;
@@ -13,6 +12,7 @@ import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.mvp.contract.activity.UserOperationContract;
 import com.zh.xfz.mvp.presenter.UserOperationPresenter;
+import com.zh.xfz.utils.LoginUtils;
 
 import javax.inject.Inject;
 
@@ -28,18 +28,18 @@ import core.app.zh.com.core.base.BaseActivity;
 @ToolbarLeft(menuId = R.menu.menu_complete)
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white, title = "个人信息")
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "姓名")
-public class UpdatePersonNameActivity extends BaseActivity implements UserOperationContract.UpdatePersonNameUI{
+public class UpdatePersonNameActivity extends BaseActivity implements UserOperationContract.UpdatePersonNameUI {
     public final static String AROUTER_PATH = "/main/UpdatePersonNameActivity/";
 
-    public static final String NAME_KEY="NAME_KEY";
+    public static final String NAME_KEY = "NAME_KEY";
     @Inject
     UserOperationPresenter mPresenter;
 
-    @Autowired(name = NAME_KEY,required = true)
-    String  name;
+    @Autowired(name = NAME_KEY, required = true)
+    String name;
 
     @BindView(R.id.text_tv)
-    EditText  nameTv;
+    EditText nameTv;
 
     @NonNull
     @Override
@@ -61,7 +61,9 @@ public class UpdatePersonNameActivity extends BaseActivity implements UserOperat
 
     @Override
     public void successData() {
-       finish();
-       showMsg("更新完成");
+        LoginUtils.ACCOUNT.setChineseName(nameTv.getText().toString());
+        LoginUtils.saveLoginInfo(LoginUtils.ACCOUNT);
+        finish();
+        showMsg("更新完成");
     }
 }

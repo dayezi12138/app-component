@@ -5,7 +5,7 @@
 
     <string name="act_normal_login_account_text_str">账号密码</string>
     <string name="act_normal_login_input_account_hint_str">请输入账号</string>
-    <string name="act_normal_login_input_password_hint_str">请输入密码</string>
+    <string name="act_normal_login_input_password_hint_str">密码</string>
     <string name="act_normal_login_btn_str">登 录</string>
     <string name="act_normal_login_forget_str">忘记密码?</string>
     <string name="act_normal_login_error_str">账号或者密码不能为空</string>
@@ -27,4 +27,5 @@
     <string name="act_main_bottom_my_str">我</string>
     <string name="act_setting_version_str">版本号 {0}</string>
     <string name="act_group_detail_count_str">{0}人</string>
+    <string name="act_update_mobile_str">当前手机号: {0}</string>
 </resources>

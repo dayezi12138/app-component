@@ -1,4 +1,4 @@
-package cn.zh.ydt.wxapi;
+package com.zh.xfz.wxapi;
 
 import android.os.Bundle;
 import android.os.Handler;

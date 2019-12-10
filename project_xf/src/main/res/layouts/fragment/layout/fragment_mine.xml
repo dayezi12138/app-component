@@ -12,6 +12,7 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.CardView
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/widget_margin_normal"
@@ -78,6 +79,7 @@
     <!--<include layout="@layout/common_line" />-->
 
     <LinearLayout
+        android:id="@+id/test_tv"
         style="@style/LinearLayout.MineFragment.Line.Style"
         android:layout_marginTop="@dimen/divider"
         android:background="@drawable/ripper_line"

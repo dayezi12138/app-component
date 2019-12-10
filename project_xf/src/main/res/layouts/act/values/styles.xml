@@ -42,7 +42,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textSize">@dimen/font_large_sp</item>
+        <item name="android:textSize">@dimen/font_min_xx_sp</item>
         <item name="android:textColor">@color/fragment_mine_line_text_color</item>
     </style>
 

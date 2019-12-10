@@ -76,7 +76,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
             } else
                 rootContentView = inflater.inflate(layoutId(), container, false);
             container.addView(rootContentView);
-        }
+        }else rootContentView = container;
         return container;
     }
 

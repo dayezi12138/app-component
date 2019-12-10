@@ -3,10 +3,10 @@
     <!-- 边框颜色值 -->
     <item>
         <shape>
-            <solid android:color="@color/sms_valid_code_under_line_color" /><!--下划线颜色-->
+            <solid android:color="@color/white" /><!--下划线颜色-->
         </shape>
     </item>
-    <item android:bottom="1px"> <!--下划线厚度-->
+    <item android:bottom="1.5dp"> <!--下划线厚度-->
         <shape>
             <solid android:color="@color/background_splash_color" /><!--背景色 不能透明否则会显示上面的下划线颜色-->
         </shape>

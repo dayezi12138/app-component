@@ -2,6 +2,7 @@ package com.zh.xfz.business.activity;
 
 import android.support.annotation.NonNull;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -11,6 +12,9 @@ import com.zh.annatation.toolbar.ToolbarLeft;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
+import com.zh.xfz.utils.LoginUtils;
+
+import java.text.MessageFormat;
 
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
@@ -32,6 +36,9 @@ public class UpdatePhoneActivity extends BaseActivity {
     @BindView(R.id.text_tv)
     EditText textTv;
 
+    @BindView(R.id.mobile_tv)
+    TextView mobileTv;
+
     @NonNull
     @Override
     public int layoutId() {
@@ -40,7 +47,7 @@ public class UpdatePhoneActivity extends BaseActivity {
 
     @Override
     public void init() {
-
+        mobileTv.setText(MessageFormat.format(getResources().getString(R.string.act_update_mobile_str), LoginUtils.getUserInfo().getMobile()));
     }
 
     @OnMenuOnclick
@@ -50,5 +57,6 @@ public class UpdatePhoneActivity extends BaseActivity {
             return;
         }
         ARouter.getInstance().build(UpdatePhoneSmsActivity.AROUTER_PATH).withString(KEY_PHONE, textTv.getText().toString()).navigation();
+        finish();
     }
 }

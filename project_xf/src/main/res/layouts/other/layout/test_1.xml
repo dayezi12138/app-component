@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<core.app.zh.com.core.view.MultipleStatusView xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/status_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:gravity="center"
+    android:textSize="30sp"
+    android:text="111111"
+    android:layout_height="300dp">
 
-</core.app.zh.com.core.view.MultipleStatusView>
+</TextView>

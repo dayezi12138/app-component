@@ -2,7 +2,6 @@ package com.zh.xfz.business.activity;
 
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
@@ -17,9 +16,9 @@ import com.zh.xfz.application.MyApplication;
 import com.zh.xfz.utils.IM.IMConnectCallBack;
 import com.zh.xfz.utils.IM.IMUtils;
 import com.zh.xfz.utils.LoginUtils;
+import com.zh.xfz.wxapi.AppRegister;
 
 import butterknife.ButterKnife;
-import cn.zh.ydt.wxapi.AppRegister;
 
 import static com.zh.xfz.constans.Constans.IM_TOKEN;
 import static com.zh.xfz.constans.Constans.USER_INFO;
@@ -68,13 +67,18 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void start(boolean toMain) {
-        new Handler().postDelayed(() -> {
-            if (toMain)
-                ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
-            else
-                ARouter.getInstance().build(LoginActivity.AROUTER_PATH).navigation();
-            finish();
-        }, 2000);
+        if (toMain)
+            ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
+        else
+            ARouter.getInstance().build(LoginActivity.AROUTER_PATH).navigation();
+        finish();
+//        new Handler().postDelayed(() -> {
+//            if (toMain)
+//                ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
+//            else
+//                ARouter.getInstance().build(LoginActivity.AROUTER_PATH).navigation();
+//            finish();
+//        }, 2000);
     }
 
 }

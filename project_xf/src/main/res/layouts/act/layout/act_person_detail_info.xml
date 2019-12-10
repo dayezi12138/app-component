@@ -60,6 +60,7 @@
 
         <TextView
             android:id="@+id/mobile_tv"
+            android:layout_marginRight="@dimen/widget_margin_tiny"
             style="@style/Activity.Line.Content.TextView.Style" />
 
 
@@ -81,7 +82,7 @@
     <LinearLayout
         android:id="@+id/company_ly"
         style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/widget_margin_normal"
+        android:layout_marginTop="@dimen/widget_margin_tiny"
         android:background="@drawable/ripper_friend_operation">
 
         <TextView

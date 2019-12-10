@@ -34,7 +34,6 @@ import core.app.zh.com.core.base.BaseActivity;
 public class InputPasswordActivity extends BaseActivity implements LoginContract.LoginUI {
     public final static String AROUTER_PATH = "/login/InputPasswordActivity/";
     public final static String ACCOUNT_KEY = "ACCOUNT_KEY";
-    public final static String SMS_CODE = "SMS_CODE";
 
     @BindView(R.id.password_img)
     ImageView imageView;
@@ -45,15 +44,8 @@ public class InputPasswordActivity extends BaseActivity implements LoginContract
     @Autowired(name = ACCOUNT_KEY)
     String account;
 
-    @Autowired(name = SMS_CODE)
-    String smsCode;
-
     @Inject
     UserOperationPresenter userOperationPresenter;
-
-
-//    @Inject
-//    LoginPresenter presenter;
 
     @NonNull
     @Override
@@ -84,12 +76,17 @@ public class InputPasswordActivity extends BaseActivity implements LoginContract
             return;
         }
         userOperationPresenter.login(account, passwordEt.getText().toString());
-//        presenter.loginNormal(account, passwordEt.getText().toString(), smsCode);
     }
 
     @OnClick(R.id.forget_tv)
     public void forgetPassword() {
         ARouter.getInstance().build(ValidNoteActivity.AROUTER_PATH).withString(ValidNoteActivity.ACCOUNT_KEY, account)
                 .withBoolean(ValidNoteActivity.EXIST_ACCOUNT_KEY, true).withBoolean(ValidNoteActivity.REGISTER_KEY, true).navigation();
+    }
+
+    @OnClick(R.id.sms_text)
+    public void clickSMS(){
+        ARouter.getInstance().build(ValidNoteActivity.AROUTER_PATH).withString(ValidNoteActivity.ACCOUNT_KEY, account)
+                .withBoolean(ValidNoteActivity.EXIST_ACCOUNT_KEY, true).navigation();
     }
 }

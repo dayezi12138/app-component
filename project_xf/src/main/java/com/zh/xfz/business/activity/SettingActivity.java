@@ -1,6 +1,7 @@
 package com.zh.xfz.business.activity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.widget.TextView;
@@ -83,21 +84,26 @@ public class SettingActivity extends BaseActivity {
 
     @OnClick(R.id.clear_ly)
     public void clear() {
-        DataCleanManager.clearAllCache(this);
-        try {
-            clearTv.setText(DataCleanManager.getTotalCacheSize(this));
-            showMsg("缓存已清除");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        new AlertDialog.Builder(this).setTitle("提示").setMessage("是否清楚緩存").setPositiveButton("確定", (dialog, which) -> {
+            DataCleanManager.clearAllCache(SettingActivity.this);
+            try {
+                clearTv.setText(DataCleanManager.getTotalCacheSize(SettingActivity.this));
+                showMsg("缓存已清除");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                dialog.dismiss();
+            }
+        }).setNegativeButton("取消", (dialog, which) -> dialog.dismiss()).show();
     }
 
     @OnClick(R.id.my_company_ly)
     public void myCompany() {
         ARouter.getInstance().build(MyCompanyActivity.AROUTER_PATH).navigation();
     }
+
     @OnClick(R.id.help_ly)
-    public void helpClick(){
+    public void helpClick() {
         ARouter.getInstance().build(HelpActivity.AROUTER_PATH).navigation();
     }
 }

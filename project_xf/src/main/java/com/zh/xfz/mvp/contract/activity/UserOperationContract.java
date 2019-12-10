@@ -3,6 +3,8 @@ package com.zh.xfz.mvp.contract.activity;
 import com.zh.xfz.bean.activity.TargetUserInfo;
 import com.zh.xfz.bean.activity.UserInfo;
 
+import java.util.Map;
+
 import core.app.zh.com.core.base.BaseView;
 import core.app.zh.com.core.base.IPresenter;
 import q.rorbin.badgeview.Badge;
@@ -24,9 +26,11 @@ public interface UserOperationContract {
 
     interface AccountSecurityUI extends BaseView {
         void success();
-//        void bindWx(String code);
+
+        //        void bindWx(String code);
         void relieve();
     }
+
 
     interface UserOperationUI extends BaseView {
         default void userInfoSuccess(UserInfo userInfo) {
@@ -35,6 +39,10 @@ public interface UserOperationContract {
 
     interface UpdatePersonNameUI extends BaseView {
         void successData();
+    }
+
+    interface UpdateMobileUI extends BaseView {
+        void updateMobileSuccess();
     }
 
     interface Presenter extends IPresenter {
@@ -63,5 +71,9 @@ public interface UserOperationContract {
         void wxCheckAndLogin(String code);
 
         void relieveWXBind();
+
+        void updateMobile(String mobile, String code);
+
+        void wxRegister(Map<String, String> params);
     }
 }

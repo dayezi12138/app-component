@@ -13,6 +13,8 @@ import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.Account;
 import com.zh.xfz.bean.activity.UserInfo;
+import com.zh.xfz.business.activity.BusinessListActivity;
+import com.zh.xfz.business.activity.HelpActivity;
 import com.zh.xfz.business.activity.MyCompanyActivity;
 import com.zh.xfz.business.activity.PersonCardActivity;
 import com.zh.xfz.business.activity.PersonDetailInfoActivity;
@@ -100,7 +102,7 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
 //        myPopupWindow.showAtLocation(linearLayout, Gravity.CENTER, 0, 0);
     }
 
-    @OnClick(R.id.img_iv)
+    @OnClick(R.id.content)
     public void clickPortrait() {
         ARouter.getInstance().build(PersonDetailInfoActivity.AROUTER_PATH).navigation();
     }
@@ -108,6 +110,16 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
     @OnClick(R.id.my_company_ly)
     public void clickComany() {
         ARouter.getInstance().build(MyCompanyActivity.AROUTER_PATH).navigation();
+    }
+
+    @OnClick(R.id.help_ly)
+    public void clickHelp() {
+        ARouter.getInstance().build(HelpActivity.AROUTER_PATH).navigation();
+    }
+
+    @OnClick(R.id.test_tv)
+    public void test() {
+        ARouter.getInstance().build(BusinessListActivity.AROUTER_PATH).navigation();
     }
 
 

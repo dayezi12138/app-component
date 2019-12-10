@@ -38,4 +38,8 @@
         <attr name="vcNextWrapperColor" format="color|reference"/>
         <attr name="vcWrapperStrokeWidth" format="dimension|reference"/>
     </declare-styleable>
+
+    <declare-styleable name="ClearEditTextView">
+        <attr name="clearImage" format="reference"/>
+    </declare-styleable>
 </resources>

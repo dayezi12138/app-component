@@ -14,6 +14,8 @@ public class Constans {
     public final static String USER_INFO_JSON_DATA_KEY = "userInfo.jsonData";
     public final static String USER_COMPANY = "user.company";
     public final static String BIND_WX = "bind.wx";
+    public final static String IS_UPDATE_PHONE = "update.phone";
+    public final static String WX_CODE = "wx.code";
 
     public final static String[] SECTION_STR = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z".split(",");
 
@@ -25,4 +27,6 @@ public class Constans {
 
     public final static String FILE_ROOT_PATH = "XFZ";
     public final static String FILE_IMAGE_TEMP_PATH = "temp";
+
+    public final static int PAGESIZE = 25;
 }

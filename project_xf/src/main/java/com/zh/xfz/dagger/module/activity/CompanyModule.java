@@ -22,14 +22,14 @@ public class CompanyModule {
     @ActivityScope
     @Provides
     public MyPopupWindow popupWindow(CompanyActivity activity) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.person_card_pop, null);
+        View view = LayoutInflater.from(activity).inflate(R.layout.view_company, null);
         MyPopupWindow.Builder builder = new MyPopupWindow.Builder(view, activity);
         builder.animationStyle(R.style.pop_animation);
-        TextView tv = view.findViewById(R.id.qcrode_tv);
+        TextView tv = view.findViewById(R.id.sure_btn);
         tv.setText("退出企业");
         tv.setTextColor(activity.getResources().getColor(R.color.d));
         tv.setOnClickListener(activity);
-        view.findViewById(R.id.cancel_tv).setOnClickListener(activity);
+        view.findViewById(R.id.cancel_btn).setOnClickListener(activity);
         return builder.build();
     }
 }

@@ -67,11 +67,11 @@ public class CompanyActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.qcrode_tv:
+            case R.id.sure_btn:
                 popupWindow.dismiss();
                 showMsg("该功能正在开发中....");
                 break;
-            case R.id.cancel_tv:
+            case R.id.cancel_btn:
                 popupWindow.dismiss();
                 break;
         }

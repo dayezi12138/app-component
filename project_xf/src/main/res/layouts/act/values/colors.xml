@@ -11,4 +11,5 @@
     <color name="create_grid_no_background_color">#EFEFEE</color>
     <color name="login_btn_color">#6C90B7</color>
     <color name="input_account_color">#6598CB</color>
+    <color name="update_phone_text_color">#868686</color>
 </resources>

@@ -24,7 +24,7 @@ import core.app.zh.com.core.base.BaseActivity;
  * description:
  */
 @Route(path = UpdatePasswordActivity.AROUTER_PATH)
-@ToolbarLeft(menuId = R.menu.menu_complete)
+@ToolbarLeft(menuId = R.menu.menu_update)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "修改密码")
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
 public class UpdatePasswordActivity extends BaseActivity {
@@ -54,15 +54,19 @@ public class UpdatePasswordActivity extends BaseActivity {
 
     @OnMenuOnclick
     public void menuClick() {
-
+        if (TextUtils.isEmpty(newPassword1.getText().toString()) || TextUtils.isEmpty(newPassword2.getText().toString())) {
+            showMsg("新密码不能为空");
+            return;
+        }
+        presenter.updatePassWord(oldPassowrd.getText().toString(), newPassword1.getText().toString(), newPassword2.getText().toString());
     }
 
     @OnClick(R.id.submit)
     public void submit() {
-        if (TextUtils.isEmpty(oldPassowrd.getText().toString())) {
-            showMsg("旧密码不能为空");
-            return;
-        }
+//        if (TextUtils.isEmpty(oldPassowrd.getText().toString())) {
+//            showMsg("旧密码不能为空");
+//            return;
+//        }
         if (TextUtils.isEmpty(newPassword1.getText().toString()) || TextUtils.isEmpty(newPassword2.getText().toString())) {
             showMsg("新密码不能为空");
             return;

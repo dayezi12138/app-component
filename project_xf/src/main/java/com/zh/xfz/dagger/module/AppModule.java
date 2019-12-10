@@ -24,7 +24,7 @@ public class AppModule {
     private MyApplication application;
     private static final int READ_WRITE_CONNECT_TIME = 15;
     private HttpLoggingInterceptor loggingInterceptor;
-    public final String BASE_URL = "http://47.103.75.23:8031/api/";
+    public final static String BASE_URL = "http://47.103.75.23:8031/api/";
 
     @Inject
     public AppModule(MyApplication application) {
