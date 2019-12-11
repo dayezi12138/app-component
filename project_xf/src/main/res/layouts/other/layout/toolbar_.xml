@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ly"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+</LinearLayout><!--<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--android:id="@+id/toolbar"--><!--android:layout_width="match_parent"--><!--android:layout_height="?android:attr/actionBarSize"--><!--android:background="@color/colorStatusbar"--><!--app:contentInsetLeft="0dp"--><!--app:contentInsetStart="0dp"--><!--app:contentInsetStartWithNavigation="0dp"--><!--app:navigationIcon="@drawable/ic_back_white"--><!--app:popupTheme="@style/OverflowMenuStyle"--><!--app:titleTextColor="@color/white">-->
+
+    <!--&lt;!&ndash;<TextView&ndash;&gt;&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;&lt;!&ndash;android:layout_gravity="center"&ndash;&gt;&lt;!&ndash;android:background="@color/e"&ndash;&gt;&lt;!&ndash;android:gravity="center"&ndash;&gt;&lt;!&ndash;android:text="111"&ndash;&gt;&lt;!&ndash;android:textColor="@color/white"&ndash;&gt;&lt;!&ndash;android:textSize="@dimen/font_min_xx_sp" />&ndash;&gt;-->
+
+    <!--</android.support.v7.widget.Toolbar>-->
