@@ -7,6 +7,9 @@ import com.zh.xfz.R;
 import com.zh.xfz.business.activity.UpLoadPortraitActivity;
 
 import core.app.zh.com.core.annotation.ActivityScope;
+import core.app.zh.com.core.base.BaseActivity;
+import core.app.zh.com.core.base.BaseView;
+import core.app.zh.com.core.base.MyBaseModel;
 import core.app.zh.com.core.view.MyPopupWindow;
 import dagger.Module;
 import dagger.Provides;
@@ -28,5 +31,27 @@ public class UpLoadPortraitModule {
         view.findViewById(R.id.cancel_tv).setOnClickListener(activity);
         view.findViewById(R.id.pic_camera_tv).setOnClickListener(activity);
         return builder.build();
+    }
+
+    @ActivityScope
+    @Provides
+    public BaseActivity activity(UpLoadPortraitActivity activity) {
+        return activity;
+    }
+
+    @ActivityScope
+    @Provides
+    public MyBaseModel myBaseModel(UpLoadPortraitActivity activity) {
+        return new MyBaseModel(activity.getApplication()) {
+            @Override
+            public BaseView getBaseView() {
+                return activity;
+            }
+
+            @Override
+            public BaseActivity getMyActivity() {
+                return activity;
+            }
+        };
     }
 }

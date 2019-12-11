@@ -16,6 +16,7 @@ import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.application.MyApplication;
 import com.zh.xfz.mvp.contract.activity.AccountLoginContract;
+import com.zh.xfz.mvp.presenter.UserOperationPresenter;
 import com.zh.xfz.mvp.presenter.activity.AccountLoginPresenter;
 
 import java.util.Date;
@@ -46,6 +47,9 @@ public class AccountLoginActivity extends BaseActivity implements AccountLoginCo
 
     @Inject
     AccountLoginPresenter presenter;
+    @Inject
+    UserOperationPresenter userOperationPresenter;
+
     private IWXAPI api;
 
     @NonNull
@@ -101,11 +105,8 @@ public class AccountLoginActivity extends BaseActivity implements AccountLoginCo
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        String user_openId = intent.getStringExtra("openId");
-        String accessToken = intent.getStringExtra("accessToken");
-        String refreshToken = intent.getStringExtra("refreshToken");
-        String scope = intent.getStringExtra("scope");
-
+        if (intent.hasExtra("code"))
+            userOperationPresenter.wxLogin(intent.getStringExtra("code"));
     }
 
 }

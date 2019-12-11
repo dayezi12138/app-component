@@ -3,6 +3,7 @@ package com.zh.xfz.mvp.contract.activity;
 import com.zh.xfz.bean.activity.TargetUserInfo;
 import com.zh.xfz.bean.activity.UserInfo;
 
+import java.io.File;
 import java.util.Map;
 
 import core.app.zh.com.core.base.BaseView;
@@ -64,7 +65,7 @@ public interface UserOperationContract {
 
         void forgetPassWord(String account, String newpass1, String newpass2, String code);
 
-        void updatePersonName(String chineseName);
+        void updatePersonName(String chineseName, String icon);
 
         void bindWX(String code);
 
@@ -75,5 +76,9 @@ public interface UserOperationContract {
         void updateMobile(String mobile, String code);
 
         void wxRegister(Map<String, String> params);
+
+        void uploadImg(File file);
+
+        void wxLogin(String code);
     }
 }

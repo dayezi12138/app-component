@@ -25,7 +25,7 @@ public class Constans {
 
     public final static int CONSULT_DOC_CAMERA = 1001;//拍照
 
-    public final static String FILE_ROOT_PATH = "XFZ";
+    public final static String FILE_ROOT_PATH = "com.zh.xfz";
     public final static String FILE_IMAGE_TEMP_PATH = "temp";
 
     public final static int PAGESIZE = 25;

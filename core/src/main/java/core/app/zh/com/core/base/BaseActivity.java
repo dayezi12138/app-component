@@ -46,7 +46,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        View view1 = LayoutInflater.from(this).inflate(R.layout.base_view, null, false);
+        View view1 = LayoutInflater.from(this).inflate(R.layout.base_view, null);
         setContentView(view1);
         ViewGroup viewGroup = findViewById(R.id.root_ly);
         View view = beforeInit(LayoutInflater.from(this), viewGroup);

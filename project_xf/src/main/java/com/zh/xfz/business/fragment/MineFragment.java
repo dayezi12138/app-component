@@ -59,15 +59,15 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
 
     @Override
     public void init() {
-        Account userInfo = LoginUtils.getUserInfo();
-        if (userInfo != null && !StringUtils.isEmpty(userInfo.getUserIcon())) {
-            Glide.with(getMyActivity()).load(userInfo.getUserIcon())
-                    .error(R.drawable.rc_default_portrait)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)//关闭Glide的硬盘缓存机制
-                    .into(imageView);
-        }
-        if (userInfo != null)
-            nameTv.setText(StringUtils.isEmpty(userInfo.getChineseName()) ? userInfo.getMobile() : userInfo.getChineseName());
+//        Account userInfo = LoginUtils.getUserInfo();
+//        if (userInfo != null && !StringUtils.isEmpty(userInfo.getUserIcon())) {
+//            Glide.with(getMyActivity()).load(userInfo.getUserIcon())
+//                    .error(R.drawable.rc_default_portrait)
+//                    .diskCacheStrategy(DiskCacheStrategy.NONE)//关闭Glide的硬盘缓存机制
+//                    .into(imageView);
+//        }
+//        if (userInfo != null)
+//            nameTv.setText(StringUtils.isEmpty(userInfo.getChineseName()) ? userInfo.getMobile() : userInfo.getChineseName());
 //        if (LoginUtils.getTenant() != null)
 //            companyTv.setText(LoginUtils.getTenant().getTenantName());
 
@@ -81,6 +81,15 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
         super.onResume();
         if (LoginUtils.getTenant() != null)
             companyTv.setText(LoginUtils.getTenant().getTenantName());
+        Account userInfo = LoginUtils.getUserInfo();
+        if (userInfo != null && !StringUtils.isEmpty(userInfo.getUserIcon())) {
+            Glide.with(getMyActivity()).load(userInfo.getUserIcon())
+                    .error(R.drawable.ic_user_white)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)//关闭Glide的硬盘缓存机制
+                    .into(imageView);
+        }
+        if (userInfo != null)
+            nameTv.setText(StringUtils.isEmpty(userInfo.getChineseName()) ? userInfo.getMobile() : userInfo.getChineseName());
     }
 
     @OnClick(R.id.setting_ly)

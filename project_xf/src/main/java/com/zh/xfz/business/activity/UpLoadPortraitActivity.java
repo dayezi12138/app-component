@@ -2,8 +2,10 @@ package com.zh.xfz.business.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -14,13 +16,15 @@ import android.view.Gravity;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.blankj.utilcode.util.ImageUtils;
 import com.shehuan.niv.NiceImageView;
-import com.soundcloud.android.crop.Crop;
+import com.zh.annatation.toolbar.OnMenuOnclick;
 import com.zh.annatation.toolbar.ToolbarLeft;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.constans.Constans;
+import com.zh.xfz.mvp.presenter.UserOperationPresenter;
 
 import java.io.File;
 
@@ -31,6 +35,9 @@ import butterknife.OnClick;
 import core.app.zh.com.core.annotation.NeedPermission;
 import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.view.MyPopupWindow;
+
+import static com.zh.xfz.constans.Constans.FILE_IMAGE_TEMP_PATH;
+import static com.zh.xfz.constans.Constans.FILE_ROOT_PATH;
 
 /**
  * author : dayezi
@@ -52,6 +59,9 @@ public class UpLoadPortraitActivity extends BaseActivity implements View.OnClick
 
     @BindView(R.id.img_iv)
     NiceImageView imageView;
+
+    @Inject
+    UserOperationPresenter presenter;
 
     @NonNull
     @Override
@@ -83,6 +93,8 @@ public class UpLoadPortraitActivity extends BaseActivity implements View.OnClick
 
     //调用照相机返回图片文件
     private File tempFile;
+
+    private File updateHeadFile;
 
     private void getPicFromCamera() {
         //用于保存调用相机拍照后所生成的文件
@@ -128,8 +140,18 @@ public class UpLoadPortraitActivity extends BaseActivity implements View.OnClick
                     beginCrop(data.getData());
                     break;
                 case Constans.CORP_CAMERA_IMAGE:
-                    Uri corpImageUri = Crop.getOutput(data);
-                    imageView.setImageURI(corpImageUri);
+                    Bundle bundle = data.getExtras();
+                    if (bundle != null) {
+                        File rootFile = new File(Environment.getExternalStorageDirectory().getPath()
+                                + File.separator + FILE_ROOT_PATH + File.separator + FILE_IMAGE_TEMP_PATH);
+                        if (!rootFile.exists()) {
+                            rootFile.mkdirs();
+                        }
+                        Bitmap image = bundle.getParcelable("data");
+                        imageView.setImageBitmap(image);
+                        updateHeadFile = new File(rootFile, "imageTemp.jpg");
+                        ImageUtils.save(image, updateHeadFile, Bitmap.CompressFormat.JPEG);
+                    }
                     break;
             }
         } else if (resultCode == RESULT_OK && requestCode == Constans.CONSULT_DOC_CAMERA) {
@@ -145,9 +167,27 @@ public class UpLoadPortraitActivity extends BaseActivity implements View.OnClick
 
     //开始截图
     private void beginCrop(Uri source) {
-        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
-        Crop.of(source, destination).asSquare().start(this, Constans.CORP_CAMERA_IMAGE);
+        // 调用系统中自带的图片剪裁
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        intent.setDataAndType(source, "image/*");
+        // 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
+        intent.putExtra("crop", "true");
+        // aspectX aspectY 是宽高的比例
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        // outputX outputY 是裁剪图片宽高
+        intent.putExtra("outputX", 150);
+        intent.putExtra("outputY", 150);
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, Constans.CORP_CAMERA_IMAGE);
     }
 
+    @OnMenuOnclick
+    public void menuClick() {
+        if (updateHeadFile != null) {
+            presenter.uploadImg(updateHeadFile);
+        }
+    }
 
 }

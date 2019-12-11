@@ -5,6 +5,7 @@ import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.blankj.utilcode.util.StringUtils;
 import com.zh.annatation.toolbar.OnMenuOnclick;
 import com.zh.annatation.toolbar.ToolbarLeft;
 import com.zh.annatation.toolbar.ToolbarNavigation;
@@ -55,14 +56,15 @@ public class UpdatePersonNameActivity extends BaseActivity implements UserOperat
     @OnMenuOnclick
     public void menuClick() {
         if (nameTv.getText().toString() != null) {
-            mPresenter.updatePersonName(nameTv.getText().toString());
+            mPresenter.updatePersonName(nameTv.getText().toString(),
+                    StringUtils.isEmpty(LoginUtils.ACCOUNT.getUserIcon()) ? "" : LoginUtils.ACCOUNT.getUserIcon());
         }
     }
 
     @Override
     public void successData() {
-        LoginUtils.ACCOUNT.setChineseName(nameTv.getText().toString());
-        LoginUtils.saveLoginInfo(LoginUtils.ACCOUNT);
+//        LoginUtils.ACCOUNT.setChineseName(nameTv.getText().toString());
+//        LoginUtils.saveLoginInfo(LoginUtils.ACCOUNT);
         finish();
         showMsg("更新完成");
     }

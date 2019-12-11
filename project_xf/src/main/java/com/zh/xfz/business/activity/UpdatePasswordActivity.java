@@ -71,6 +71,6 @@ public class UpdatePasswordActivity extends BaseActivity {
             showMsg("新密码不能为空");
             return;
         }
-        presenter.updatePassWord(oldPassowrd.getText().toString(), newPassword1.getText().toString(), newPassword2.getText().toString());
+        presenter.updatePassWord("", newPassword1.getText().toString(), newPassword2.getText().toString());
     }
 }

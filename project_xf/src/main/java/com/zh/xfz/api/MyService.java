@@ -186,7 +186,8 @@ public interface MyService {
     @ApiAnnotation("微信检查并登录")
     @POST("User/WxCheckAndLogin")
     @FormUrlEncoded
-    Observable<Data<Object>> wxCheckAndLogin(@FieldMap Map<String, String> paramMap);
+    Observable<Data<Account>> wxCheckAndLogin(@FieldMap Map<String, String> paramMap);
+
 
     @ApiAnnotation("解除微信绑定")
     @POST("User/RelieveWXBind")
@@ -212,4 +213,9 @@ public interface MyService {
     @POST("Tenant/ApplyTenant")
     @FormUrlEncoded
     Observable<Data<Object>> applyTenant(@FieldMap Map<String, Object> paramMap);
+
+//    @ApiAnnotation("上传图片")
+//    @POST("UpLoad/UploadImg")
+////    @FormUrlEncoded
+//    Call<ResponseBody> uploadImg(@Body RequestBody Body);
 }

@@ -1,6 +1,5 @@
 package com.zh.xfz.business.activity;
 
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zh.xfz.R;
@@ -16,7 +14,6 @@ import com.zh.xfz.application.MyApplication;
 import com.zh.xfz.utils.IM.IMConnectCallBack;
 import com.zh.xfz.utils.IM.IMUtils;
 import com.zh.xfz.utils.LoginUtils;
-import com.zh.xfz.wxapi.AppRegister;
 
 import butterknife.ButterKnife;
 
@@ -61,8 +58,8 @@ public class SplashActivity extends AppCompatActivity {
         // 将应用的appId注册到微信
         api.registerApp(MyApplication.APP_ID);
 
-        //建议动态监听微信启动广播进行注册到微信
-        registerReceiver(new AppRegister(), new IntentFilter(ConstantsAPI.ACTION_REFRESH_WXAPP));
+//        //建议动态监听微信启动广播进行注册到微信
+//        registerReceiver(new AppRegister(), new IntentFilter(ConstantsAPI.ACTION_REFRESH_WXAPP));
 
     }
 

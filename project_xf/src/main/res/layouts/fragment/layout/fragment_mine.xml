@@ -58,11 +58,10 @@
                         android:id="@+id/img_iv"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:background="@drawable/rc_default_portrait"
+                        android:background="@drawable/ic_user_white"
                         app:border_color="@color/transparent"
                         app:border_width="@dimen/divider"
-                        app:corner_radius="30dp"
-                        app:is_circle="true" />
+                        app:corner_radius="10dp" />
                 </LinearLayout>
 
                 <ImageView

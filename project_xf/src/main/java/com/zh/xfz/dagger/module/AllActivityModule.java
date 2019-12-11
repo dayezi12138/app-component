@@ -236,4 +236,8 @@ public abstract class AllActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = {EmptyModule.class})
     abstract BusinessListActivity contributeBusinessListActivityInjector();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    abstract com.zh.xfz.business.TestActivity contributeTestActivity1Injector();
 }

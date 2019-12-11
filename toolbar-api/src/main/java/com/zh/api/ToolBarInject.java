@@ -87,8 +87,7 @@ public class ToolBarInject {
                 if (bean.getTitleAppearanceId() != DEFAULT_INT_)
                     toolbar.setTitleTextAppearance(activity, bean.getTitleAppearanceId());
                 if (bean.getTextColorId() != DEFAULT_INT_)
-                    toolbar.setTitleTextColor(bean.getTextColorId());
-
+                    toolbar.setTitleTextColor(bean.getTextColorId() == DEFAULT_INT_ ? bean.getTextColorId() : activity.getResources().getColor(android.R.color.white));
                 if (bean.getSubTitleColorId() != DEFAULT_INT_)
                     toolbar.setSubtitleTextColor(activity.getResources().getColor(bean.getSubTitleColorId()));
                 if (bean.getSubTitleAppearanceId() != DEFAULT_INT_)
@@ -122,7 +121,7 @@ public class ToolBarInject {
             AppCompatActivity activity = valid(obj);
             if (activity == null) return;
             TextView textView = new TextView(activity);
-            Toolbar.LayoutParams layoutParams = new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.MATCH_PARENT);
+            Toolbar.LayoutParams layoutParams = new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT);
             layoutParams.gravity = Gravity.CENTER;
             textView.setLayoutParams(layoutParams);
             textView.setGravity(Gravity.CENTER);
