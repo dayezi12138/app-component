@@ -111,7 +111,7 @@ public class UpdatePhoneSmsActivity extends BaseActivity implements UserOperatio
     }
 
     @Override
-    public void sendSuccess() {
+    public void loginOrRegister(boolean isRegister) {
         countDownTimer.start();
     }
 }

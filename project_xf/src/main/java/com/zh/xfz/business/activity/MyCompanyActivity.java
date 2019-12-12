@@ -28,7 +28,7 @@ import core.app.zh.com.core.base.BaseActivity;
  */
 @Route(path = MyCompanyActivity.AROUTER_PATH)
 //@ToolbarLeft(menuId = R.menu.menu_sure)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white, title = "我")
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "我的企业")
 public class MyCompanyActivity extends BaseActivity {
     public final static String AROUTER_PATH = "/main/MyCompanyActivity/";

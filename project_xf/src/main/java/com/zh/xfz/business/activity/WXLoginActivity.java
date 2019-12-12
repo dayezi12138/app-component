@@ -36,14 +36,16 @@ import core.app.zh.com.core.base.BaseActivity;
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color)
 public class WXLoginActivity extends BaseActivity implements SmsCodeContract.SmsCodeUI {
     public final static String AROUTER_PATH = "/login/WXLoginActivity/";
-
-    @Autowired(name = "openId", required = true)
+    public final static String WX_OPENID_KEY = "openId";
+    public final static String WX_UNIONID_KEY = "unionid";
+    public final static String WX_ACCESS_TOKEN_KEY = "access_token";
+    @Autowired(name = WX_OPENID_KEY)
     String openId;
 
-    @Autowired(name = "unionid", required = true)
+    @Autowired(name = WX_UNIONID_KEY)
     String unionid;
 
-    @Autowired(name = "access_token", required = true)
+    @Autowired(name = WX_ACCESS_TOKEN_KEY)
     String accessToken;
 
     @BindView(R.id.send_tv)
@@ -126,8 +128,9 @@ public class WXLoginActivity extends BaseActivity implements SmsCodeContract.Sms
     }
 
     @Override
-    public void sendSuccess() {
+    public void loginOrRegister(boolean isRegister) {
         countDownTimer.start();
     }
+
 
 }

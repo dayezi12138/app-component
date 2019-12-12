@@ -16,6 +16,7 @@ import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.business.activity.GroupDetailActivity;
+import com.zh.xfz.utils.KeyboardPatch;
 
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
@@ -27,7 +28,7 @@ import io.rong.imkit.fragment.ConversationFragment;
  * description:
  */
 @Route(path = ConversationActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color)
 public class ConversationActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
     public final static String AROUTER_PATH = "/im/ConversationActivity/";
@@ -36,6 +37,7 @@ public class ConversationActivity extends BaseActivity implements Toolbar.OnMenu
     Toolbar toolbar;
 
     private String targetId;
+    private KeyboardPatch keyboardPatch;
 
     @NonNull
     @Override
@@ -62,12 +64,20 @@ public class ConversationActivity extends BaseActivity implements Toolbar.OnMenu
                 toolbar.inflateMenu(R.menu.group_conversation);
                 toolbar.setOnMenuItemClickListener(this::onMenuItemClick);
             }
+            keyboardPatch = KeyboardPatch.patch(this, myContentView());
+            keyboardPatch.enable();
             FragmentManager fragmentManage = getSupportFragmentManager();
             ConversationFragment fragment = (ConversationFragment) fragmentManage.findFragmentById(R.id.conversation);
             fragment.setUri(uri);
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (keyboardPatch != null)
+            keyboardPatch.disable();
+    }
 
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {

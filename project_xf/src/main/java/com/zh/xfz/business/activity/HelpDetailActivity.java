@@ -17,7 +17,7 @@ import core.app.zh.com.core.base.BaseActivity;
  */
 @Route(path = HelpDetailActivity.AROUTER_PATH)
 @ToolbarLeft(menuId = R.menu.menu_contact_me)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white, title = "个人信息")
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "帮助中心")
 public class HelpDetailActivity extends BaseActivity {
     public final static String AROUTER_PATH = "/main/HelpDetailActivity/";

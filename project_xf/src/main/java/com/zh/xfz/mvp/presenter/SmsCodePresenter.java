@@ -25,9 +25,10 @@ public class SmsCodePresenter extends BasePresenter<BaseView> implements SmsCode
     @Override
     public void getCode(String phone, int status) {
         model.getCode(phone, status, validSmsCode -> {
-            if (validSmsCode.getCode() == 0 && view.get() instanceof SmsCodeContract.SmsCodeUI)
-                ((SmsCodeContract.SmsCodeUI) view.get()).sendSuccess();
-            view.get().showMsg(validSmsCode.getMsg());
+            if (validSmsCode.getCode() == 40004) getCode(phone, 3);
+            else if (validSmsCode.getCode() == 0 && view.get() instanceof SmsCodeContract.SmsCodeUI) {
+                ((SmsCodeContract.SmsCodeUI) view.get()).loginOrRegister(status != 3 ? true : false);
+            } else view.get().showMsg(validSmsCode.getMsg());
         });
     }
 }

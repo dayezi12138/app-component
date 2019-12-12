@@ -10,6 +10,7 @@
         <item name="toolbarNavigationButtonStyle">@style/NavigationButtonStyle</item>
         <item name="android:windowActivityTransitions">@style/ActivityAnimation</item>
         <item name="colorControlNormal">@color/white</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
     </style>
 </resources>

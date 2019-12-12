@@ -27,7 +27,7 @@ import core.app.zh.com.core.base.BaseActivity;
  */
 @Route(path = UpdatePersonNameActivity.AROUTER_PATH)
 @ToolbarLeft(menuId = R.menu.menu_complete)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white, title = "个人信息")
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "姓名")
 public class UpdatePersonNameActivity extends BaseActivity implements UserOperationContract.UpdatePersonNameUI {
     public final static String AROUTER_PATH = "/main/UpdatePersonNameActivity/";

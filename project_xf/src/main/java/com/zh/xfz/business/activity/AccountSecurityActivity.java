@@ -85,8 +85,10 @@ public class AccountSecurityActivity extends BaseActivity implements UserOperati
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        if (intent.hasExtra(AUTHOR_CODE))
-            presenter.wxCheckAndLogin(intent.getStringExtra(AUTHOR_CODE));
+        if (intent.hasExtra(AUTHOR_CODE)&&!LoginUtils.isIsBindWX()){
+            presenter.bindWX(intent.getStringExtra(AUTHOR_CODE));
+        }
+//            presenter.wxCheckAndLogin(intent.getStringExtra(AUTHOR_CODE));
     }
 
     @OnClick(R.id.bind_wx_ly)

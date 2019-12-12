@@ -21,7 +21,7 @@ import core.app.zh.com.core.base.BaseActivity;
  * description:
  */
 @Route(path = SelectCompanyActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white, title = "切换公司")
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "姓名")
 public class SelectCompanyActivity extends BaseActivity {
     public final static String AROUTER_PATH = "/main/SelectCompanyActivity/";

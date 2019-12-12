@@ -28,7 +28,7 @@ import core.app.zh.com.core.view.MyPopupWindow;
  */
 @Route(path = CompanyActivity.AROUTER_PATH)
 @ToolbarLeft(menuId = R.menu.more_info_white_menu)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white, title = "我")
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "所属公司")
 public class CompanyActivity extends BaseActivity implements View.OnClickListener {
     public final static String AROUTER_PATH = "/main/CompanyActivity/";

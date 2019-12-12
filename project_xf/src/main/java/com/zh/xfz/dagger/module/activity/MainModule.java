@@ -217,10 +217,6 @@ public class MainModule {
                 LoginUtils.clearLoginInfo();
                 ARouter.getInstance().build(LoginActivity.AROUTER_PATH).withFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK).navigation();
-//                Intent intent = new Intent(activity, LoginActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                activity.startActivity(intent);
                 ToastUtils.showShort("该账号已在其他设备上登录");
             }
         };

@@ -25,7 +25,7 @@ import core.app.zh.com.core.base.BaseActivity;
  * description:
  */
 @Route(path = PersonDetailInfoActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white, title = "我")
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "个人信息")
 public class PersonDetailInfoActivity extends BaseActivity {
     public final static String AROUTER_PATH = "/main/PersonDetailInfoActivity/";

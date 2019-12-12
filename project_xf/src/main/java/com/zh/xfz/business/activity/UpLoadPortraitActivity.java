@@ -46,7 +46,7 @@ import static com.zh.xfz.constans.Constans.FILE_ROOT_PATH;
  */
 @Route(path = UpLoadPortraitActivity.AROUTER_PATH)
 @ToolbarLeft(menuId = R.menu.menu_sure)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white, title = "个人信息")
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "编辑头像")
 public class UpLoadPortraitActivity extends BaseActivity implements View.OnClickListener {
     public final static String AROUTER_PATH = "/main/UpLoadPortraitActivity/";

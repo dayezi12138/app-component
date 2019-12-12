@@ -20,6 +20,7 @@ import com.zh.xfz.bean.activity.TargetUserInfo;
 import com.zh.xfz.business.activity.BusinessListActivity;
 import com.zh.xfz.business.activity.CreateBusinessActivity;
 import com.zh.xfz.business.activity.MainActivity;
+import com.zh.xfz.business.activity.WXLoginActivity;
 import com.zh.xfz.business.fragment.BusinessListFragment;
 import com.zh.xfz.mvp.contract.activity.UserOperationContract;
 import com.zh.xfz.mvp.contract.activity.ValidNoteContract;
@@ -93,8 +94,10 @@ public class UserOperationPresenter extends BasePresenter<BaseView> implements U
             model.getTargetUserInfo(userId, data -> {
                 if (data.getCode() == 0) {
                     TargetUserInfo targetUserInfo = data.getRes();
+                    String userName = StringUtils.isEmpty(targetUserInfo.getChineseName()) ? targetUserInfo.getRemarkName() : targetUserInfo.getChineseName();
+                    userName = StringUtils.isEmpty(userName) ? targetUserInfo.getMobile() : userName;
                     Uri uri = TextUtils.isEmpty(targetUserInfo.getUserIcon()) ? imageTranslateUri(R.drawable.rc_default_portrait) : Uri.parse(targetUserInfo.getUserIcon());
-                    RongIM.getInstance().refreshUserInfoCache(new UserInfo(userId, targetUserInfo.getMobile(), uri));
+                    RongIM.getInstance().refreshUserInfoCache(new UserInfo(userId, userName, uri));
                 }
             });
             return new UserInfo(userId, "", imageTranslateUri(R.drawable.rc_default_portrait));//根据 userId 去你的用户系统里查询对应的用户信息返回给融云 SDK。
@@ -277,11 +280,21 @@ public class UserOperationPresenter extends BasePresenter<BaseView> implements U
             if (data.getCode() == 0) {
                 LoginUtils.ACCOUNT = data.getRes();
                 LoginUtils.saveLoginInfo(data.getRes());
-                if (data.getRes().getTenant() != null && !data.getRes().getTenant().isEmpty())
-                    ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
-                else
-                    ARouter.getInstance().build(BusinessListActivity.AROUTER_PATH).withString(BusinessListActivity.FRAGMENT_CLASS_KEY, BusinessListFragment.class.getName()).navigation();
-                model.getMyBaseModel().getMyActivity().finish();
+                IMUtils.connect(data.getRes().getToken(), new IMConnectCallBack() {
+                    @Override
+                    public void success(String userid) {
+                        if (data.getRes().getTenant() != null && !data.getRes().getTenant().isEmpty())
+                            ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
+                        else
+                            ARouter.getInstance().build(BusinessListActivity.AROUTER_PATH).withString(BusinessListActivity.FRAGMENT_CLASS_KEY, BusinessListFragment.class.getName()).navigation();
+                        model.getMyBaseModel().getMyActivity().finish();
+                    }
+
+                    @Override
+                    public void fail(String msg) {
+                        view.get().showMsg(msg);
+                    }
+                });
             } else view.get().showMsg(data.getMsg());
         });
     }
@@ -313,8 +326,17 @@ public class UserOperationPresenter extends BasePresenter<BaseView> implements U
         Dialog dialog = defaultDialog();
         dialog.show();
         model.wxLogin(code, accountData -> {
-            if (accountData.getCode() == 0) connectIM(accountData.getRes(), dialog);
-            else {
+            if (accountData.getCode() == 0) {
+                if (!StringUtils.isEmpty(accountData.getRes().getOpenid())) {
+                    ARouter.getInstance().build(WXLoginActivity.AROUTER_PATH)
+                            .withString(WXLoginActivity.WX_OPENID_KEY, accountData.getRes().getOpenid())
+                            .withString(WXLoginActivity.WX_UNIONID_KEY, accountData.getRes().getUnionid())
+                            .withString(WXLoginActivity.WX_ACCESS_TOKEN_KEY, accountData.getRes().getAccess_token())
+                            .navigation();
+                    dialog.dismiss();
+                } else
+                    connectIM(accountData.getRes(), dialog);
+            } else {
                 view.get().showMsg(accountData.getMsg());
                 dialog.dismiss();
             }

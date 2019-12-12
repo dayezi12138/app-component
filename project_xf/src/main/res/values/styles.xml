@@ -11,6 +11,7 @@
         <item name="toolbarNavigationButtonStyle">@style/NavigationButtonStyle</item>
         <item name="colorControlNormal">@color/white</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
         <!--<item name="android:foreground">?android:attr/selectableItemBackground</item>-->
     </style>

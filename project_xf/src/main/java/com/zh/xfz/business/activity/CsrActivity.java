@@ -15,7 +15,7 @@ import core.app.zh.com.core.base.BaseActivity;
  * description:
  */
 @Route(path = CsrActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white, title = "个人信息")
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "在线客服")
 public class CsrActivity extends BaseActivity {
     public final static String AROUTER_PATH = "/main/CsrActivity/";

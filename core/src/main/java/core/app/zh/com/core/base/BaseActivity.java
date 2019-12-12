@@ -8,7 +8,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ToastUtils;
@@ -45,7 +44,6 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         View view1 = LayoutInflater.from(this).inflate(R.layout.base_view, null);
         setContentView(view1);
         ViewGroup viewGroup = findViewById(R.id.root_ly);

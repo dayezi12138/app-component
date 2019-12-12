@@ -62,7 +62,9 @@
             style="@style/TextView.MineFragment.line.right.Style"
             android:text="版本1.0.0" />
 
-        <include layout="@layout/view_forward"></include>
+        <!--<include-->
+            <!--layout="@layout/view_forward"-->
+            <!--android:visibility="invisible"></include>-->
     </LinearLayout>
 
     <LinearLayout
@@ -77,8 +79,8 @@
 
         <TextView
             android:id="@+id/clear_tv"
-            android:text="10.8M"
-            style="@style/TextView.MineFragment.line.right.Style" />
+            style="@style/TextView.MineFragment.line.right.Style"
+            android:text="10.8M" />
     </LinearLayout>
 
     <TextView

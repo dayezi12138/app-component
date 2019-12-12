@@ -29,7 +29,7 @@ public class MyConversationFragment extends ConversationListFragment {
         layout.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         layout.setLayoutParams(params);
-        Toolbar toolbar = (Toolbar) inflater.inflate(R.layout.toolbar_, null);
+        Toolbar toolbar = (Toolbar) inflater.inflate(R.layout.common_toolbar_, null);
         TextView textView = new TextView(getActivity());
         Toolbar.LayoutParams layoutParams = new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.CENTER;
@@ -46,4 +46,5 @@ public class MyConversationFragment extends ConversationListFragment {
         layout.addView(view);
         return layout;
     }
+
 }

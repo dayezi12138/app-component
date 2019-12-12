@@ -24,7 +24,7 @@ public class Account {
      * Tenant : [{"ID":38,"TenantName":"ghh","TenantType":null,"AdminUserID":15,"UserNumber":5,"DBSource":"47.103.75.23","DBCatalog":"B001","DBName":"BizTest001","DBPassword":"Jtb6oQ8HBu","Status":0,"IndustryIDs":null,"CreateTime":"2019-09-10T09:05:41.853"}]
      */
 
-    private int ID;
+    private Integer ID;
     private String ChineseName;
     private String Mobile;
     private String UserIcon;
@@ -72,11 +72,11 @@ public class Account {
         this.WXOpenID = WXOpenID;
     }
 
-    public int getID() {
+    public Integer getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 

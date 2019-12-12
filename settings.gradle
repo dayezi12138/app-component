@@ -1,1 +1,1 @@
-include ':module', ':core', ':module_1', ':toolbar-api', ':toolbar-annatations', ':toolbar-process', ':design_style', ':jyu', ':project_xf', ':IMLib', ':IMKit'
+include  ':core', ':toolbar-api', ':toolbar-annatations', ':toolbar-process', ':design_style', ':jyu', ':project_xf', ':IMLib', ':IMKit'

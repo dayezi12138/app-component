@@ -11,7 +11,7 @@ import core.app.zh.com.core.base.IPresenter;
 public interface SmsCodeContract {
 
     interface SmsCodeUI extends BaseView {
-        void sendSuccess();
+        void loginOrRegister(boolean isRegister);
     }
 
     interface Presenter extends IPresenter {

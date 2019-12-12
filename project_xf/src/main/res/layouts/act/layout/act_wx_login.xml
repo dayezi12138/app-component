@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="绑定手机"
+            android:text="绑定手机号码"
             android:textColor="@color/white"
             android:textSize="@dimen/font_large_xx_sp"
             android:typeface="serif" />
@@ -24,8 +24,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_edittext_height_normal"
-            android:visibility="visible"
-            android:layout_marginTop="@dimen/widget_margin_large_x">
+            android:layout_marginTop="@dimen/widget_margin_large_x"
+            android:visibility="visible">
 
             <EditText
                 android:id="@+id/account_et"
@@ -50,34 +50,33 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:hint="验证码"
-                android:inputType="textPassword"
                 android:paddingLeft="@dimen/widget_padding_tiny" />
 
             <TextView
                 android:id="@+id/send_tv"
                 style="@style/EditText.Login.TextStyle"
-                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingLeft="@dimen/widget_padding_tiny"
-                android:layout_marginTop="@dimen/widget_margin_normal"
-                android:background="@drawable/underline_layer_list"
-                android:text="发送验证码" />
+                android:layout_marginTop="@dimen/widget_margin_tiny"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/widget_margin_tiny"
+                android:text="发送验证码"
+                android:textSize="@dimen/font_min_x_sp"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 
         <include layout="@layout/common_line" />
 
 
-
         <Button
             android:id="@+id/submit_btn"
             style="@style/EditText.Login.TextStyle"
             android:layout_width="match_parent"
-            android:foreground="?android:attr/selectableItemBackground"
             android:layout_height="@dimen/widget_text_height_normal"
             android:layout_marginTop="@dimen/widget_margin_large_xx"
             android:background="@drawable/shape_btn_login_translucent"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/act_normal_login_btn_str" />
     </LinearLayout>
 </LinearLayout>

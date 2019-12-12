@@ -32,7 +32,7 @@ import core.app.zh.com.core.view.ClearEditTextView;
  */
 @Route(path = HelpActivity.AROUTER_PATH)
 @ToolbarLeft(menuId = R.menu.menu_contact_me)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white, title = "个人信息")
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "帮助")
 public class HelpActivity extends BaseActivity {
     public final static String AROUTER_PATH = "/main/HelpActivity/";

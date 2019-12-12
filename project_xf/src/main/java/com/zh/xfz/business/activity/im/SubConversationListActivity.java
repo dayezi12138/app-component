@@ -18,7 +18,7 @@ import io.rong.imkit.fragment.SubConversationListFragment;
  * description:
  */
 @Route(path = SubConversationListActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color,title = "系统消息")
 public class SubConversationListActivity extends BaseActivity {
     public final static String AROUTER_PATH = "/im/SubConversationListActivity/";
