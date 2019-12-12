@@ -35,7 +35,7 @@ import static com.zh.xfz.business.activity.AddFriendActivity.ADD_FRIEND_INFO;
  */
 @Route(path = SearchFriendActivity.AROUTER_PATH)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "添加朋友")
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 public class SearchFriendActivity extends BaseActivity implements SearchFriendContract.SearchFriendUI {
     public final static String AROUTER_PATH = "/main/SearchFriendActivity/";
 

@@ -1,7 +1,9 @@
 package com.zh.xfz.business.activity.im;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -16,10 +18,10 @@ import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.business.activity.GroupDetailActivity;
-import com.zh.xfz.utils.KeyboardPatch;
 
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
+import core.app.zh.com.core.utils.KeyboardPatch;
 import io.rong.imkit.fragment.ConversationFragment;
 
 /**
@@ -32,10 +34,12 @@ import io.rong.imkit.fragment.ConversationFragment;
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color)
 public class ConversationActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
     public final static String AROUTER_PATH = "/im/ConversationActivity/";
+    private final static int CONVER_TITLE_KEY = 36010;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    private TextView textView;
     private String targetId;
     private KeyboardPatch keyboardPatch;
 
@@ -51,7 +55,7 @@ public class ConversationActivity extends BaseActivity implements Toolbar.OnMenu
             Uri uri = getIntent().getData();
             String title = uri.getQueryParameter("title");
             targetId = uri.getQueryParameter("targetId");
-            TextView textView = new TextView(this);
+            textView = new TextView(this);
             Toolbar.LayoutParams layoutParams = new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.MATCH_PARENT);
             layoutParams.gravity = Gravity.CENTER;
             textView.setLayoutParams(layoutParams);
@@ -73,6 +77,14 @@ public class ConversationActivity extends BaseActivity implements Toolbar.OnMenu
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CONVER_TITLE_KEY && resultCode == RESULT_OK && data.hasExtra("title")) {
+            textView.setText(data.getStringExtra("title"));
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (keyboardPatch != null)
@@ -85,7 +97,7 @@ public class ConversationActivity extends BaseActivity implements Toolbar.OnMenu
             case R.id.add_person:
                 if (TextUtils.isEmpty(targetId)) showMsg("targetId 为空,请联系管理员");
                 else
-                    ARouter.getInstance().build(GroupDetailActivity.AROUTER_PATH).withString(GroupDetailActivity.ADD_GROUP, targetId).navigation();
+                    ARouter.getInstance().build(GroupDetailActivity.AROUTER_PATH).withString(GroupDetailActivity.ADD_GROUP, targetId).navigation(this, CONVER_TITLE_KEY);
 //                    ARouter.getInstance().build(AddGroupMembersActivity.AROUTER_PATH).withString(ADD_GROUP, targetId).navigation();
                 break;
 //            case R.id.person_info:

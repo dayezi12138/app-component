@@ -26,7 +26,7 @@ import core.app.zh.com.core.base.BaseActivity;
 @Route(path = UpdatePasswordActivity.AROUTER_PATH)
 @ToolbarLeft(menuId = R.menu.menu_update)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "修改密码")
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 public class UpdatePasswordActivity extends BaseActivity {
     public final static String AROUTER_PATH = "/main/UpdatePasswordActivity/";
 

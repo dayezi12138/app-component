@@ -44,7 +44,7 @@ import core.app.zh.com.core.bean.MessageEvent;
  * description:
  */
 @Route(path = AddGroupMembersActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "创建群组")
 @ToolbarLeft(menuId = R.menu.add_group_members)
 public class AddGroupMembersActivity extends BaseActivity implements FriendContract.FriendUI, GroupContract.GroupUI, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {

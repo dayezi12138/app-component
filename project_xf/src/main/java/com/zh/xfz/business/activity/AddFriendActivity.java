@@ -31,7 +31,7 @@ import static com.zh.xfz.business.fragment.ContactFragment.CONTACT_EVENT_KEY;
  * description:
  */
 @Route(path = AddFriendActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color)
 public class AddFriendActivity extends BaseActivity implements AddFriendContract.AddFriendUI {
     public final static String AROUTER_PATH = "/main/AddFriendActivity/";

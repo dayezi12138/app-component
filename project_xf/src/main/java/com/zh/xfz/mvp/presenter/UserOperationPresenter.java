@@ -94,7 +94,7 @@ public class UserOperationPresenter extends BasePresenter<BaseView> implements U
             model.getTargetUserInfo(userId, data -> {
                 if (data.getCode() == 0) {
                     TargetUserInfo targetUserInfo = data.getRes();
-                    String userName = StringUtils.isEmpty(targetUserInfo.getChineseName()) ? targetUserInfo.getRemarkName() : targetUserInfo.getChineseName();
+                    String userName = StringUtils.isEmpty(targetUserInfo.getRemarkName()) ? targetUserInfo.getChineseName() : targetUserInfo.getRemarkName();
                     userName = StringUtils.isEmpty(userName) ? targetUserInfo.getMobile() : userName;
                     Uri uri = TextUtils.isEmpty(targetUserInfo.getUserIcon()) ? imageTranslateUri(R.drawable.rc_default_portrait) : Uri.parse(targetUserInfo.getUserIcon());
                     RongIM.getInstance().refreshUserInfoCache(new UserInfo(userId, userName, uri));

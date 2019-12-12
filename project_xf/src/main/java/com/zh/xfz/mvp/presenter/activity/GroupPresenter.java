@@ -140,14 +140,16 @@ public class GroupPresenter extends BasePresenter<GroupContract.GroupUI> impleme
         model.updateGroupName(groupId, groupName, data -> {
             if (data.getCode() == 0) {
                 dialog.dismiss();
-                view.get().successUpdateNickName(true);
+                view.get().successUpdateNickName(groupName, true);
             } else {
                 view.get().showMsg(data.getMsg());
-                view.get().successUpdateNickName(false);
+                view.get().successUpdateNickName(groupName, false);
             }
+            dialog.dismiss();
         }, ex -> {
             view.get().showMsg(ex.getMessage());
-            view.get().successUpdateNickName(false);
+            view.get().successUpdateNickName(groupName, false);
+            dialog.dismiss();
         });
     }
 

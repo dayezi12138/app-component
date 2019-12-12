@@ -32,7 +32,7 @@ import core.app.zh.com.core.base.BaseActivity;
  * description:
  */
 @Route(path = GroupMemberInfoActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color)
 public class GroupMemberInfoActivity extends BaseActivity implements GroupContract.GroupMemberInfoUI {
     public final static String AROUTER_PATH = "/main/GroupMemberInfoActivity/";

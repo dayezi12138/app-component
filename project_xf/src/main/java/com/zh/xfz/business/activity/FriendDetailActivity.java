@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.shehuan.niv.NiceImageView;
 import com.zh.annatation.toolbar.OnMenuOnclick;
@@ -42,6 +43,7 @@ import core.app.zh.com.core.bean.MessageEvent;
 import core.app.zh.com.core.view.MyPopupWindow;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * author : dayezi
@@ -49,7 +51,7 @@ import io.rong.imlib.model.Conversation;
  * description:
  */
 @Route(path = FriendDetailActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color)
 @ToolbarLeft(menuId = R.menu.friend_detail)
 public class FriendDetailActivity extends BaseActivity implements View.OnClickListener, FriendDetailContract.FriendDetailUI, MaterialDialog.SingleButtonCallback {
@@ -79,7 +81,6 @@ public class FriendDetailActivity extends BaseActivity implements View.OnClickLi
 
     @Inject
     FriendDetailPresenter presenter;
-
 
     @Inject
     Dialog dialog;
@@ -162,6 +163,11 @@ public class FriendDetailActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void updateMemo(String name) {
         memo.setText(name);
+        Uri uri = StringUtils.isEmpty(targetUserInfo.getUserIcon()) ? null : Uri.parse(targetUserInfo.getUserIcon());
+        UserInfo userInfo = new UserInfo(String.valueOf(this.targetUserInfo.getTargetId()), name, uri);
+        RongIM.getInstance().refreshUserInfoCache(userInfo);
+        MessageEvent msg = new MessageEvent(ContactFragment.CONTACT_EVENT_KEY, "");
+        EventBus.getDefault().post(msg);
     }
 
     private TargetUserInfo targetUserInfo;

@@ -1,7 +1,9 @@
 package com.zh.xfz.business.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +36,7 @@ import core.app.zh.com.core.base.BaseActivity;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
+import io.rong.imlib.model.Group;
 
 import static com.zh.xfz.business.activity.GroupMemberListActivity.TRANSER_KEY;
 
@@ -43,7 +46,7 @@ import static com.zh.xfz.business.activity.GroupMemberListActivity.TRANSER_KEY;
  * description:
  */
 @Route(path = GroupDetailActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "聊天信息")
 public class GroupDetailActivity extends BaseActivity implements GroupContract.GroupUI {
     public final static String AROUTER_PATH = "/main/GroupDetailActivity/";
@@ -81,6 +84,9 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
     MaterialDialog.Builder builderView;
 
     private Dialog dialog;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @NonNull
     @Override
@@ -122,6 +128,12 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
             }
         });
         dialog = builder.onPositive((dialog, which) -> RongIM.getInstance().clearMessages(Conversation.ConversationType.GROUP, groupId, null)).build();
+        toolbar.setNavigationOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.putExtra("title", groupNameTv.getText().toString());
+            setResult(RESULT_OK, intent);
+            finish();
+        });
     }
 
     @Override
@@ -138,8 +150,11 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
         }
     }
 
+    private GroupListInfo groupListInfo;
+
     @Override
     public void successGroupDetail(GroupListInfo groupListInfo) {
+        this.groupListInfo = groupListInfo;
         groupNameTv.setText(groupListInfo.getGroupName());
         if (String.valueOf(groupListInfo.getAdminUserId()).equals(LoginUtils.getUserId())) {
             dissolutionTv.setText("解散群");
@@ -200,4 +215,11 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
                 .navigation();
     }
 
+    @Override
+    public void successUpdateNickName(String groupName, boolean isTrue) {
+        if (isTrue) {
+            groupNameTv.setText(groupName);
+            RongIM.getInstance().refreshGroupInfoCache(new Group(String.valueOf(groupListInfo.getID()), groupName, null));
+        }
+    }
 }

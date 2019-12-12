@@ -40,7 +40,7 @@ import core.app.zh.com.core.bean.MessageEvent;
  * description:
  */
 @Route(path = GroupMemberListActivity.AROUTER_PATH)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "成员信息")
 @ToolbarLeft(menuId = R.menu.group_add)
 public class GroupMemberListActivity extends BaseActivity implements GroupContract.GroupUI {

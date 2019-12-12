@@ -40,7 +40,7 @@ public interface GroupContract {
         default void successGroupDetail(GroupListInfo groupListInfo) {
         }
 
-        default void successUpdateNickName(boolean isTrue) {
+        default void successUpdateNickName(String groupName,boolean isTrue) {
 
         }
 
