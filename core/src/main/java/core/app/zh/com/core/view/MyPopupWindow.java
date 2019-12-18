@@ -42,6 +42,7 @@ public class MyPopupWindow extends PopupWindow {
                 WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
                 lp.alpha = 1f;
                 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
                 activity.getWindow().setAttributes(lp);
             }
         });

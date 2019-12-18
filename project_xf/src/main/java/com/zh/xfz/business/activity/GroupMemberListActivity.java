@@ -19,8 +19,7 @@ import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.GroupInfo;
 import com.zh.xfz.bean.fragment.FriendInfo;
 import com.zh.xfz.business.adapter.GroupMemberAdapter;
-import com.zh.xfz.mvp.contract.activity.GroupContract;
-import com.zh.xfz.mvp.presenter.activity.GroupPresenter;
+import com.zh.xfz.mvp.presenter.ConversationPresenter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -32,6 +31,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
+import core.app.zh.com.core.base.IBaseListView;
 import core.app.zh.com.core.bean.MessageEvent;
 
 /**
@@ -43,7 +43,7 @@ import core.app.zh.com.core.bean.MessageEvent;
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "成员信息")
 @ToolbarLeft(menuId = R.menu.group_add)
-public class GroupMemberListActivity extends BaseActivity implements GroupContract.GroupUI {
+public class GroupMemberListActivity extends BaseActivity implements IBaseListView<GroupInfo> {
     public static int MEMBER_EVENT_KEY = 360002;
     public final static String AROUTER_PATH = "/main/GroupMemberListActivity/";
     public final static String GROUP_ID_KEY = "GROUP_ID_KEY";
@@ -51,8 +51,11 @@ public class GroupMemberListActivity extends BaseActivity implements GroupContra
     @BindView(R.id.recycler)
     RecyclerView mRecyclerView;
 
+//    @Inject
+//    GroupPresenter presenter;
+
     @Inject
-    GroupPresenter presenter;
+    ConversationPresenter conversationPresenter;
 
     @Inject
     GroupMemberAdapter groupMemberAdapter;
@@ -95,13 +98,18 @@ public class GroupMemberListActivity extends BaseActivity implements GroupContra
         });
         builder.onPositive((dialog, which) -> {
             if (groupInfo != null)
-                presenter.transferGroupAdministrator(groupId, String.valueOf(groupInfo.getTargetId()), dialog);
+                conversationPresenter.transferGroupAdministrator(groupId, String.valueOf(groupInfo.getTargetId()), dialog);
         }).onNegative((dialog, which) -> groupInfo = null);
         dialog = builder.build();
-        presenter.getGroupMemberList(groupId);
+//        presenter.getGroupMemberList(groupId);
         EventBus.getDefault().register(this);
-//        toolbar.getMenu().findItem(R.id.group_transfer).setVisible(false);
         toolbar.getMenu().findItem(R.id.group_add).setVisible(!isTranser);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        conversationPresenter.getGroupMemberList(groupId);
     }
 
     @Override
@@ -112,16 +120,17 @@ public class GroupMemberListActivity extends BaseActivity implements GroupContra
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetMessage(MessageEvent message) {
-        if (message.getCode() == MEMBER_EVENT_KEY) presenter.getGroupMemberList(groupId);
-    }
-
-    @Override
-    public void successGroupInfoList(List<GroupInfo> data) {
-        groupMemberAdapter.setNewData(data);
+        if (message.getCode() == MEMBER_EVENT_KEY)
+            conversationPresenter.getGroupMemberList(groupId);
     }
 
     @OnMenuOnclick
     public void menuClick(MenuItem item) {
         ARouter.getInstance().build(AddGroupMembersActivity.AROUTER_PATH).withString(AddGroupMembersActivity.ADD_GROUP, groupId).navigation();
+    }
+
+    @Override
+    public void listData(List<GroupInfo> data, boolean isRefresh) {
+        groupMemberAdapter.setNewData(data);
     }
 }

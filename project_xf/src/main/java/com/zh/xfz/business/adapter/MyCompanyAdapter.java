@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zh.xfz.R;
-import com.zh.xfz.bean.activity.Account;
+import com.zh.xfz.db.bean.Tenant;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ import core.app.zh.com.core.base.MyBaseAdapter;
  * data :2019/10/30
  * description:
  */
-public class MyCompanyAdapter extends MyBaseAdapter<Account.TenantBean> {
+public class MyCompanyAdapter extends MyBaseAdapter<Tenant> {
     private boolean visibility = true;
 
     @Inject
@@ -31,7 +31,7 @@ public class MyCompanyAdapter extends MyBaseAdapter<Account.TenantBean> {
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, Account.TenantBean item) {
+    protected void convert(BaseViewHolder helper, Tenant item) {
         helper.setText(R.id.name_tv, item.getTenantName());
         if (visibility)
             helper.getView(R.id.vip_iv).setVisibility(View.VISIBLE);

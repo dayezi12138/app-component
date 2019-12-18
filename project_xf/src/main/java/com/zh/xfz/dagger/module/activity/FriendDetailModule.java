@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.zh.xfz.R;
 import com.zh.xfz.business.activity.FriendDetailActivity;
+import com.zh.xfz.dagger.module.CommonActivityModule;
 
 import core.app.zh.com.core.annotation.ActivityScope;
 import core.app.zh.com.core.base.BaseActivity;
@@ -19,18 +20,8 @@ import dagger.Provides;
  * data :2019/9/23
  * description:
  */
-@Module
+@Module(includes = CommonActivityModule.class)
 public class FriendDetailModule {
-    //
-//    @ActivityScope
-//    @Provides
-//    public View view(FriendDetailActivity activity) {
-//        ViewGroup view = (ViewGroup) LayoutInflater.from(activity).inflate(R.layout.friend_operation, null);
-//        for (int i = 0, j = view.getChildCount(); i < j; i++) {
-//            view.getChildAt(i).setOnClickListener(activity);
-//        }
-//        return view;
-//    }
     @ActivityScope
     @Provides
     public BaseActivity activity(FriendDetailActivity activity) {

@@ -10,12 +10,11 @@ import com.zh.annatation.toolbar.ToolbarLeft;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
-import com.zh.xfz.mvp.presenter.UserOperationPresenter;
+import com.zh.xfz.mvp.presenter.UserPresenter;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import core.app.zh.com.core.base.BaseActivity;
 
 /**
@@ -39,7 +38,7 @@ public class UpdatePasswordActivity extends BaseActivity {
     EditText newPassword2;
 
     @Inject
-    UserOperationPresenter presenter;
+    UserPresenter userPresenter;
 
     @NonNull
     @Override
@@ -55,22 +54,9 @@ public class UpdatePasswordActivity extends BaseActivity {
     @OnMenuOnclick
     public void menuClick() {
         if (TextUtils.isEmpty(newPassword1.getText().toString()) || TextUtils.isEmpty(newPassword2.getText().toString())) {
-            showMsg("新密码不能为空");
+            showMsg(getResources().getString(R.string.act_new_password_update_success_msg));
             return;
         }
-        presenter.updatePassWord(oldPassowrd.getText().toString(), newPassword1.getText().toString(), newPassword2.getText().toString());
-    }
-
-    @OnClick(R.id.submit)
-    public void submit() {
-//        if (TextUtils.isEmpty(oldPassowrd.getText().toString())) {
-//            showMsg("旧密码不能为空");
-//            return;
-//        }
-        if (TextUtils.isEmpty(newPassword1.getText().toString()) || TextUtils.isEmpty(newPassword2.getText().toString())) {
-            showMsg("新密码不能为空");
-            return;
-        }
-        presenter.updatePassWord("", newPassword1.getText().toString(), newPassword2.getText().toString());
+        userPresenter.updatePassword(newPassword1.getText().toString(), newPassword2.getText().toString());
     }
 }

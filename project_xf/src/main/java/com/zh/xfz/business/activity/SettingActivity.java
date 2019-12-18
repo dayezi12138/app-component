@@ -13,7 +13,7 @@ import com.blankj.utilcode.util.AppUtils;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
-import com.zh.xfz.utils.LoginUtils;
+import com.zh.xfz.utils.LoginHandler;
 
 import java.text.MessageFormat;
 
@@ -48,6 +48,9 @@ public class SettingActivity extends BaseActivity {
 //    @Named("clearMemoryDialog")
 //    MaterialDialog clearMemoryDialog;
 
+    @Inject
+    LoginHandler loginHandler;
+
     @NonNull
     @Override
     public int layoutId() {
@@ -67,7 +70,7 @@ public class SettingActivity extends BaseActivity {
     @SuppressLint("WrongConstant")
     @OnClick(R.id.switch_account_tv)
     public void switchAccount() {
-        LoginUtils.clearLoginInfo();
+        loginHandler.clearLogin();
         ARouter.getInstance().build(AccountLoginActivity.AROUTER_PATH).withFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                 Intent.FLAG_ACTIVITY_CLEAR_TASK).navigation();
     }
@@ -84,17 +87,18 @@ public class SettingActivity extends BaseActivity {
 
     @OnClick(R.id.clear_ly)
     public void clear() {
-        new AlertDialog.Builder(this).setTitle("提示").setMessage("是否清楚緩存").setPositiveButton("確定", (dialog, which) -> {
-            DataCleanManager.clearAllCache(SettingActivity.this);
-            try {
-                clearTv.setText(DataCleanManager.getTotalCacheSize(SettingActivity.this));
-                showMsg("缓存已清除");
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                dialog.dismiss();
-            }
-        }).setNegativeButton("取消", (dialog, which) -> dialog.dismiss()).show();
+        new AlertDialog.Builder(this).setTitle(getResources().getString(R.string.act_normal_title_dialog_msg)).setMessage(getResources().getString(R.string.act_clear_cache_content_x_dialog_msg))
+                .setPositiveButton(getResources().getString(R.string.alert_sure_str), (dialog, which) -> {
+                    DataCleanManager.clearAllCache(SettingActivity.this);
+                    try {
+                        clearTv.setText(DataCleanManager.getTotalCacheSize(SettingActivity.this));
+                        showMsg(getResources().getString(R.string.act_clear_cache_success_toast_msg));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton(getResources().getString(R.string.alert_cancel_str), (dialog, which) -> dialog.dismiss()).show();
     }
 
     @OnClick(R.id.my_company_ly)

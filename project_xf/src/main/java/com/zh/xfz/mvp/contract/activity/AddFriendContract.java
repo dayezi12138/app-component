@@ -8,6 +8,7 @@ import core.app.zh.com.core.base.IPresenter;
  * data :2019/9/24
  * description:
  */
+@Deprecated
 public interface AddFriendContract {
     interface AddFriendUI extends BaseView {
         void success();

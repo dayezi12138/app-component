@@ -5,9 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -23,8 +21,10 @@ import com.zh.xfz.business.activity.FriendDetailActivity;
 import com.zh.xfz.business.activity.SearchFriendActivity;
 import com.zh.xfz.business.adapter.ContactAdapter;
 import com.zh.xfz.business.adapter.ContactSearchAdapter;
-import com.zh.xfz.mvp.contract.fragment.ContactContract;
-import com.zh.xfz.mvp.presenter.fragment.ContactPresenter;
+import com.zh.xfz.constans.Constants;
+import com.zh.xfz.listener.MyTextWatcher;
+import com.zh.xfz.mvp.contract.ConversationContract;
+import com.zh.xfz.mvp.presenter.ConversationPresenter;
 import com.zh.xfz.views.sideBar.PinyinComparator;
 import com.zh.xfz.views.sideBar.TitleItemDecoration;
 import com.zh.xfz.views.sideBar.WaveSideBar;
@@ -52,7 +52,7 @@ import core.app.zh.com.core.view.ClearEditTextView;
  */
 @ToolbarLeft(menuId = R.menu.menu_fragment_contact)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "通讯录")
-public class ContactFragment extends BaseFragment implements ContactContract.ContactUI, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
+public class ContactFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, ConversationContract.ContactListUI {
     public static int CONTACT_EVENT_KEY = 360001;
 
     @BindView(R.id.recycler)
@@ -84,7 +84,7 @@ public class ContactFragment extends BaseFragment implements ContactContract.Con
     @Inject
     ContactAdapter contactAdapter;
     @Inject
-    ContactPresenter presenter;
+    ConversationPresenter conversationPresenter;
     @Inject
     Comparator mComparator;
     @Inject
@@ -123,7 +123,6 @@ public class ContactFragment extends BaseFragment implements ContactContract.Con
             }
         });
         contactAdapter.setOnLoadMoreListener(this, mRecyclerView);
-//        contactAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
         contactAdapter.setEmptyView(R.layout.empty_view);
         contactAdapter.setOnItemClickListener((adapter, view, position) -> {
             if (!TextUtils.isEmpty(mDateList.get(position).getPath()))
@@ -136,29 +135,17 @@ public class ContactFragment extends BaseFragment implements ContactContract.Con
         searchFriendAdapter.setOnItemClickListener((adapter, view, position) -> ARouter.getInstance().build(FriendDetailActivity.AROUTER_PATH).withSerializable(FriendDetailActivity.FRIEND_DETAIL_KEY, searchFriendAdapter.getData().get(position)).navigation());
         swipeRefreshLayout.setOnRefreshListener(this);
         EventBus.getDefault().register(this);
-        clearEditTextView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!TextUtils.isEmpty(s.toString())) {
-                    relativeLayout.setVisibility(View.GONE);
-                    searchRecyclerView.setVisibility(View.VISIBLE);
-                    searchFriendAdapter.setNewData(searchValue(s.toString()));
-                } else {
-                    searchRecyclerView.setVisibility(View.GONE);
-                    relativeLayout.setVisibility(View.VISIBLE);
-                }
+        clearEditTextView.addTextChangedListener((MyTextWatcher) s -> {
+            if (!TextUtils.isEmpty(s.toString())) {
+                relativeLayout.setVisibility(View.GONE);
+                searchRecyclerView.setVisibility(View.VISIBLE);
+                searchFriendAdapter.setNewData(searchValue(s.toString()));
+            } else {
+                searchRecyclerView.setVisibility(View.GONE);
+                relativeLayout.setVisibility(View.VISIBLE);
             }
         });
+        clearEditTextView.setmClearDrawableRecourse(R.drawable.ic_clear_gray);
         onRefresh();
     }
 
@@ -175,49 +162,27 @@ public class ContactFragment extends BaseFragment implements ContactContract.Con
     }
 
     @Override
-    public void successFriends(List<FriendInfo> sortModels, boolean refresh, boolean more) {
-        if (refresh) {
-            mDateList.clear();
-            mDateList.addAll(friendInfoList);
-        }
-        swipeRefreshLayout.setRefreshing(false);
-        mDateList.addAll(sortModels);
-        // 根据a-z进行排序源数据
-        Collections.sort(mDateList, mComparator);
-        contactAdapter.setNewData(mDateList);
-        mRecyclerView.removeItemDecoration(mDecoration);
-        mDecoration.setData(mDateList);
-        //如果add两个，那么按照先后顺序，依次渲染。
-        mRecyclerView.addItemDecoration(mDecoration);
-        if (!more) contactAdapter.loadMoreEnd();
-    }
-
-    @Override
     public void showMsg(String msg) {
         swipeRefreshLayout.setRefreshing(false);
+        if (contactAdapter.getData().isEmpty()) {
+            mDateList.clear();
+            mDateList.addAll(friendInfoList);
+            contactAdapter.setNewData(mDateList);
+        }
+        contactAdapter.loadMoreEnd();
         super.showMsg(msg);
     }
 
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
-        presenter.refresh();
+        conversationPresenter.onRefresh();
     }
-
-//    private boolean isFirst = false;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetMessage(MessageEvent message) {
         if (message.getCode() == CONTACT_EVENT_KEY) onRefresh();
     }
-
-//    @Override
-//    public void onHiddenChanged(boolean hidden) {
-//        super.onHiddenChanged(hidden);
-//        if (!hidden) {
-//            onRefresh();
-//        }
-//    }
 
     @Override
     public void onDestroy() {
@@ -228,7 +193,7 @@ public class ContactFragment extends BaseFragment implements ContactContract.Con
     @Override
     public void onLoadMoreRequested() {
         swipeRefreshLayout.setRefreshing(true);
-        presenter.loadMore();
+        conversationPresenter.onLoadMore();
     }
 
     @OnMenuOnclick
@@ -240,5 +205,22 @@ public class ContactFragment extends BaseFragment implements ContactContract.Con
         }
     }
 
-
+    @Override
+    public void listData(List<FriendInfo> data, boolean isRefresh) {
+        contactAdapter.loadMoreComplete();
+        if (isRefresh) {
+            mDateList.clear();
+            mDateList.addAll(friendInfoList);
+        }
+        swipeRefreshLayout.setRefreshing(false);
+        mDateList.addAll(data);
+        // 根据a-z进行排序源数据
+        Collections.sort(mDateList, mComparator);
+        contactAdapter.setNewData(mDateList);
+        mRecyclerView.removeItemDecoration(mDecoration);
+        mDecoration.setData(mDateList);
+        //如果add两个，那么按照先后顺序，依次渲染。
+        mRecyclerView.addItemDecoration(mDecoration);
+        if (data.size() < Constants.PAGESIZE) contactAdapter.loadMoreEnd();
+    }
 }

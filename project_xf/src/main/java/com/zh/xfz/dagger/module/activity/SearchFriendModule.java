@@ -1,6 +1,7 @@
 package com.zh.xfz.dagger.module.activity;
 
 import com.zh.xfz.business.activity.SearchFriendActivity;
+import com.zh.xfz.dagger.module.CommonActivityModule;
 
 import core.app.zh.com.core.annotation.ActivityScope;
 import core.app.zh.com.core.base.BaseActivity;
@@ -12,7 +13,7 @@ import dagger.Provides;
  * data :2019/10/23
  * description:
  */
-@Module
+@Module(includes = CommonActivityModule.class)
 public class SearchFriendModule {
     @ActivityScope
     @Provides

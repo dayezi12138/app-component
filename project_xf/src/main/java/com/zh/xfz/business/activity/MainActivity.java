@@ -1,25 +1,19 @@
 package com.zh.xfz.business.activity;
 
-import android.os.Bundle;
+import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.bottomnavigation.LabelVisibilityMode;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.pgyersdk.javabean.AppBean;
-import com.pgyersdk.update.PgyUpdateManager;
-import com.pgyersdk.update.UpdateManagerListener;
 import com.zh.xfz.R;
-import com.zh.xfz.mvp.presenter.UserOperationPresenter;
-import com.zh.xfz.mvp.presenter.activity.GroupPresenter;
+import com.zh.xfz.mvp.presenter.ConversationPresenter;
+import com.zh.xfz.mvp.presenter.UserPresenter;
 import com.zh.xfz.utils.BottomNavigationViewHelper;
 
 import java.util.List;
@@ -29,12 +23,11 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.listener.AppExitListener;
-import core.app.zh.com.core.listener.LoadingOptionListener;
-import core.app.zh.com.core.utils.BottomNavigationHelper;
-import core.app.zh.com.core.view.MultipleStatusView;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
+import io.rong.imlib.model.Group;
+import io.rong.imlib.model.UserInfo;
 import q.rorbin.badgeview.Badge;
 import q.rorbin.badgeview.QBadgeView;
 
@@ -44,13 +37,11 @@ import q.rorbin.badgeview.QBadgeView;
  * description:
  */
 @Route(path = MainActivity.AROUTER_PATH)
-public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, LoadingOptionListener<MultipleStatusView> {
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, RongIM.UserInfoProvider, RongIM.GroupInfoProvider {
     public final static String AROUTER_PATH = "/main/MainActivity/";
+
     @BindView(R.id.navigation)
     BottomNavigationView bottomNavigationView;
-
-    @Inject
-    BottomNavigationHelper bottomNavigationHelper;
 
     @Inject
     AppExitListener appExitListener;
@@ -62,19 +53,18 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     RongIMClient.OnReceiveMessageListener onReceiveMessageListener;
 
     @Inject
-    UserOperationPresenter presenter;
+    UserPresenter userPresenter;
 
     @Inject
-    GroupPresenter groupPresenter;
+    ConversationPresenter conversationPresenter;
+
+    @Inject
+    String PGYID;
 
     @Inject
     RongIMClient.ConnectionStatusListener connectionStatusListener;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        setLoadingOptionListener(this);
-        super.onCreate(savedInstanceState);
-    }
+    private Badge badge;
 
     @NonNull
     @Override
@@ -84,10 +74,26 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     @Override
     public void init() {
+        initBottomTab();
+        initRongIM();
+        setAppExitListener(appExitListener);
+    }
+
+    private void initRongIM() {
+        new Thread(() -> {
+            RongIM.getInstance().addUnReadMessageCountChangedObserver(i -> badge.setBadgeNumber(i), Conversation.ConversationType.values());
+            RongIM.setOnReceiveMessageListener(onReceiveMessageListener);
+            RongIMClient.setConnectionStatusListener(connectionStatusListener);
+            RongIM.setUserInfoProvider(this, false);
+            RongIM.setGroupInfoProvider(this, false);
+        }).start();
+    }
+
+    private void initBottomTab() {
         bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
         View view = menuView.getChildAt(0);
-        Badge badge = new QBadgeView(this).bindTarget(view).setGravityOffset(10, 0, true);
+        badge = new QBadgeView(this).bindTarget(view).setGravityOffset(10, 0, true);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         for (Fragment fragment : fragmentList) {
             transaction.add(R.id.fragment_, fragment);
@@ -95,42 +101,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         }
         transaction.show(fragmentList.get(0));
         transaction.commit();
-        new Thread(() -> {
-            RongIM.getInstance().addUnReadMessageCountChangedObserver(i -> badge.setBadgeNumber(i), Conversation.ConversationType.values());
-            RongIM.setOnReceiveMessageListener(onReceiveMessageListener);
-        }).start();
-        /**
-         * 设置连接状态的监听。
-         */
-        RongIMClient.setConnectionStatusListener(connectionStatusListener);
-        setAppExitListener(appExitListener);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        presenter.refreshUserInfo();
-        groupPresenter.refreshGroupInfo();
         BottomNavigationViewHelper.setImageSize(bottomNavigationView, this);
-        PgyUpdateManager.setIsForced(false);
-        PgyUpdateManager.register(this, new UpdateManagerListener() {
-            @Override
-            public void onNoUpdateAvailable() {
-
-            }
-
-            @Override
-            public void onUpdateAvailable(String result) {
-                // 将新版本信息封装到AppBean中
-                final AppBean appBean = getAppBeanFromString(result);
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("提示")
-                        .setMessage("发现新版本,是否更新?")
-                        .setNegativeButton("取消", null)
-                        .setPositiveButton("确定",
-                                (dialog, which) -> startDownloadTask(
-                                        MainActivity.this,
-                                        appBean.getDownloadURL())).show();
-            }
-        });
     }
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -164,14 +137,15 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        PgyUpdateManager.unregister();
-//        RongIM.getInstance().removeUnReadMessageCountChangedObserver(unReadMessageObserver);
+    public UserInfo getUserInfo(String userId) {
+        userPresenter.getTargetUserInfo(userId);
+        return new UserInfo(userId, "", userPresenter.imageTranslateUri(R.drawable.rc_default_portrait));//根据 userId 去你的用户系统里查询对应的用户信息返回给融云 SDK。
     }
 
+
     @Override
-    public MultipleStatusView getLoadingView() {
-        return (MultipleStatusView) LayoutInflater.from(this).inflate(R.layout.test_1, null);
+    public Group getGroupInfo(String groupId) {
+        conversationPresenter.getGroupInfoById(groupId);
+        return new Group(groupId, "", Uri.EMPTY);
     }
 }

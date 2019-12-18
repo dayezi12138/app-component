@@ -95,14 +95,11 @@ public class ConversationActivity extends BaseActivity implements Toolbar.OnMenu
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.add_person:
-                if (TextUtils.isEmpty(targetId)) showMsg("targetId 为空,请联系管理员");
+                if (TextUtils.isEmpty(targetId))
+                    showMsg(getResources().getString(R.string.rong_tip_target_id_empty_error_msg));
                 else
                     ARouter.getInstance().build(GroupDetailActivity.AROUTER_PATH).withString(GroupDetailActivity.ADD_GROUP, targetId).navigation(this, CONVER_TITLE_KEY);
-//                    ARouter.getInstance().build(AddGroupMembersActivity.AROUTER_PATH).withString(ADD_GROUP, targetId).navigation();
                 break;
-//            case R.id.person_info:
-//                ARouter.getInstance().build(GroupMemberListActivity.AROUTER_PATH).withString(GROUP_ID_KEY, targetId).navigation();
-//                break;
         }
         return true;
     }

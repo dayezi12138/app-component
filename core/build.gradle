@@ -46,7 +46,11 @@ dependencies {
     api "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     //dagger begin
 
-    api "com.blankj:utilcode:$rootProject.ext.utilcode"
+    api ("com.blankj:utilcode:$rootProject.ext.utilcode") {
+        exclude group :'com.android.support',module:'appcompat-v7'
+        exclude group :'com.android.support',module:'design'
+        exclude group :'com.android.support',module:'support-v4'
+    }
     api "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
 
     api "com.alibaba:arouter-api:$rootProject.ext.arouterApiVersion"

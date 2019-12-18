@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.blankj.utilcode.util.StringUtils;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -14,6 +15,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zh.xfz.application.MyApplication;
 import com.zh.xfz.business.activity.AccountLoginActivity;
 import com.zh.xfz.business.activity.AccountSecurityActivity;
+import com.zh.xfz.constans.Constants;
 
 /**
  * author : dayezi
@@ -21,12 +23,7 @@ import com.zh.xfz.business.activity.AccountSecurityActivity;
  * description:
  */
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
-    private static String TAG = "MicroMsg.WXEntryActivity";
-
     private IWXAPI api;
-
-//    private static final String APP_SECRETE = "2214b1b4360e30b8b581c5825e8e07c8";
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,10 +48,8 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onReq(BaseReq req) {
         switch (req.getType()) {
             case ConstantsAPI.COMMAND_GETMESSAGE_FROM_WX:
-//                goToGetMsg();
                 break;
             case ConstantsAPI.COMMAND_SHOWMESSAGE_FROM_WX:
-//                goToShowMsg((ShowMessageFromWX.Req) req);
                 break;
             default:
                 break;
@@ -66,10 +61,14 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onResp(BaseResp resp) {
         if (resp.getType() == ConstantsAPI.COMMAND_SENDAUTH) {
             SendAuth.Resp authResp = (SendAuth.Resp) resp;
-            final String code = authResp.code;
-            if (!authResp.state.equals("AccountSecurityActivity")) {
+            String code = authResp.code;
+            if (StringUtils.isEmpty(authResp.code)) {
+                finish();
+                return;
+            }
+            if (!authResp.state.equals(AccountSecurityActivity.class.getSimpleName())) {
                 Intent intent = new Intent(this, AccountLoginActivity.class);
-                intent.putExtra("code", code);
+                intent.putExtra(Constants.WX_CODE, code);
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(this, AccountSecurityActivity.class);

@@ -17,6 +17,7 @@ import core.app.zh.com.core.base.IPresenter;
  * data :2019/9/24
  * description:
  */
+@Deprecated
 public interface GroupContract {
     interface GroupMemberInfoUI extends GroupUI {
         void groupInfo(GroupInfo groupInfo);
@@ -66,7 +67,7 @@ public interface GroupContract {
 
         void getGroupMemberInfo(String groupId, String targetId);
 
-        void refreshGroupInfo();
+        void getGroupInfoById(String groupId);
 
         void updateGroupMemberName(String groupId, String targetId, String remarkName);
 

@@ -1,7 +1,6 @@
 package com.zh.xfz.business.activity;
 
 import android.graphics.Color;
-import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.widget.TextView;
 
@@ -14,15 +13,18 @@ import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.mvp.contract.SmsCodeContract;
-import com.zh.xfz.mvp.contract.activity.UserOperationContract;
 import com.zh.xfz.mvp.presenter.SmsCodePresenter;
-import com.zh.xfz.mvp.presenter.UserOperationPresenter;
+import com.zh.xfz.mvp.presenter.UserPresenter;
+import com.zh.xfz.utils.MyCountDownTimer;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.view.VerifyCodeView;
+
+import static com.zh.xfz.constans.Constants.SMS_STATUS_REPLACE_PHONE_CODE;
 
 /**
  * author : dayezi
@@ -33,7 +35,7 @@ import core.app.zh.com.core.view.VerifyCodeView;
 @ToolbarLeft(menuId = R.menu.menu_complete)
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "绑定手机号")
-public class UpdatePhoneSmsActivity extends BaseActivity implements UserOperationContract.UpdateMobileUI, SmsCodeContract.SmsCodeUI {
+public class UpdatePhoneSmsActivity extends BaseActivity implements SmsCodeContract.UpdatePhoneUI, MyCountDownTimer.CountDownListener {
     public final static String AROUTER_PATH = "/main/UpdatePhoneSmsActivity/";
     public final static String KEY_PHONE = "KEY_PHONE";
 
@@ -53,7 +55,10 @@ public class UpdatePhoneSmsActivity extends BaseActivity implements UserOperatio
     SmsCodePresenter presenter;
 
     @Inject
-    UserOperationPresenter userOperationPresenter;
+    UserPresenter userPresenter;
+
+    @Inject
+    MyCountDownTimer myCountDownTimer;
 
     private String verifyCode;
 
@@ -66,41 +71,22 @@ public class UpdatePhoneSmsActivity extends BaseActivity implements UserOperatio
     @Override
     public void init() {
         phoneTv.setText(phone);
-        presenter.getCode(phone, 4);
+        presenter.getCode(phone, SMS_STATUS_REPLACE_PHONE_CODE);
         verifyCodeView.setOnAllFilledListener(text -> verifyCode = text);
     }
 
     @OnMenuOnclick
     public void menuClick() {
         if (StringUtils.isEmpty(verifyCode)) {
-            showMsg("验证码不能为空");
+            showMsg(getResources().getString(R.string.act_sms_code_not_empty_toast_msg));
             return;
         }
-        userOperationPresenter.updateMobile(phoneTv.getText().toString(), verifyCode);
-    }
-
-    @Override
-    public void updateMobileSuccess() {
-        showMsg("更新完成");
-        finish();
-    }
-
-    private CountDownTimer countDownTimer = new CountDownTimer(60 * 1000, 1000) {
-        @Override
-        public void onTick(long millisUntilFinished) {
-            int second = (int) ((millisUntilFinished / 1000) % 60);
-            refreshTv.setText(second + "S");
-            if (refreshTv.isClickable()) {
-                refreshTv.setBackgroundColor(Color.TRANSPARENT);
-                refreshTv.setClickable(false);
-            }
+        if (!isCanSendSMS) {
+            showMsg(getResources().getString(R.string.act_update_phone_fail_msg));
+            return;
         }
-
-        @Override
-        public void onFinish() {
-            refresh();
-        }
-    };
+        userPresenter.updateMobile(phoneTv.getText().toString(), verifyCode);
+    }
 
     private void refresh() {
         if (!refreshTv.isClickable()) {
@@ -111,7 +97,37 @@ public class UpdatePhoneSmsActivity extends BaseActivity implements UserOperatio
     }
 
     @Override
-    public void loginOrRegister(boolean isRegister) {
-        countDownTimer.start();
+    public void sendSuccess() {
+        myCountDownTimer.start();
+    }
+
+    @Override
+    public void failSend() {
+        isCanSendSMS = false;
+    }
+
+    private boolean isCanSendSMS = true;
+
+    @OnClick(R.id.refresh_tv)
+    public void sendSMS() {
+        if (!isCanSendSMS) {
+            showMsg(getResources().getString(R.string.act_update_phone_fail_msg));
+            return;
+        }
+        presenter.getCode(phone, SMS_STATUS_REPLACE_PHONE_CODE);
+    }
+
+    @Override
+    public void onTick(int second) {
+        refreshTv.setText(second + "S");
+        if (refreshTv.isClickable()) {
+            refreshTv.setBackgroundColor(Color.TRANSPARENT);
+            refreshTv.setClickable(false);
+        }
+    }
+
+    @Override
+    public void onFinish() {
+        refresh();
     }
 }

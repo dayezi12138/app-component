@@ -157,7 +157,7 @@ public class ToolBarInject {
             }
             toolbar.setBackgroundColor(activity.getResources().getColor(colorId));
             BarUtils.addMarginTopEqualStatusBarHeight(toolbar);
-            BarUtils.setStatusBarColor(activity, activity.getResources().getColor(colorId), 1);
+            BarUtils.setStatusBarColor(activity, activity.getResources().getColor(colorId),1);
         } else {
             test(obj, toolbar);
         }

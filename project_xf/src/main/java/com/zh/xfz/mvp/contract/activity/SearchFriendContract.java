@@ -12,6 +12,7 @@ import core.app.zh.com.core.base.IPresenter;
  * data :2019/9/23
  * description:
  */
+@Deprecated
 public interface SearchFriendContract {
     interface SearchFriendUI extends BaseView {
         void success(List<SearchFriend> data);

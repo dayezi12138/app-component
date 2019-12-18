@@ -1,11 +1,10 @@
 package com.zh.xfz.dagger.module.activity;
 
 import com.zh.xfz.business.activity.UpdatePersonNameActivity;
+import com.zh.xfz.dagger.module.CommonActivityModule;
 
 import core.app.zh.com.core.annotation.ActivityScope;
 import core.app.zh.com.core.base.BaseActivity;
-import core.app.zh.com.core.base.BaseView;
-import core.app.zh.com.core.base.MyBaseModel;
 import dagger.Module;
 import dagger.Provides;
 
@@ -13,7 +12,7 @@ import dagger.Provides;
  * Created by YST on 2019/12/4 0004.
  */
 
-@Module
+@Module(includes = CommonActivityModule.class)
 public class UpdatePersonNameModule {
 
     @ActivityScope
@@ -21,20 +20,5 @@ public class UpdatePersonNameModule {
 
     public BaseActivity activity (UpdatePersonNameActivity activity) {return activity.getMyActivity();}
 
-    @ActivityScope
-    @Provides
-    public MyBaseModel myBaseModel (UpdatePersonNameActivity activity){
-        return new MyBaseModel(activity.getApplication()) {
-            @Override
-            public BaseView getBaseView() {
-                return activity;
-            }
-
-            @Override
-            public BaseActivity getMyActivity() {
-                return activity;
-            }
-        };
-    }
 
 }

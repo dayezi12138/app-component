@@ -3,6 +3,7 @@ package com.zh.xfz.dagger.module.activity;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.zh.xfz.R;
 import com.zh.xfz.business.activity.GroupMemberInfoActivity;
+import com.zh.xfz.dagger.module.CommonActivityModule;
 
 import core.app.zh.com.core.annotation.ActivityScope;
 import core.app.zh.com.core.base.BaseActivity;
@@ -14,7 +15,7 @@ import dagger.Provides;
  * data :2019/9/26
  * description:
  */
-@Module
+@Module(includes = CommonActivityModule.class)
 public class GroupMemberInfoModule {
     @ActivityScope
     @Provides

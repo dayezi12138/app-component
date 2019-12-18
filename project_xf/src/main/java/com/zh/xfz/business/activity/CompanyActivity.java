@@ -12,8 +12,8 @@ import com.zh.annatation.toolbar.ToolbarLeft;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
-import com.zh.xfz.bean.activity.Account;
-import com.zh.xfz.utils.LoginUtils;
+import com.zh.xfz.db.bean.Tenant;
+import com.zh.xfz.utils.LoginHandler;
 
 import javax.inject.Inject;
 
@@ -46,6 +46,8 @@ public class CompanyActivity extends BaseActivity implements View.OnClickListene
 
     @BindView(R.id.founder_tv)
     TextView founderTv;
+    @Inject
+    LoginHandler loginHandler;
 
     @NonNull
     @Override
@@ -55,12 +57,9 @@ public class CompanyActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void init() {
-        Account userInfo = LoginUtils.getUserInfo();
-        if (userInfo != null) {
-
-            if (userInfo.getTenant()!= null&& userInfo.getTenant().size()>0){
-                companyfullTv.setText(userInfo.getTenant().get(0).getTenantName());
-            }
+        Tenant tenant = loginHandler.getCurrentTenant();
+        if (tenant != null) {
+            companyfullTv.setText(tenant.getTenantName());
         }
     }
 
@@ -69,7 +68,7 @@ public class CompanyActivity extends BaseActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.sure_btn:
                 popupWindow.dismiss();
-                showMsg("该功能正在开发中....");
+                showMsg(getResources().getString(R.string.act_function_development_ing_toast_msg));
                 break;
             case R.id.cancel_btn:
                 popupWindow.dismiss();

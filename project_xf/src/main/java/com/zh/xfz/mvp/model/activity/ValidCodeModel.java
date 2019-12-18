@@ -19,6 +19,7 @@ import core.app.zh.com.core.listener.observable.ObservableListener;
  * data :2019/7/24
  * description:
  */
+@Deprecated
 public class ValidCodeModel implements GetMyBaseModelListener {
     private BaseActivity activity;
     private MyService myService;

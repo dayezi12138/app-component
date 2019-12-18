@@ -1,11 +1,11 @@
 package com.zh.xfz.dagger.module.activity;
 
 import com.zh.xfz.business.activity.ValidNoteActivity;
+import com.zh.xfz.dagger.module.CommonActivityModule;
+import com.zh.xfz.utils.MyCountDownTimer;
 
 import core.app.zh.com.core.annotation.ActivityScope;
 import core.app.zh.com.core.base.BaseActivity;
-import core.app.zh.com.core.base.BaseView;
-import core.app.zh.com.core.base.MyBaseModel;
 import dagger.Module;
 import dagger.Provides;
 
@@ -14,7 +14,7 @@ import dagger.Provides;
  * data :2019/7/24
  * description:
  */
-@Module
+@Module(includes = {CommonActivityModule.class})
 public class ValidNoteModule {
     @ActivityScope
     @Provides
@@ -24,17 +24,7 @@ public class ValidNoteModule {
 
     @ActivityScope
     @Provides
-    public MyBaseModel baseModel(BaseActivity activity) {
-        return new MyBaseModel(activity.getApplication()) {
-            @Override
-            public BaseView getBaseView() {
-                return activity;
-            }
-
-            @Override
-            public BaseActivity getMyActivity() {
-                return activity;
-            }
-        };
+    public MyCountDownTimer myCountDownTimer() {
+        return new MyCountDownTimer();
     }
 }

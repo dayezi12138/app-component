@@ -20,12 +20,9 @@ import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.fragment.FriendInfo;
 import com.zh.xfz.business.adapter.AddGroupMembersAdapter;
-import com.zh.xfz.mvp.contract.activity.FriendContract;
-import com.zh.xfz.mvp.contract.activity.GroupContract;
-import com.zh.xfz.mvp.presenter.activity.FriendPresenter;
-import com.zh.xfz.mvp.presenter.activity.GroupPresenter;
-
-import org.greenrobot.eventbus.EventBus;
+import com.zh.xfz.constans.Constants;
+import com.zh.xfz.mvp.contract.ConversationContract;
+import com.zh.xfz.mvp.presenter.ConversationPresenter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -36,7 +33,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
-import core.app.zh.com.core.bean.MessageEvent;
 
 /**
  * author : dayezi
@@ -47,14 +43,12 @@ import core.app.zh.com.core.bean.MessageEvent;
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "创建群组")
 @ToolbarLeft(menuId = R.menu.add_group_members)
-public class AddGroupMembersActivity extends BaseActivity implements FriendContract.FriendUI, GroupContract.GroupUI, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
+public class AddGroupMembersActivity extends BaseActivity implements ConversationContract.ContactListUI, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
     public final static String AROUTER_PATH = "/main/AddGroupMembersActivity/";
     public final static String ADD_GROUP = "ADD_GROUP_KEY";
-    @Inject
-    FriendPresenter presenter;
 
     @Inject
-    GroupPresenter groupPresenter;
+    ConversationPresenter conversationPresenter;
 
     @BindView(R.id.recycler)
     RecyclerView mRecyclerView;
@@ -70,7 +64,6 @@ public class AddGroupMembersActivity extends BaseActivity implements FriendContr
 
     @Inject
     AddGroupMembersAdapter addGroupMembersAdapter;
-
 
     private List<FriendInfo> mDateList = new ArrayList<>();
 
@@ -101,37 +94,20 @@ public class AddGroupMembersActivity extends BaseActivity implements FriendContr
                 imageView.setBackgroundResource(R.drawable.shape_item_add_group_members_select);
             }
         });
-//        if (isADD) toolbar.getMenu().clear();
         onRefresh();
     }
 
-    @Override
-    public void successFriends(List<FriendInfo> sortModels, boolean refresh, boolean more) {
-        if (refresh) mDateList.clear();
-        swipeRefreshLayout.setRefreshing(false);
-        mDateList.addAll(sortModels);
-        addGroupMembersAdapter.setNewData(mDateList);
-        if (!more) addGroupMembersAdapter.loadMoreEnd();
-    }
-
-    @Override
-    public void createGroupSuccess() {
-        MessageEvent message = new MessageEvent(GroupMemberListActivity.MEMBER_EVENT_KEY, "");
-        EventBus.getDefault().post(message);
-        showMsg("创建成功");
-        finish();
-    }
 
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
-        presenter.refresh();
+        conversationPresenter.onRefresh();
     }
 
     @Override
     public void onLoadMoreRequested() {
         swipeRefreshLayout.setRefreshing(true);
-        presenter.loadMore();
+        conversationPresenter.onLoadMore();
     }
 
     @Override
@@ -145,10 +121,18 @@ public class AddGroupMembersActivity extends BaseActivity implements FriendContr
         switch (item.getItemId()) {
             case R.id.add_group_members:
                 if (!TextUtils.isEmpty(targetId))
-                    groupPresenter.inviteGroupMember(select, mDateList, targetId);
-
-                else groupPresenter.addGroup(select, mDateList);
+                    conversationPresenter.addGroupMember(select, mDateList, targetId);
+                else conversationPresenter.createGroup(select, mDateList);
                 break;
         }
+    }
+
+    @Override
+    public void listData(List<FriendInfo> data, boolean isRefresh) {
+        swipeRefreshLayout.setRefreshing(false);
+        if (isRefresh) mDateList.clear();
+        mDateList.addAll(data);
+        addGroupMembersAdapter.setNewData(mDateList);
+        if (data.size() < Constants.PAGESIZE) addGroupMembersAdapter.loadMoreEnd();
     }
 }

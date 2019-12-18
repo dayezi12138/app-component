@@ -37,7 +37,7 @@ public class MyConversationFragment extends ConversationListFragment {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         textView.setTextColor(getResources().getColor(R.color.white));
         textView.setGravity(Gravity.CENTER);
-        textView.setText("消息");
+        textView.setText(getActivity().getResources().getString(R.string.message_str));
         toolbar.setBackgroundColor(getActivity().getResources().getColor(R.color.background_splash_color));
         toolbar.addView(textView);
         layout.addView(toolbar);

@@ -11,6 +11,7 @@ import core.app.zh.com.core.base.MyBaseModel;
  * data :2019/9/24
  * description:
  */
+@Deprecated
 public class CommonModel extends MyBaseModel {
     private BaseActivity activity;
 

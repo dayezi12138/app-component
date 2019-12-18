@@ -1,67 +1,29 @@
 package com.zh.xfz.business.activity;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zh.xfz.R;
-import com.zh.xfz.application.MyApplication;
+import com.zh.xfz.db.bean.UserInfo;
 import com.zh.xfz.utils.IM.IMConnectCallBack;
 import com.zh.xfz.utils.IM.IMUtils;
-import com.zh.xfz.utils.LoginUtils;
+import com.zh.xfz.utils.LoginHandler;
+import com.zh.xfz.utils.WxHelper;
 
-import butterknife.ButterKnife;
+import javax.inject.Inject;
 
-import static com.zh.xfz.constans.Constans.IM_TOKEN;
-import static com.zh.xfz.constans.Constans.USER_INFO;
+import core.app.zh.com.core.base.BaseActivity;
 
 /**
  * author : dayezi
  * data :2019/7/17
  * description:
  */
-public class SplashActivity extends AppCompatActivity {
-    private IWXAPI api;
+public class SplashActivity extends BaseActivity implements IMConnectCallBack {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-        setContentView(R.layout.act_splash);
-        regToWx();
-        if (SPUtils.getInstance().contains(USER_INFO)) {
-            IMUtils.connect(SPUtils.getInstance().getString(IM_TOKEN), new IMConnectCallBack() {
-                @Override
-                public void success(String userid) {
-                    LoginUtils.ACCOUNT = LoginUtils.getUserInfo();
-                    start(true);
-                }
-
-                @Override
-                public void fail(String msg) {
-                    start(false);
-                    ToastUtils.showShort(msg);
-                }
-            });
-        } else
-            start(false);
-    }
-
-    private void regToWx() {
-        // 通过WXAPIFactory工厂，获取IWXAPI的实例
-        api = WXAPIFactory.createWXAPI(this, MyApplication.APP_ID, true);
-        // 将应用的appId注册到微信
-        api.registerApp(MyApplication.APP_ID);
-
-//        //建议动态监听微信启动广播进行注册到微信
-//        registerReceiver(new AppRegister(), new IntentFilter(ConstantsAPI.ACTION_REFRESH_WXAPP));
-
-    }
+    @Inject
+    LoginHandler loginHandler;
 
     private void start(boolean toMain) {
         if (toMain)
@@ -69,13 +31,36 @@ public class SplashActivity extends AppCompatActivity {
         else
             ARouter.getInstance().build(LoginActivity.AROUTER_PATH).navigation();
         finish();
-//        new Handler().postDelayed(() -> {
-//            if (toMain)
-//                ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
-//            else
-//                ARouter.getInstance().build(LoginActivity.AROUTER_PATH).navigation();
-//            finish();
-//        }, 2000);
+    }
+
+    @Override
+    public void success(String userId) {
+        start(true);
+    }
+
+    @Override
+    public void fail(String msg) {
+        start(false);
+        ToastUtils.showShort(msg);
+
+    }
+
+    @NonNull
+    @Override
+    public int layoutId() {
+        return R.layout.act_splash;
+    }
+
+    @Override
+    public void init() {
+        WxHelper.register(this, true);
+        try {
+            UserInfo userInfo = loginHandler.getCurrentUserInfo();
+            IMUtils.connect(userInfo.getToken(), this);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            start(false);
+        }
     }
 
 }

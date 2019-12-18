@@ -27,6 +27,6 @@ public class MainFragment extends BaseFragment {
     @Override
     public void init() {
         BarUtils.addMarginTopEqualStatusBarHeight(ly);
-        BarUtils.setStatusBarColor(getActivity(), getActivity().getResources().getColor(R.color.background_splash_color), 1);
+        BarUtils.setStatusBarColor(getActivity(), getActivity().getResources().getColor(R.color.background_splash_color),1);
     }
 }

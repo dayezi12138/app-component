@@ -12,6 +12,7 @@ import core.app.zh.com.core.base.IPresenter;
  * data :2019/9/24
  * description:
  */
+@Deprecated
 public interface FriendContract {
     interface FriendUI extends BaseView {
         void successFriends(List<FriendInfo> sortModels, boolean refresh, boolean more);

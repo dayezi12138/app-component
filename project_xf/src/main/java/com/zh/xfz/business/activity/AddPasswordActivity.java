@@ -11,7 +11,7 @@ import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.mvp.contract.activity.UserOperationContract;
-import com.zh.xfz.mvp.presenter.UserOperationPresenter;
+import com.zh.xfz.mvp.presenter.UserPresenter;
 
 import javax.inject.Inject;
 
@@ -32,7 +32,6 @@ public class AddPasswordActivity extends BaseActivity implements UserOperationCo
     public final static String OLD_PASSWORD_KEY = "OLD_PASSWORD_KEY";
     public final static String CODE_KEY = "OLD_PASSWORD_KEY";
 
-    //    public final static String IS_ADD_KEY = "IS_ADD_KEY";
     @BindView(R.id.password_et)
     EditText passwordEt;
 
@@ -48,8 +47,11 @@ public class AddPasswordActivity extends BaseActivity implements UserOperationCo
     @Autowired(name = CODE_KEY)
     String code;
 
+//    @Inject
+//    UserOperationPresenter presenter;
+
     @Inject
-    UserOperationPresenter presenter;
+    UserPresenter userPresenter;
 
 
     @NonNull
@@ -69,18 +71,18 @@ public class AddPasswordActivity extends BaseActivity implements UserOperationCo
             showMsg("密码不能为空");
             return;
         }
-        if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(code))
-            presenter.forgetPassWord(account, passwordEt.getText().toString(), againPasswordEt.getText().toString(), code);
+        if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(code)){
+
+        }
+//            presenter.forgetPassWord(account, passwordEt.getText().toString(), againPasswordEt.getText().toString(), code);
         else
-            presenter.updatePassWord(account, passwordEt.getText().toString(), againPasswordEt.getText().toString());
+            userPresenter.updatePassword(passwordEt.getText().toString(), againPasswordEt.getText().toString());
     }
 
     @Override
     public void success() {
         if (TextUtils.isEmpty(oldPassword))
             ARouter.getInstance().build(CreateBusinessActivity.AROUTER_PATH).navigation();
-//        else {
-////            presenter.login();
-//        }
+
     }
 }

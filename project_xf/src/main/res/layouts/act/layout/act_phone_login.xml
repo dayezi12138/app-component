@@ -35,6 +35,7 @@
             android:layout_marginTop="@dimen/widget_margin_large_xx"
             android:hint="@string/act_phone_input_account_str"
             android:paddingLeft="@dimen/widget_padding_tiny"
+            android:textCursorDrawable="@drawable/shape_cursor_white"
             android:text=""
             android:textColor="@color/white"
             android:textColorHint="@color/input_account_color" />

@@ -16,7 +16,7 @@ import core.app.zh.com.core.base.BaseFragment;
 import core.app.zh.com.core.base.IBaseListView;
 import core.app.zh.com.core.base.MyBaseAdapter;
 
-import static com.zh.xfz.constans.Constans.PAGESIZE;
+import static com.zh.xfz.constans.Constants.PAGESIZE;
 
 /**
  * author : dayezi

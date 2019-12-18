@@ -11,19 +11,13 @@ import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.SearchFriend;
-import com.zh.xfz.mvp.contract.activity.AddFriendContract;
-import com.zh.xfz.mvp.presenter.activity.AddFriendPresenter;
-
-import org.greenrobot.eventbus.EventBus;
+import com.zh.xfz.mvp.presenter.ConversationPresenter;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import core.app.zh.com.core.base.BaseActivity;
-import core.app.zh.com.core.bean.MessageEvent;
-
-import static com.zh.xfz.business.fragment.ContactFragment.CONTACT_EVENT_KEY;
 
 /**
  * author : dayezi
@@ -33,7 +27,7 @@ import static com.zh.xfz.business.fragment.ContactFragment.CONTACT_EVENT_KEY;
 @Route(path = AddFriendActivity.AROUTER_PATH)
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color)
-public class AddFriendActivity extends BaseActivity implements AddFriendContract.AddFriendUI {
+public class AddFriendActivity extends BaseActivity {
     public final static String AROUTER_PATH = "/main/AddFriendActivity/";
     public final static String ADD_FRIEND_INFO = "addFriendInfo";
 
@@ -53,7 +47,7 @@ public class AddFriendActivity extends BaseActivity implements AddFriendContract
     EditText memoTv;
 
     @Inject
-    AddFriendPresenter presenter;
+    ConversationPresenter conversationPresenter;
 
     @NonNull
     @Override
@@ -70,15 +64,6 @@ public class AddFriendActivity extends BaseActivity implements AddFriendContract
 
     @OnClick(R.id.submit)
     public void submit() {
-        presenter.applyFriend(String.valueOf(searchFriend.getID()), TextUtils.isEmpty(memoTv.getText().toString()) ? "" : memoTv.getText().toString(), TextUtils.isEmpty(remarkEt.getText().toString()) ? nameTv.getText().toString() : remarkEt.getText().toString());
-
-    }
-
-    @Override
-    public void success() {
-        MessageEvent messageEvent = new MessageEvent(CONTACT_EVENT_KEY, "");
-        EventBus.getDefault().post(messageEvent);
-        showMsg("添加成功");
-        finish();
+        conversationPresenter.applyFriend(String.valueOf(searchFriend.getID()), TextUtils.isEmpty(memoTv.getText().toString()) ? "" : memoTv.getText().toString(), TextUtils.isEmpty(remarkEt.getText().toString()) ? nameTv.getText().toString() : remarkEt.getText().toString());
     }
 }

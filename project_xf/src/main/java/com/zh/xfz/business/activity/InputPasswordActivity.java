@@ -1,7 +1,6 @@
 package com.zh.xfz.business.activity;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.TransformationMethod;
@@ -14,8 +13,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
-import com.zh.xfz.mvp.contract.activity.LoginContract;
-import com.zh.xfz.mvp.presenter.UserOperationPresenter;
+import com.zh.xfz.mvp.presenter.UserPresenter;
+import com.zh.xfz.utils.NotEmptyUtil;
 
 import javax.inject.Inject;
 
@@ -31,7 +30,7 @@ import core.app.zh.com.core.base.BaseActivity;
 @Route(path = InputPasswordActivity.AROUTER_PATH)
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color)
-public class InputPasswordActivity extends BaseActivity implements LoginContract.LoginUI {
+public class InputPasswordActivity extends BaseActivity {
     public final static String AROUTER_PATH = "/login/InputPasswordActivity/";
     public final static String ACCOUNT_KEY = "ACCOUNT_KEY";
 
@@ -45,7 +44,7 @@ public class InputPasswordActivity extends BaseActivity implements LoginContract
     String account;
 
     @Inject
-    UserOperationPresenter userOperationPresenter;
+    UserPresenter userPresenter;
 
     @NonNull
     @Override
@@ -71,11 +70,10 @@ public class InputPasswordActivity extends BaseActivity implements LoginContract
 
     @OnClick(R.id.submit_btn)
     public void submit() {
-        if (TextUtils.isEmpty(passwordEt.getText().toString())) {
-            showMsg("密码不能为空");
+        if (NotEmptyUtil.isEmpty(passwordEt.getText().toString(),
+                getResources().getString(R.string.act_password_not_empty_toast_msg)))
             return;
-        }
-        userOperationPresenter.login(account, passwordEt.getText().toString());
+        userPresenter.login(account, passwordEt.getText().toString());
     }
 
     @OnClick(R.id.forget_tv)
@@ -85,7 +83,7 @@ public class InputPasswordActivity extends BaseActivity implements LoginContract
     }
 
     @OnClick(R.id.sms_text)
-    public void clickSMS(){
+    public void clickSMS() {
         ARouter.getInstance().build(ValidNoteActivity.AROUTER_PATH).withString(ValidNoteActivity.ACCOUNT_KEY, account)
                 .withBoolean(ValidNoteActivity.EXIST_ACCOUNT_KEY, true).navigation();
     }

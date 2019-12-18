@@ -23,8 +23,9 @@ import com.zh.annatation.toolbar.ToolbarLeft;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
-import com.zh.xfz.constans.Constans;
-import com.zh.xfz.mvp.presenter.UserOperationPresenter;
+import com.zh.xfz.constans.Constants;
+import com.zh.xfz.mvp.presenter.UserPresenter;
+import com.zh.xfz.utils.CamaraUtils;
 
 import java.io.File;
 
@@ -36,8 +37,11 @@ import core.app.zh.com.core.annotation.NeedPermission;
 import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.view.MyPopupWindow;
 
-import static com.zh.xfz.constans.Constans.FILE_IMAGE_TEMP_PATH;
-import static com.zh.xfz.constans.Constans.FILE_ROOT_PATH;
+import static com.zh.xfz.constans.Constants.CRIP_IMAGE_SUFFIX;
+import static com.zh.xfz.constans.Constants.FILE_CRIP_IMAGE_NAME;
+import static com.zh.xfz.constans.Constants.FILE_IMAGE_TEMP_PATH;
+import static com.zh.xfz.constans.Constants.FILE_PROVIDER;
+import static com.zh.xfz.constans.Constants.FILE_ROOT_PATH;
 
 /**
  * author : dayezi
@@ -61,7 +65,7 @@ public class UpLoadPortraitActivity extends BaseActivity implements View.OnClick
     NiceImageView imageView;
 
     @Inject
-    UserOperationPresenter presenter;
+    UserPresenter userPresenter;
 
     @NonNull
     @Override
@@ -79,7 +83,7 @@ public class UpLoadPortraitActivity extends BaseActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.qcrode_tv:
                 popupWindow.dismiss();
-                getImage();
+                CamaraUtils.openCamara(this);
                 break;
             case R.id.pic_camera_tv:
                 popupWindow.dismiss();
@@ -98,29 +102,18 @@ public class UpLoadPortraitActivity extends BaseActivity implements View.OnClick
 
     private void getPicFromCamera() {
         //用于保存调用相机拍照后所生成的文件
-        tempFile = new File(Environment.getExternalStorageDirectory().getPath(), System.currentTimeMillis() + ".jpg");
+        tempFile = new File(Environment.getExternalStorageDirectory().getPath(), System.currentTimeMillis() + CRIP_IMAGE_SUFFIX);
         //跳转到调用系统相机
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //判断版本
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {   //如果在Android7.0以上,使用FileProvider获取Uri
             intent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(this, "com.zh.xfz.FileProvider", tempFile);
+            Uri contentUri = FileProvider.getUriForFile(this, FILE_PROVIDER, tempFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
         } else {    //否则使用Uri.fromFile(file)方法获取Uri
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
         }
-        startActivityForResult(intent, Constans.CONSULT_DOC_CAMERA);
-    }
-
-    private void getImage() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            startActivityForResult(new Intent(Intent.ACTION_GET_CONTENT).setType("image/*"), Constans.REQUEST_PICK_IMAGE);
-        } else {
-            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            intent.setType("image/*");
-            startActivityForResult(intent, Constans.REQUEST_PICK_IMAGE);
-        }
+        startActivityForResult(intent, Constants.CONSULT_DOC_CAMERA);
     }
 
     @NeedPermission(next = false, value = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -136,10 +129,10 @@ public class UpLoadPortraitActivity extends BaseActivity implements View.OnClick
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK && data != null) {
             switch (requestCode) {
-                case Constans.REQUEST_PICK_IMAGE:
-                    beginCrop(data.getData());
+                case Constants.REQUEST_PICK_IMAGE:
+                    CamaraUtils.cripPic(data.getData(), this);
                     break;
-                case Constans.CORP_CAMERA_IMAGE:
+                case Constants.CORP_CAMERA_IMAGE:
                     Bundle bundle = data.getExtras();
                     if (bundle != null) {
                         File rootFile = new File(Environment.getExternalStorageDirectory().getPath()
@@ -149,44 +142,26 @@ public class UpLoadPortraitActivity extends BaseActivity implements View.OnClick
                         }
                         Bitmap image = bundle.getParcelable("data");
                         imageView.setImageBitmap(image);
-                        updateHeadFile = new File(rootFile, "imageTemp.jpg");
+                        updateHeadFile = new File(rootFile, FILE_CRIP_IMAGE_NAME);
                         ImageUtils.save(image, updateHeadFile, Bitmap.CompressFormat.JPEG);
                     }
                     break;
             }
-        } else if (resultCode == RESULT_OK && requestCode == Constans.CONSULT_DOC_CAMERA) {
+        } else if (resultCode == RESULT_OK && requestCode == Constants.CONSULT_DOC_CAMERA) {
             //用相机返回的照片去调用剪裁也需要对Uri进行处理
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Uri contentUri = FileProvider.getUriForFile(this, "com.zh.xfz.FileProvider", tempFile);
-                beginCrop(contentUri);//裁剪图片
+                Uri contentUri = FileProvider.getUriForFile(this, FILE_PROVIDER, tempFile);
+                CamaraUtils.cripPic(contentUri, this);
             } else {
-                beginCrop(Uri.fromFile(tempFile));//裁剪图片
+                CamaraUtils.cripPic(Uri.fromFile(tempFile), this);
             }
         }
-    }
-
-    //开始截图
-    private void beginCrop(Uri source) {
-        // 调用系统中自带的图片剪裁
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        intent.setDataAndType(source, "image/*");
-        // 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
-        intent.putExtra("crop", "true");
-        // aspectX aspectY 是宽高的比例
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        // outputX outputY 是裁剪图片宽高
-        intent.putExtra("outputX", 150);
-        intent.putExtra("outputY", 150);
-        intent.putExtra("return-data", true);
-        startActivityForResult(intent, Constans.CORP_CAMERA_IMAGE);
     }
 
     @OnMenuOnclick
     public void menuClick() {
         if (updateHeadFile != null) {
-            presenter.uploadImg(updateHeadFile);
+            userPresenter.uploadImg(updateHeadFile);
         }
     }
 

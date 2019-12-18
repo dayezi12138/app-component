@@ -5,12 +5,13 @@ import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 
-import com.alibaba.android.arouter.launcher.ARouter;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.StringUtils;
+import com.zh.annatation.toolbar.ToolbarNavigation;
+import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.fragment.BusinessBean;
 import com.zh.xfz.business.activity.CreateBusinessActivity;
-import com.zh.xfz.business.activity.MainActivity;
 import com.zh.xfz.business.adapter.BusinessListAdapter;
 import com.zh.xfz.mvp.contract.TenantContract;
 import com.zh.xfz.mvp.presenter.TenantPresenter;
@@ -21,17 +22,20 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import core.app.zh.com.core.base.MyBaseAdapter;
 import core.app.zh.com.core.view.ClearEditTextView;
+
+import static com.zh.xfz.constans.Constants.COMPANY_STATUS_APPLY_CODE;
+import static com.zh.xfz.constans.RequestParamsConstant.SEARCH;
 
 /**
  * author : dayezi
  * data :2019/12/9
  * description:
  */
-//@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white, title = "我")
-//@ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "加入商户")
+@Route(path = CreateBusinessActivity.AROUTER_PATH)
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
+@ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "加入商户")
 public class BusinessListFragment extends BaseListFragment<BusinessBean> implements TenantContract.BusinessListUI {
 
     @Inject
@@ -42,9 +46,6 @@ public class BusinessListFragment extends BaseListFragment<BusinessBean> impleme
 
     @BindView(R.id.et_search)
     ClearEditTextView clearEditTextView;
-
-//    @BindView(R.id.toolbar)
-//    Toolbar toolbar;
 
     @NonNull
     @Override
@@ -66,7 +67,7 @@ public class BusinessListFragment extends BaseListFragment<BusinessBean> impleme
 
     private Map<String, Object> getParams() {
         Map<String, Object> params = new HashMap<>();
-        params.put("search", StringUtils.isEmpty(clearEditTextView.getText().toString()) ? "" : clearEditTextView.getText().toString());
+        params.put(SEARCH, StringUtils.isEmpty(clearEditTextView.getText().toString()) ? "" : clearEditTextView.getText().toString());
         return params;
     }
 
@@ -92,26 +93,24 @@ public class BusinessListFragment extends BaseListFragment<BusinessBean> impleme
 
     @Override
     public void refreshBeforeAfter() {
-        businessListAdapter.setOnItemClickListener((adapter, view, position) -> new AlertDialog.Builder(getActivity()).setTitle("提示")
+        businessListAdapter.setOnItemClickListener((adapter, view, position) -> new AlertDialog.Builder(getActivity())
+                .setTitle(getResources().getString(R.string.act_normal_title_dialog_msg))
                 .setMessage(businessListAdapter.getData().get(position).getTenantName())
-                .setPositiveButton("申请加入", (dialog, which) -> {
-                    presenter.applyTenant(String.valueOf(businessListAdapter.getData().get(position).getID()), 1);
+                .setPositiveButton(getResources().getString(R.string.act_business_list_sure_dialog_msg), (dialog, which) -> {
+                    presenter.applyTenant(String.valueOf(businessListAdapter.getData().get(position).getID()), COMPANY_STATUS_APPLY_CODE);
                     dialog.dismiss();
-                }).setNegativeButton("取消", (dialog, which) -> dialog.dismiss()).show());
+                }).setNegativeButton(getResources().getString(R.string.alert_cancel_str), (dialog, which) -> dialog.dismiss()).show());
     }
 
     @Override
     public void clickItemSuccess() {
-        ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
+        getMyActivity().finish();
     }
 
-    @OnClick(R.id.navigation_tv)
-    public void clicknavigation() {
-        clickItemSuccess();
+    @Override
+    public void showMsg(String msg) {
+        super.showMsg(msg);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
-    @OnClick(R.id.create_tv)
-    public void create() {
-        ARouter.getInstance().build(CreateBusinessActivity.AROUTER_PATH).navigation();
-    }
 }

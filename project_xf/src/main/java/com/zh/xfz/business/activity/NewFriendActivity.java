@@ -12,8 +12,9 @@ import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.fragment.FriendInfo;
 import com.zh.xfz.business.adapter.ContactAdapter;
-import com.zh.xfz.mvp.contract.activity.NewFriendContract;
-import com.zh.xfz.mvp.presenter.activity.NewFriendPresenter;
+import com.zh.xfz.constans.Constants;
+import com.zh.xfz.mvp.contract.ConversationContract;
+import com.zh.xfz.mvp.presenter.ConversationPresenter;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -34,14 +35,10 @@ import static com.zh.xfz.business.fragment.ContactFragment.CONTACT_EVENT_KEY;
  * description:
  */
 @Route(path = NewFriendActivity.AROUTER_PATH)
-//@ToolbarLeft(menuId = R.menu.new_friend)
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "新朋友")
-public class NewFriendActivity extends BaseActivity implements NewFriendContract.NewFriendUI, BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
+public class NewFriendActivity extends BaseActivity implements ConversationContract.NewFriendListUI, BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
     public final static String AROUTER_PATH = "/main/NewFriendActivity/";
-
-    @Inject
-    NewFriendPresenter presenter;
 
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -49,6 +46,8 @@ public class NewFriendActivity extends BaseActivity implements NewFriendContract
     @BindView(R.id.recycler)
     RecyclerView mRecyclerView;
 
+    @Inject
+    ConversationPresenter conversationPresenter;
     @Inject
     ContactAdapter contactAdapter;
 
@@ -69,33 +68,13 @@ public class NewFriendActivity extends BaseActivity implements NewFriendContract
         contactAdapter.setEmptyView(R.layout.empty_view);
         swipeRefreshLayout.setOnRefreshListener(this);
         onRefresh();
-        contactAdapter.setAddFriendListner(position -> presenter.applyFriend(mDateList.get(position), position));
-    }
-
-
-    @Override
-    public void successFriends(List<FriendInfo> sortModels, boolean refresh, boolean more) {
-        if (refresh) {
-            mDateList.clear();
-        }
-        swipeRefreshLayout.setRefreshing(false);
-        mDateList.addAll(sortModels);
-        contactAdapter.setNewData(mDateList);
-        if (!more) contactAdapter.loadMoreEnd();
-    }
-
-    @Override
-    public void successApplyFriend(int position) {
-        mDateList.get(position).setStatus(2);
-        contactAdapter.notifyDataSetChanged();
-        MessageEvent messageEvent = new MessageEvent(CONTACT_EVENT_KEY, "");
-        EventBus.getDefault().post(messageEvent);
+        contactAdapter.setAddFriendListner(position -> conversationPresenter.agreeNewFriend(mDateList.get(position), position));
     }
 
     @Override
     public void onLoadMoreRequested() {
         swipeRefreshLayout.setRefreshing(true);
-        presenter.loadMore();
+        conversationPresenter.onLoadMoreNewFriend();
     }
 
     @Override
@@ -107,6 +86,23 @@ public class NewFriendActivity extends BaseActivity implements NewFriendContract
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
-        presenter.refresh();
+        conversationPresenter.onRefreshNewFriend();
+    }
+
+    @Override
+    public void listData(List<FriendInfo> data, boolean isRefresh) {
+        if (isRefresh) mDateList.clear();
+        swipeRefreshLayout.setRefreshing(false);
+        mDateList.addAll(data);
+        contactAdapter.setNewData(mDateList);
+        if (data.size() < Constants.PAGESIZE) contactAdapter.loadMoreEnd();
+    }
+
+    @Override
+    public void agreeNewFriend(int position) {
+        mDateList.get(position).setStatus(2);
+        contactAdapter.notifyDataSetChanged();
+        MessageEvent messageEvent = new MessageEvent(CONTACT_EVENT_KEY, "");
+        EventBus.getDefault().post(messageEvent);
     }
 }

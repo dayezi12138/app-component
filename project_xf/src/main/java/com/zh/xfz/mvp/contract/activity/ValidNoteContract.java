@@ -10,6 +10,7 @@ import core.app.zh.com.core.base.IPresenter;
  * data :2019/7/24
  * description:
  */
+@Deprecated
 public interface ValidNoteContract {
 
     interface ValidNoteUI extends BaseView {

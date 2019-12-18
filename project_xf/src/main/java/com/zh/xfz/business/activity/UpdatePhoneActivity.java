@@ -12,9 +12,11 @@ import com.zh.annatation.toolbar.ToolbarLeft;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
-import com.zh.xfz.utils.LoginUtils;
+import com.zh.xfz.utils.LoginHandler;
 
 import java.text.MessageFormat;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
@@ -39,6 +41,9 @@ public class UpdatePhoneActivity extends BaseActivity {
     @BindView(R.id.mobile_tv)
     TextView mobileTv;
 
+    @Inject
+    LoginHandler loginHandler;
+
     @NonNull
     @Override
     public int layoutId() {
@@ -47,13 +52,13 @@ public class UpdatePhoneActivity extends BaseActivity {
 
     @Override
     public void init() {
-        mobileTv.setText(MessageFormat.format(getResources().getString(R.string.act_update_mobile_str), LoginUtils.getUserInfo().getMobile()));
+        mobileTv.setText(MessageFormat.format(getResources().getString(R.string.act_update_mobile_str), loginHandler.getCurrentUserInfo().getMobile()));
     }
 
     @OnMenuOnclick
     public void menuClick() {
         if (StringUtils.isEmpty(textTv.getText().toString())) {
-            showMsg("号码不能为空");
+            showMsg(getResources().getString(R.string.act_mobile_not_empty_toast_msg));
             return;
         }
         ARouter.getInstance().build(UpdatePhoneSmsActivity.AROUTER_PATH).withString(KEY_PHONE, textTv.getText().toString()).navigation();

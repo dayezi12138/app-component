@@ -5,7 +5,6 @@ import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.LogUtils;
-import com.pgyersdk.crash.PgyCrashManager;
 import com.zh.api.DefaultBean;
 import com.zh.api.ToolBarInject;
 import com.zh.xfz.bean.fragment.FriendInfo;
@@ -17,9 +16,10 @@ import com.zh.xfz.dagger.module.AppModule;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import core.app.zh.com.core.application.BaseApplication;
-import core.app.zh.com.core.base.BaseActivity;
 import core.app.zh.com.core.listener.AddOptionInPageListener;
 import core.app.zh.com.core.listener.DaggerOptionListener;
 import io.rong.imkit.RongIM;
@@ -36,12 +36,15 @@ public class MyApplication extends BaseApplication {
 
     public static final String APP_ID = "wx7ff65b8874d14bec";
 
+    @Inject
+    String PGYID;
+
     @Override
     public void init(BaseApplication application) {
         RongIM.init(this);
         ToolBarInject.init(MyApplication.this, () -> new DefaultBean());
         RongIM.getInstance().setConversationClickListener(new MyConversationClickListener());
-        PgyCrashManager.register(this);
+//        PgyCrashManager.register(this, PGYID);
     }
 
     @Override
@@ -143,14 +146,14 @@ public class MyApplication extends BaseApplication {
         listeners.add((object, view) -> {
             ButterKnife.bind(object, view);
             ARouter.getInstance().inject(object);
-            if (object instanceof BaseActivity)
-                PgyCrashManager.register((Context) object);
+//            if (object instanceof BaseActivity)
+//                PgyCrashManager.register((Context) object,PGYID);
         });
         return listeners;
     }
 
     @Override
     public void unregister() {
-        PgyCrashManager.unregister();
+
     }
 }

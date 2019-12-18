@@ -1,7 +1,10 @@
 package com.zh.xfz.mvp.presenter;
 
+import com.zh.xfz.business.activity.WXLoginActivity;
+import com.zh.xfz.constans.Constants;
 import com.zh.xfz.mvp.contract.SmsCodeContract;
 import com.zh.xfz.mvp.model.SmsCodeModel;
+import com.zh.xfz.utils.ResponseStatusUtils;
 
 import javax.inject.Inject;
 
@@ -25,10 +28,24 @@ public class SmsCodePresenter extends BasePresenter<BaseView> implements SmsCode
     @Override
     public void getCode(String phone, int status) {
         model.getCode(phone, status, validSmsCode -> {
-            if (validSmsCode.getCode() == 40004) getCode(phone, 3);
-            else if (validSmsCode.getCode() == 0 && view.get() instanceof SmsCodeContract.SmsCodeUI) {
-                ((SmsCodeContract.SmsCodeUI) view.get()).loginOrRegister(status != 3 ? true : false);
-            } else view.get().showMsg(validSmsCode.getMsg());
+            if (ResponseStatusUtils.notMsgFail(validSmsCode.getCode()) && model.getMyBaseModel().getMyActivity() instanceof WXLoginActivity) {
+                getCode(phone, Constants.SMS_STATUS_WX_BIND_CODE);
+                return;
+            }
+            if (view.get() instanceof SmsCodeContract.SendSmsUI) {
+                SmsCodeContract.SendSmsUI wxLoginUI = (SmsCodeContract.SendSmsUI) view.get();
+                if (ResponseStatusUtils.isNormalSuccess(validSmsCode.getCode()))
+                    wxLoginUI.sendSuccess();
+                else view.get().showMsg(validSmsCode.getMsg());
+                return;
+            }
+            if (view.get() instanceof SmsCodeContract.UpdatePhoneUI) {
+                SmsCodeContract.UpdatePhoneUI updatePhoneUI = (SmsCodeContract.UpdatePhoneUI) view.get();
+                if (ResponseStatusUtils.isNormalSuccess(validSmsCode.getCode()))
+                    updatePhoneUI.sendSuccess();
+                else view.get().showMsg(validSmsCode.getMsg());
+                return;
+            }
         });
     }
 }

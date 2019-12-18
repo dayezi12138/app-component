@@ -11,17 +11,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.shehuan.niv.NiceImageView;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
-import com.zh.xfz.bean.activity.Account;
-import com.zh.xfz.bean.activity.UserInfo;
 import com.zh.xfz.business.activity.BusinessListActivity;
 import com.zh.xfz.business.activity.HelpActivity;
 import com.zh.xfz.business.activity.MyCompanyActivity;
 import com.zh.xfz.business.activity.PersonCardActivity;
 import com.zh.xfz.business.activity.PersonDetailInfoActivity;
 import com.zh.xfz.business.activity.SettingActivity;
-import com.zh.xfz.mvp.contract.activity.UserOperationContract;
-import com.zh.xfz.mvp.presenter.UserOperationPresenter;
-import com.zh.xfz.utils.LoginUtils;
+import com.zh.xfz.db.bean.Tenant;
+import com.zh.xfz.utils.LoginHandler;
 
 import javax.inject.Inject;
 
@@ -35,7 +32,7 @@ import core.app.zh.com.core.base.BaseFragment;
  * description:
  */
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "我的")
-public class MineFragment extends BaseFragment implements UserOperationContract.UserOperationUI {
+public class MineFragment extends BaseFragment  {
 
     @BindView(R.id.name_tv)
     TextView nameTv;
@@ -47,9 +44,7 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
     NiceImageView imageView;
 
     @Inject
-    UserOperationPresenter presenter;
-
-//    private MyPopupWindow myPopupWindow;
+    LoginHandler loginHandler;
 
     @NonNull
     @Override
@@ -59,29 +54,15 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
 
     @Override
     public void init() {
-//        Account userInfo = LoginUtils.getUserInfo();
-//        if (userInfo != null && !StringUtils.isEmpty(userInfo.getUserIcon())) {
-//            Glide.with(getMyActivity()).load(userInfo.getUserIcon())
-//                    .error(R.drawable.rc_default_portrait)
-//                    .diskCacheStrategy(DiskCacheStrategy.NONE)//关闭Glide的硬盘缓存机制
-//                    .into(imageView);
-//        }
-//        if (userInfo != null)
-//            nameTv.setText(StringUtils.isEmpty(userInfo.getChineseName()) ? userInfo.getMobile() : userInfo.getChineseName());
-//        if (LoginUtils.getTenant() != null)
-//            companyTv.setText(LoginUtils.getTenant().getTenantName());
-
-//        presenter.getUserInfo(LoginUtils.getUserId());
-//        myPopupWindow = new MyPopupWindow.Builder(LayoutInflater.from(getMyActivity()).inflate(R.layout.qcrode_view, null), getActivity())
-//                .height(ConvertUtils.dp2px(300)).width(ScreenUtils.getScreenWidth() - ScreenUtils.getScreenWidth() / 5).build();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (LoginUtils.getTenant() != null)
-            companyTv.setText(LoginUtils.getTenant().getTenantName());
-        Account userInfo = LoginUtils.getUserInfo();
+        Tenant tenant = loginHandler.getCurrentTenant();
+        if (tenant != null)
+            companyTv.setText(tenant.getTenantName());
+        com.zh.xfz.db.bean.UserInfo userInfo = loginHandler.getCurrentUserInfo();
         if (userInfo != null && !StringUtils.isEmpty(userInfo.getUserIcon())) {
             Glide.with(getMyActivity()).load(userInfo.getUserIcon())
                     .error(R.drawable.ic_user_white)
@@ -132,8 +113,8 @@ public class MineFragment extends BaseFragment implements UserOperationContract.
     }
 
 
-    @Override
-    public void userInfoSuccess(UserInfo userInfo) {
-        nameTv.setText(userInfo.getMobile());
-    }
+//    @Override
+//    public void userInfoSuccess(UserInfo userInfo) {
+//        nameTv.setText(userInfo.getMobile());
+//    }
 }

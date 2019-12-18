@@ -25,14 +25,22 @@ public class SmsCodeModel implements GetMyBaseModelListener {
 
     @Inject
     MyBaseModel myBaseModel;
+    @Inject
+    ObservableProvider observableProvider;
 
     @Inject
     public SmsCodeModel() {
     }
 
+    /**
+     * 发送验证码
+     * @param phone
+     * @param status
+     * @param successListener
+     */
     public void getCode(String phone, int status, ObservableListener.SuccessListener<ValidSmsCode> successListener) {
         try {
-            BaseObservable observable = new ObservableProvider(activity, successListener).showDialog(false).build(BaseObservable.class);
+            BaseObservable observable = observableProvider.successListener(successListener).showDialog(false).build(BaseObservable.class);
             myService.getCode(phone, status).subscribe(observable);
         } catch (Exception e) {
             e.printStackTrace();

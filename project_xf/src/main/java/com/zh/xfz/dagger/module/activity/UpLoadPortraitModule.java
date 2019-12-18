@@ -5,11 +5,10 @@ import android.view.View;
 
 import com.zh.xfz.R;
 import com.zh.xfz.business.activity.UpLoadPortraitActivity;
+import com.zh.xfz.dagger.module.CommonActivityModule;
 
 import core.app.zh.com.core.annotation.ActivityScope;
 import core.app.zh.com.core.base.BaseActivity;
-import core.app.zh.com.core.base.BaseView;
-import core.app.zh.com.core.base.MyBaseModel;
 import core.app.zh.com.core.view.MyPopupWindow;
 import dagger.Module;
 import dagger.Provides;
@@ -19,7 +18,7 @@ import dagger.Provides;
  * data :2019/10/29
  * description:
  */
-@Module
+@Module(includes = CommonActivityModule.class)
 public class UpLoadPortraitModule {
     @ActivityScope
     @Provides
@@ -39,19 +38,4 @@ public class UpLoadPortraitModule {
         return activity;
     }
 
-    @ActivityScope
-    @Provides
-    public MyBaseModel myBaseModel(UpLoadPortraitActivity activity) {
-        return new MyBaseModel(activity.getApplication()) {
-            @Override
-            public BaseView getBaseView() {
-                return activity;
-            }
-
-            @Override
-            public BaseActivity getMyActivity() {
-                return activity;
-            }
-        };
-    }
 }

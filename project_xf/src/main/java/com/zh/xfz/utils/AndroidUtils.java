@@ -7,7 +7,7 @@ import com.blankj.utilcode.util.SPUtils;
 
 import java.util.UUID;
 
-import static com.zh.xfz.constans.Constans.PREF_KEY_UUID;
+import static com.zh.xfz.constans.Constants.PREF_KEY_UUID;
 
 /**
  * author : dayezi

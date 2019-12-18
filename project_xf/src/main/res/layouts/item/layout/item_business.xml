@@ -5,6 +5,8 @@
     android:layout_height="@dimen/widget_text_height_normal"
     android:layout_marginTop="@dimen/divider"
     android:background="@color/white"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/widget_padding_tiny"
+    android:paddingRight="@dimen/widget_padding_tiny">
 
 </TextView>

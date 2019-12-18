@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,7 +75,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
             } else
                 rootContentView = inflater.inflate(layoutId(), container, false);
             container.addView(rootContentView);
-        }else rootContentView = container;
+        } else rootContentView = container;
         return container;
     }
 
@@ -178,7 +179,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
 
     @Override
     public void showMsg(String msg) {
-        ToastUtils.showShort(msg);
+        ToastUtils.showShort(TextUtils.isEmpty(msg) ? getResources().getString(R.string.toast_msg_empty_str) : msg);
     }
 
     @Override

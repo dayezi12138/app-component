@@ -29,8 +29,8 @@ import com.zh.xfz.bean.activity.SearchFriend;
 import com.zh.xfz.bean.activity.TargetUserInfo;
 import com.zh.xfz.bean.fragment.FriendInfo;
 import com.zh.xfz.business.fragment.ContactFragment;
-import com.zh.xfz.mvp.contract.activity.FriendDetailContract;
-import com.zh.xfz.mvp.presenter.activity.FriendDetailPresenter;
+import com.zh.xfz.mvp.contract.ConversationContract;
+import com.zh.xfz.mvp.presenter.ConversationPresenter;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -54,7 +54,7 @@ import io.rong.imlib.model.UserInfo;
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color)
 @ToolbarLeft(menuId = R.menu.friend_detail)
-public class FriendDetailActivity extends BaseActivity implements View.OnClickListener, FriendDetailContract.FriendDetailUI, MaterialDialog.SingleButtonCallback {
+public class FriendDetailActivity extends BaseActivity implements View.OnClickListener, ConversationContract.FriendDetailInfoUI, MaterialDialog.SingleButtonCallback {
     public final static String AROUTER_PATH = "/main/FriendDetailActivity/";
     public final static String FRIEND_DETAIL_KEY = "FRIEND_DETAIL_KEY";
 
@@ -80,7 +80,7 @@ public class FriendDetailActivity extends BaseActivity implements View.OnClickLi
     MyPopupWindow popupWindow;
 
     @Inject
-    FriendDetailPresenter presenter;
+    ConversationPresenter conversationPresenter;
 
     @Inject
     Dialog dialog;
@@ -103,14 +103,13 @@ public class FriendDetailActivity extends BaseActivity implements View.OnClickLi
         textView.setTextColor(getResources().getColor(R.color.white));
         textView.setGravity(Gravity.CENTER);
         toolbar.addView(textView);
-        presenter.getTargetUserInfo(String.valueOf(friendInfo.getSourceId()), String.valueOf(friendInfo.getTargetId()));
+        conversationPresenter.getFriendDetailInfo(String.valueOf(friendInfo.getTargetId()));
     }
 
     @OnClick(R.id.submit_btn)
     public void submit() {
         if (targetUserInfo.isStatus())
             RongIM.getInstance().startPrivateChat(this, String.valueOf(friendInfo.getTargetId()), friendInfo.getName());
-//        else presenter.applyFriend(String.valueOf(targetUserInfo.getTargetId()), "", "");
         else {
             SearchFriend searchFriend = new SearchFriend();
             searchFriend.setChineseName(targetUserInfo.getChineseName());
@@ -143,37 +142,26 @@ public class FriendDetailActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.delete:
-                presenter.delete(String.valueOf(friendInfo.getID()));
+                conversationPresenter.deleteFriend(String.valueOf(friendInfo.getID()));
                 break;
             case R.id.cancel:
-                success();
+                deleteFriendSuccess();
                 break;
         }
-    }
-
-    @Override
-    public void success() {
-        if (popupWindow.isShowing()) popupWindow.dismiss();
-        RongIM.getInstance().removeConversation(Conversation.ConversationType.PRIVATE, String.valueOf(targetUserInfo.getTargetId()), null);
-        MessageEvent event = new MessageEvent(ContactFragment.CONTACT_EVENT_KEY, "");
-        EventBus.getDefault().post(event);
-        finish();
-    }
-
-    @Override
-    public void updateMemo(String name) {
-        memo.setText(name);
-        Uri uri = StringUtils.isEmpty(targetUserInfo.getUserIcon()) ? null : Uri.parse(targetUserInfo.getUserIcon());
-        UserInfo userInfo = new UserInfo(String.valueOf(this.targetUserInfo.getTargetId()), name, uri);
-        RongIM.getInstance().refreshUserInfoCache(userInfo);
-        MessageEvent msg = new MessageEvent(ContactFragment.CONTACT_EVENT_KEY, "");
-        EventBus.getDefault().post(msg);
     }
 
     private TargetUserInfo targetUserInfo;
 
     @Override
-    public void successUserInfo(TargetUserInfo targetUserInfo) {
+    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+        EditText editText = dialog.getCustomView().findViewById(R.id.memo);
+        conversationPresenter.updateFriendMemo(String.valueOf(friendInfo.getID()), editText.getText().toString());
+        editText.setText("");
+        dialog.dismiss();
+    }
+
+    @Override
+    public void friendInfo(TargetUserInfo targetUserInfo) {
         this.targetUserInfo = targetUserInfo;
         nameTv.setText(targetUserInfo.getChineseName());
         textView.setText(targetUserInfo.getChineseName());
@@ -183,15 +171,26 @@ public class FriendDetailActivity extends BaseActivity implements View.OnClickLi
         } else {
             niceImageView.setBackgroundResource(R.drawable.rc_default_portrait);
         }
-        String text = targetUserInfo.isStatus() ? "发送消息" : "添加到通讯录";
+        String text = targetUserInfo.isStatus() ? getResources().getString(R.string.act_send_msg_btn_text_msg) : getResources().getString(R.string.act_add_contact_btn_text_msg);
         btn.setText(text);
     }
 
     @Override
-    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-        EditText editText = dialog.getCustomView().findViewById(R.id.memo);
-        presenter.updateMemo(String.valueOf(friendInfo.getID()), editText.getText().toString());
-        editText.setText("");
-        dialog.dismiss();
+    public void deleteFriendSuccess() {
+        if (popupWindow.isShowing()) popupWindow.dismiss();
+        RongIM.getInstance().removeConversation(Conversation.ConversationType.PRIVATE, String.valueOf(targetUserInfo.getTargetId()), null);
+        MessageEvent event = new MessageEvent(ContactFragment.CONTACT_EVENT_KEY, "");
+        EventBus.getDefault().post(event);
+        finish();
+    }
+
+    @Override
+    public void updateFriendSuccess(String name) {
+        memo.setText(name);
+        Uri uri = StringUtils.isEmpty(targetUserInfo.getUserIcon()) ? null : Uri.parse(targetUserInfo.getUserIcon());
+        UserInfo userInfo = new UserInfo(String.valueOf(this.targetUserInfo.getTargetId()), name, uri);
+        RongIM.getInstance().refreshUserInfoCache(userInfo);
+        MessageEvent msg = new MessageEvent(ContactFragment.CONTACT_EVENT_KEY, "");
+        EventBus.getDefault().post(msg);
     }
 }

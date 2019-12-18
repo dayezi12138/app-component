@@ -26,6 +26,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
+import static com.zh.xfz.constans.RequestParamsConstant.*;
+
 /**
  * author : dayezi
  * data :2019/7/23
@@ -36,31 +38,31 @@ public interface MyService {
     @ApiAnnotation("登录接口")
     @FormUrlEncoded
     @POST("User/Login")
-    Observable<Data<Account>> login(@Field("account") String userName, @Field("password") String password, @Field("timeStamp") String timeStamp);
+    Observable<Data<Account>> login(@Field(ACCOUNT_PARAMS) String userName, @Field(PASSWORD) String password, @Field(TIME_STAMP) String timeStamp);
 
     @ApiAnnotation("验证用户接口")
     @FormUrlEncoded
     @POST("User/ExistAccount")
-    Observable<ValidAccount> validAccount(@Field("account") String account);
+    Observable<ValidAccount> validAccount(@Field(ACCOUNT_PARAMS) String account);
 
     @ApiAnnotation("获取验证码")
     @FormUrlEncoded
     @POST("Sms/GetCode")
-    Observable<ValidSmsCode> getCode(@Field("mobile") String phone, @Field("type") int type);
+    Observable<ValidSmsCode> getCode(@Field(MOBILE) String phone, @Field(TYPE) int type);
 
     @ApiAnnotation("注册")
     @FormUrlEncoded
     @POST("User/Register")
-    Observable<Data<Account>> register(@Field("mobile") String phone, @Field("code") String code, @Field("password") String password, @Field("password2") String password2, @Field("timeStamp") String timeStamp);
+    Observable<Data<Account>> register(@Field(MOBILE) String phone, @Field(CODE) String code, @Field(PASSWORD) String password, @Field(PASSWORD_2) String password2, @Field(TIME_STAMP) String timeStamp);
 
     @ApiAnnotation("短信登录")
     @FormUrlEncoded
     @POST("User/CodeLogin")
-    Observable<Data<Account>> codeLogin(@Field("mobile") String phone, @Field("code") String code, @Field("timeStamp") String timeStamp);
+    Observable<Data<Account>> codeLogin(@Field(MOBILE) String phone, @Field(CODE) String code, @Field(TIME_STAMP) String timeStamp);
 
     @ApiAnnotation("获取用户信息")
     @GET("User/GetUserInfo")
-    Observable<Data<UserInfo>> getUserInfo(@Query("userid") String phone, @Query("timeStamp") String timeStamp);
+    Observable<Data<UserInfo>> getUserInfo(@Query(USER_ID) String userid, @Query(TIME_STAMP) String timeStamp);
 
     @ApiAnnotation("获取行业类别")
     @GET("tenant/GetIndustry")
@@ -74,7 +76,7 @@ public interface MyService {
     @ApiAnnotation("存在公司")
     @POST("Tenant/ExistTenantName")
     @FormUrlEncoded
-    Observable<Data<Object>> existTenantName(@Field("tenantName") String tenantName, @Field("userid") String userId, @Field("timeStamp") String timeStamp);
+    Observable<Data<Object>> existTenantName(@Field(TENANT_NAME) String tenantName, @Field(USER_ID) String userId, @Field(TIME_STAMP) String timeStamp);
 
     @ApiAnnotation("好友列表")
     @GET("AddressBook/GetUserFriendPageList")

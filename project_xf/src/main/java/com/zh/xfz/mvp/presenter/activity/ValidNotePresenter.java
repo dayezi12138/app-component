@@ -18,6 +18,7 @@ import core.app.zh.com.core.listener.observable.ObservableListener;
  * data :2019/7/24
  * description:
  */
+@Deprecated
 public class ValidNotePresenter extends BasePresenter<ValidNoteContract.ValidNoteUI> implements ValidNoteContract.Presenter {
     private ValidCodeModel model;
 

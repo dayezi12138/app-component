@@ -33,7 +33,6 @@
                 style="@style/Activity.Valid.Title.TextView.Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1387132122"
                 android:textColor="@color/text1" />
         </LinearLayout>
 

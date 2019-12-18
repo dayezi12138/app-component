@@ -10,6 +10,7 @@ import com.zh.xfz.bean.fragment.FriendInfo;
 import com.zh.xfz.business.activity.GroupActivity;
 import com.zh.xfz.business.activity.NewFriendActivity;
 import com.zh.xfz.business.fragment.ContactFragment;
+import com.zh.xfz.dagger.module.CommonFragmentModule;
 import com.zh.xfz.views.sideBar.PinyinComparator;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import core.app.zh.com.core.annotation.FragmentScope;
+import core.app.zh.com.core.base.BaseActivity;
+import core.app.zh.com.core.base.BaseFragment;
 import dagger.Module;
 import dagger.Provides;
 
@@ -25,7 +28,7 @@ import dagger.Provides;
  * data :2019/9/3
  * description:
  */
-@Module
+@Module(includes = CommonFragmentModule.class)
 public class ContactModule {
     @FragmentScope
     @Provides
@@ -38,6 +41,18 @@ public class ContactModule {
     @Provides
     public Comparator comparator() {
         return new PinyinComparator();
+    }
+
+    @FragmentScope
+    @Provides
+    public BaseFragment baseFragment(ContactFragment fragment) {
+        return fragment;
+    }
+
+    @FragmentScope
+    @Provides
+    public BaseActivity activity(ContactFragment fragment) {
+        return fragment.getMyActivity();
     }
 
     @FragmentScope

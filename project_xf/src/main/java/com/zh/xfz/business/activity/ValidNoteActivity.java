@@ -1,22 +1,19 @@
 package com.zh.xfz.business.activity;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
-import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
-import com.zh.xfz.bean.activity.Account;
-import com.zh.xfz.business.fragment.BusinessListFragment;
-import com.zh.xfz.mvp.contract.activity.ValidNoteContract;
-import com.zh.xfz.mvp.presenter.activity.ValidNotePresenter;
-import com.zh.xfz.utils.LoginUtils;
+import com.zh.xfz.constans.Constants;
+import com.zh.xfz.mvp.contract.SmsCodeContract;
+import com.zh.xfz.mvp.presenter.SmsCodePresenter;
+import com.zh.xfz.mvp.presenter.UserPresenter;
+import com.zh.xfz.utils.MyCountDownTimer;
 
 import javax.inject.Inject;
 
@@ -33,7 +30,7 @@ import core.app.zh.com.core.view.VerifyCodeView;
 @Route(path = ValidNoteActivity.AROUTER_PATH)
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_ios)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color)
-public class ValidNoteActivity extends BaseActivity implements ValidNoteContract.ValidNoteUI {
+public class ValidNoteActivity extends BaseActivity implements MyCountDownTimer.CountDownListener, SmsCodeContract.SendSmsUI {
     public final static String AROUTER_PATH = "/login/ValidNoteActivity/";
     public final static String ACCOUNT_KEY = "ACCOUNT_KEY";
     public final static String EXIST_ACCOUNT_KEY = "EXIST_ACCOUNT_KEY";
@@ -58,27 +55,12 @@ public class ValidNoteActivity extends BaseActivity implements ValidNoteContract
     boolean isRegister;
 
     @Inject
-    ValidNotePresenter presenter;
+    SmsCodePresenter smsCodePresenter;
 
-//    @Inject
-//    UserOperationPresenter userOperationPresenter;
-
-    private CountDownTimer countDownTimer = new CountDownTimer(60 * 1000, 1000) {
-        @Override
-        public void onTick(long millisUntilFinished) {
-            int second = (int) ((millisUntilFinished / 1000) % 60);
-            refreshTv.setText(second + "S");
-            if (refreshTv.isClickable()) {
-                refreshTv.setBackgroundColor(Color.TRANSPARENT);
-                refreshTv.setClickable(false);
-            }
-        }
-
-        @Override
-        public void onFinish() {
-            refresh();
-        }
-    };
+    @Inject
+    UserPresenter userPresenter;
+    @Inject
+    MyCountDownTimer myCountDownTimer;
 
 
     @NonNull
@@ -90,48 +72,10 @@ public class ValidNoteActivity extends BaseActivity implements ValidNoteContract
     @Override
     public void init() {
         phoneTv.setText(account);
-//        userOperationPresenter.getCode(account, isRegister);
-        presenter.getCode(account, existAccount);
-        verifyCodeView.setOnAllFilledListener(text -> {
-                    presenter.loginOrRegister(account, text, existAccount);
-//                    if (!isRegister) userOperationPresenter.register(account, text);
-//                    else
-//                        ARouter.getInstance().build(AddPasswordActivity.AROUTER_PATH).withString(ACCOUNT_KEY, account).withString(CODE_KEY, text).navigation();
-                }
-//                presenter.loginOrRegister(account, text, existAccount)
+        myCountDownTimer.setCountDownListener(this);
+        smsCodePresenter.getCode(account, !existAccount ? Constants.SMS_STATUS_REGISTER_CODE : Constants.SMS_STATUS_RETRIEVE_CODE);
+        verifyCodeView.setOnAllFilledListener(text -> userPresenter.doSMS(account, text, existAccount)
         );
-    }
-
-    @Override
-    public void success() {
-        countDownTimer.start();
-    }
-
-    @SuppressLint("WrongConstant")
-    @Override
-    public void loginOrRegisterSuccess(Account account, String userId) {
-        LoginUtils.ACCOUNT = account;
-        LoginUtils.saveLoginInfo(account);
-        if (account.getTenant() != null && !account.getTenant().isEmpty())
-            ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
-        else
-            ARouter.getInstance().build(BusinessListActivity.AROUTER_PATH).withString(BusinessListActivity.FRAGMENT_CLASS_KEY, BusinessListFragment.class.getName()).navigation();
-        finish();
-    }
-
-    @Override
-    public void registerSuccess(Account account, String userId) {
-        LoginUtils.ACCOUNT = account;
-        LoginUtils.saveLoginInfo(account);
-        ARouter.getInstance().build(AddPasswordActivity.AROUTER_PATH).navigation();
-        finish();
-    }
-
-    @Override
-    public void error(String msg) {
-        showMsg(msg);
-        countDownTimer.cancel();
-        refresh();
     }
 
     private void refresh() {
@@ -142,13 +86,33 @@ public class ValidNoteActivity extends BaseActivity implements ValidNoteContract
 
     @OnClick(R.id.refresh_tv)
     public void refreshSms() {
-        presenter.getCode(account, existAccount);
-        countDownTimer.start();
+        smsCodePresenter.getCode(account, !existAccount ? Constants.SMS_STATUS_REGISTER_CODE : Constants.SMS_STATUS_RETRIEVE_CODE);
+        myCountDownTimer.start();
     }
 
     @Override
     public void showMsg(String msg) {
         refresh();
         super.showMsg(msg);
+        myCountDownTimer.cancel();
+    }
+
+    @Override
+    public void onTick(int second) {
+        refreshTv.setText(second + "S");
+        if (refreshTv.isClickable()) {
+            refreshTv.setBackgroundColor(Color.TRANSPARENT);
+            refreshTv.setClickable(false);
+        }
+    }
+
+    @Override
+    public void onFinish() {
+        refresh();
+    }
+
+    @Override
+    public void sendSuccess() {
+        myCountDownTimer.start();
     }
 }

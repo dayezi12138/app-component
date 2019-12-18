@@ -8,9 +8,13 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
-import com.zh.xfz.bean.activity.Account;
 import com.zh.xfz.business.adapter.MyCompanyAdapter;
-import com.zh.xfz.utils.LoginUtils;
+import com.zh.xfz.db.bean.Tenant;
+import com.zh.xfz.utils.LoginHandler;
+
+import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
@@ -22,7 +26,7 @@ import core.app.zh.com.core.base.BaseActivity;
  */
 @Route(path = SelectCompanyActivity.AROUTER_PATH)
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
-@ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "姓名")
+@ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "选择公司")
 public class SelectCompanyActivity extends BaseActivity {
     public final static String AROUTER_PATH = "/main/SelectCompanyActivity/";
 
@@ -30,6 +34,9 @@ public class SelectCompanyActivity extends BaseActivity {
 
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
+
+    @Inject
+    LoginHandler loginHandler;
 
     @NonNull
     @Override
@@ -42,13 +49,16 @@ public class SelectCompanyActivity extends BaseActivity {
         adapter = new MyCompanyAdapter(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        if (LoginUtils.ACCOUNT != null && LoginUtils.ACCOUNT.getTenant() != null && LoginUtils.ACCOUNT.getTenant().size() > 0) {
-            adapter.setNewData(LoginUtils.ACCOUNT.getTenant());
+        List<Tenant> tenantList = loginHandler.getTenantList();
+        if (tenantList != null && !tenantList.isEmpty()) {
+            Tenant firstTenant = loginHandler.getCurrentTenant();
+            adapter.setNewData(tenantList);
             adapter.setOnItemClickListener((adapter, view, position) -> {
-                Account.TenantBean tenantBean = LoginUtils.ACCOUNT.getTenant().get(position);
-                LoginUtils.setTenant(tenantBean);
+                loginHandler.updateTenant(firstTenant, tenantList.get(position));
                 finish();
             });
+
         }
+
     }
 }

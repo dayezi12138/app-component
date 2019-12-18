@@ -6,12 +6,17 @@ import core.app.zh.com.core.base.IPresenter;
 /**
  * author : dayezi
  * data :2019/12/6
- * description:
+ * description:短信模块
  */
 public interface SmsCodeContract {
+    interface SendSmsUI extends BaseView {
+        void sendSuccess();
+    }
 
-    interface SmsCodeUI extends BaseView {
-        void loginOrRegister(boolean isRegister);
+    interface UpdatePhoneUI extends BaseView {
+        void failSend();
+
+        void sendSuccess();
     }
 
     interface Presenter extends IPresenter {

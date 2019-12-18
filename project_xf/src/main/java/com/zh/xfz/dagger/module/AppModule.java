@@ -1,8 +1,13 @@
 package com.zh.xfz.dagger.module;
 
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+
 import com.blankj.utilcode.util.LogUtils;
 import com.zh.xfz.api.MyService;
 import com.zh.xfz.application.MyApplication;
+import com.zh.xfz.db.DaoMaster;
+import com.zh.xfz.db.DaoSession;
 
 import java.lang.reflect.Proxy;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +30,8 @@ public class AppModule {
     private static final int READ_WRITE_CONNECT_TIME = 15;
     private HttpLoggingInterceptor loggingInterceptor;
     public final static String BASE_URL = "http://47.103.75.23:8031/api/";
+    private final String PGYER_APPID = "PGYER_APPID";
+    private final static String DB_NAME = "XFZ";
 
     @Inject
     public AppModule(MyApplication application) {
@@ -62,4 +69,24 @@ public class AppModule {
     public MyApplication getApplication() {
         return application;
     }
+
+    @Provides
+    public String getPGYID() {
+        try {
+            ApplicationInfo appInfo = application.getPackageManager().getApplicationInfo(application.getPackageName(),
+                    PackageManager.GET_META_DATA);
+            String msg = appInfo.metaData.getString(PGYER_APPID);
+            return msg;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Provides
+    public DaoSession daoSession(MyApplication application) {
+        DaoSession daoSession = DaoMaster.newDevSession(application, DB_NAME);
+        return daoSession;
+    }
+
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="act_login_btn_normal_str">账号登录/注册</string>
     <string name="act_login_btn_phone_str">本机号码一键登录/注册</string>
 
@@ -28,4 +28,51 @@
     <string name="act_setting_version_str">版本号 {0}</string>
     <string name="act_group_detail_count_str">{0}人</string>
     <string name="act_update_mobile_str">当前手机号: {0}</string>
+
+
+    <!--这边开始整理Dialog text 文字已act开头，已msg结尾begin -->
+    <string name="act_normal_title_dialog_msg">提示</string>
+    <string name="act_business_list_sure_dialog_msg">申请加入</string>
+    <string name="act_dissolution_sure_group_dialog_msg">确定解散该群吗?</string>
+    <string name="act_quit_sure_group_dialog_msg">确定退出该群吗?</string>
+    <string name="act_dissolution_group_text_msg">解散群</string>
+    <string name="act_new_group_hint_text_msg">请输入新的群名称</string>
+    <string name="act_send_msg_btn_text_msg">发送消息</string>
+    <string name="act_add_contact_btn_text_msg">添加到通讯录</string>
+    <string name="act_login_ing_msg">登录中...</string>
+    <string name="act_clear_cache_content_x_dialog_msg">是否清除缓存</string>
+    <!--这边开始整理Dialog text 文字已act开头，已msg结尾end -->
+
+    <!--整理弹出土司消息文字已act开头，已msg结尾begin -->
+    <string name="act_account_not_empty_toast_msg">输入账号不能为空</string>
+    <string name="act_unknown_response_toast_msg">请求出现未知异常，请联系管理员</string>
+    <string name="act_password_not_empty_toast_msg">密码不能为空</string>
+    <string name="act_mobile_not_empty_toast_msg">手机号不能为空</string>
+    <string name="act_sms_code_not_empty_toast_msg">验证码不能为空</string>
+    <string name="act_wx_bind_success_toast_msg">绑定成功</string>
+    <string name="act_wx_bind_relieve_toast_msg">已解除微信绑定</string>
+    <string name="act_create_success_toast_msg">创建成功</string>
+    <string name="act_update_success_toast_msg">密码修改成功</string>
+    <string name="act_transfer_group_toast_msg">转让成功</string>
+    <string name="act_function_development_ing_toast_msg">该功能正在开发中....</string>
+    <string name="act_new_password_update_success_msg">新密码不能为空</string>
+    <string name="act_update_success_msg">更新完成</string>
+    <string name="act_update_header_image_success_msg">上传头像完成</string>
+    <string name="act_update_header_fail_msg">文件上传失败</string>
+    <string name="act_update_phone_fail_msg">该手机已绑定其他账号</string>
+    <string name="act_clear_cache_success_toast_msg">缓存已清除</string>
+    <!--整理弹出土司消息文字已act开头，已msg结尾end -->
+
+    <!--融云文字说明begin-->
+    <string name="rong_tip_agree_apply_friend_msg">已通过好友申请,现在可以开始聊天了</string>
+    <string name="rong_notification_title_msg">通知</string>
+    <string name="rong_notification_channel_id_msg">compose</string>
+    <string name="rong_notification_has_apply_friend_msg">您有一条好友申请讯息</string>
+    <string name="rong_tip_multiple_allocation_login_msg">该账号已在其他设备上登录</string>
+    <string name="rong_tip_target_id_empty_error_msg">targetId 为空,请联系管理员</string>
+    <string name="rong_tip_add_friend_success_msg">添加成功</string>
+    <string name="rong_tip_add_group_success_msg">${0}，已加入群組</string>
+    <!--融云文字说明end-->
+
+
 </resources>

@@ -29,6 +29,7 @@ import com.zh.xfz.business.activity.PersonDetailInfoActivity;
 import com.zh.xfz.business.activity.SearchFriendActivity;
 import com.zh.xfz.business.activity.SelectCompanyActivity;
 import com.zh.xfz.business.activity.SettingActivity;
+import com.zh.xfz.business.activity.SplashActivity;
 import com.zh.xfz.business.activity.TestActivity;
 import com.zh.xfz.business.activity.UpLoadPortraitActivity;
 import com.zh.xfz.business.activity.UpdatePasswordActivity;
@@ -42,6 +43,7 @@ import com.zh.xfz.business.activity.im.ConversationListActivity;
 import com.zh.xfz.business.activity.im.SubConversationListActivity;
 import com.zh.xfz.dagger.module.activity.AccountLoginModule;
 import com.zh.xfz.dagger.module.activity.AccountSecurityModule;
+import com.zh.xfz.dagger.module.activity.AddFriendModule;
 import com.zh.xfz.dagger.module.activity.AddGroupMembersModule;
 import com.zh.xfz.dagger.module.activity.AddPasswordModule;
 import com.zh.xfz.dagger.module.activity.CompanyModule;
@@ -56,6 +58,7 @@ import com.zh.xfz.dagger.module.activity.HelpModule;
 import com.zh.xfz.dagger.module.activity.InputPasswordModule;
 import com.zh.xfz.dagger.module.activity.LoginModule;
 import com.zh.xfz.dagger.module.activity.MainModule;
+import com.zh.xfz.dagger.module.activity.MyCompanyModule;
 import com.zh.xfz.dagger.module.activity.NewFriendModule;
 import com.zh.xfz.dagger.module.activity.PersonCardModule;
 import com.zh.xfz.dagger.module.activity.PersonDetailInfoModule;
@@ -80,6 +83,10 @@ import dagger.android.ContributesAndroidInjector;
  */
 @Module(subcomponents = ActivityComponent.class)
 public abstract class AllActivityModule {
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    abstract SplashActivity contributeSplashActivityInjector();
 
     @ActivityScope
     @ContributesAndroidInjector(modules = {LoginModule.class})
@@ -134,7 +141,7 @@ public abstract class AllActivityModule {
     abstract SearchFriendActivity contributeSearchFriendActivityInjector();
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    @ContributesAndroidInjector(modules = {AddFriendModule.class})
     abstract AddFriendActivity contributeAddFriendActivityInjector();
 
     @ActivityScope
@@ -206,7 +213,7 @@ public abstract class AllActivityModule {
     abstract UpdatePhoneSmsActivity contributeUpdatePhoneSmsActivityInjector();
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = {EmptyModule.class})
+    @ContributesAndroidInjector(modules = {MyCompanyModule.class})
     abstract MyCompanyActivity contributeMyCompanyActivityInjector();
 
     @ActivityScope

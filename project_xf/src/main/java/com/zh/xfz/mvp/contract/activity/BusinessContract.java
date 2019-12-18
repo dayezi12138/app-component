@@ -12,6 +12,7 @@ import core.app.zh.com.core.base.IPresenter;
  * data :2019/7/29
  * description:
  */
+@Deprecated
 public interface BusinessContract {
 
     interface BusinessUI extends BaseView {

@@ -14,15 +14,17 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.LogUtils;
+import com.google.gson.Gson;
 import com.suke.widget.SwitchButton;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.activity.GroupInfo;
 import com.zh.xfz.bean.activity.GroupListInfo;
-import com.zh.xfz.mvp.contract.activity.GroupContract;
-import com.zh.xfz.mvp.presenter.activity.GroupPresenter;
-import com.zh.xfz.utils.LoginUtils;
+import com.zh.xfz.mvp.contract.ConversationContract;
+import com.zh.xfz.mvp.presenter.ConversationPresenter;
+import com.zh.xfz.utils.LoginHandler;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -48,15 +50,18 @@ import static com.zh.xfz.business.activity.GroupMemberListActivity.TRANSER_KEY;
 @Route(path = GroupDetailActivity.AROUTER_PATH)
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "聊天信息")
-public class GroupDetailActivity extends BaseActivity implements GroupContract.GroupUI {
+public class GroupDetailActivity extends BaseActivity implements ConversationContract.GroupDetailUI {
     public final static String AROUTER_PATH = "/main/GroupDetailActivity/";
     public final static String ADD_GROUP = "ADD_GROUP_KEY";
 
     @Autowired(name = ADD_GROUP)
     String groupId;
 
+//    @Inject
+//    GroupPresenter presenter;
+
     @Inject
-    GroupPresenter presenter;
+    ConversationPresenter conversationPresenter;
 
     @BindView(R.id.count_tv)
     TextView countTv;
@@ -88,6 +93,9 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @Inject
+    LoginHandler loginHandler;
+
     @NonNull
     @Override
     public int layoutId() {
@@ -96,8 +104,8 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
 
     @Override
     public void init() {
-        presenter.getGroupMemberList(groupId);
-        presenter.getGroupInfo(groupId);
+        conversationPresenter.getGroupMemberList(groupId);
+        conversationPresenter.getGroupInfoById(groupId);
         RongIM.getInstance().getConversationNotificationStatus(Conversation.ConversationType.GROUP, groupId, new RongIMClient.ResultCallback<Conversation.ConversationNotificationStatus>() {
             @Override
             public void onSuccess(Conversation.ConversationNotificationStatus conversationNotificationStatus) {
@@ -107,7 +115,7 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
 
             @Override
             public void onError(RongIMClient.ErrorCode errorCode) {
-
+                LogUtils.e(new Gson().toJson(errorCode));
             }
         });
         notifyBtn.setOnCheckedChangeListener((view, isChecked) -> {
@@ -142,7 +150,7 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
         countTv.setText(format);
         for (int i = 0, j = data.size(); i < j; i++) {
             GroupInfo info = data.get(i);
-            if (String.valueOf(info.getTargetId()).equals(LoginUtils.getUserId())) {
+            if (String.valueOf(info.getTargetId()).equals(loginHandler.getCurrentUserInfo().getUserId())) {
                 String nickName = TextUtils.isEmpty(info.getRemarkName()) ? info.getChineseName() : info.getRemarkName();
                 nickNameTv.setText(nickName);
                 break;
@@ -150,17 +158,32 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
         }
     }
 
-    private GroupListInfo groupListInfo;
-
     @Override
-    public void successGroupDetail(GroupListInfo groupListInfo) {
-        this.groupListInfo = groupListInfo;
+    public void groupDetailSuccess(GroupListInfo info) {
+        this.groupListInfo = info;
         groupNameTv.setText(groupListInfo.getGroupName());
-        if (String.valueOf(groupListInfo.getAdminUserId()).equals(LoginUtils.getUserId())) {
-            dissolutionTv.setText("解散群");
+        if (String.valueOf(groupListInfo.getAdminUserId()).equals(String.valueOf(loginHandler.getCurrentUserId()))) {
+            dissolutionTv.setText(getResources().getString(R.string.act_dissolution_group_text_msg));
             dissolutionTv.setTag(true);
         }
     }
+
+    @Override
+    public void updateGroupNameStatus(String groupName, boolean isSuccess, String msg) {
+        if (groupDialog != null && groupDialog.isShowing()) {
+            groupDialog.hide();
+            return;
+        }
+        if (isSuccess) {
+            groupNameTv.setText(groupName);
+            RongIM.getInstance().refreshGroupInfoCache(new Group(String.valueOf(groupListInfo.getID()), groupName, null));
+        }
+        if (!TextUtils.isEmpty(msg)) showMsg(msg);
+    }
+
+
+    private GroupListInfo groupListInfo;
+
 
     @OnClick(R.id.clear)
     public void clear() {
@@ -177,12 +200,12 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
         String content;
         boolean dissolotion = Boolean.valueOf(dissolutionTv.getTag().toString());
         if (dissolotion) //解散
-            content = "确定解散该群吗?";
-        else content = "确定退出该群吗?";
+            content = getResources().getString(R.string.act_dissolution_sure_group_dialog_msg);
+        else content = getResources().getString(R.string.act_quit_sure_group_dialog_msg);
         builder.content(content);
         builder.onPositive((dialog, which) -> {
-            if (dissolotion) presenter.dismissGroup(groupId);
-            else presenter.quitGroup(groupId);
+            if (dissolotion) conversationPresenter.dismissOrQuitGroup(groupId, true);
+            else conversationPresenter.dismissOrQuitGroup(groupId, false);
         });
         builder.build().show();
     }
@@ -197,13 +220,13 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
         }
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_input, null);
         EditText inputEt = view.findViewById(R.id.memo);
-        inputEt.setHint("请输入新的群名称");
+        inputEt.setHint(getResources().getString(R.string.act_new_group_hint_text_msg));
         builderView.customView(view, false);
         groupDialog = builderView.build();
         groupDialog.show();
         builderView.onPositive((dialog, which) -> {
             if (TextUtils.isEmpty(inputEt.getText().toString())) return;
-            presenter.updateGroupName(groupId, inputEt.getText().toString(), dialog);
+            conversationPresenter.updateGroupName(groupId, inputEt.getText().toString());
         });
     }
 
@@ -215,11 +238,4 @@ public class GroupDetailActivity extends BaseActivity implements GroupContract.G
                 .navigation();
     }
 
-    @Override
-    public void successUpdateNickName(String groupName, boolean isTrue) {
-        if (isTrue) {
-            groupNameTv.setText(groupName);
-            RongIM.getInstance().refreshGroupInfoCache(new Group(String.valueOf(groupListInfo.getID()), groupName, null));
-        }
-    }
 }

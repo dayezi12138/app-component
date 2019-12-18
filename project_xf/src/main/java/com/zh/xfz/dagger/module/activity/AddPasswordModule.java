@@ -1,11 +1,10 @@
 package com.zh.xfz.dagger.module.activity;
 
 import com.zh.xfz.business.activity.AddPasswordActivity;
+import com.zh.xfz.dagger.module.CommonActivityModule;
 
 import core.app.zh.com.core.annotation.ActivityScope;
 import core.app.zh.com.core.base.BaseActivity;
-import core.app.zh.com.core.base.BaseView;
-import core.app.zh.com.core.base.MyBaseModel;
 import dagger.Module;
 import dagger.Provides;
 
@@ -14,7 +13,7 @@ import dagger.Provides;
  * data :2019/9/27
  * description:
  */
-@Module
+@Module(includes = CommonActivityModule.class)
 public class AddPasswordModule {
 
     @ActivityScope
@@ -23,19 +22,4 @@ public class AddPasswordModule {
         return activity;
     }
 
-    @ActivityScope
-    @Provides
-    public MyBaseModel baseModel(BaseActivity activity) {
-        return new MyBaseModel(activity.getApplication()) {
-            @Override
-            public BaseView getBaseView() {
-                return activity;
-            }
-
-            @Override
-            public BaseActivity getMyActivity() {
-                return activity;
-            }
-        };
-    }
 }

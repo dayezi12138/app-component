@@ -12,8 +12,11 @@ import com.shehuan.niv.NiceImageView;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
-import com.zh.xfz.bean.activity.Account;
-import com.zh.xfz.utils.LoginUtils;
+import com.zh.xfz.db.bean.Tenant;
+import com.zh.xfz.db.bean.UserInfo;
+import com.zh.xfz.utils.LoginHandler;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -41,6 +44,9 @@ public class PersonDetailInfoActivity extends BaseActivity {
     @BindView(R.id.company_tv)
     TextView companyTv;
 
+    @Inject
+    LoginHandler loginHandler;
+
     @NonNull
     @Override
     public int layoutId() {
@@ -49,25 +55,12 @@ public class PersonDetailInfoActivity extends BaseActivity {
 
     @Override
     public void init() {
-//        Account userInfo = LoginUtils.getUserInfo();
-//        if (userInfo !=null && !StringUtils.isEmpty(userInfo.getUserIcon()))
-//            Glide.with(getMyActivity()).load(userInfo.getUserIcon())
-//                    .error(R.drawable.rc_default_portrait)
-//                    .diskCacheStrategy(DiskCacheStrategy.NONE)//关闭Glide的硬盘缓存机制
-//                    .into(imageView);
-//        if (userInfo != null) {
-//            nameTv.setText(userInfo.getChineseName());
-//            mobileTv.setText(userInfo.getMobile());
-//            if (userInfo.getTenant()!= null&& userInfo.getTenant().size()>0){
-//                companyTv.setText(userInfo.getTenant().get(0).getTenantName());
-//            }
-//        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Account userInfo = LoginUtils.getUserInfo();
+        UserInfo userInfo = loginHandler.getCurrentUserInfo();
         if (userInfo != null && !StringUtils.isEmpty(userInfo.getUserIcon()))
             Glide.with(getMyActivity()).load(userInfo.getUserIcon())
                     .error(R.drawable.rc_default_portrait)
@@ -76,8 +69,9 @@ public class PersonDetailInfoActivity extends BaseActivity {
         if (userInfo != null) {
             nameTv.setText(userInfo.getChineseName());
             mobileTv.setText(userInfo.getMobile());
-            if (userInfo.getTenant() != null && userInfo.getTenant().size() > 0) {
-                companyTv.setText(userInfo.getTenant().get(0).getTenantName());
+            Tenant tenant = loginHandler.getCurrentTenant();
+            if (tenant != null) {
+                companyTv.setText(tenant.getTenantName());
             }
         }
     }

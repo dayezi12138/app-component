@@ -62,11 +62,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/widget_margin_large"
                 android:text="@string/act_valid_note_refresh_note_str" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/text_line_space"
-                android:background="@color/sms_valid_code_under_line_color"
-                android:layout_height="@dimen/divider"/>
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_marginTop="@dimen/text_line_space"-->
+                <!--android:background="@color/sms_valid_code_under_line_color"-->
+                <!--android:layout_height="@dimen/divider"/>-->
         </LinearLayout>
 
     </LinearLayout>

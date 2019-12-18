@@ -1,3 +1,7 @@
-<resources>
-    <string name="app_name">销副总</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name" >销副总</string>
+
+    <string name="alert_sure_str">确定</string>
+    <string name="alert_cancel_str">取消</string>
+    <string name="message_str">消息</string>
 </resources>

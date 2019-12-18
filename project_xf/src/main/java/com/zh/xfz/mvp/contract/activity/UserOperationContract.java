@@ -15,6 +15,7 @@ import q.rorbin.badgeview.Badge;
  * data :2019/9/25
  * description:
  */
+@Deprecated
 public interface UserOperationContract {
 
     interface AddPasswordUI extends BaseView {

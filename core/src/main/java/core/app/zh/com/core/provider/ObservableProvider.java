@@ -80,9 +80,14 @@ public class ObservableProvider {
     }
 
 
-    public <T extends BaseObservable> T build(Class<T> tClass) throws Exception {
-        Constructor constructor = Class.forName(tClass.getName()).getDeclaredConstructor(this.getClass());
-        return (T) constructor.newInstance(this);
+    public <T extends BaseObservable> T build(Class<T> tClass) {
+        try {
+            Constructor constructor = Class.forName(tClass.getName()).getDeclaredConstructor(this.getClass());
+            return (T) constructor.newInstance(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public BaseActivity getContext() {

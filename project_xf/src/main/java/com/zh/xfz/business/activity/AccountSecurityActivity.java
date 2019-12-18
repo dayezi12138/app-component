@@ -11,15 +11,14 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zh.annatation.toolbar.OnMenuOnclick;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
-import com.zh.xfz.application.MyApplication;
-import com.zh.xfz.mvp.contract.activity.UserOperationContract;
-import com.zh.xfz.mvp.presenter.UserOperationPresenter;
-import com.zh.xfz.utils.LoginUtils;
+import com.zh.xfz.mvp.contract.UserContract;
+import com.zh.xfz.mvp.presenter.UserPresenter;
+import com.zh.xfz.utils.LoginHandler;
+import com.zh.xfz.utils.WxHelper;
 
 import javax.inject.Inject;
 
@@ -34,10 +33,9 @@ import core.app.zh.com.core.view.MyPopupWindow;
  * description:
  */
 @Route(path = AccountSecurityActivity.AROUTER_PATH)
-//@ToolbarLeft(menuId = R.menu.menu_sure)
 @ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "账户安全")
-public class AccountSecurityActivity extends BaseActivity implements UserOperationContract.AccountSecurityUI, View.OnClickListener {
+public class AccountSecurityActivity extends BaseActivity implements View.OnClickListener, UserContract.AccountSecurityUI {
     public final static String AROUTER_PATH = "/main/AccountSecurityActivity/";
     public final static String AUTHOR_CODE = "AUTHOR_CODE";
     private IWXAPI api;
@@ -47,12 +45,15 @@ public class AccountSecurityActivity extends BaseActivity implements UserOperati
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Inject
-    UserOperationPresenter presenter;
 
     @Inject
     MyPopupWindow popupWindow;
 
+    @Inject
+    UserPresenter userPresenter;
+
+    @Inject
+    LoginHandler loginHandler;
 
     @NonNull
     @Override
@@ -62,8 +63,8 @@ public class AccountSecurityActivity extends BaseActivity implements UserOperati
 
     @Override
     public void init() {
-        api = WXAPIFactory.createWXAPI(this, MyApplication.APP_ID, false);
-        if (LoginUtils.isIsBindWX()) {
+        api = WxHelper.register(this, false);
+        if (loginHandler.isBindWX()) {
             tv.setVisibility(View.VISIBLE);
         }
     }
@@ -85,45 +86,23 @@ public class AccountSecurityActivity extends BaseActivity implements UserOperati
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        if (intent.hasExtra(AUTHOR_CODE)&&!LoginUtils.isIsBindWX()){
-            presenter.bindWX(intent.getStringExtra(AUTHOR_CODE));
+        if (intent.hasExtra(AUTHOR_CODE) && !loginHandler.isBindWX()) {
+            userPresenter.bindWxOpenID(intent.getStringExtra(AUTHOR_CODE));
         }
-//            presenter.wxCheckAndLogin(intent.getStringExtra(AUTHOR_CODE));
     }
 
     @OnClick(R.id.bind_wx_ly)
     public void bindWX() {
-        if (!LoginUtils.isIsBindWX()) {
-            SendAuth.Req req = new SendAuth.Req();
-            req.scope = "snsapi_userinfo";
-//        req.state = String.valueOf(new Date().getTime());
-            req.state = "AccountSecurityActivity";
+        if (!loginHandler.isBindWX()) {
+            SendAuth.Req req = WxHelper.wxAuth();
+            req.state = AccountSecurityActivity.class.getSimpleName();
             api.sendReq(req);
         } else {
             if (popupWindow.isShowing()) return;
             popupWindow.setBackgroundAlpha();
             popupWindow.showAtLocation(toolbar, Gravity.BOTTOM, 0, 0);
-//            new AlertDialog.Builder(this).setTitle("提示").setMessage("是否解除微信绑定").setPositiveButton("确定", (dialog, which) -> {
-//                presenter.relieveWXBind();
-//                dialog.dismiss();
-//
-//            }).setNegativeButton("取消", (dialog, which) -> dialog.dismiss()).show();
         }
 
-    }
-
-    @Override
-    public void success() {
-        showMsg("绑定成功");
-        LoginUtils.setBindWX(true);
-        tv.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void relieve() {
-        showMsg("已解除微信绑定");
-        LoginUtils.setBindWX(false);
-        tv.setVisibility(View.GONE);
     }
 
     @Override
@@ -131,11 +110,21 @@ public class AccountSecurityActivity extends BaseActivity implements UserOperati
         switch (v.getId()) {
             case R.id.sure_btn:
                 if (popupWindow.isShowing()) popupWindow.dismiss();
-                presenter.relieveWXBind();
+                userPresenter.relieveWXBind();
                 break;
             case R.id.cancel_btn:
                 if (popupWindow.isShowing()) popupWindow.dismiss();
                 break;
         }
+    }
+
+    @Override
+    public void bindWXSuccess() {
+        tv.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void relieveWXSuccess() {
+        tv.setVisibility(View.GONE);
     }
 }
