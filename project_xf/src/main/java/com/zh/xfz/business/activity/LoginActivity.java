@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.BarUtils;
 import com.zh.xfz.R;
 
 import java.util.List;
@@ -32,8 +33,6 @@ public class LoginActivity extends BaseActivity {
     @BindViews({R.id.normal_login_btn, R.id.phone_login_tbn})
     List<Button> buttonList;
 
-    Animation animation;
-
 
     @NonNull
     @Override
@@ -41,11 +40,12 @@ public class LoginActivity extends BaseActivity {
         return R.layout.act_login;
     }
 
-    @NeedPermission(next = false, value = { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO,READ_PHONE_STATE})
+    @NeedPermission(next = false, value = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, READ_PHONE_STATE})
     @Override
     public void init() {
-        animation = AnimationUtils.loadAnimation(this, R.anim.act_login_btn_anim);
-        setStatusBarColor(findViewById(R.id.ly), getResources().getColor(R.color.background_splash_color));
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.act_login_btn_anim);
+        BarUtils.addMarginTopEqualStatusBarHeight(findViewById(R.id.ly));
+        BarUtils.setStatusBarColor(this, getResources().getColor(R.color.background_splash_color), 1);
         for (View view : buttonList) {
             view.startAnimation(animation);
         }

@@ -4,8 +4,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -38,8 +36,8 @@ import static com.zh.xfz.business.activity.AddFriendActivity.ADD_FRIEND_INFO;
 public class SearchFriendActivity extends BaseActivity implements ConversationContract.SearchUI {
     public final static String AROUTER_PATH = "/main/SearchFriendActivity/";
 
-    @BindView(R.id.scan_img)
-    ImageView scanImg;
+//    @BindView(R.id.scan_img)
+//    ImageView scanImg;
 
     @BindView(R.id.et_search)
     ClearEditTextView clearEditTextView;
@@ -64,7 +62,7 @@ public class SearchFriendActivity extends BaseActivity implements ConversationCo
             if (TextUtils.isEmpty(value)) {
                 searchFriendAdapter.getData().clear();
                 searchFriendAdapter.notifyDataSetChanged();
-                scanImg.setVisibility(View.VISIBLE);
+//                scanImg.setVisibility(View.VISIBLE);
             } else conversationPresenter.searchFriend(value);
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -75,7 +73,7 @@ public class SearchFriendActivity extends BaseActivity implements ConversationCo
 
     @Override
     public void searchResult(List<SearchFriend> searchFriends) {
-        scanImg.setVisibility(View.GONE);
+//        scanImg.setVisibility(View.GONE);
         searchFriendAdapter.setNewData(searchFriends);
     }
 }

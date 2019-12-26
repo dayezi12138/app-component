@@ -41,9 +41,4 @@
         android:gravity="center"
         android:textSize="@dimen/font_min_x_sp"
         android:text="已全部加载完毕"/>
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content">-->
-    <!--<include layout="@layout/recycler_" />-->
-    <!--</LinearLayout>-->
 </LinearLayout>

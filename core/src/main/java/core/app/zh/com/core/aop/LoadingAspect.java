@@ -1,9 +1,19 @@
 package core.app.zh.com.core.aop;
 
+import android.view.ViewGroup;
+
+import com.blankj.utilcode.util.LogUtils;
+
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+
+import core.app.zh.com.core.annotation.Loading;
+import core.app.zh.com.core.listener.LayoutInitListener;
+import core.app.zh.com.core.listener.LoadingOptionListener;
 
 /**
  * author : dayezi
@@ -13,67 +23,60 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class LoadingAspect {
 
-    @Pointcut("execution(@core.app.zh.com.core.annotation.LoadingShow  * *(..))")
-    public void pointcutLoadingShow() {
+    @Pointcut("execution(@core.app.zh.com.core.annotation.Loading  * *(..))")
+    public void pointcutLoading() {
     }
 
-    @Pointcut("execution(@core.app.zh.com.core.annotation.LoadingHide  * *(..))")
+    @Pointcut("execution(@core.app.zh.com.core.annotation.Loading  * *(..))")
     public void pointcutLoadingHide() {
     }
 
-    @Before("pointcutLoadingShow()")
-    public void BeforeShowPoint(JoinPoint joinPoint) {
-//        if (joinPoint.getThis() instanceof LayoutInitListener) {
-//            LayoutInitListener layoutInitListener = (LayoutInitListener) joinPoint.getThis();
-//            layoutInitListener.multipleStatusView().showLoading();
-//        }
-//        if (joinPoint.getThis() instanceof BaseActivity) {
-//            BaseActivity activity = (BaseActivity) joinPoint.getThis();
-//            LoadingProvider provider = activity.getProvider();
-//            provider.showLoading();
-//        }
-//        boolean valid = LoadingInJect.valided(joinPoint.getThis());
-//        if (!valid) return;
-//        if (joinPoint.getThis() instanceof StatusViewListener && joinPoint.getThis() instanceof LayoutInitListener) {
-//            LayoutInitListener activity = (LayoutInitListener) joinPoint.getThis();
-//            activity.myContentView().setVisibility(View.GONE);
-//            StatusViewListener loadingListener = (StatusViewListener) joinPoint.getThis();
-//            loadingListener.showLoading();
-//        } else if (joinPoint.getThis() instanceof GetActivityListener) {
-//            GetActivityListener activity = (GetActivityListener) joinPoint.getThis();
-//            Dialog dialog = LoadingDialogUtils.getDialog((Context) activity);
-//            dialog.show();
-//        }
+    @After("pointcutLoading()")
+    public void afterLoading(JoinPoint joinPoint) {
+        if (joinPoint.getThis() instanceof LayoutInitListener && joinPoint.getThis() instanceof LoadingOptionListener) {
+            MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+            Loading loading = signature.getMethod().getAnnotation(Loading.class);
+            if (loading.value() != LoadingOptionListener.LoadingOperation.INIT_VIEW) return;
+            LayoutInitListener layoutInitListener = (LayoutInitListener) joinPoint.getThis();
+            LoadingOptionListener loadingOptionListener = (LoadingOptionListener) joinPoint.getThis();
+            if (layoutInitListener.myContentView() != null && loadingOptionListener.getLoadingView() != null) {
+                ViewGroup viewGroup = layoutInitListener.myContentView();
+                viewGroup.addView(loadingOptionListener.getLoadingView());
+            }
+        }
     }
 
     @Before("pointcutLoadingHide()")
-    public void BeforeHidePoint(JoinPoint joinPoint) {
-//        if (joinPoint.getThis() instanceof LayoutInitListener) {
-//            LayoutInitListener layoutInitListener = (LayoutInitListener) joinPoint.getThis();
-//            layoutInitListener.multipleStatusView().showContent();
-//        }
-//        if (joinPoint.getThis() instanceof BaseActivity) {
-//            BaseActivity activity = (BaseActivity) joinPoint.getThis();
-//            LoadingProvider provider = activity.getProvider();
-//            provider.hideLoading();
-//        }
+    public void showLoading(JoinPoint joinPoint) {
+        LogUtils.e("test_show");
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Loading loading = signature.getMethod().getAnnotation(Loading.class);
+        LogUtils.e(loading.value());
+        if (loading.value().equals(LoadingOptionListener.LoadingOperation.INIT_VIEW)) return;
+        if (joinPoint.getThis() instanceof LayoutInitListener && joinPoint.getThis() instanceof LoadingOptionListener) {
+            LogUtils.e("test_true");
+            LayoutInitListener layoutInitListener = (LayoutInitListener) joinPoint.getThis();
+            LoadingOptionListener loadingOptionListener = (LoadingOptionListener) joinPoint.getThis();
+            if (layoutInitListener.myContentView() != null && loadingOptionListener.getLoadingView() != null) {
+                switch (loading.value()) {
+                    case HIDE:
+                        loadingOptionListener.hideLoading();
+                        break;
+                    case SHOW:
+                        loadingOptionListener.showLoading();
+                        break;
+                    case ERROR:
+                        loadingOptionListener.showError();
+                        break;
+                    case NO_NET_WORK_ERROR:
+                        loadingOptionListener.showNoNetWork();
+                        break;
+                    case EMPTY:
+                        loadingOptionListener.showEmptyView();
+                        break;
+                }
+            } else LogUtils.e("test_s_true_1");
+        } else LogUtils.e("test_s_true_2");
+
     }
-//
-//    @After("pointcutLoadingHide()")
-//    public void afterPoint(JoinPoint joinPoint) {
-//        boolean valid = LoadingInJect.valided(joinPoint.getThis());
-//        if (!valid) return;
-//        if (joinPoint.getThis() instanceof StatusViewListener && joinPoint.getThis() instanceof LayoutInitListener) {
-//            StatusViewListener loadingListener = (StatusViewListener) joinPoint.getThis();
-//            if (!loadingListener.handlerContentView()) {
-//                LayoutInitListener activity = (LayoutInitListener) joinPoint.getThis();
-//                activity.myContentView().setVisibility(View.VISIBLE);
-//            }
-//            loadingListener.hideLoading();
-//        } else if (joinPoint.getThis() instanceof GetActivityListener) {
-//            GetActivityListener activity = (GetActivityListener) joinPoint.getThis();
-//            Dialog dialog = LoadingDialogUtils.getDialog((Context) activity);
-//            dialog.hide();
-//        }
-//    }
 }

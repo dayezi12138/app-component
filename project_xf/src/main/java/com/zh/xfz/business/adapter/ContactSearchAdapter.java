@@ -1,5 +1,6 @@
 package com.zh.xfz.business.adapter;
 
+
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zh.xfz.R;
 import com.zh.xfz.bean.fragment.FriendInfo;
@@ -26,5 +27,6 @@ public class ContactSearchAdapter extends MyBaseAdapter<FriendInfo> {
     protected void convert(BaseViewHolder helper, FriendInfo item) {
         helper.setText(R.id.name, item.getName());
     }
+
 }
 

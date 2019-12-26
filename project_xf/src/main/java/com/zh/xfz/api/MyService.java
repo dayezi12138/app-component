@@ -9,8 +9,10 @@ import com.zh.xfz.bean.activity.TargetUserInfo;
 import com.zh.xfz.bean.activity.UserInfo;
 import com.zh.xfz.bean.activity.ValidAccount;
 import com.zh.xfz.bean.activity.ValidSmsCode;
+import com.zh.xfz.bean.fragment.ApplyTenant;
 import com.zh.xfz.bean.fragment.BusinessBean;
 import com.zh.xfz.bean.fragment.FriendInfo;
+import com.zh.xfz.bean.fragment.TenantMember;
 import com.zh.xfz.bean.other.Data;
 
 import java.util.List;
@@ -26,7 +28,16 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
-import static com.zh.xfz.constans.RequestParamsConstant.*;
+import static com.zh.xfz.constans.RequestParamsConstant.ACCOUNT_PARAMS;
+import static com.zh.xfz.constans.RequestParamsConstant.CODE;
+import static com.zh.xfz.constans.RequestParamsConstant.MOBILE;
+import static com.zh.xfz.constans.RequestParamsConstant.PASSWORD;
+import static com.zh.xfz.constans.RequestParamsConstant.PASSWORD_2;
+import static com.zh.xfz.constans.RequestParamsConstant.TENANT_ID;
+import static com.zh.xfz.constans.RequestParamsConstant.TENANT_NAME;
+import static com.zh.xfz.constans.RequestParamsConstant.TIME_STAMP;
+import static com.zh.xfz.constans.RequestParamsConstant.TYPE;
+import static com.zh.xfz.constans.RequestParamsConstant.USER_ID;
 
 /**
  * author : dayezi
@@ -71,7 +82,7 @@ public interface MyService {
     @ApiAnnotation("创建公司")
     @POST("Tenant/CreateTenant")
     @FormUrlEncoded
-    Observable<Data<Object>> createTenant(@FieldMap Map<String, String> paramMap);
+    Observable<Data<Account.TenantBean>> createTenant(@FieldMap Map<String, String> paramMap);
 
     @ApiAnnotation("存在公司")
     @POST("Tenant/ExistTenantName")
@@ -208,16 +219,27 @@ public interface MyService {
 
     @ApiAnnotation("我的商户列表")
     @GET("Tenant/GetMyTenantListPage")
-//    @FormUrlEncoded
     Observable<Data<List<BusinessBean>>> getMyTenantListPage(@QueryMap Map<String, Object> paramMap);
+
+    @ApiAnnotation("所有商户列表")
+    @GET("Tenant/GetTenantPageList")
+    Observable<Data<List<BusinessBean>>> getTenantPageList(@QueryMap Map<String, Object> paramMap);
 
     @ApiAnnotation("商户邀请用户/用户申请加入商户")
     @POST("Tenant/ApplyTenant")
     @FormUrlEncoded
     Observable<Data<Object>> applyTenant(@FieldMap Map<String, Object> paramMap);
 
-//    @ApiAnnotation("上传图片")
-//    @POST("UpLoad/UploadImg")
-////    @FormUrlEncoded
-//    Call<ResponseBody> uploadImg(@Body RequestBody Body);
+    @ApiAnnotation("获取申请/邀请列表")
+    @GET("Tenant/GetApplyList")
+    Observable<Data<List<ApplyTenant>>> getApplyList(@QueryMap Map<String, Object> paramMap);
+
+    @ApiAnnotation("获取租户成员")
+    @GET("Tenant/GetTenantUser")
+    Observable<Data<List<TenantMember>>> getTenantUser(@Query(USER_ID) int userId, @Query(TIME_STAMP) String timeStamp, @Query(TENANT_ID) String tenantid);
+
+    @ApiAnnotation("商户邀请用户/用户申请加入商户")
+    @POST("Tenant/ApplyOperate")
+    @FormUrlEncoded
+    Observable<Data<Object>> applyOperate(@FieldMap Map<String, Object> paramMap);
 }

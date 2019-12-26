@@ -6,4 +6,5 @@
     <dimen name="padding">20dp</dimen>
     <dimen name="radius">20dp</dimen>
     <dimen name="circleRadius">24dp</dimen>
+    <dimen name="dimenPaddingCommon">10dp</dimen>
 </resources>

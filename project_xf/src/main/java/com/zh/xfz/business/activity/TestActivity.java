@@ -10,15 +10,13 @@ import com.zh.xfz.R;
 
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
-import core.app.zh.com.core.listener.LoadingOptionListener;
-import core.app.zh.com.core.view.MultipleStatusView;
 
 /**
  * author : dayezi
  * data :2019/10/25
  * description:
  */
-public class TestActivity extends BaseActivity implements LoadingOptionListener<MultipleStatusView> {
+public class TestActivity extends BaseActivity {
 
     @BindView(R.id.text_tv)
     TextView textView;
@@ -47,10 +45,6 @@ public class TestActivity extends BaseActivity implements LoadingOptionListener<
         return super.beforeInit(inflater, container);
     }
 
-    @Override
-    public MultipleStatusView getLoadingView() {
-        return (MultipleStatusView) LayoutInflater.from(this).inflate(R.layout.test_1, null);
-    }
 
 //    @Override
 //    protected void onCreate(@Nullable Bundle savedInstanceState) {

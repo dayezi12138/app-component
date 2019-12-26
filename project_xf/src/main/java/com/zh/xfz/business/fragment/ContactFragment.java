@@ -1,13 +1,17 @@
 package com.zh.xfz.business.fragment;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -44,6 +48,7 @@ import butterknife.BindView;
 import core.app.zh.com.core.base.BaseFragment;
 import core.app.zh.com.core.bean.MessageEvent;
 import core.app.zh.com.core.view.ClearEditTextView;
+import core.app.zh.com.core.view.MyPopupWindow;
 
 /**
  * author : dayezi
@@ -52,7 +57,7 @@ import core.app.zh.com.core.view.ClearEditTextView;
  */
 @ToolbarLeft(menuId = R.menu.menu_fragment_contact)
 @ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "通讯录")
-public class ContactFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, ConversationContract.ContactListUI {
+public class ContactFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, ConversationContract.ContactListUI, MyTextWatcher {
     public static int CONTACT_EVENT_KEY = 360001;
 
     @BindView(R.id.recycler)
@@ -67,14 +72,11 @@ public class ContactFragment extends BaseFragment implements SwipeRefreshLayout.
     @BindView(R.id.et_search)
     ClearEditTextView clearEditTextView;
 
-    @BindView(R.id.search_recycler)
-    RecyclerView searchRecyclerView;
-
     @BindView(R.id.rl)
     RelativeLayout relativeLayout;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
-    @Inject
-    ContactSearchAdapter searchFriendAdapter;
 
     private List<FriendInfo> mDateList = new ArrayList<>();
     private TitleItemDecoration mDecoration;
@@ -89,6 +91,10 @@ public class ContactFragment extends BaseFragment implements SwipeRefreshLayout.
     Comparator mComparator;
     @Inject
     List<FriendInfo> friendInfoList;
+    @Inject
+    MyPopupWindow popupWindow;
+    @Inject
+    ContactSearchAdapter searchAdapter;
 
 
     @SuppressLint("ValidFragment")
@@ -130,21 +136,9 @@ public class ContactFragment extends BaseFragment implements SwipeRefreshLayout.
             else
                 ARouter.getInstance().build(FriendDetailActivity.AROUTER_PATH).withSerializable(FriendDetailActivity.FRIEND_DETAIL_KEY, mDateList.get(position)).navigation();
         });
-        searchRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        searchRecyclerView.setAdapter(searchFriendAdapter);
-        searchFriendAdapter.setOnItemClickListener((adapter, view, position) -> ARouter.getInstance().build(FriendDetailActivity.AROUTER_PATH).withSerializable(FriendDetailActivity.FRIEND_DETAIL_KEY, searchFriendAdapter.getData().get(position)).navigation());
         swipeRefreshLayout.setOnRefreshListener(this);
         EventBus.getDefault().register(this);
-        clearEditTextView.addTextChangedListener((MyTextWatcher) s -> {
-            if (!TextUtils.isEmpty(s.toString())) {
-                relativeLayout.setVisibility(View.GONE);
-                searchRecyclerView.setVisibility(View.VISIBLE);
-                searchFriendAdapter.setNewData(searchValue(s.toString()));
-            } else {
-                searchRecyclerView.setVisibility(View.GONE);
-                relativeLayout.setVisibility(View.VISIBLE);
-            }
-        });
+        clearEditTextView.addTextChangedListener(this);
         clearEditTextView.setmClearDrawableRecourse(R.drawable.ic_clear_gray);
         onRefresh();
     }
@@ -196,11 +190,17 @@ public class ContactFragment extends BaseFragment implements SwipeRefreshLayout.
         conversationPresenter.onLoadMore();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnMenuOnclick
     public void menuClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_friend_operation:
                 ARouter.getInstance().build(SearchFriendActivity.AROUTER_PATH).navigation();
+                break;
+            case R.id.menu_search_friend:
+                if (popupWindow.isShowing()) return;
+                popupWindow.setBackgroundAlpha();
+                popupWindow.showAtLocation(toolbar, Gravity.LEFT | Gravity.TOP, 0, 0);
                 break;
         }
     }
@@ -222,5 +222,12 @@ public class ContactFragment extends BaseFragment implements SwipeRefreshLayout.
         //如果add两个，那么按照先后顺序，依次渲染。
         mRecyclerView.addItemDecoration(mDecoration);
         if (data.size() < Constants.PAGESIZE) contactAdapter.loadMoreEnd();
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        if (!TextUtils.isEmpty(s.toString())) {
+            searchAdapter.setNewData(searchValue(s.toString()));
+        }
     }
 }

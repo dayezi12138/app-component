@@ -1,7 +1,6 @@
 package com.zh.xfz.business.fragment;
 
 import android.support.annotation.NonNull;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -83,8 +82,6 @@ public class MineFragment extends BaseFragment  {
         ARouter.getInstance().build(SettingActivity.AROUTER_PATH).navigation();
     }
 
-    @BindView(R.id.ly)
-    LinearLayout linearLayout;
 
     @OnClick(R.id.qcrode_img)
     public void addressImg() {

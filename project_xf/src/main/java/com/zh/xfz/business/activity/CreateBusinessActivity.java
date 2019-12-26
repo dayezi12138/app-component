@@ -26,6 +26,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 import core.app.zh.com.core.base.BaseActivity;
+import core.app.zh.com.core.utils.KeyboardPatch;
 
 import static com.zh.xfz.constans.Constants.FLAG_STR;
 
@@ -56,6 +57,8 @@ public class CreateBusinessActivity extends BaseActivity implements TenantContra
     @Inject
     CreateBusinessAdapter adapter;
 
+    private KeyboardPatch keyboardPatch;
+
     @NonNull
     @Override
     public int layoutId() {
@@ -79,6 +82,8 @@ public class CreateBusinessActivity extends BaseActivity implements TenantContra
                 submitBtn.setAlpha(1f);
             else submitBtn.setAlpha(0.5f);
         });
+        keyboardPatch = KeyboardPatch.patch(this, myContentView());
+        keyboardPatch.enable();
     }
 
     @OnClick(R.id.submit_btn)
@@ -90,6 +95,12 @@ public class CreateBusinessActivity extends BaseActivity implements TenantContra
         tenantPresenter.createTenant(busiNameEt.getText().toString(), industryIds.substring(0, industryIds.length() - 1));
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (keyboardPatch != null)
+            keyboardPatch.disable();
+    }
 
     @Override
     public void industryList(List<Industry> dataList) {
@@ -97,8 +108,4 @@ public class CreateBusinessActivity extends BaseActivity implements TenantContra
         adapter.setNewData(dataList);
     }
 
-    @Override
-    public void createSuccess() {
-        finish();
-    }
 }

@@ -27,7 +27,7 @@ public class MyPopupWindow extends PopupWindow {
         this.offsetY = builder.offsetY;
         this.activity = builder.activity;
         this.alpha = builder.alpha;
-        this.setFocusable(true);
+        this.setFocusable(builder.focusable);
         this.setOutsideTouchable(builder.outsideTouchable);
         setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
         setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
@@ -75,6 +75,7 @@ public class MyPopupWindow extends PopupWindow {
         private int width = ViewGroup.LayoutParams.MATCH_PARENT;
         private int height = ViewGroup.LayoutParams.WRAP_CONTENT;
         private boolean outsideTouchable = true;
+        private boolean focusable = true;
         private int position = Gravity.TOP;
         private int offsetX;
         private int offsetY;
@@ -129,6 +130,11 @@ public class MyPopupWindow extends PopupWindow {
 
         public Builder alpha(float alpha) {
             this.alpha = alpha;
+            return this;
+        }
+
+        public Builder focusable(boolean focusable) {
+            this.focusable = focusable;
             return this;
         }
 

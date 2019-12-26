@@ -20,7 +20,7 @@ buildscript {
         ext.utilcode = '1.11.1'
         ext.okhttpVersion = '3.14.0'
         ext.retrofitVersion = '2.1.0'
-        ext.gsonVersion = '2.6.2'
+        ext.gsonVersion = '2.8.1'
         ext.rxjavaVersion = '2.0.1'
         ext.retrofitRxjavaVersion = '2.5.0'
         ext.okhttp3LogInterceptorVersion = '3.14.0'

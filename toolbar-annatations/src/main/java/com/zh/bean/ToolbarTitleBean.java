@@ -11,17 +11,19 @@ public class ToolbarTitleBean {
     private int textColorId;
     private int viewId;
     private int backGroundColorId;
+    private int statusBarColorId;
 
-    private ToolbarTitleBean(String title, int textSize, int textColorId, int viewId, int backGroundColorId) {
+    private ToolbarTitleBean(String title, int textSize, int textColorId, int viewId, int backGroundColorId, int statusBarColorId) {
         this.title = title;
         this.textSize = textSize;
         this.textColorId = textColorId;
         this.viewId = viewId;
         this.backGroundColorId = backGroundColorId;
+        this.statusBarColorId = statusBarColorId;
     }
 
-    public static ToolbarTitleBean build(String title, int textSize, int textColorId, int viewId, int backGroundColorId) {
-        return new ToolbarTitleBean(title, textSize, textColorId, viewId, backGroundColorId);
+    public static ToolbarTitleBean build(String title, int textSize, int textColorId, int viewId, int backGroundColorId, int statusBarColorId) {
+        return new ToolbarTitleBean(title, textSize, textColorId, viewId, backGroundColorId, statusBarColorId);
     }
 
     public String getTitle() {
@@ -42,5 +44,9 @@ public class ToolbarTitleBean {
 
     public int getBackGroundColorId() {
         return backGroundColorId;
+    }
+
+    public int getStatusBarColorId() {
+        return statusBarColorId;
     }
 }

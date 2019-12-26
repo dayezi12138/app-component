@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/company_member_ly"
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_tiny"
+        android:background="@drawable/ripper_line">
+
+        <TextView
+            style="@style/TextView.MineFragment.line.left.Style"
+            android:text="公司成员" />
+
+        <include layout="@layout/view_forward" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/apply_member_ly"
+        style="@style/LinearLayout.MineFragment.Line.Style"
+        android:layout_marginTop="@dimen/widget_margin_tiny"
+        android:background="@drawable/ripper_line">
+
+        <TextView
+            style="@style/TextView.MineFragment.line.left.Style"
+            android:text="新员工申请" />
+
+        <include layout="@layout/view_forward" />
+    </LinearLayout>
+</LinearLayout>

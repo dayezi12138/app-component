@@ -24,6 +24,7 @@
             android:layout_height="150dp"
             android:layout_margin="@dimen/widget_margin_large_xx"
             android:scaleType="fitXY"
+            android:visibility="gone"
             android:src="@drawable/ic_bar_code" />
 
         <include layout="@layout/recycler_" />

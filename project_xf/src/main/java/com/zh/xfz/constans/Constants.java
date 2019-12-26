@@ -47,5 +47,22 @@ public class Constants {
      **/
     public final static int COMPANY_STATUS_INVITATION_CODE = 1;//邀请
     public final static int COMPANY_STATUS_APPLY_CODE = 2;//申请
-    /** ===== 公司邀请用户公司end =====*/
+    /**
+     * ===== 公司邀请用户公司end =====
+     */
+
+    /**
+     * ==== 申请/邀请列表begin =====
+     */
+    public final static int APPLY_TYPE_BUSINESS = 1;
+    public final static int APPLY_TYPE_USER = 2;
+    /**
+     * ==== 申请/邀请列表end =====
+     */
+    /**
+     * 操作申请/邀请 加入公司
+     */
+    public final static int APPLY_TYPE_AGREE = 1;
+    public final static int APPLY_TYPE_REFUSE = 2;
+
 }

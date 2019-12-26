@@ -1,13 +1,19 @@
 package com.zh.xfz.dagger.module;
 
+import com.zh.xfz.business.fragment.ApplyTenantFragment;
 import com.zh.xfz.business.fragment.BusinessListFragment;
+import com.zh.xfz.business.fragment.CompanyMemberListFragment;
 import com.zh.xfz.business.fragment.ContactFragment;
+import com.zh.xfz.business.fragment.HelpListFragment;
 import com.zh.xfz.business.fragment.MainFragment;
 import com.zh.xfz.business.fragment.MineFragment;
 import com.zh.xfz.business.fragment.TestFragment;
 import com.zh.xfz.business.fragment.WorkControlCenterFragment;
+import com.zh.xfz.dagger.module.fragment.ApplyTenantModule;
 import com.zh.xfz.dagger.module.fragment.BusinessListModule;
+import com.zh.xfz.dagger.module.fragment.CompanyMemberListModule;
 import com.zh.xfz.dagger.module.fragment.ContactModule;
+import com.zh.xfz.dagger.module.fragment.HelpListModule;
 import com.zh.xfz.dagger.module.fragment.MineModule;
 
 import core.app.zh.com.core.annotation.FragmentScope;
@@ -46,4 +52,16 @@ public abstract class AllFragmentModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = {BusinessListModule.class})
     abstract BusinessListFragment contributeBusinessListFragmentInjector();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = {CompanyMemberListModule.class})
+    abstract CompanyMemberListFragment contributeCompanyMemberListFragmentInjector();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = {ApplyTenantModule.class})
+    abstract ApplyTenantFragment contributeApplyTenantFragmentInjector();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = {HelpListModule.class})
+    abstract HelpListFragment contributeHelpListFragmentInjector();
 }

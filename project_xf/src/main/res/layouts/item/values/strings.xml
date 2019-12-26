@@ -1,4 +1,9 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="new_friend_str" tools:ignore="MissingTranslation">新朋友</string>
-    <string name="has_new_friend_str" tools:ignore="MissingTranslation">已添加</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="new_friend_str">新朋友</string>
+    <string name="has_new_friend_str">已添加</string>
+
+
+    <string name="item_status_wait_at_apply_tenant_str">待处理</string>
+    <string name="item_status_apply_at_apply_tenant_str">通过</string>
+    <string name="item_status_refuse_at_apply_tenant_str">拒绝</string>
 </resources>

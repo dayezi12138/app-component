@@ -22,6 +22,7 @@ import core.app.zh.com.core.listener.GetActivityListener;
 import core.app.zh.com.core.listener.GetPresenter;
 import core.app.zh.com.core.listener.LayoutInitListener;
 import dagger.android.support.DaggerFragment;
+import me.jessyan.autosize.AutoSizeConfig;
 
 public abstract class BaseFragment extends DaggerFragment implements LayoutInitListener, GetActivityListener, BaseView, GetPresenter {
 
@@ -30,6 +31,7 @@ public abstract class BaseFragment extends DaggerFragment implements LayoutInitL
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        AutoSizeConfig.getInstance().setCustomFragment(true);
         rootView = inflater.inflate(R.layout.base_view, container, false);
         rootLy = rootView.findViewById(R.id.root_ly);
         beforeInit(inflater, container);
@@ -103,8 +105,8 @@ public abstract class BaseFragment extends DaggerFragment implements LayoutInitL
 
 
     @Override
-    public View myContentView() {
-        return contentView;
+    public ViewGroup myContentView() {
+        return (ViewGroup) contentView;
     }
 
     public LinearLayout getRootLy() {

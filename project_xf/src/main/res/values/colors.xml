@@ -4,11 +4,11 @@
     <color name="colorPrimaryDark">#00574B</color>
     <!--<color name="colorAccent">#D81B60</color>-->
 
-    <color name="background_splash_color">#1D6DB6</color>
+    <color name="background_splash_color">#0E6EB8</color>
     <color name="act_background_color_w">#EFEEEE</color>
     <color name="act_background_color_g">#FCFCF1</color>
     <color name="translucent">#50000000</color>
     <color name="background_color">#F6F6F6</color>
     <color name="un_select_create_busi_color">#DADAD9</color>
-
+    <color name="light_blue_color">#33aaff</color>
 </resources>

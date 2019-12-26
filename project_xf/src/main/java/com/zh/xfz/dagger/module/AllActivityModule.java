@@ -8,6 +8,7 @@ import com.zh.xfz.business.activity.AddGroupMembersActivity;
 import com.zh.xfz.business.activity.AddPasswordActivity;
 import com.zh.xfz.business.activity.BusinessListActivity;
 import com.zh.xfz.business.activity.CompanyActivity;
+import com.zh.xfz.business.activity.CompanyOperationActivity;
 import com.zh.xfz.business.activity.CreateBusinessActivity;
 import com.zh.xfz.business.activity.CsrActivity;
 import com.zh.xfz.business.activity.ForgetPasswordActivity;
@@ -47,6 +48,7 @@ import com.zh.xfz.dagger.module.activity.AddFriendModule;
 import com.zh.xfz.dagger.module.activity.AddGroupMembersModule;
 import com.zh.xfz.dagger.module.activity.AddPasswordModule;
 import com.zh.xfz.dagger.module.activity.CompanyModule;
+import com.zh.xfz.dagger.module.activity.CompanyOperationModule;
 import com.zh.xfz.dagger.module.activity.CreateBusinessModule;
 import com.zh.xfz.dagger.module.activity.FriendDetailModule;
 import com.zh.xfz.dagger.module.activity.GroupDetailModule;
@@ -245,6 +247,6 @@ public abstract class AllActivityModule {
     abstract BusinessListActivity contributeBusinessListActivityInjector();
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = {EmptyModule.class})
-    abstract com.zh.xfz.business.TestActivity contributeTestActivity1Injector();
+    @ContributesAndroidInjector(modules = {CompanyOperationModule.class})
+    abstract CompanyOperationActivity contributeCompanyOperationActivityInjector();
 }

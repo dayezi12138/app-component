@@ -18,7 +18,7 @@ public class CommonFragmentModule {
     @FragmentScope
     @Provides
     public MyBaseModel baseModel(BaseFragment fragment) {
-        return new MyBaseModel(fragment.getActivity().getApplication()) {
+        return new MyBaseModel(fragment.getMyActivity().getApplication()) {
             @Override
             public BaseView getBaseView() {
                 return fragment;

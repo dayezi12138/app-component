@@ -1,11 +1,10 @@
 package com.zh.xfz.business.activity;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -14,16 +13,20 @@ import com.zh.annatation.toolbar.ToolbarLeft;
 import com.zh.annatation.toolbar.ToolbarNavigation;
 import com.zh.annatation.toolbar.ToolbarTitle;
 import com.zh.xfz.R;
+import com.zh.xfz.bean.activity.LocalApplication;
 import com.zh.xfz.business.adapter.HelpAdapter;
+import com.zh.xfz.business.fragment.HelpListFragment;
+import com.zh.xfz.mvp.contract.HelpContract;
+import com.zh.xfz.mvp.presenter.HelpPresenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
-import core.app.zh.com.core.view.ClearEditTextView;
+
+import static com.zh.xfz.business.activity.BusinessListActivity.FRAGMENT_CLASS_BUNDLE_KEY;
 
 /**
  * author : dayezi
@@ -32,9 +35,9 @@ import core.app.zh.com.core.view.ClearEditTextView;
  */
 @Route(path = HelpActivity.AROUTER_PATH)
 @ToolbarLeft(menuId = R.menu.menu_contact_me)
-@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_white)
-@ToolbarTitle(backGroundColorId = R.color.background_splash_color, title = "帮助")
-public class HelpActivity extends BaseActivity {
+@ToolbarNavigation(visibleNavigation = true, iconId = R.drawable.ic_back_light_blue)
+@ToolbarTitle(backGroundColorId = R.color.white, title = "帮助", textColorId = R.color.textColorPrimary, statusBarColorId = R.color.translucent)
+public class HelpActivity extends BaseActivity implements HelpContract.HelpApplicationUI {
     public final static String AROUTER_PATH = "/main/HelpActivity/";
     @Inject
     List<String> stringList;
@@ -45,9 +48,8 @@ public class HelpActivity extends BaseActivity {
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
 
-    @BindView(R.id.et_search)
-    ClearEditTextView clearEditTextView;
-
+    @Inject
+    HelpPresenter helpPresenter;
 
     @NonNull
     @Override
@@ -59,42 +61,26 @@ public class HelpActivity extends BaseActivity {
     public void init() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        adapter.setNewData(stringList);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter.setOnItemClickListener((adapter, view, position) -> {
-            if (position == 1) {
-                ARouter.getInstance().build(HelpItemActivity.AROUTER_PATH).navigation();
-            }
+            Bundle bundle = new Bundle();
+            bundle.putString(HelpListFragment.APP_ID_KEY, HelpActivity.this.adapter.getData().get(position).getID());
+            bundle.putString(HelpListFragment.TOOLBAR_TITLE_KEY, HelpActivity.this.adapter.getData().get(position).getName());
+            ARouter.getInstance().build(BusinessListActivity.AROUTER_PATH)
+                    .withBundle(FRAGMENT_CLASS_BUNDLE_KEY, bundle)
+                    .withString(BusinessListActivity.FRAGMENT_CLASS_KEY, HelpListFragment.class.getName())
+                    .navigation();
         });
-        clearEditTextView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!TextUtils.isEmpty(s.toString())) {
-                    adapter.setNewData(searchResult(s.toString()));
-                }
-            }
-        });
-    }
-
-    private List<String> searchResult(String searchV) {
-        List<String> list = new ArrayList<>();
-        for (String data : stringList) {
-            if (data.contains(searchV)) list.add(data);
-        }
-        return list;
+        helpPresenter.getApps();
     }
 
     @OnMenuOnclick
     public void menuClick() {
         ARouter.getInstance().build(CsrActivity.AROUTER_PATH).navigation();
+    }
+
+    @Override
+    public void successAppList(List<LocalApplication> applications) {
+        adapter.setNewData(applications);
     }
 }

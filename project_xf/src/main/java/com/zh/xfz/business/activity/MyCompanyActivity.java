@@ -82,13 +82,9 @@ public class MyCompanyActivity extends BaseActivity implements View.OnClickListe
         if (tenantList != null && !tenantList.isEmpty()) {
             companyTv.setText(loginHandler.getCurrentTenant().getTenantName());
             adapter.setNewData(tenantList);
-            adapter.setOnItemClickListener((adapter, view, position) -> {
-                Tenant firstTenant = loginHandler.getCurrentTenant();
-                if (firstTenant.getId() != tenantList.get(position).getId()) {
-                    loginHandler.updateTenant(firstTenant, tenantList.get(position));
-                    companyTv.setText(tenantList.get(position).getTenantName());
-                }
-            });
+            adapter.setOnItemClickListener((adapter, view, position) -> ARouter.getInstance().build(CompanyOperationActivity.AROUTER_PATH)
+                    .withSerializable(CompanyOperationActivity.TOOLBAR_TITLE_KEY, MyCompanyActivity.this.adapter.getData().get(position))
+                    .navigation());
         } else endTv.setVisibility(View.GONE);
     }
 

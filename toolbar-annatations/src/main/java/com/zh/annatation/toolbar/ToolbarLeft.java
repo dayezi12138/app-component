@@ -13,5 +13,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.TYPE)
 public @interface ToolbarLeft {
-    int menuId() default -1;
+    int menuId();
+
+    int actionMenuTextAppearanceId() default -1;
 }

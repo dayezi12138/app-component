@@ -123,6 +123,7 @@ public class ToolBarInject {
             TextView textView = new TextView(activity);
             Toolbar.LayoutParams layoutParams = new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT);
             layoutParams.gravity = Gravity.CENTER;
+            textView.setId(R.id.tool_bar_text_view_id_x);
             textView.setLayoutParams(layoutParams);
             textView.setGravity(Gravity.CENTER);
             boolean isAdd = false;
@@ -156,8 +157,9 @@ public class ToolBarInject {
                 colorId = bean.getBackGroundColorId();
             }
             toolbar.setBackgroundColor(activity.getResources().getColor(colorId));
+            colorId = bean.getStatusBarColorId() != -1 ? bean.getStatusBarColorId() : colorId;
             BarUtils.addMarginTopEqualStatusBarHeight(toolbar);
-            BarUtils.setStatusBarColor(activity, activity.getResources().getColor(colorId),1);
+            BarUtils.setStatusBarColor(activity, activity.getResources().getColor(colorId), 1);
         } else {
             test(obj, toolbar);
         }

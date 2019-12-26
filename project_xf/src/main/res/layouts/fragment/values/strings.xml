@@ -1,4 +1,12 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="fragment_friend_new_str" tools:ignore="MissingTranslation">新的朋友</string>
-    <string name="fragment_friend_group_str" tools:ignore="MissingTranslation">群组</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="fragment_friend_new_str">新的朋友</string>
+    <string name="fragment_friend_group_str">群组</string>
+    <string name="fragment_base_list_adapter_error_str">...适配器未添加...</string>
+
+
+    <!--这边开始整理Dialog text 文字已frag开头，已msg结尾begin -->
+    <string name="frag_apply_tenant_content_dialog_msg">是否同意用户加入公司</string>
+    <string name="frag_apply_tenant_sure_dialog_msg">同意</string>
+    <string name="frag_apply_tenant_cancel_dialog_msg">残忍拒绝</string>
+    <!--这边开始整理Dialog text 文字已frag开头，已msg结尾end -->
 </resources>

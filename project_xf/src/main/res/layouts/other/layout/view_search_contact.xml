@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/background_splash_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/widget_padding_tiny"
+        android:paddingRight="@dimen/widget_padding_tiny">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/widget_edittext_height_tiny"
+            android:layout_weight="1"
+            android:background="@drawable/shape_view_search_contact"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginLeft="@dimen/widget_padding_tiny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search" />
+
+            <core.app.zh.com.core.view.ClearEditTextView
+                android:id="@+id/clear_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="搜索"
+                android:layout_marginRight="@dimen/widget_padding_tiny"
+                android:textColor="@color/text888"
+                android:textColorHint="@color/text888"
+                android:textSize="@dimen/font_min_xx_sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="@dimen/widget_text_height_tiny"
+            android:layout_height="@dimen/widget_edittext_height_tiny"
+            android:layout_marginLeft="@dimen/widget_margin_tiny"
+            android:background="@null"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_min_x_sp" />
+    </LinearLayout>
+
+    <include
+        layout="@layout/recycler_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

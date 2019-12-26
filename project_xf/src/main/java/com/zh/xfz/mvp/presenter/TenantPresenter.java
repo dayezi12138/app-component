@@ -2,6 +2,7 @@ package com.zh.xfz.mvp.presenter;
 
 import com.zh.xfz.mvp.contract.TenantContract;
 import com.zh.xfz.mvp.model.TenantModel;
+import com.zh.xfz.utils.LoginHandler;
 import com.zh.xfz.utils.ResponseStatusUtils;
 
 import java.util.Map;
@@ -10,7 +11,10 @@ import javax.inject.Inject;
 
 import core.app.zh.com.core.base.BasePresenter;
 import core.app.zh.com.core.base.BaseView;
+import core.app.zh.com.core.base.IBaseListView;
 import core.app.zh.com.core.listener.observable.ObservableListener;
+
+import static com.zh.xfz.constans.Constants.PAGEINDEX;
 
 /**
  * author : dayezi
@@ -20,6 +24,8 @@ import core.app.zh.com.core.listener.observable.ObservableListener;
 public class TenantPresenter extends BasePresenter<BaseView> implements TenantContract.Presenter {
 
     private TenantModel model;
+    @Inject
+    LoginHandler loginHandler;
 
     @Inject
     public TenantPresenter(TenantModel model) {
@@ -29,7 +35,7 @@ public class TenantPresenter extends BasePresenter<BaseView> implements TenantCo
 
     @Override
     public void onRefresh(Map<String, Object> params) {
-        model.setPageIndex(1);
+        model.setPageIndex(PAGEINDEX);
         getMyTenantListPage(params, true);
     }
 
@@ -61,9 +67,10 @@ public class TenantPresenter extends BasePresenter<BaseView> implements TenantCo
     @Override
     public void createTenant(String tenantName, String industryIDs) {
         model.createTenant(tenantName, industryIDs, data -> {
-            if (ResponseStatusUtils.isNormalSuccess(data.getCode()) && view.get() instanceof TenantContract.CreateBusinessUI) {
-                TenantContract.CreateBusinessUI ui = (TenantContract.CreateBusinessUI) view.get();
-                ui.createSuccess();
+            if (ResponseStatusUtils.isNormalSuccess(data.getCode())) {
+                loginHandler.saveTenant(data.getRes());
+                model.getMyBaseModel().getMyActivity().finish();
+
             } else view.get().showMsg(data.getMsg());
         });
     }
@@ -78,12 +85,78 @@ public class TenantPresenter extends BasePresenter<BaseView> implements TenantCo
         });
     }
 
+
     @Override
     public void getIndustry() {
         model.getIndustry(data -> {
             if (ResponseStatusUtils.isNormalSuccess(data.getCode()) && view.get() instanceof TenantContract.CreateBusinessUI) {
                 TenantContract.CreateBusinessUI ui = (TenantContract.CreateBusinessUI) view.get();
                 ui.industryList(data.getRes());
+            } else view.get().showMsg(data.getMsg());
+        });
+    }
+
+    private void getTenantPageList(String search) {
+        model.getTenantPageList(search, data -> {
+            if (ResponseStatusUtils.isNormalSuccess(data.getCode()) && view.get() instanceof TenantContract.BusinessListUI) {
+                TenantContract.BusinessListUI ui = (TenantContract.BusinessListUI) view.get();
+                ui.listData(data.getRes(), model.getPageIndex() == PAGEINDEX ? true : false);
+            } else view.get().showMsg(data.getMsg());
+        });
+    }
+
+    @Override
+    public void onRefreshAllTenant(String search) {
+        model.setPageIndex(PAGEINDEX);
+        getTenantPageList(search);
+    }
+
+    @Override
+    public void onLoadMoreAllTenant(String search) {
+        model.setPageIndex(model.getPageIndex() + 1);
+        getTenantPageList(search);
+    }
+
+    @Override
+    public void onRefreshApplyList(String id, String type) {
+        model.setPageIndex(PAGEINDEX);
+        getApplyList(id, type);
+
+    }
+
+    @Override
+    public void onLoadMoreApplyList(String id, String type) {
+        model.setPageIndex(model.getPageIndex() + 1);
+        getApplyList(id, type);
+    }
+
+    @Override
+    public void getTenantUser(String tenantid) {
+        model.getTenantUser(tenantid, data -> {
+            if (ResponseStatusUtils.isNormalSuccess(data.getCode()) && view.get() instanceof IBaseListView) {
+                IBaseListView iBaseListView = (IBaseListView) view.get();
+                iBaseListView.listData(data.getRes(), true);
+            } else view.get().showMsg(data.getMsg());
+
+        });
+    }
+
+    @Override
+    public void applyOperate(int type, String id) {
+        model.applyOperate(String.valueOf(type), id, data -> {
+            if (ResponseStatusUtils.isNormalSuccess(data.getCode()) && view.get() instanceof TenantContract.ApplyTenantUI) {
+                TenantContract.ApplyTenantUI applyTenantUI = (TenantContract.ApplyTenantUI) view.get();
+                applyTenantUI.applyStatus(type);
+            } else view.get().showMsg(data.getMsg());
+        });
+    }
+
+
+    private void getApplyList(String id, String type) {
+        model.getApplyList(id, type, data -> {
+            if (ResponseStatusUtils.isNormalSuccess(data.getCode()) && view.get() instanceof IBaseListView) {
+                IBaseListView iBaseListView = (IBaseListView) view.get();
+                iBaseListView.listData(data.getRes(), model.getPageIndex() == PAGEINDEX ? true : false);
             } else view.get().showMsg(data.getMsg());
         });
     }

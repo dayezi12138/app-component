@@ -4,6 +4,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.zh.xfz.api.HelpService;
 import com.zh.xfz.api.MyService;
 import com.zh.xfz.application.MyApplication;
 import com.zh.xfz.db.DaoMaster;
@@ -27,9 +28,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AppModule {
     private final static String TAG = AppModule.class.getSimpleName();
     private MyApplication application;
-    private static final int READ_WRITE_CONNECT_TIME = 15;
+    public static final int READ_WRITE_CONNECT_TIME = 15;
     private HttpLoggingInterceptor loggingInterceptor;
     public final static String BASE_URL = "http://47.103.75.23:8031/api/";
+    private final String HEPL_BASE_URL = "http://csmapi.fus.cn/api/";
     private final String PGYER_APPID = "PGYER_APPID";
     private final static String DB_NAME = "XFZ";
 
@@ -63,6 +65,13 @@ public class AppModule {
         MyService myService = retrofit.create(MyService.class);
         RequestProxy proxy = new RequestProxy(myService);
         return (MyService) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class[]{MyService.class}, proxy);
+    }
+
+    @Provides
+    public HelpService helpService(Retrofit retrofit) {
+        HelpService helpService = retrofit.newBuilder().baseUrl(HEPL_BASE_URL).build().create(HelpService.class);
+        RequestProxy proxy = new RequestProxy(helpService);
+        return (HelpService) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class[]{HelpService.class}, proxy);
     }
 
     @Provides

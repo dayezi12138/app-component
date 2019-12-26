@@ -42,13 +42,14 @@ public abstract class BaseListFragment<T> extends BaseFragment implements SwipeR
 
     @Override
     public void init() {
-        if (getMyBaseAdapter() == null) throw new RuntimeException("...适配器未添加...");
+        if (getMyBaseAdapter() == null)
+            throw new RuntimeException("...适配器未添加...");
         myBaseAdapter = getMyBaseAdapter();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(myBaseAdapter);
         swipeRefreshLayout.setOnRefreshListener(this::onRefresh);
         getMyBaseAdapter().setOnLoadMoreListener(this::onLoadMoreRequested, mRecyclerView);
-//        swipeRefreshLayout.setEnabled(false);
+        if (!initRefresh()) return;
         refreshBeforeInit();
         onRefresh();
         refreshBeforeAfter();
@@ -64,6 +65,10 @@ public abstract class BaseListFragment<T> extends BaseFragment implements SwipeR
         myBaseAdapter.setNewData(data);
         if (result.size() < PAGESIZE) myBaseAdapter.loadMoreEnd();
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+    public boolean initRefresh() {
+        return true;
     }
 
     public abstract void refreshBeforeInit();

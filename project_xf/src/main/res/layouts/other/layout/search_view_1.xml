@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:background="@drawable/shape_search_white"
+        android:background="@drawable/shape_view_search_contact"
         android:gravity="center_vertical">
 
         <ImageView

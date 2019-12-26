@@ -23,4 +23,6 @@ public @interface ToolbarTitle {
     int viewId() default -1;
 
     int backGroundColorId() default -1;
+
+    int statusBarColorId() default -1;
 }

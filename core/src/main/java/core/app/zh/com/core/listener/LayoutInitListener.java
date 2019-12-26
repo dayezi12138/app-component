@@ -15,7 +15,7 @@ public interface LayoutInitListener {
 
     void init();
 
-    View myContentView();
+    ViewGroup myContentView();
 
 
     View beforeInit(LayoutInflater inflater, ViewGroup container);

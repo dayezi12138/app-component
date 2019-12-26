@@ -1,6 +1,9 @@
 package com.zh.xfz.business.activity;
 
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
@@ -13,7 +16,10 @@ import com.zh.xfz.utils.WxHelper;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import core.app.zh.com.core.base.BaseActivity;
+
+import static com.zh.xfz.constans.Constants.COUNT_DOWN_INTERVAL;
 
 /**
  * author : dayezi
@@ -25,12 +31,17 @@ public class SplashActivity extends BaseActivity implements IMConnectCallBack {
     @Inject
     LoginHandler loginHandler;
 
+    @BindView(R.id.img_iv)
+    ImageView ly;
+
     private void start(boolean toMain) {
-        if (toMain)
-            ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
-        else
-            ARouter.getInstance().build(LoginActivity.AROUTER_PATH).navigation();
-        finish();
+        new Handler().postDelayed(() -> {
+            if (toMain)
+                ARouter.getInstance().build(MainActivity.AROUTER_PATH).navigation();
+            else
+                ARouter.getInstance().build(LoginActivity.AROUTER_PATH).navigation();
+            finish();
+        }, 3 * COUNT_DOWN_INTERVAL);
     }
 
     @Override
@@ -54,6 +65,7 @@ public class SplashActivity extends BaseActivity implements IMConnectCallBack {
     @Override
     public void init() {
         WxHelper.register(this, true);
+        ly.startAnimation(AnimationUtils.loadAnimation(this, R.anim.splash_anim));
         try {
             UserInfo userInfo = loginHandler.getCurrentUserInfo();
             IMUtils.connect(userInfo.getToken(), this);

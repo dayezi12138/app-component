@@ -163,6 +163,8 @@ public class ToolBarProcessor extends AbstractProcessor {
                         .append(toolbarTitle.viewId())
                         .append(SPOT)
                         .append(toolbarTitle.backGroundColorId())
+                        .append(SPOT)
+                        .append(toolbarTitle.statusBarColorId())
                         .append(")");
                 String param = "atlas.put($S," + builder.toString() + ")";
                 PackingMethod packingMethod = new PackingMethod();

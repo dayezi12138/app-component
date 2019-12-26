@@ -5,14 +5,16 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
 
+import java.io.Serializable;
+
 /**
  * author : dayezi
  * data :2019/12/17
  * description:
  */
 @Entity
-public class Tenant {
-
+public class Tenant implements Serializable {
+    private static final long serialVersionUID = 4359709211352400087L;
     @Id(autoincrement = true)
     private Long id;
 
@@ -28,7 +30,7 @@ public class Tenant {
 
     @Generated(hash = 1206600387)
     public Tenant(Long id, Integer userId, int tenantId, String tenantName,
-            boolean isFirst) {
+                  boolean isFirst) {
         this.id = id;
         this.userId = userId;
         this.tenantId = tenantId;

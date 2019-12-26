@@ -56,13 +56,13 @@ public class BusinessListFragment extends BaseListFragment<BusinessBean> impleme
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
-        presenter.onRefresh(getParams());
+        presenter.onRefreshAllTenant(clearEditTextView.getText().toString());
     }
 
     @Override
     public void onLoadMoreRequested() {
         swipeRefreshLayout.setRefreshing(true);
-        presenter.onLoad(getParams());
+        presenter.onLoadMoreAllTenant(clearEditTextView.getText().toString());
     }
 
     private Map<String, Object> getParams() {

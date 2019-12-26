@@ -22,8 +22,12 @@ public interface TenantContract {
     interface CreateBusinessUI extends BaseView {
         void industryList(List<Industry> dataList);
 
-        void createSuccess();
     }
+
+    interface ApplyTenantUI extends BaseView {
+        void applyStatus(int status);
+    }
+
 
     interface Presenter extends IBaseListPresenter {
         void applyTenant(String tenantid, int type);
@@ -33,5 +37,17 @@ public interface TenantContract {
         void existTenantName(String tenantName);
 
         void getIndustry();
+
+        void onRefreshAllTenant(String search);
+
+        void onLoadMoreAllTenant(String search);
+
+        void onRefreshApplyList(String id, String type);
+
+        void onLoadMoreApplyList(String id, String type);
+
+        void getTenantUser(String tenantid);
+
+        void applyOperate(int type, String id);
     }
 }

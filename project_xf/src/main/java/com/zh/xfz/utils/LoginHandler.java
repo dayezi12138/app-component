@@ -30,7 +30,7 @@ public class LoginHandler {
     public synchronized void saveLoginInfo(Account account) {
         clearLogin();
         saveUserInfo(account);
-        saveTenant(account.getTenant(), account.getID());
+        saveTenantList(account.getTenant(), account.getID());
         bindWX(account.getID(), account.getWXOpenID());
     }
 
@@ -114,7 +114,7 @@ public class LoginHandler {
         daoSession.getUserInfoDao().save(userInfo);
     }
 
-    private void saveTenant(List<Account.TenantBean> tenantList, Integer userId) {
+    private void saveTenantList(List<Account.TenantBean> tenantList, Integer userId) {
         for (int i = 0, j = tenantList.size(); i < j; i++) {
             Account.TenantBean tenantBean = tenantList.get(i);
             Tenant tenant = new Tenant();
@@ -124,5 +124,14 @@ public class LoginHandler {
             if (i == 0) tenant.setIsFirst(true);
             daoSession.getTenantDao().save(tenant);
         }
+    }
+
+    public void saveTenant(Account.TenantBean tenantBean) {
+        Tenant tenant = new Tenant();
+        tenant.setUserId(getCurrentUserId());
+        tenant.setTenantId(tenantBean.getID());
+        tenant.setTenantName(tenantBean.getTenantName());
+        daoSession.getTenantDao().save(tenant);
+        daoSession.clear();
     }
 }

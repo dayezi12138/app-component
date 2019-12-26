@@ -1,135 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.rairmmd.boundscrollview.BoundScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ly"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
-    android:orientation="vertical">
+    android:background="@color/background_color">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/content"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/widget_margin_normal"
-            app:cardBackgroundColor="#4D97DC"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp"
-            app:contentPadding="@dimen/widget_margin_tiny">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/widget_margin_normal"
+                app:cardBackgroundColor="#4D97DC"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp"
+                app:contentPadding="@dimen/widget_margin_tiny">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/name_tv"
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/font_large_sp"
-                            android:textStyle="bold" />
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/company_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/font_min_xx_sp"
-                            android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_large_sp"
+                                android:textStyle="bold" />
 
+                            <TextView
+                                android:id="@+id/company_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_min_xx_sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <com.shehuan.niv.NiceImageView
+                            android:id="@+id/img_iv"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/ic_user_white"
+                            app:border_color="@color/transparent"
+                            app:border_width="@dimen/divider"
+                            app:corner_radius="10dp" />
                     </LinearLayout>
 
-                    <com.shehuan.niv.NiceImageView
-                        android:id="@+id/img_iv"
+                    <ImageView
+                        android:id="@+id/qcrode_img"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:background="@drawable/ic_user_white"
-                        app:border_color="@color/transparent"
-                        app:border_width="@dimen/divider"
-                        app:corner_radius="10dp" />
+                        android:layout_marginTop="@dimen/widget_margin_large"
+                        android:src="@drawable/ic_qrcode" />
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/qcrode_img"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="@dimen/widget_margin_large"
-                    android:src="@drawable/ic_qrcode" />
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        <!--<include layout="@layout/common_line" />-->
+
+        <LinearLayout
+            android:id="@+id/test_tv"
+            style="@style/LinearLayout.MineFragment.Line.Style"
+            android:layout_marginTop="@dimen/divider"
+            android:background="@drawable/ripper_line"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="客服帮助"
+                android:textColor="@color/fragment_mine_line_text_color"
+                android:textSize="@dimen/font_large_sp" />
+
+            <include layout="@layout/view_forward"></include>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/my_company_ly"
+            style="@style/LinearLayout.MineFragment.Line.Style"
+            android:background="@drawable/ripper_line">
+
+            <TextView
+                style="@style/TextView.MineFragment.line.left.Style"
+                android:text="我的公司" />
+
+            <include layout="@layout/view_forward" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/help_ly"
+            style="@style/LinearLayout.MineFragment.Line.Style"
+            android:layout_marginTop="@dimen/widget_margin_tiny">
+
+            <TextView
+                style="@style/TextView.MineFragment.line.left.Style"
+                android:text="帮助与反馈" />
+
+            <include layout="@layout/view_forward" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/setting_ly"
+            style="@style/LinearLayout.MineFragment.Line.Style"
+            android:layout_marginTop="@dimen/widget_margin_tiny">
+
+            <TextView
+                style="@style/TextView.MineFragment.line.left.Style"
+                android:text="设置" />
+
+            <include layout="@layout/view_forward" />
+        </LinearLayout>
+
     </LinearLayout>
 
-    <!--<include layout="@layout/common_line" />-->
-
-    <LinearLayout
-        android:id="@+id/test_tv"
-        style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/divider"
-        android:background="@drawable/ripper_line"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="客服帮助"
-            android:textColor="@color/fragment_mine_line_text_color"
-            android:textSize="@dimen/font_large_sp" />
-
-        <include layout="@layout/view_forward"></include>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/my_company_ly"
-        style="@style/LinearLayout.MineFragment.Line.Style"
-        android:background="@drawable/ripper_line">
-
-        <TextView
-            style="@style/TextView.MineFragment.line.left.Style"
-            android:text="我的公司" />
-
-        <include layout="@layout/view_forward" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/help_ly"
-        style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/widget_margin_tiny">
-
-        <TextView
-            style="@style/TextView.MineFragment.line.left.Style"
-            android:text="帮助与反馈" />
-
-        <include layout="@layout/view_forward" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/setting_ly"
-        style="@style/LinearLayout.MineFragment.Line.Style"
-        android:layout_marginTop="@dimen/widget_margin_tiny">
-
-        <TextView
-            style="@style/TextView.MineFragment.line.left.Style"
-            android:text="设置" />
-
-        <include layout="@layout/view_forward" />
-    </LinearLayout>
-
-</LinearLayout>
+</com.rairmmd.boundscrollview.BoundScrollView>

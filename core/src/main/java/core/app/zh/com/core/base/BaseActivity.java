@@ -28,7 +28,6 @@ import core.app.zh.com.core.listener.AppExitListener;
 import core.app.zh.com.core.listener.GetActivityListener;
 import core.app.zh.com.core.listener.GetPresenter;
 import core.app.zh.com.core.listener.LayoutInitListener;
-import core.app.zh.com.core.listener.LoadingOptionListener;
 import core.app.zh.com.core.listener.OnChangeToolbarListener;
 import dagger.android.support.DaggerAppCompatActivity;
 import io.reactivex.disposables.CompositeDisposable;
@@ -39,7 +38,6 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private AppExitListener appExitListener;
     private View rootContentView;
-    private LoadingOptionListener loadingOptionListener;
 
 
     @Override
@@ -64,16 +62,8 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
     public View beforeInit(LayoutInflater inflater, ViewGroup container) {
         boolean old = oldAddToolbar(container);
         if (!old) newAddToolbar(container);
-        View contentView = null;
-        if (loadingOptionListener != null && loadingOptionListener.getLoadingView() != null) {
-            contentView = loadingOptionListener.getLoadingView();
-        }
         if (layoutId() != 0) {
-            if (contentView != null) {
-                loadingOptionListener.addContentView(inflater.inflate(layoutId(), container, false));
-                rootContentView = contentView;
-            } else
-                rootContentView = inflater.inflate(layoutId(), container, false);
+            rootContentView = inflater.inflate(layoutId(), container, false);
             container.addView(rootContentView);
         } else rootContentView = container;
         return container;
@@ -169,10 +159,6 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
         this.onChangeToolbarListener = onChangeToolbarListener;
     }
 
-    public void setLoadingOptionListener(LoadingOptionListener loadingOptionListener) {
-        this.loadingOptionListener = loadingOptionListener;
-    }
-
     public CompositeDisposable getCompositeDisposable() {
         return compositeDisposable;
     }
@@ -202,8 +188,8 @@ public abstract class BaseActivity extends DaggerAppCompatActivity implements La
     }
 
     @Override
-    public View myContentView() {
-        return rootContentView;
+    public ViewGroup myContentView() {
+        return (ViewGroup) rootContentView;
     }
 
 }
